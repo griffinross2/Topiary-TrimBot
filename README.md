@@ -5,9 +5,13 @@ This is the home of the Purdue University ECE 49595SD senior design group E11 in
 
 ## Members
 Griffin Ross - [GitHub](https://github.com/griffinross2) - [LinkedIn](https://www.linkedin.com/in/griffin-ross-eng/)
+
 Thomas Schorer - [GitHub](https://github.com/ThomasSchorer) - [LinkedIn](https://www.linkedin.com/in/thomas-schorer/)
+
 Jackson Duke - [GitHub](https://github.com/JDuke3) - [LinkedIn](https://www.linkedin.com/in/duke-jackson/)
+
 Collin Shanks - [GitHub](https://github.com/collinshanks) - [LinkedIn](https://www.linkedin.com/in/collinshanks/)
+
 
 ## Documents
 The docs/ folder contains documents grouped by category
