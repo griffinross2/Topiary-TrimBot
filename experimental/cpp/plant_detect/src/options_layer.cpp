@@ -17,5 +17,11 @@ void OptionsLayer::onRender() {
 
     ImGui::InputInt("Camera Index", &m_cameraIndexInput);
 
+    int width, height;
+    Options::getResolution(width, height);
+    ImGui::InputInt("Width", &width);
+    ImGui::InputInt("Height", &height);
+    Options::setResolution(width, height);
+
     ImGui::End();
 }
