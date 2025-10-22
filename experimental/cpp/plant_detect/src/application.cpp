@@ -1,5 +1,7 @@
 #include "application.h"
 
+#include "block.h"
+
 #include <memory>
 #include <vector>
 
@@ -59,12 +61,18 @@ int Application::run() {
             layer->onUpdate();
         }
 
+        updateBlocks();
+
         ImGui::NewFrame();
 
         // App render
         for (auto& layer : m_layerStack) {
             layer->onRender();
         }
+
+        renderBlocks();
+
+        renderBlockConnections();
 
         ImGui::Render();
 

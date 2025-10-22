@@ -74,12 +74,12 @@ endif()
 
 # Generate glad
 add_subdirectory("${glad_SOURCE_DIR}/cmake" glad_cmake)
-glad_add_library(glad_gl_core_30 REPRODUCIBLE API gl:core=3.0)
+glad_add_library(glad_gl_core_45 REPRODUCIBLE API gl:core=4.5)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
     glfw
     opengl32
-    glad_gl_core_30
+    glad_gl_core_45
     ${OpenCV_LIBS}
 )
 
