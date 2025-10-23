@@ -20,7 +20,11 @@ public:
     void onRender() override;
 
 private:
+#ifdef NDEBUG
     bool m_visible = false;
+#else
+    bool m_visible = true;
+#endif
     std::array<float, DEBUG_FRAME_TIME_HISTORY_SIZE> m_frameTimes;
     int m_frameTimeSize = 0;
 };
