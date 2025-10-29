@@ -5,6 +5,9 @@
 #include "int_input_block.h"
 #include "display_block.h"
 #include "grayscale_block.h"
+#include "mean_shift_detect_block.h"
+#include "rescale_block.h"
+#include "still_frame_block.h"
 #include "debug_layer.h"
 #include "block.h"
 
@@ -24,7 +27,12 @@ int main(int argc, char** argv) {
     createBlock<IntInputBlock>();
     createBlock<CameraBlock>();
     createBlock<DisplayBlock>();
+    createBlock<DisplayBlock>();
     createBlock<GrayscaleBlock>();
+    createBlock<RescaleBlock>();
+    createBlock<RescaleBlock>();
+    createBlock<MeanShiftDetectBlock>();
+    createBlock<StillFrameBlock>();
 
     ret = app.run();
     app.shutdown();

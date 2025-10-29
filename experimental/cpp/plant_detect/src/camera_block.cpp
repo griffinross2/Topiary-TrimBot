@@ -4,8 +4,8 @@
 
 CameraBlock::CameraBlock() : Block() {
     // Initialize io
-    m_inputs.push_back({"Camera Index", int{0}});
-    m_outputs.push_back({"Frame", cv::Mat()});
+    m_inputs.push_back({"Camera Index", int{0}, true});
+    m_outputs.push_back({"Frame", cv::Mat(), true});
 
     // Get camera
     m_camera = std::make_unique<cv::VideoCapture>(m_currentCameraIndex);
@@ -15,8 +15,8 @@ CameraBlock::CameraBlock() : Block() {
 
 CameraBlock::CameraBlock(std::string id) : Block(id) {
     // Initialize io
-    m_inputs.push_back({"Camera Index", int{0}});
-    m_outputs.push_back({"Frame", cv::Mat()});
+    m_inputs.push_back({"Camera Index", int{0}, true});
+    m_outputs.push_back({"Frame", cv::Mat(), true});
 
     // Get camera
     m_camera = std::make_unique<cv::VideoCapture>(m_currentCameraIndex);
@@ -35,7 +35,11 @@ void CameraBlock::onUpdate() {
 
     // Input and output frame
     m_frameMutex.lock();
-    m_outputs[0].data = m_internalFrame;
+    if (m_newFrame) {
+        m_outputs[0].data = m_internalFrame;
+        m_outputs[0].newData = true;
+        m_newFrame = false;
+    }
     m_frameMutex.unlock();
 }
 
@@ -64,6 +68,7 @@ void CameraBlock::cameraThreadFunc() {
 
         m_frameMutex.lock();
         m_internalFrame = frame;
+        m_newFrame = true;
         m_frameMutex.unlock();
     }
 }

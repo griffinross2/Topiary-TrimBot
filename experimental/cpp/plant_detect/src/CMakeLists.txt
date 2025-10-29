@@ -9,4 +9,7 @@ target_sources(${PROJECT_NAME} PRIVATE
 	debug_layer.cpp
 	block.cpp
 	options.cpp
+	mean_shift_detect_block.cpp
+	rescale_block.cpp
+	still_frame_block.cpp
 )

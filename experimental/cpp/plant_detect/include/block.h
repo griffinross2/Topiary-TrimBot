@@ -21,6 +21,7 @@ constexpr int ioSize = 25;
 typedef struct BlockIO {
     std::string name;
     std::variant<BLOCK_IO_TYPES> data;
+    bool newData;
 } BlockIO;
 
 typedef struct BlockConnection {
@@ -37,7 +38,7 @@ public:
     ~Block() = default;
     const std::string& getId() { return m_id; }
     void setInput(int index, const std::variant<BLOCK_IO_TYPES>& value);
-    std::variant<BLOCK_IO_TYPES> getOutput(int index);
+    BlockIO& getOutput(int index);
     int getNumInputs() { return static_cast<int>(m_inputs.size()); }
     int getNumOutputs() { return static_cast<int>(m_outputs.size()); }
     void onUpdate();

@@ -61,11 +61,15 @@ void DisplayBlock::onRender() {
 
     drawOutputs();
 
-    glBindTexture(GL_TEXTURE_2D, m_frameTexture);
+    if (m_inputs[0].newData) {
+        glBindTexture(GL_TEXTURE_2D, m_frameTexture);
 
-    // Upload pixels into texture
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_BGR,
-                 GL_UNSIGNED_BYTE, frame.data);
+        // Upload pixels into texture
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_BGR,
+                     GL_UNSIGNED_BYTE, frame.data);
+
+        m_inputs[0].newData = false;
+    }
 
     ImGui::GetWindowDrawList()->AddImage(
         ImTextureRef(m_frameTexture),

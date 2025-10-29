@@ -17,5 +17,6 @@ private:
     std::unique_ptr<cv::VideoCapture> m_camera;
     std::thread m_cameraThread;
     cv::Mat m_internalFrame;
+    bool m_newFrame = false;
     std::mutex m_frameMutex;
 };

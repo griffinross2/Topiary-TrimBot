@@ -20,10 +20,11 @@ Block::Block(std::string id) : m_id(id) {
 
 void Block::setInput(int index, const std::variant<BLOCK_IO_TYPES>& value) {
     m_inputs.at(index).data = value;
+    m_inputs.at(index).newData = true;
 }
 
-std::variant<BLOCK_IO_TYPES> Block::getOutput(int index) {
-    return m_outputs.at(index).data;
+BlockIO& Block::getOutput(int index) {
+    return m_outputs[index];
 }
 
 void Block::onUpdate() {}
@@ -173,19 +174,20 @@ void updateBlocks() {
         // Update the block then push its outputs to connected blocks
         block->onUpdate();
         for (size_t outIdx = 0; outIdx < block->getNumOutputs(); ++outIdx) {
+            BlockIO& dataToSend = block->getOutput(static_cast<int>(outIdx));
             for (const auto& conn : s_blockConnections) {
                 if (conn.sourceId == block->getId() &&
                     conn.sourceIndex == static_cast<int>(outIdx)) {
                     std::shared_ptr<Block> destBlock =
                         getBlockById(conn.destId);
                     int destIdx = conn.destIndex;
-                    if (destBlock) {
+                    if (destBlock && dataToSend.newData) {
                         destBlock->setInput(
-                            destIdx,
-                            block->getOutput(static_cast<int>(outIdx)));
+                            destIdx, dataToSend.data);
                     }
                 }
             }
+            dataToSend.newData = false;
         }
     }
 }

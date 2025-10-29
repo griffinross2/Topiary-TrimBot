@@ -17,6 +17,10 @@ GrayscaleBlock::GrayscaleBlock(std::string id) : Block(id) {
 void GrayscaleBlock::onUpdate() {
     Block::onUpdate();
 
+    if (!m_inputs[0].newData) {
+        return;
+    }
+
     cv::Mat inFrame = std::get<cv::Mat>(m_inputs[0].data);
 
     if (inFrame.empty()) {
@@ -30,4 +34,6 @@ void GrayscaleBlock::onUpdate() {
     cv::cvtColor(gray1, outFrame, cv::COLOR_GRAY2BGR);
 
     m_outputs[0].data = outFrame;
+    m_outputs[0].newData = true;
+    m_inputs[0].newData = false;
 }

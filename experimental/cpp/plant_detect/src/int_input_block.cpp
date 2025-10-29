@@ -4,12 +4,17 @@
 
 IntInputBlock::IntInputBlock() : Block() {
     // Initialize io
-    m_outputs.push_back({"Value", int{0}});
+    m_outputs.push_back({"Value", int{0}, true});
 }
 
 IntInputBlock::IntInputBlock(std::string id) : Block(id) {
     // Initialize io
-    m_outputs.push_back({"Value", int{0}});
+    m_outputs.push_back({"Value", int{0}, true});
+}
+
+void IntInputBlock::onUpdate() {
+    Block::onUpdate();
+    m_outputs[0].newData = true;
 }
 
 void IntInputBlock::onRender() {
