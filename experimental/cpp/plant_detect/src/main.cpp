@@ -28,6 +28,7 @@ int main(int argc, char** argv) {
     createBlock<CameraBlock>();
     createBlock<DisplayBlock>();
     createBlock<DisplayBlock>();
+    createBlock<DisplayBlock>();
     createBlock<GrayscaleBlock>();
     createBlock<RescaleBlock>();
     createBlock<RescaleBlock>();

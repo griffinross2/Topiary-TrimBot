@@ -1,20 +1,8 @@
 #include "mean_shift_detect_block.h"
 
-#include <utility>
-
 #include "imgui.h"
 
-constexpr int MAGIC_HUE = 60;                      // Hue for green plant
-constexpr int CLUSTER_RADIUS = 10;           // Radius for mean shift clustering
-constexpr int MAX_ITERATIONS = 20;       // Max iterations for search
-constexpr int MIN_PIXELS_OF_COLOR = 500;     // Minimum pixels to cluster a color
-constexpr float MIN_SATURATION = 0.15f;      // Minimum saturation to consider a pixel
-constexpr float MIN_VALUE = 0.1f;  // Minimum value to consider a pixel
-constexpr float MAX_VALUE = 0.93f;           // Maximum value to consider a pixel
-constexpr int CLUSTER_SELECTION_DIST =
-    20;  // Max distance from MAGIC_HUE to select a cluster
-
-void insertMean(std::vector<std::pair<int, int>>& means, int mean) {
+void MeanShiftDetectBlock::insertMean(std::vector<std::pair<int, int>>& means, int mean) {
     for (auto& hue : means) {
         if (hue.first == mean) {
             hue.second++;
@@ -25,7 +13,7 @@ void insertMean(std::vector<std::pair<int, int>>& means, int mean) {
     means.push_back(std::make_pair(mean, 1));
 }
 
-std::vector<int> pointsInDist(int center, int dist) {
+std::vector<int> MeanShiftDetectBlock::pointsInDist(int center, int dist) {
     std::vector<int> points;
     int min = std::max(0, center - dist);
     int max = std::min(179, center + dist);
@@ -36,7 +24,8 @@ std::vector<int> pointsInDist(int center, int dist) {
     return points;
 }
 
-std::vector<int> filterPoints(const std::vector<int>& hues,
+std::vector<int> MeanShiftDetectBlock::filterPoints(
+    const std::vector<int>& hues,
                   const std::vector<int>& points) {
     std::vector<int> filteredPoints;
     for (int p : points) {
@@ -47,13 +36,13 @@ std::vector<int> filterPoints(const std::vector<int>& hues,
     return filteredPoints;
 }
 
-int findMean(const std::vector<int>& hues,
+int MeanShiftDetectBlock::findMean(const std::vector<int>& hues,
               int hueStart) {
     int hueMean = hueStart;
 
-    std::vector<int> points = pointsInDist(hueMean, CLUSTER_RADIUS);
+    std::vector<int> points = pointsInDist(hueMean, m_clusterRadius);
 
-    for (int it = 0; it < MAX_ITERATIONS; it++) {
+    for (int it = 0; it < m_maxIterations; it++) {
         std::vector<int> filteredPoints = filterPoints(hues, points);
 
         int sum = 0;
@@ -116,8 +105,8 @@ void MeanShiftDetectBlock::onUpdate() {
             int hue = hsvPixel[0];
             float saturation = hsvPixel[1] / 255.0f;
             float value = hsvPixel[2] / 255.0f;
-            if (saturation >= MIN_SATURATION && value >= MIN_VALUE &&
-                value <= MAX_VALUE) {
+            if (saturation >= m_minSaturation && value >= m_minValue &&
+                value <= m_maxValue) {
                 hueCounts[hue]++;
             }
         }
@@ -125,7 +114,7 @@ void MeanShiftDetectBlock::onUpdate() {
 
     // Filter hues that aren't prominent
     for (int i = 0; i < 180; i++) {
-        if (hueCounts[i] < MIN_PIXELS_OF_COLOR) {
+        if (hueCounts[i] < m_minPixelsOfColor) {
             hueCounts[i] = 0;
         }
     }
@@ -142,7 +131,7 @@ void MeanShiftDetectBlock::onUpdate() {
     // Select means near MAGIC_HUE
     std::vector<int> selectedMeans;
     for (auto& mean : means) {
-        if (std::abs(mean.first - MAGIC_HUE) <= CLUSTER_SELECTION_DIST) {
+        if (std::abs(mean.first - m_magicHue) <= m_clusterSelectionDistance) {
             selectedMeans.push_back(mean.first);
         }
     }
@@ -156,9 +145,9 @@ void MeanShiftDetectBlock::onUpdate() {
             float value = hsvPixel[2] / 255.0f;
             
             if (hueCounts[hue] == 0 ||
-                saturation < MIN_SATURATION ||
-                value < MIN_VALUE ||
-                value > MAX_VALUE) {
+                saturation < m_minSaturation ||
+                value < m_minValue ||
+                value > m_maxValue) {
                 continue;
             }
 
@@ -176,4 +165,41 @@ void MeanShiftDetectBlock::onUpdate() {
     m_outputs[0].data = outFrame;
     m_outputs[0].newData = true;
     m_inputs[0].newData = false;
+}
+
+void MeanShiftDetectBlock::onRender() {
+    ImGui::SetNextWindowSize(ImVec2(blockWidth + ioSize * 2, 300),
+                             ImGuiCond_Always);
+
+    ImGui::Begin(m_id.c_str(), nullptr,
+                 ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize |
+                     ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoNav);
+
+    int winX = ImGui::GetWindowPos().x;
+    int winY = ImGui::GetWindowPos().y;
+
+    m_winX = winX;
+    m_winY = winY;
+
+    drawInputs();
+
+    drawOutputs();
+
+    ImGui::SliderInt(std::format("Magic Hue##{}", m_id).c_str(), &m_magicHue, 0,
+                     179);
+    ImGui::InputInt(std::format("Cluster Radius##{}", m_id).c_str(),
+                    &m_clusterRadius);
+    ImGui::InputInt(std::format("Max Iterations##{}", m_id).c_str(),
+                    &m_maxIterations);
+    ImGui::InputInt(std::format("Min Pixels of Color##{}", m_id).c_str(),
+                    &m_minPixelsOfColor);
+    ImGui::SliderFloat(std::format("Min Saturation##{}", m_id).c_str(),
+                       &m_minSaturation, 0.0f, 1.0f);
+    ImGui::SliderFloat(std::format("Min Value##{}", m_id).c_str(), &m_minValue, 0.0f, 1.0f);
+    ImGui::SliderFloat(std::format("Max Value##{}", m_id).c_str(), &m_maxValue,
+                       0.0f, 1.0f);
+    ImGui::InputInt(std::format("Cluster Selection Distance##{}", m_id).c_str(),
+                    &m_clusterSelectionDistance);
+
+    ImGui::End();
 }
