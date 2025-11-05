@@ -51,149 +51,6 @@ uint8_t NETMASK_ADDRESS[4];
 uint8_t GATEWAY_ADDRESS[4];
 
 /* USER CODE BEGIN 2 */
-#if LWIP_DHCP
-#define MAX_DHCP_TRIES  4
-uint32_t DHCPfineTimer = 0;
-uint8_t DHCP_state = DHCP_OFF;
-#endif
-
-#if LWIP_DHCP
-/**
-  * @brief  DHCP_Process_Handle
-  * @param  None
-  * @retval None
-  */
-void DHCP_Process(struct netif *netif)
-{
-  ip_addr_t ipaddr;
-  ip_addr_t netmask;
-  ip_addr_t gw;
-  struct dhcp *dhcp;
-#ifdef USE_LCD
-  uint8_t iptxt[20];
-#endif
-
-  switch (DHCP_state)
-  {
-    case DHCP_START:
-    {
-#ifdef USE_LCD
-      LCD_UsrTrace ("  State: Looking for DHCP server ...\n");
-#else
-//      BSP_LED_Off(LED1);
-//      BSP_LED_Off(LED2);
-#endif
-      ip_addr_set_zero_ip4(&netif->ip_addr);
-      ip_addr_set_zero_ip4(&netif->netmask);
-      ip_addr_set_zero_ip4(&netif->gw);
-      dhcp_start(netif);
-      DHCP_state = DHCP_WAIT_ADDRESS;
-    }
-    break;
-
-  case DHCP_WAIT_ADDRESS:
-    {
-      if (dhcp_supplied_address(netif))
-      {
-        DHCP_state = DHCP_ADDRESS_ASSIGNED;
-#ifdef USE_LCD
-        sprintf((char *)iptxt, "%s", ip4addr_ntoa(netif_ip4_addr(netif)));
-        LCD_UsrTrace ("IP address assigned by a DHCP server: %s\n", iptxt);
-#else
-//        BSP_LED_On(LED1);
-//        BSP_LED_Off(LED2);
-#endif
-      }
-      else
-      {
-        dhcp = (struct dhcp *)netif_get_client_data(netif, LWIP_NETIF_CLIENT_DATA_INDEX_DHCP);
-
-        /* DHCP timeout */
-        if (dhcp->tries > MAX_DHCP_TRIES)
-        {
-          DHCP_state = DHCP_TIMEOUT;
-
-          /* Static address used */
-          IP_ADDR4(&ipaddr, IP_ADDR0 ,IP_ADDR1 , IP_ADDR2 , IP_ADDR3 );
-          IP_ADDR4(&netmask, NETMASK_ADDR0, NETMASK_ADDR1, NETMASK_ADDR2, NETMASK_ADDR3);
-          IP_ADDR4(&gw, GW_ADDR0, GW_ADDR1, GW_ADDR2, GW_ADDR3);
-          netif_set_addr(netif, &ipaddr, &netmask, &gw);
-
-#ifdef USE_LCD
-          sprintf((char *)iptxt, "%s", ip4addr_ntoa(netif_ip4_addr(netif)));
-          LCD_UsrTrace ("DHCP Timeout !! \n");
-          LCD_UsrTrace ("Static IP address: %s\n", iptxt);
-#else
-//          BSP_LED_On(LED1);
-//          BSP_LED_Off(LED2);
-#endif
-        }
-      }
-    }
-    break;
-  case DHCP_LINK_DOWN:
-    {
-      DHCP_state = DHCP_OFF;
-#ifdef USE_LCD
-      LCD_UsrTrace ("The network cable is not connected \n");
-#else
-//      BSP_LED_Off(LED1);
-//      BSP_LED_On(LED2);
-#endif
-    }
-    break;
-  default: break;
-  }
-}
-
-/**
-  * @brief  DHCP periodic check
-  * @param  netif
-  * @retval None
-  */
-void DHCP_Periodic_Handle(struct netif *netif)
-{
-  /* Fine DHCP periodic process every 500ms */
-  if (HAL_GetTick() - DHCPfineTimer >= DHCP_FINE_TIMER_MSECS)
-  {
-    DHCPfineTimer =  HAL_GetTick();
-    /* process DHCP state machine */
-    DHCP_Process(netif);
-  }
-}
-#endif
-
-void Netif_Config(void)
-{
-  ip_addr_t ipaddr;
-  ip_addr_t netmask;
-  ip_addr_t gw;
-
-#if LWIP_DHCP
-  ip_addr_set_zero_ip4(&ipaddr);
-  ip_addr_set_zero_ip4(&netmask);
-  ip_addr_set_zero_ip4(&gw);
-#else
-
-  /* IP address default setting */
-  IP4_ADDR(&ipaddr, IP_ADDR0, IP_ADDR1, IP_ADDR2, IP_ADDR3);
-  IP4_ADDR(&netmask, NETMASK_ADDR0, NETMASK_ADDR1 , NETMASK_ADDR2, NETMASK_ADDR3);
-  IP4_ADDR(&gw, GW_ADDR0, GW_ADDR1, GW_ADDR2, GW_ADDR3);
-
-#endif
-
-  /* add the network interface */
-  netif_add(&gnetif, &ipaddr, &netmask, &gw, NULL, &ethernetif_init, &ethernet_input);
-
-  /*  Registers the default network interface */
-  netif_set_default(&gnetif);
-
-  ethernet_link_status_updated(&gnetif);
-
-#if LWIP_NETIF_LINK_CALLBACK
-  netif_set_link_callback(&gnetif, ethernet_link_status_updated);
-#endif
-}
 
 /* USER CODE END 2 */
 
@@ -203,18 +60,18 @@ void Netif_Config(void)
 void MX_LWIP_Init(void)
 {
   /* IP addresses initialization */
-  IP_ADDRESS[0] = 10;
-  IP_ADDRESS[1] = 0;
-  IP_ADDRESS[2] = 0;
-  IP_ADDRESS[3] = 1;
+  IP_ADDRESS[0] = 192;
+  IP_ADDRESS[1] = 168;
+  IP_ADDRESS[2] = 1;
+  IP_ADDRESS[3] = 10;
   NETMASK_ADDRESS[0] = 255;
   NETMASK_ADDRESS[1] = 255;
   NETMASK_ADDRESS[2] = 255;
-  NETMASK_ADDRESS[3] = 255;
-  GATEWAY_ADDRESS[0] = 192;
-  GATEWAY_ADDRESS[1] = 168;
+  NETMASK_ADDRESS[3] = 0;
+  GATEWAY_ADDRESS[0] = 0;
+  GATEWAY_ADDRESS[1] = 0;
   GATEWAY_ADDRESS[2] = 0;
-  GATEWAY_ADDRESS[3] = 1;
+  GATEWAY_ADDRESS[3] = 0;
 
 /* USER CODE BEGIN IP_ADDRESSES */
 /* USER CODE END IP_ADDRESSES */
@@ -233,16 +90,8 @@ void MX_LWIP_Init(void)
   /* Registers the default network interface */
   netif_set_default(&gnetif);
 
-  if (netif_is_link_up(&gnetif))
-  {
-    /* When the netif is fully configured this function must be called */
-    netif_set_up(&gnetif);
-  }
-  else
-  {
-    /* When the netif link is down this function must be called */
-    netif_set_down(&gnetif);
-  }
+  /* We must always bring the network interface up connection or not... */
+  netif_set_up(&gnetif);
 
   /* Set the link callback function, this function is called on change of link status*/
   netif_set_link_callback(&gnetif, ethernet_link_status_updated);
@@ -250,7 +99,7 @@ void MX_LWIP_Init(void)
   /* Create the Ethernet link handler thread */
 
 /* USER CODE BEGIN 3 */
-
+  netif_set_link_up(&gnetif);
 /* USER CODE END 3 */
 }
 

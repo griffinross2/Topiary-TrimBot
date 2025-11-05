@@ -22,7 +22,6 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -51,13 +50,13 @@ UART_HandleTypeDef huart2;
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
-int __io_putchar(int ch);
 /* USER CODE BEGIN PFP */
+int __io_putchar(int ch);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+extern struct netif gnetif;
 /* USER CODE END 0 */
 
 /**
@@ -93,7 +92,8 @@ int main(void)
   /* USER CODE BEGIN 2 */
 //  Netif_Config();
   /* TCP echo server Init */
-    tcp_echoserver_init();
+//    tcp_echoserver_init();
+  printf("Starting up...\n");
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -107,10 +107,13 @@ int main(void)
     /* USER CODE BEGIN 3 */
 	  /* Read a received packet from the Ethernet buffers and send it
 	         to the lwIP for handling */
-	  MX_LWIP_Process();
+//	  MX_LWIP_Process();
 
 //	  HAL_UART_Transmit(&huart2, uart_buf, uart_len, 100);
 //	  HAL_Delay(1000);
+
+	  ethernetif_input(&gnetif);
+	  sys_check_timeouts();
   }
   /* USER CODE END 3 */
 }
@@ -281,6 +284,10 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+int __io_putchar(int ch) {
+	uint8_t buf = ch;
+	HAL_UART_Transmit(&huart2, &buf, 1, 10);
+}
 /* USER CODE END 4 */
 
 /**

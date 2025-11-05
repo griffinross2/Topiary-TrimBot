@@ -95,9 +95,28 @@
 #define CHECKSUM_CHECK_ICMP 0
 /*----- Value in opt.h for CHECKSUM_CHECK_ICMP6: 1 -----*/
 #define CHECKSUM_CHECK_ICMP6 0
+/*----- Default Value for ETHARP_DEBUG: LWIP_DBG_OFF ---*/
+#define ETHARP_DEBUG LWIP_DBG_ON
+/*----- Default Value for NETIF_DEBUG: LWIP_DBG_OFF ---*/
+#define NETIF_DEBUG LWIP_DBG_ON
+/*----- Default Value for PBUF_DEBUG: LWIP_DBG_OFF ---*/
+#define PBUF_DEBUG LWIP_DBG_ON
+/*----- Default Value for ICMP_DEBUG: LWIP_DBG_OFF ---*/
+#define ICMP_DEBUG LWIP_DBG_ON
+/*----- Default Value for IP_DEBUG: LWIP_DBG_OFF ---*/
+#define IP_DEBUG LWIP_DBG_ON
+/*----- Default Value for RAW_DEBUG: LWIP_DBG_OFF ---*/
+#define RAW_DEBUG LWIP_DBG_ON
+/*----- Default Value for TCP_DEBUG: LWIP_DBG_OFF ---*/
+#define TCP_DEBUG LWIP_DBG_ON
 /*-----------------------------------------------------------------------------*/
 /* USER CODE BEGIN 1 */
-
+#define LWIP_ARP                 1
+#define LWIP_ETHERNET            1
+#define LWIP_ICMP                1
+#define LWIP_RAW                 1
+#define ETHARP_SUPPORT_STATIC_ENTRIES 1
+#define LWIP_DEBUG
 /* USER CODE END 1 */
 
 #ifdef __cplusplus

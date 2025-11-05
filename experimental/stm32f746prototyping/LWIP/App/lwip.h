@@ -59,17 +59,6 @@ void MX_LWIP_Init(void);
  */
 void MX_LWIP_Process(void);
 
-#define DHCP_OFF                   (uint8_t) 0
-#define DHCP_START                 (uint8_t) 1
-#define DHCP_WAIT_ADDRESS          (uint8_t) 2
-#define DHCP_ADDRESS_ASSIGNED      (uint8_t) 3
-#define DHCP_TIMEOUT               (uint8_t) 4
-#define DHCP_LINK_DOWN             (uint8_t) 5
-#if LWIP_DHCP
-void DHCP_Process(struct netif *netif);
-void DHCP_Periodic_Handle(struct netif *netif);
-#endif
-void Netif_Config(void);
 /* USER CODE END 1 */
 #endif /* WITH_RTOS */
 
