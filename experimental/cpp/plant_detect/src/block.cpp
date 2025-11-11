@@ -31,7 +31,7 @@ void Block::onUpdate() {}
 
 void Block::drawInputs() {
     for (size_t i = 0; i < m_inputs.size(); ++i) {
-        ImGui::SetCursorPos(ImVec2(0, ioSize / 2 + i * ioSize));
+        ImGui::SetCursorPos(ImVec2(0, ioSize / 2 + i * ioSize * 2));
         ImGui::PushID(std::format("{}_input_{}", m_id, i).c_str());
         if (ImGui::Button(std::format("", m_id, i).c_str(),
                           ImVec2(ioSize, ioSize))) {
@@ -46,7 +46,7 @@ void Block::drawInputs() {
         ImVec2 textSize = ImGui::CalcTextSize(m_inputs[i].name.c_str());
         ImGui::GetWindowDrawList()->AddText(
             ImVec2(m_winX + ioSize + 10,
-                   m_winY + ioSize + i * ioSize - textSize.y / 2),
+                   m_winY + ioSize + i * ioSize * 2 - textSize.y / 2),
             IM_COL32(255, 255, 255, 255), m_inputs[i].name.c_str());
     }
 }
@@ -54,7 +54,7 @@ void Block::drawInputs() {
 void Block::drawOutputs() {
     for (size_t i = 0; i < m_outputs.size(); ++i) {
         ImGui::SetCursorPos(
-            ImVec2(blockWidth + ioSize, ioSize / 2 + i * ioSize));
+            ImVec2(blockWidth + ioSize, ioSize / 2 + i * ioSize * 2));
         ImGui::PushID(std::format("{}_output_{}", m_id, i).c_str());
         if (ImGui::Button(std::format("", m_id, i).c_str(),
                           ImVec2(ioSize, ioSize))) {
@@ -69,7 +69,7 @@ void Block::drawOutputs() {
         ImVec2 textSize = ImGui::CalcTextSize(m_outputs[i].name.c_str());
         ImGui::GetWindowDrawList()->AddText(
             ImVec2(m_winX + blockWidth + ioSize - 10 - textSize.x,
-                   m_winY + ioSize + i * ioSize - textSize.y / 2),
+                   m_winY + ioSize + i * ioSize * 2 - textSize.y / 2),
             IM_COL32(255, 255, 255, 255), m_outputs[i].name.c_str());
     }
 }
@@ -182,8 +182,7 @@ void updateBlocks() {
                         getBlockById(conn.destId);
                     int destIdx = conn.destIndex;
                     if (destBlock && dataToSend.newData) {
-                        destBlock->setInput(
-                            destIdx, dataToSend.data);
+                        destBlock->setInput(destIdx, dataToSend.data);
                     }
                 }
             }

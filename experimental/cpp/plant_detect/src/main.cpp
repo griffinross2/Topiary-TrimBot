@@ -8,6 +8,7 @@
 #include "mean_shift_detect_block.h"
 #include "rescale_block.h"
 #include "still_frame_block.h"
+#include "depth_block.h"
 #include "debug_layer.h"
 #include "block.h"
 
@@ -26,14 +27,19 @@ int main(int argc, char** argv) {
     app.pushLayer<DebugLayer>();
     createBlock<IntInputBlock>();
     createBlock<CameraBlock>();
+    createBlock<IntInputBlock>();
+    createBlock<CameraBlock>();
     createBlock<DisplayBlock>();
     createBlock<DisplayBlock>();
     createBlock<DisplayBlock>();
-    createBlock<GrayscaleBlock>();
+    createBlock<DisplayBlock>();
+    // createBlock<GrayscaleBlock>();
     createBlock<RescaleBlock>();
-    createBlock<RescaleBlock>();
-    createBlock<MeanShiftDetectBlock>();
+    // createBlock<RescaleBlock>();
+    // createBlock<MeanShiftDetectBlock>();
     createBlock<StillFrameBlock>();
+    createBlock<StillFrameBlock>();
+    createBlock<DepthBlock>();
 
     ret = app.run();
     app.shutdown();

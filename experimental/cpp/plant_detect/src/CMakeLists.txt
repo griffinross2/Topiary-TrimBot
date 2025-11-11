@@ -12,4 +12,5 @@ target_sources(${PROJECT_NAME} PRIVATE
 	mean_shift_detect_block.cpp
 	rescale_block.cpp
 	still_frame_block.cpp
+	depth_block.cpp
 )

@@ -2,7 +2,8 @@
 
 #include "imgui.h"
 
-void MeanShiftDetectBlock::insertMean(std::vector<std::pair<int, int>>& means, int mean) {
+void MeanShiftDetectBlock::insertMean(std::vector<std::pair<int, int>>& means,
+                                      int mean) {
     for (auto& hue : means) {
         if (hue.first == mean) {
             hue.second++;
@@ -26,7 +27,7 @@ std::vector<int> MeanShiftDetectBlock::pointsInDist(int center, int dist) {
 
 std::vector<int> MeanShiftDetectBlock::filterPoints(
     const std::vector<int>& hues,
-                  const std::vector<int>& points) {
+    const std::vector<int>& points) {
     std::vector<int> filteredPoints;
     for (int p : points) {
         if (hues[p] > 0) {
@@ -36,8 +37,7 @@ std::vector<int> MeanShiftDetectBlock::filterPoints(
     return filteredPoints;
 }
 
-int MeanShiftDetectBlock::findMean(const std::vector<int>& hues,
-              int hueStart) {
+int MeanShiftDetectBlock::findMean(const std::vector<int>& hues, int hueStart) {
     int hueMean = hueStart;
 
     std::vector<int> points = pointsInDist(hueMean, m_clusterRadius);
@@ -143,11 +143,9 @@ void MeanShiftDetectBlock::onUpdate() {
             int hue = hsvPixel[0];
             float saturation = hsvPixel[1] / 255.0f;
             float value = hsvPixel[2] / 255.0f;
-            
-            if (hueCounts[hue] == 0 ||
-                saturation < m_minSaturation ||
-                value < m_minValue ||
-                value > m_maxValue) {
+
+            if (hueCounts[hue] == 0 || saturation < m_minSaturation ||
+                value < m_minValue || value > m_maxValue) {
                 continue;
             }
 
@@ -195,7 +193,8 @@ void MeanShiftDetectBlock::onRender() {
                     &m_minPixelsOfColor);
     ImGui::SliderFloat(std::format("Min Saturation##{}", m_id).c_str(),
                        &m_minSaturation, 0.0f, 1.0f);
-    ImGui::SliderFloat(std::format("Min Value##{}", m_id).c_str(), &m_minValue, 0.0f, 1.0f);
+    ImGui::SliderFloat(std::format("Min Value##{}", m_id).c_str(), &m_minValue,
+                       0.0f, 1.0f);
     ImGui::SliderFloat(std::format("Max Value##{}", m_id).c_str(), &m_maxValue,
                        0.0f, 1.0f);
     ImGui::InputInt(std::format("Cluster Selection Distance##{}", m_id).c_str(),
