@@ -101,7 +101,11 @@ int main(void)
   MX_LTDC_Init();
   MX_DSIHOST_DSI_Init();
   /* USER CODE BEGIN 2 */
-  lcd_init();
+  if (lcd_init() != LCD_OK) {
+	  printf("LCD failed to initialize!\n");
+	  return 1;
+  }
+  printf("LCD init success\n");
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -114,6 +118,8 @@ int main(void)
 	  printf("cuh\n");
 	  HAL_Delay(1000);
   }
+
+  return 0;
   /* USER CODE END 3 */
 }
 
@@ -184,7 +190,7 @@ static void MX_DSIHOST_DSI_Init(void)
   DSI_PLLInitTypeDef PLLInit = {0};
   DSI_HOST_TimeoutTypeDef HostTimeouts = {0};
   DSI_PHY_TimerTypeDef PhyTimings = {0};
-  DSI_LPCmdTypeDef LPCmd = {0};
+  DSI_VidCfgTypeDef VidCfg = {0};
 
   /* USER CODE BEGIN DSIHOST_Init 1 */
 
@@ -192,7 +198,7 @@ static void MX_DSIHOST_DSI_Init(void)
   hdsi.Instance = DSI;
   hdsi.Init.AutomaticClockLaneControl = DSI_AUTO_CLK_LANE_CTRL_DISABLE;
   hdsi.Init.TXEscapeCkdiv = 4;
-  hdsi.Init.NumberOfLanes = DSI_ONE_DATA_LANE;
+  hdsi.Init.NumberOfLanes = DSI_TWO_DATA_LANES;
   PLLInit.PLLNDIV = 40;
   PLLInit.PLLIDF = DSI_PLL_IN_DIV1;
   PLLInit.PLLODF = DSI_PLL_OUT_DIV1;
@@ -219,7 +225,6 @@ static void MX_DSIHOST_DSI_Init(void)
   PhyTimings.DataLaneLP2HSTime = 16;
   PhyTimings.DataLaneMaxReadTime = 0;
   PhyTimings.StopWaitTime = 0;
-
   if (HAL_DSI_ConfigPhyTimer(&hdsi, &PhyTimings) != HAL_OK)
   {
     Error_Handler();
@@ -236,20 +241,38 @@ static void MX_DSIHOST_DSI_Init(void)
   {
     Error_Handler();
   }
-  LPCmd.LPGenShortWriteNoP = DSI_LP_GSW0P_DISABLE;
-  LPCmd.LPGenShortWriteOneP = DSI_LP_GSW1P_DISABLE;
-  LPCmd.LPGenShortWriteTwoP = DSI_LP_GSW2P_DISABLE;
-  LPCmd.LPGenShortReadNoP = DSI_LP_GSR0P_DISABLE;
-  LPCmd.LPGenShortReadOneP = DSI_LP_GSR1P_DISABLE;
-  LPCmd.LPGenShortReadTwoP = DSI_LP_GSR2P_DISABLE;
-  LPCmd.LPGenLongWrite = DSI_LP_GLW_DISABLE;
-  LPCmd.LPDcsShortWriteNoP = DSI_LP_DSW0P_DISABLE;
-  LPCmd.LPDcsShortWriteOneP = DSI_LP_DSW1P_DISABLE;
-  LPCmd.LPDcsShortReadNoP = DSI_LP_DSR0P_DISABLE;
-  LPCmd.LPDcsLongWrite = DSI_LP_DLW_DISABLE;
-  LPCmd.LPMaxReadPacket = DSI_LP_MRDP_DISABLE;
-  LPCmd.AcknowledgeRequest = DSI_ACKNOWLEDGE_DISABLE;
-  if (HAL_DSI_ConfigCommand(&hdsi, &LPCmd) != HAL_OK)
+  VidCfg.VirtualChannelID = 0;
+  VidCfg.ColorCoding = DSI_RGB888;
+  VidCfg.LooselyPacked = DSI_LOOSELY_PACKED_DISABLE;
+  VidCfg.Mode = DSI_VID_MODE_NB_PULSES;
+  VidCfg.PacketSize = 1;
+  VidCfg.NumberOfChunks = 800;
+  VidCfg.NullPacketSize = 0;
+  VidCfg.HSPolarity = DSI_HSYNC_ACTIVE_LOW;
+  VidCfg.VSPolarity = DSI_VSYNC_ACTIVE_LOW;
+  VidCfg.DEPolarity = DSI_DATA_ENABLE_ACTIVE_HIGH;
+  VidCfg.HorizontalSyncActive = 3;
+  VidCfg.HorizontalBackPorch = 54;
+  VidCfg.HorizontalLine = 1392;
+  VidCfg.VerticalSyncActive = 120;
+  VidCfg.VerticalBackPorch = 150;
+  VidCfg.VerticalFrontPorch = 150;
+  VidCfg.VerticalActive = 480;
+  VidCfg.LPCommandEnable = DSI_LP_COMMAND_DISABLE;
+  VidCfg.LPLargestPacketSize = 0;
+  VidCfg.LPVACTLargestPacketSize = 0;
+  VidCfg.LPHorizontalFrontPorchEnable = DSI_LP_HFP_DISABLE;
+  VidCfg.LPHorizontalBackPorchEnable = DSI_LP_HBP_DISABLE;
+  VidCfg.LPVerticalActiveEnable = DSI_LP_VACT_DISABLE;
+  VidCfg.LPVerticalFrontPorchEnable = DSI_LP_VFP_DISABLE;
+  VidCfg.LPVerticalBackPorchEnable = DSI_LP_VBP_DISABLE;
+  VidCfg.LPVerticalSyncActiveEnable = DSI_LP_VSYNC_DISABLE;
+  VidCfg.FrameBTAAcknowledgeEnable = DSI_FBTAA_DISABLE;
+  if (HAL_DSI_ConfigVideoMode(&hdsi, &VidCfg) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_DSI_SetGenericVCID(&hdsi, 0) != HAL_OK)
   {
     Error_Handler();
   }
@@ -282,14 +305,14 @@ static void MX_LTDC_Init(void)
   hltdc.Init.VSPolarity = LTDC_VSPOLARITY_AL;
   hltdc.Init.DEPolarity = LTDC_DEPOLARITY_AL;
   hltdc.Init.PCPolarity = LTDC_PCPOLARITY_IPC;
-  hltdc.Init.HorizontalSync = 7;
-  hltdc.Init.VerticalSync = 3;
-  hltdc.Init.AccumulatedHBP = 14;
-  hltdc.Init.AccumulatedVBP = 5;
-  hltdc.Init.AccumulatedActiveW = 654;
-  hltdc.Init.AccumulatedActiveH = 485;
-  hltdc.Init.TotalWidth = 660;
-  hltdc.Init.TotalHeigh = 487;
+  hltdc.Init.HorizontalSync = 1;
+  hltdc.Init.VerticalSync = 119;
+  hltdc.Init.AccumulatedHBP = 35;
+  hltdc.Init.AccumulatedVBP = 269;
+  hltdc.Init.AccumulatedActiveW = 835;
+  hltdc.Init.AccumulatedActiveH = 749;
+  hltdc.Init.TotalWidth = 869;
+  hltdc.Init.TotalHeigh = 899;
   hltdc.Init.Backcolor.Blue = 0;
   hltdc.Init.Backcolor.Green = 0;
   hltdc.Init.Backcolor.Red = 0;
