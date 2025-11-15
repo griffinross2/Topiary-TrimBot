@@ -95,5 +95,6 @@ void nt35510_read(DSI_HandleTypeDef* hdsi, uint8_t reg, uint32_t len, uint8_t* d
 NT35510_Status nt35510_init(DSI_HandleTypeDef* hdsi, GPIO_TypeDef* lcd_reset_port, uint32_t lcd_reset_pin);
 void nt35510_set_brightness(DSI_HandleTypeDef* hdsi, uint8_t brightness);
 void nt35510_all_pixels_on(DSI_HandleTypeDef* hdsi);
+void nt35510_ram_write(DSI_HandleTypeDef* hdsi);
 
 #endif // NT35510_H

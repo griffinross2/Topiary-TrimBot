@@ -57,7 +57,6 @@ NT35510_Status nt35510_init(DSI_HandleTypeDef* hdsi, GPIO_TypeDef* lcd_reset_por
 
 		uint8_t reg_val = 0x2C;
 		nt35510_write(hdsi, NT35510_CMD_WRCTRLD, 1, &reg_val);		// Backlight on
-		nt35510_write(hdsi, NT35510_CMD_RAMWR, 0, NULL);			// RAM write
 
 		return NT35510_OK;
 }
@@ -69,4 +68,8 @@ void nt35510_set_brightness(DSI_HandleTypeDef* hdsi, uint8_t brightness) {
 
 void nt35510_all_pixels_on(DSI_HandleTypeDef* hdsi) {
 	nt35510_write(hdsi, NT35510_CMD_ALLPON, 0, NULL);
+}
+
+void nt35510_ram_write(DSI_HandleTypeDef* hdsi) {
+	nt35510_write(hdsi, NT35510_CMD_RAMWR, 0, NULL);
 }
