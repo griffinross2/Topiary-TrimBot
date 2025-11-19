@@ -196,7 +196,6 @@ static void MX_DSIHOST_DSI_Init(void)
   DSI_HOST_TimeoutTypeDef HostTimeouts = {0};
   DSI_PHY_TimerTypeDef PhyTimings = {0};
   DSI_LPCmdTypeDef LPCmd = {0};
-  DSI_CmdCfgTypeDef CmdCfg = {0};
 
   /* USER CODE BEGIN DSIHOST_Init 1 */
 
@@ -231,6 +230,7 @@ static void MX_DSIHOST_DSI_Init(void)
   PhyTimings.DataLaneLP2HSTime = 25;
   PhyTimings.DataLaneMaxReadTime = 0;
   PhyTimings.StopWaitTime = 0;
+
   if (HAL_DSI_ConfigPhyTimer(&hdsi, &PhyTimings) != HAL_OK)
   {
     Error_Handler();
@@ -264,25 +264,6 @@ static void MX_DSIHOST_DSI_Init(void)
   {
     Error_Handler();
   }
-  CmdCfg.VirtualChannelID = 0;
-  CmdCfg.ColorCoding = DSI_RGB888;
-  CmdCfg.CommandSize = 800;
-  CmdCfg.TearingEffectSource = DSI_TE_EXTERNAL;
-  CmdCfg.TearingEffectPolarity = DSI_TE_RISING_EDGE;
-  CmdCfg.HSPolarity = DSI_HSYNC_ACTIVE_LOW;
-  CmdCfg.VSPolarity = DSI_VSYNC_ACTIVE_LOW;
-  CmdCfg.DEPolarity = DSI_DATA_ENABLE_ACTIVE_HIGH;
-  CmdCfg.VSyncPol = DSI_VSYNC_FALLING;
-  CmdCfg.AutomaticRefresh = DSI_AR_ENABLE;
-  CmdCfg.TEAcknowledgeRequest = DSI_TE_ACKNOWLEDGE_DISABLE;
-  if (HAL_DSI_ConfigAdaptedCommandMode(&hdsi, &CmdCfg) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  if (HAL_DSI_SetGenericVCID(&hdsi, 0) != HAL_OK)
-  {
-    Error_Handler();
-  }
   /* USER CODE BEGIN DSIHOST_Init 2 */
 
   /* USER CODE END DSIHOST_Init 2 */
@@ -311,14 +292,14 @@ static void MX_LTDC_Init(void)
   hltdc.Init.VSPolarity = LTDC_VSPOLARITY_AL;
   hltdc.Init.DEPolarity = LTDC_DEPOLARITY_AL;
   hltdc.Init.PCPolarity = LTDC_PCPOLARITY_IPC;
-  hltdc.Init.HorizontalSync = 0;
-  hltdc.Init.VerticalSync = 0;
-  hltdc.Init.AccumulatedHBP = 1;
-  hltdc.Init.AccumulatedVBP = 1;
-  hltdc.Init.AccumulatedActiveW = 801;
-  hltdc.Init.AccumulatedActiveH = 481;
-  hltdc.Init.TotalWidth = 802;
-  hltdc.Init.TotalHeigh = 482;
+  hltdc.Init.HorizontalSync = 1;
+  hltdc.Init.VerticalSync = 1;
+  hltdc.Init.AccumulatedHBP = 3;
+  hltdc.Init.AccumulatedVBP = 3;
+  hltdc.Init.AccumulatedActiveW = 803;
+  hltdc.Init.AccumulatedActiveH = 483;
+  hltdc.Init.TotalWidth = 805;
+  hltdc.Init.TotalHeigh = 485;
   hltdc.Init.Backcolor.Blue = 0;
   hltdc.Init.Backcolor.Green = 0;
   hltdc.Init.Backcolor.Red = 255;
