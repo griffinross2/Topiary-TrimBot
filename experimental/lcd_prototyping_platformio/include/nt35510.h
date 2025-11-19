@@ -96,5 +96,6 @@ void nt35510_ram_write(DSI_HandleTypeDef *hdsi);
 void nt35510_normal_mode(DSI_HandleTypeDef *hdsi);
 void nt35510_partial_mode(DSI_HandleTypeDef *hdsi);
 void nt35510_nop(DSI_HandleTypeDef *hdsi);
+void nt35510_madctl(DSI_HandleTypeDef *hdsi, uint8_t val);
 
 #endif // NT35510_H

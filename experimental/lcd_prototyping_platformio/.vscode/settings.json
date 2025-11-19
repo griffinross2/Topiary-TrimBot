@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "clocks.h": "c",
-        "stm32f4xx.h": "c",
-        "status.h": "c",
-        "stm32f4xx_hal.h": "c"
-    }
-}

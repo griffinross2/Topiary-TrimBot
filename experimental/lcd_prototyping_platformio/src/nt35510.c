@@ -93,3 +93,8 @@ void nt35510_nop(DSI_HandleTypeDef *hdsi)
 {
 	nt35510_write(hdsi, NT35510_CMD_NOP, 0, NULL);
 }
+
+void nt35510_madctl(DSI_HandleTypeDef *hdsi, uint8_t val)
+{
+	nt35510_write(hdsi, NT35510_CMD_MADCTL, 1, &val);
+}
