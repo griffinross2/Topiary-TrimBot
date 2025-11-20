@@ -13,6 +13,7 @@
 #include "ltdc_dsi.h"
 #include "nt35510.h"
 // #include "images/test.h"
+#include "images/squares.h"
 
 #define LCD_RESET_PORT GPIOH
 #define LCD_RESET_PIN GPIO_PIN_7
@@ -33,11 +34,11 @@ Status lcd_init()
 	nt35510_set_brightness(hdsi, 200);
 	HAL_DSI_Refresh(hdsi);
 
-	// __HAL_LTDC_LAYER_DISABLE(hltdc, LTDC_LAYER_1);
-	// HAL_LTDC_SetAddress(hltdc, (uint32_t)TEST, LTDC_LAYER_1);
-	// __HAL_LTDC_LAYER_ENABLE(hltdc, LTDC_LAYER_1);
+	__HAL_LTDC_LAYER_DISABLE(hltdc, LTDC_LAYER_1);
+	HAL_LTDC_SetAddress(hltdc, (uint32_t)SQUARES, LTDC_LAYER_1);
+	__HAL_LTDC_LAYER_ENABLE(hltdc, LTDC_LAYER_1);
 
-	// HAL_DSI_Refresh(hdsi);
+	HAL_DSI_Refresh(hdsi);
 
 	return STATUS_OK;
 }

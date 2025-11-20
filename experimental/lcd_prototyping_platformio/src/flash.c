@@ -77,19 +77,25 @@ static QSPI_CommandTypeDef flash_get_default_cmd()
     return s_qspi_default_cmd_1_line;
 }
 
-static void flash_wen()
+static Status flash_wen()
 {
     QSPI_CommandTypeDef cmd = flash_get_default_cmd();
     cmd.Instruction = 0x06;
     cmd.NbData = 0;
     cmd.AddressMode = QSPI_ADDRESS_NONE;
     cmd.DataMode = QSPI_DATA_NONE;
-    HAL_QSPI_Command(&hqspi, &cmd, 100);
+    if(HAL_QSPI_Command(&hqspi, &cmd, 100) != HAL_OK) {
+        return STATUS_ERROR;
+    }
+
+    return STATUS_OK;
 }
 
-static void flash_wel()
+static Status flash_wel()
 {
-    flash_wen();
+    if(flash_wen() != STATUS_OK) {
+        return STATUS_ERROR;
+    }
 
     QSPI_CommandTypeDef cmd = flash_get_default_cmd();
     cmd.Instruction = 0x01;
@@ -97,13 +103,23 @@ static void flash_wel()
     cmd.AddressMode = QSPI_ADDRESS_NONE;
     cmd.DataMode = QSPI_DATA_1_LINE;
     uint8_t reg = 0x02;
-    HAL_QSPI_Command(&hqspi, &cmd, 100);
-    HAL_QSPI_Transmit(&hqspi, &reg, 100);
+
+    if(HAL_QSPI_Command(&hqspi, &cmd, 100) != HAL_OK) {
+        return STATUS_ERROR;
+    }
+
+    if(HAL_QSPI_Transmit(&hqspi, &reg, 100) != HAL_OK) {
+        return STATUS_ERROR;
+    }
+
+    return STATUS_OK;
 }
 
-static void flash_set_qspi_mode()
+static Status flash_set_qspi_mode()
 {
-    flash_wen();
+    if(flash_wen() != STATUS_OK) {
+        return STATUS_ERROR;
+    }
 
     QSPI_CommandTypeDef cmd = flash_get_default_cmd();
     cmd.Instruction = 0x61;
@@ -111,10 +127,49 @@ static void flash_set_qspi_mode()
     cmd.DataMode = QSPI_DATA_1_LINE;
     cmd.AddressMode = QSPI_ADDRESS_NONE;
     uint8_t reg = 0x7F;
-    HAL_QSPI_Command(&hqspi, &cmd, 100);
-    HAL_QSPI_Transmit(&hqspi, &reg, 100);
+    if(HAL_QSPI_Command(&hqspi, &cmd, 100) != HAL_OK) {
+        return STATUS_ERROR;
+    }
+
+    if (HAL_QSPI_Transmit(&hqspi, &reg, 100) != HAL_OK) {
+        return STATUS_ERROR;
+    }
 
     qspi_mode = 2;
+
+    return STATUS_OK;
+}
+
+static Status flash_check_id() {
+    QSPI_CommandTypeDef cmd = flash_get_default_cmd();
+    cmd.Instruction = 0x9E;
+    cmd.NbData = 3;
+    cmd.AddressMode = QSPI_ADDRESS_NONE;
+    uint8_t id[3];
+    if (HAL_QSPI_Command(&hqspi, &cmd, 100) != HAL_OK) {
+        return STATUS_ERROR;
+    }
+
+    if (HAL_QSPI_Receive(&hqspi, id, 100) != HAL_OK) {
+        return STATUS_ERROR;
+    }
+
+    if (id[0] != 0x20 || id[1] != 0xBA || id[2] != 0x18) {
+        return STATUS_ERROR;
+    }
+
+    return STATUS_OK;
+}
+
+static QSPI_CommandTypeDef flash_get_mm_read_cmd() {
+    QSPI_CommandTypeDef cmd = flash_get_default_cmd();
+    cmd.Instruction = 0x6B;
+    cmd.NbData = 4;
+    cmd.DataMode = QSPI_DATA_4_LINES;
+    cmd.AddressSize = QSPI_ADDRESS_24_BITS;
+    cmd.DummyCycles = 10;
+
+    return cmd;
 }
 
 Status flash_init()
@@ -160,28 +215,40 @@ Status flash_init()
         return STATUS_ERROR;
     }
 
-    flash_wel();
+    // Write enable latch
+    if (flash_wel() != STATUS_OK) {
+        return STATUS_ERROR;
+    }
 
     HAL_Delay(5);
 
-    flash_wen();
-    flash_set_qspi_mode();
+    // Write enable
+    if (flash_wen() != STATUS_OK) {
+        return STATUS_ERROR;
+    }
+
+    // Set quad io mode
+    if (flash_set_qspi_mode() != STATUS_OK) {
+        return STATUS_ERROR;
+    }
 
     HAL_Delay(5);
 
-    // Read ID
-    QSPI_CommandTypeDef cmd = flash_get_default_cmd();
-    cmd.Instruction = 0x9E;
-    cmd.NbData = 3;
-    cmd.AddressMode = QSPI_ADDRESS_NONE;
-    uint8_t id[3];
-    HAL_QSPI_Command(&hqspi, &cmd, 100);
-    HAL_QSPI_Receive(&hqspi, id, 100);
-
-    printf("Mfr ID: 0x%02x, Dev ID: 0x%02x 0x%02x\n", id[0], id[1], id[2]);
+    // Verify hardware IDs
+    if(flash_check_id() != STATUS_OK) {
+        return STATUS_ERROR;
+    }
 
     QSPI_MemoryMappedTypeDef cfg;
     cfg.TimeOutActivation = QSPI_TIMEOUT_COUNTER_DISABLE;
+
+    // Set read command
+    QSPI_CommandTypeDef cmd = flash_get_mm_read_cmd();
+    HAL_QSPI_MemoryMapped(&hqspi, &cmd, &cfg);
+
+    uint32_t test = *((uint32_t*)0x90000000);
+
+    printf("%08lx\n", test);
 
     return STATUS_OK;
 }
