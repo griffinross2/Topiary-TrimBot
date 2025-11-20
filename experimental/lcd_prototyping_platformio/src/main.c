@@ -4,6 +4,7 @@
 #include "terminal.h"
 #include "lcd.h"
 #include "ram.h"
+#include "flash.h"
 
 #include <stdio.h>
 
@@ -15,6 +16,7 @@ int main(void)
   ret |= terminal_init() << 1;
   ret |= ram_init() << 2;
   ret |= lcd_init() << 3;
+  ret |= flash_init() << 4;
 
   if (ret == 0)
   {

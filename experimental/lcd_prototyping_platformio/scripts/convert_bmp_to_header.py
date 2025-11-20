@@ -64,9 +64,18 @@ def data_to_header(header_dir, filename, data):
 
 
 print("Converting BMPs to header data")
-for path in os.listdir('images'):
+
+if not os.path.exists("images"):
+    print("Images folder does not exist, creating...")
+    os.mkdir("images")
+
+if not os.path.exists("include/images"):
+    print("Images header folder does not exist, creating...")
+    os.mkdir("include/images")
+
+for path in os.listdir("images"):
     print(path)
-    data = bmp_to_header('images', path)
+    data = bmp_to_header("images", path)
     data = data_reorg(data)
-    data_to_header('include/images', path, data)
+    data_to_header("include/images", path, data)
         
