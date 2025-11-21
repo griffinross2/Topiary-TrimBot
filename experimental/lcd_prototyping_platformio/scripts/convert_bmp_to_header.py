@@ -45,7 +45,8 @@ def data_reorg(data):
 def data_to_header(header_dir, filename, data):
     file_stem = filename.split('.')[0]
 
-    header = f"const uint32_t {file_stem.upper()}[] = {{\n"
+    # header = f"#include <stdint.h>\nconst uint32_t {file_stem.upper()}[] = {{\n"
+    header = f"#include <stdint.h>\nconst uint32_t __attribute__((section(\".ext_rodata\"))) {file_stem.upper()}[] = {{\n"
 
     line_width = 4
     line_index = 0

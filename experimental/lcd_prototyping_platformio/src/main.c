@@ -15,8 +15,8 @@ int main(void)
   int ret = clocks_init();
   ret |= terminal_init() << 1;
   ret |= ram_init() << 2;
-  ret |= lcd_init() << 3;
-  ret |= flash_init() << 4;
+  ret |= flash_init() << 3;
+  ret |= lcd_init() << 4;
 
   if (ret == 0)
   {
