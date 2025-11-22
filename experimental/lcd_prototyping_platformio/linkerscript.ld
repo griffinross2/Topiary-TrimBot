@@ -49,6 +49,7 @@ MEMORY
   RAM       (xrw)   : ORIGIN = 0x20000000,   LENGTH = 320K
   FLASH     (rx)    : ORIGIN = 0x08000000,   LENGTH = 2048K
   EXTFLASH  (r)     : ORIGIN = 0x90000000,   LENGTH = 16M
+  EXTRAM    (rw)    : ORIGIN = 0xC0000000,   LENGTH = 16M
 }
 
 /* Sections */
@@ -206,6 +207,15 @@ SECTIONS
     *(.ext_rodata*)
     . = ALIGN(4);
   } >EXTFLASH
+
+  /* EXTRAM data */
+  .ext_ram (NOLOAD) :
+  {
+    . = ALIGN(4);
+    *(.ext_ram)
+    *(.ext_ram*)
+    . = ALIGN(4);
+  } >EXTRAM
 
   /* Remove information from the compiler libraries */
   /DISCARD/ :

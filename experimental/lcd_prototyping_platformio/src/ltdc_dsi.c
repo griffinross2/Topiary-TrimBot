@@ -43,14 +43,19 @@ Status ltdc_dsi_init()
     pLayerCfg.Alpha = 0xFF;
     pLayerCfg.Alpha0 = 0xFF;
     pLayerCfg.BlendingFactor1 = LTDC_BLENDING_FACTOR1_PAxCA;
-    pLayerCfg.BlendingFactor2 = LTDC_BLENDING_FACTOR1_PAxCA;
+    pLayerCfg.BlendingFactor2 = LTDC_BLENDING_FACTOR2_PAxCA;
     pLayerCfg.FBStartAdress = 0x0;
     pLayerCfg.ImageWidth = 800;
     pLayerCfg.ImageHeight = 480;
     pLayerCfg.Backcolor.Blue = 255;
     pLayerCfg.Backcolor.Green = 255;
     pLayerCfg.Backcolor.Red = 255;
-    if (HAL_LTDC_ConfigLayer(&g_hltdc, &pLayerCfg, 0) != HAL_OK)
+    if (HAL_LTDC_ConfigLayer(&g_hltdc, &pLayerCfg, LTDC_LAYER_1) != HAL_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    if (HAL_LTDC_ConfigLayer(&g_hltdc, &pLayerCfg, LTDC_LAYER_2) != HAL_OK)
     {
         return STATUS_ERROR;
     }

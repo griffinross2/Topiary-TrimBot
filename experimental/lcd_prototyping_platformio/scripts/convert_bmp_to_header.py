@@ -20,6 +20,7 @@ def bmp_to_header(img_dir, filename):
 
         # a = int(pixel_bytes[0])
         a = 0xFF
+        # a = 0x0
         b = int(pixel_bytes[1])
         g = int(pixel_bytes[2])
         r = int(pixel_bytes[3])
@@ -45,8 +46,8 @@ def data_reorg(data):
 def data_to_header(header_dir, filename, data):
     file_stem = filename.split('.')[0]
 
-    # header = f"#include <stdint.h>\nconst uint32_t {file_stem.upper()}[] = {{\n"
-    header = f"#include <stdint.h>\nconst uint32_t __attribute__((section(\".ext_rodata\"))) {file_stem.upper()}[] = {{\n"
+    # header = f"#ifndef {file_stem.upper()}_H\n#define {file_stem.upper()}_H\n\n#include <stdint.h>\nconst uint32_t {file_stem.upper()}[] = {{\n"
+    header = f"#ifndef {file_stem.upper()}_H\n#define {file_stem.upper()}_H\n\n#include <stdint.h>\nconst uint32_t __attribute__((section(\".ext_rodata\"))) {file_stem.upper()}[] = {{\n"
 
     line_width = 4
     line_index = 0
@@ -56,7 +57,8 @@ def data_to_header(header_dir, filename, data):
         if line_index == line_width:
             header += '\n'
             line_index = 0
-    header += "};"
+
+    header += f"}};\n\n#endif // {file_stem.upper()}_H"
 
     # Save to a header with the same stem
     header_file = open(f"{header_dir}/{file_stem}.h", "w")

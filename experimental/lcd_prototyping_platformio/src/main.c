@@ -6,6 +6,10 @@
 #include "ram.h"
 #include "flash.h"
 
+// #include "images/test.h"
+#include "images/squares.h"
+// #include "images/splashscreen.h"
+
 #include <stdio.h>
 
 int main(void)
@@ -18,6 +22,10 @@ int main(void)
   ret |= flash_init() << 3;
   ret |= lcd_init() << 4;
 
+  lcd_set_background(SQUARES);
+
+  lcd_clear_foreground();
+
   if (ret == 0)
   {
     printf("System initialized successfully.\n");
@@ -29,6 +37,17 @@ int main(void)
 
   while (1)
   {
+    // int w = 0;
+    // while (1)
+    // {
+    //   if (w == 0)
+    //   {
+    //     lcd_clear_foreground();
+    //   }
+    //   lcd_draw_rectangle(49, 101, w, 21, 0xFFFFFFFF);
+    //   w = (w + 1) % 703;
+    //   HAL_Delay(1);
+    // }
   }
 
   return 0;
@@ -36,9 +55,6 @@ int main(void)
 
 void NMI_Handler(void)
 {
-  while (1)
-  {
-  }
 }
 
 void HardFault_Handler(void)
