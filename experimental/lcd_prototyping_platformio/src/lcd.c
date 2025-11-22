@@ -27,7 +27,24 @@ Status lcd_init()
 	hltdc = ltdc_get_handle();
 	hdsi = dsi_get_handle();
 
-	if (nt35510_init(hdsi, GPIOH, GPIO_PIN_7) != STATUS_OK)
+	GPIO_InitTypeDef lcd_reset = {
+		.Pin = LCD_RESET_PIN,
+		.Mode = GPIO_MODE_OUTPUT_PP,
+		.Pull = GPIO_NOPULL,
+		.Speed = GPIO_SPEED_FREQ_LOW,
+	};
+
+	// Reset the LCD and touchscreen
+	HAL_GPIO_Init(LCD_RESET_PORT, &lcd_reset);
+	HAL_GPIO_WritePin(LCD_RESET_PORT, LCD_RESET_PIN, GPIO_PIN_SET);
+	HAL_Delay(10);
+	HAL_GPIO_WritePin(LCD_RESET_PORT, LCD_RESET_PIN, GPIO_PIN_RESET);
+	HAL_Delay(20);
+	HAL_GPIO_WritePin(LCD_RESET_PORT, LCD_RESET_PIN, GPIO_PIN_SET);
+	HAL_Delay(50);
+
+	// LCD init
+	if (nt35510_init(hdsi) != STATUS_OK)
 	{
 		return STATUS_ERROR;
 	}
@@ -36,6 +53,8 @@ Status lcd_init()
 	HAL_DSI_Refresh(hdsi);
 
 	HAL_LTDC_SetAddress(hltdc, (uint32_t)s_foreground_buffer, LTDC_LAYER_2);
+
+	// Touchscreen init
 
 	return STATUS_OK;
 }
