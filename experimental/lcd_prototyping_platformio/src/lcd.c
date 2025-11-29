@@ -12,6 +12,7 @@
 
 #include "ltdc_dsi.h"
 #include "nt35510.h"
+#include "ft6336g.h"
 
 #define LCD_RESET_PORT GPIOH
 #define LCD_RESET_PIN GPIO_PIN_7
@@ -41,7 +42,7 @@ Status lcd_init()
 	HAL_GPIO_WritePin(LCD_RESET_PORT, LCD_RESET_PIN, GPIO_PIN_RESET);
 	HAL_Delay(20);
 	HAL_GPIO_WritePin(LCD_RESET_PORT, LCD_RESET_PIN, GPIO_PIN_SET);
-	HAL_Delay(50);
+	HAL_Delay(20);
 
 	// LCD init
 	if (nt35510_init(hdsi) != STATUS_OK)
@@ -55,8 +56,15 @@ Status lcd_init()
 	HAL_LTDC_SetAddress(hltdc, (uint32_t)s_foreground_buffer, LTDC_LAYER_2);
 
 	// Touchscreen init
+	if (ft6336g_init() != STATUS_OK) {
+		return STATUS_ERROR;
+	}
 
 	return STATUS_OK;
+}
+
+uint32_t* lcd_get_framebuffer() {
+	return s_foreground_buffer;
 }
 
 void lcd_set_background(const uint32_t *fb_address)
@@ -84,5 +92,35 @@ void lcd_draw_rectangle(unsigned int x, unsigned int y, unsigned int w, unsigned
 			s_foreground_buffer[yi + xi * LCD_HEIGHT] = color;
 		}
 	}
+	HAL_DSI_Refresh(hdsi);
+}
+
+void lcd_draw_circle(unsigned int x, unsigned int y, unsigned int r, uint32_t color) 
+{
+	for (unsigned int xi = x - r; xi < x + r; xi++)
+	{
+		for (unsigned int yi = y - r; yi < y + r; yi++)
+		{
+			int dx = (int)xi - (int)x;
+			int dy = (int)yi - (int)y;
+
+			if (dx*dx + dy*dy < r*r)
+			{
+				s_foreground_buffer[yi + xi * LCD_HEIGHT] = color;
+			}
+		}
+	}
+	HAL_DSI_Refresh(hdsi);
+}
+
+void lcd_copy_background_to_foreground()
+{
+	memcpy(s_foreground_buffer, (uint32_t*)hltdc->LayerCfg[0].FBStartAdress, sizeof(s_foreground_buffer));
+	HAL_DSI_Refresh(hdsi);
+}
+
+void lcd_set_foreground_alpha(uint8_t alpha)
+{
+	HAL_LTDC_SetAlpha(hltdc, alpha, LTDC_LAYER_2);
 	HAL_DSI_Refresh(hdsi);
 }

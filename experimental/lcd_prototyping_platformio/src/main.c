@@ -7,8 +7,9 @@
 #include "flash.h"
 
 // #include "images/test.h"
-#include "images/squares.h"
-// #include "images/splashscreen.h"
+// #include "images/squares.h"
+#include "images/splashscreen.h"
+#include "images/blank.h"
 
 #include <stdio.h>
 
@@ -22,7 +23,7 @@ int main(void)
   ret |= flash_init() << 3;
   ret |= lcd_init() << 4;
 
-  lcd_set_background(SQUARES);
+  lcd_set_background(SPLASHSCREEN);
 
   lcd_clear_foreground();
 
@@ -35,19 +36,40 @@ int main(void)
     printf("System initialization failed with code: %x\n", ret);
   }
 
+  // Loading bar
+  for (int w = 0; w < 703; w++)
+  {
+    if (w == 0)
+    {
+      lcd_clear_foreground();
+      lcd_draw_circle(49, 111, 10, 0xFFFFFFFF);
+    }
+
+
+    lcd_draw_rectangle(49, 101, w, 21, 0xFFFFFFFF);
+
+    if (w == 702) {
+      lcd_draw_circle(49 + 701, 111, 10, 0xFFFFFFFF);
+    }
+
+    HAL_Delay(2);
+  }
+
+  // Fade out
+  lcd_copy_background_to_foreground();
+  lcd_set_background(BLANK);
+
+  for (int a = 0xFF; a >= 0; a--)
+  {
+    lcd_set_foreground_alpha(a);
+    HAL_Delay(1);
+  }
+
+  lcd_clear_foreground();
+  lcd_set_foreground_alpha(0xFF);
+
   while (1)
   {
-    // int w = 0;
-    // while (1)
-    // {
-    //   if (w == 0)
-    //   {
-    //     lcd_clear_foreground();
-    //   }
-    //   lcd_draw_rectangle(49, 101, w, 21, 0xFFFFFFFF);
-    //   w = (w + 1) % 703;
-    //   HAL_Delay(1);
-    // }
   }
 
   return 0;
