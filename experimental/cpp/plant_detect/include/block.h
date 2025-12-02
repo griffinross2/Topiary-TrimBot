@@ -13,7 +13,8 @@
 
 #define BLOCK_IO_TYPES                                                   \
     int, float, bool, std::string, std::vector<int>, std::vector<float>, \
-        std::vector<bool>, std::vector<std::string>, cv::Mat
+        std::vector<bool>, std::vector<std::string>, cv::Mat,            \
+        std::vector<cv::Mat>
 
 constexpr int blockWidth = 300;
 constexpr int ioSize = 25;

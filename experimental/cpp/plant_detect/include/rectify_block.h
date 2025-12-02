@@ -2,9 +2,9 @@
 
 #include <block.h>
 
-class GrayscaleBlock : public Block {
+class RectifyBlock : public Block {
 public:
-    GrayscaleBlock();
-    GrayscaleBlock(std::string id);
+    RectifyBlock();
+    RectifyBlock(std::string id);
     void onUpdate() override;
 };

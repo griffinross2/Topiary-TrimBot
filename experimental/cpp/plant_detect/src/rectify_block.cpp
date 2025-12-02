@@ -1,20 +1,20 @@
-#include "grayscale_block.h"
+#include "rectify_block.h"
 
 #include "imgui.h"
 
-GrayscaleBlock::GrayscaleBlock() : Block() {
+RectifyBlock::RectifyBlock() : Block() {
     // Initialize io
-    m_inputs.push_back({"Color Frame", cv::Mat()});
-    m_outputs.push_back({"Gray Frame", cv::Mat()});
+    m_inputs.push_back({"Unrectified Frame", cv::Mat()});
+    m_outputs.push_back({"Rectified Frame", cv::Mat()});
 }
 
-GrayscaleBlock::GrayscaleBlock(std::string id) : Block(id) {
+RectifyBlock::RectifyBlock(std::string id) : Block(id) {
     // Initialize io
-    m_inputs.push_back({"Color Frame", cv::Mat()});
-    m_outputs.push_back({"Gray Frame", cv::Mat()});
+    m_inputs.push_back({"Unrectified Frame", cv::Mat()});
+    m_outputs.push_back({"Rectified Frame", cv::Mat()});
 }
 
-void GrayscaleBlock::onUpdate() {
+void RectifyBlock::onUpdate() {
     Block::onUpdate();
 
     if (!m_inputs[0].newData) {
@@ -27,11 +27,9 @@ void GrayscaleBlock::onUpdate() {
         return;
     }
 
-    cv::Mat gray1;
     cv::Mat outFrame;
 
-    cv::cvtColor(inFrame, gray1, cv::COLOR_BGR2GRAY);
-    cv::cvtColor(gray1, outFrame, cv::COLOR_GRAY2BGR);
+    cv::cvtColor(inFrame, outFrame, cv::COLOR_BGR2GRAY);
 
     m_outputs[0].data = outFrame;
     m_outputs[0].newData = true;

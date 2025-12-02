@@ -5,13 +5,15 @@
 StillFrameBlock::StillFrameBlock() : Block() {
     // Initialize io
     m_inputs.push_back({"Input Frame", cv::Mat()});
-    m_outputs.push_back({"Output Still", cv::Mat()});
+    m_outputs.push_back({"Output Still 1", cv::Mat()});
+    m_outputs.push_back({"Output Still 2", cv::Mat()});
 }
 
 StillFrameBlock::StillFrameBlock(std::string id) : Block(id) {
     // Initialize io
     m_inputs.push_back({"Input Frame", cv::Mat()});
-    m_outputs.push_back({"Output Still", cv::Mat()});
+    m_outputs.push_back({"Output Still 1", cv::Mat()});
+    m_outputs.push_back({"Output Still 2", cv::Mat()});
 }
 
 void StillFrameBlock::onUpdate() {
@@ -31,7 +33,7 @@ void StillFrameBlock::onUpdate() {
 }
 
 void StillFrameBlock::onRender() {
-    ImGui::SetNextWindowSize(ImVec2(blockWidth + ioSize * 2, 100),
+    ImGui::SetNextWindowSize(ImVec2(blockWidth + ioSize * 2, 140),
                              ImGuiCond_Always);
 
     ImGui::Begin(m_id.c_str(), nullptr,
@@ -48,9 +50,16 @@ void StillFrameBlock::onRender() {
 
     drawOutputs();
 
-    if (ImGui::Button(std::format("Capture Still##{}", m_id).c_str())) {
+    ImGui::SetCursorPosY(60);
+
+    if (ImGui::Button(std::format("Capture Still 1##{}", m_id).c_str())) {
         m_outputs[0].data = m_internalFrame;
         m_outputs[0].newData = true;
+        m_inputs[0].newData = false;
+    }
+    if (ImGui::Button(std::format("Capture Still 2##{}", m_id).c_str())) {
+        m_outputs[1].data = m_internalFrame;
+        m_outputs[1].newData = true;
         m_inputs[0].newData = false;
     }
 

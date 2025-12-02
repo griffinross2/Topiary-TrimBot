@@ -100,3 +100,12 @@ add_custom_command(
     "${CMAKE_CURRENT_BINARY_DIR}/fonts"
     COMMENT "Copying in fonts"
 )
+
+# Copy in images
+add_custom_command(
+    TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory_if_different
+    "${CMAKE_CURRENT_SOURCE_DIR}/images"
+    "${CMAKE_CURRENT_BINARY_DIR}/images"
+    COMMENT "Copying in images"
+)

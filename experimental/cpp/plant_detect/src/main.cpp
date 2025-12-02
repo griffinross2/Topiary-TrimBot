@@ -9,6 +9,8 @@
 #include "rescale_block.h"
 #include "still_frame_block.h"
 #include "depth_block.h"
+#include "rectify_block.h"
+#include "calibrate_block.h"
 #include "debug_layer.h"
 #include "block.h"
 
@@ -25,21 +27,19 @@ int main(int argc, char** argv) {
     // app.pushLayer<CameraLayer>();
     // app.pushLayer<OptionsLayer>();
     app.pushLayer<DebugLayer>();
+
     createBlock<IntInputBlock>();
     createBlock<CameraBlock>();
-    createBlock<IntInputBlock>();
-    createBlock<CameraBlock>();
+
     createBlock<DisplayBlock>();
     createBlock<DisplayBlock>();
     createBlock<DisplayBlock>();
     createBlock<DisplayBlock>();
-    // createBlock<GrayscaleBlock>();
-    createBlock<RescaleBlock>();
-    // createBlock<RescaleBlock>();
-    // createBlock<MeanShiftDetectBlock>();
+
     createBlock<StillFrameBlock>();
-    createBlock<StillFrameBlock>();
+
     createBlock<DepthBlock>();
+    createBlock<CalibrateBlock>();
 
     ret = app.run();
     app.shutdown();

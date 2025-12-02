@@ -13,4 +13,6 @@ target_sources(${PROJECT_NAME} PRIVATE
 	rescale_block.cpp
 	still_frame_block.cpp
 	depth_block.cpp
+	rectify_block.cpp
+	calibrate_block.cpp
 )
