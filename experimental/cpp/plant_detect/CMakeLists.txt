@@ -74,14 +74,23 @@ endif()
 
 # Generate glad
 add_subdirectory("${glad_SOURCE_DIR}/cmake" glad_cmake)
-glad_add_library(glad_gl_core_45 REPRODUCIBLE API gl:core=4.5)
+glad_add_library(glad_gl_core_30 REPRODUCIBLE API gl:core=3.0)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE
-    glfw
-    opengl32
-    glad_gl_core_45
-    ${OpenCV_LIBS}
-)
+if(UNIX)
+    target_link_libraries(${PROJECT_NAME} PRIVATE
+        glfw
+        gl
+        glad_gl_core_30
+        ${OpenCV_LIBS}
+    )
+else(UNIX)
+    target_link_libraries(${PROJECT_NAME} PRIVATE
+        glfw
+        opengl32
+        glad_gl_core_30
+        ${OpenCV_LIBS}
+    )
+endif(UNIX)
 
 # Headers
 target_include_directories(${PROJECT_NAME} PRIVATE
