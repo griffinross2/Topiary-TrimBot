@@ -7,9 +7,9 @@ include(FetchContent)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-if(UNIX)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
-endif(UNIX)
+#if(UNIX)
+	#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
+    #endif(UNIX)
 
 # Executable
 add_executable(${PROJECT_NAME})
@@ -77,19 +77,26 @@ add_subdirectory("${glad_SOURCE_DIR}/cmake" glad_cmake)
 glad_add_library(glad_gl_core_30 REPRODUCIBLE API gl:core=3.0)
 
 if(UNIX)
-    target_link_libraries(${PROJECT_NAME} PRIVATE
-        glfw
-        gl
-        glad_gl_core_30
-        ${OpenCV_LIBS}
-    )
-else(UNIX)
-    target_link_libraries(${PROJECT_NAME} PRIVATE
-        glfw
-        opengl32
-        glad_gl_core_30
-        ${OpenCV_LIBS}
-    )
+
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(LIBCAMERA REQUIRED libcamera)
+
+include_directories(${LIBCAMERA_INCLUDE_DIRS})
+
+target_link_libraries(${PROJECT_NAME} PRIVATE
+    glfw
+    GL
+    glad_gl_core_30
+    ${OpenCV_LIBS}
+    ${LIBCAMERA_LIBRARIES}
+)
+elseif(UNIX)
+target_link_libraries(${PROJECT_NAME} PRIVATE
+    glfw
+    opengl32
+    glad_gl_core_30
+    ${OpenCV_LIBS}
+)
 endif(UNIX)
 
 # Headers

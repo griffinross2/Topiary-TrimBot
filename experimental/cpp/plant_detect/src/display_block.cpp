@@ -44,7 +44,7 @@ void DisplayBlock::onRender() {
             std::max(
                 ioSize + (2 * std::max(m_inputs.size(), m_outputs.size()) - 1) *
                              ioSize,
-                (unsigned long long)height)),
+                (unsigned long)height)),
         ImGuiCond_Always);
 
     ImGui::Begin(m_id.c_str(), nullptr,

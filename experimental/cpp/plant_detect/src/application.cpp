@@ -46,6 +46,8 @@ int Application::init() {
 
     glfwSwapInterval(1);  // vsync
 
+    m_cm = std::make_shared<libcamera::CameraManager>();
+
     return 0;
 }
 
@@ -93,3 +95,9 @@ void Application::shutdown() {
     glfwDestroyWindow(m_window);
     glfwTerminate();
 }
+
+#ifdef __linux__
+std::shared_ptr<libcamera::CameraManager>& Application::getCameraManager() {
+    return m_cm;
+}
+#endif

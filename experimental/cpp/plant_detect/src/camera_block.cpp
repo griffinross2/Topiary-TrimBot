@@ -1,5 +1,7 @@
 #include "camera_block.h"
 
+#include <iostream>
+
 #include "imgui.h"
 
 CameraBlock::CameraBlock() : Block() {
@@ -8,7 +10,12 @@ CameraBlock::CameraBlock() : Block() {
     m_outputs.push_back({"Frame", cv::Mat(), true});
 
     // Get camera
+#ifndef __linux__
     m_camera = std::make_unique<cv::VideoCapture>(m_currentCameraIndex);
+#else
+//m_camera = std::make_unique<libcamera::Camera>(m_currentCameraIndex); 
+    std::cout << cm->cameras()[0]->id() << std::endl;
+#endif
 
     m_cameraThread = std::thread([this]() { this->cameraThreadFunc(); });
 }
