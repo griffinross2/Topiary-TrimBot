@@ -42,9 +42,9 @@ void DisplayBlock::onRender() {
         ImVec2(
             50 + ioSize * 2 + width,
             std::max(
-                ioSize + (2 * std::max(m_inputs.size(), m_outputs.size()) - 1) *
+                ioSize + (2 * (unsigned int)std::max(m_inputs.size(), m_outputs.size()) - 1) *
                              ioSize,
-                (unsigned long)height)),
+                (unsigned int)height)),
         ImGuiCond_Always);
 
     ImGui::Begin(m_id.c_str(), nullptr,

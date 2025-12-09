@@ -3,7 +3,9 @@
 #include <block.h>
 #include <thread>
 
+#ifdef __linux__
 #include "libcamera/libcamera.h"
+#endif
 
 class CameraBlock : public Block {
 public:

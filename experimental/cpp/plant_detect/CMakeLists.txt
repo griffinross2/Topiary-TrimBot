@@ -90,7 +90,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     ${OpenCV_LIBS}
     ${LIBCAMERA_LIBRARIES}
 )
-elseif(UNIX)
+else(UNIX)
 target_link_libraries(${PROJECT_NAME} PRIVATE
     glfw
     opengl32
