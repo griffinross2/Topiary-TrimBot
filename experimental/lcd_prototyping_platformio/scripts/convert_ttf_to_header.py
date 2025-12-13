@@ -2,8 +2,7 @@ import cairo
 from fontTools.ttLib import TTFont
 from fontTools.pens.cairoPen import CairoPen
 from fontTools.pens.boundsPen import BoundsPen
-from PIL import Image, ImageTk
-import tkinter as tk
+import os
 
 glyphs = {}
 
@@ -19,7 +18,11 @@ def draw_glyph_cairo(ctx, font_path, char, x, y, size):
     units = font["head"].unitsPerEm
     descent = font["hhea"].descent
 
-    glyph_name = cmap[ord(char)]
+    try:
+        glyph_name = cmap[ord(char)]
+    except KeyError:
+        return None, '', 0, 0, 0, 0, 0
+    
     glyph = glyph_set[glyph_name]
     advance, lsb = hmtx[glyph_name]
 
@@ -29,7 +32,7 @@ def draw_glyph_cairo(ctx, font_path, char, x, y, size):
     glyph.draw(bounds_pen)
 
     if bounds_pen.bounds is None:
-        return None, 0, 0, 0, 0, advance*scale
+        return None, glyph_name, 0, 0, 0, 0, advance*scale
 
     w, h = bounds_pen.bounds[2] - bounds_pen.bounds[0], bounds_pen.bounds[3] - bounds_pen.bounds[1]
 
@@ -48,74 +51,98 @@ def draw_glyph_cairo(ctx, font_path, char, x, y, size):
     ctx.restore()
     ctx.fill()
 
-    return surface, bounds_pen.bounds[0]*scale, bounds_pen.bounds[2]*scale, bounds_pen.bounds[1]*scale, bounds_pen.bounds[3]*scale, advance*scale
+    return surface, glyph_name, bounds_pen.bounds[0]*scale, bounds_pen.bounds[2]*scale, bounds_pen.bounds[1]*scale, bounds_pen.bounds[3]*scale, advance*scale
 
-def save_char(char, pt_size=128):
-    surface, xMin, xMax, yMin, yMax, advance = draw_glyph_cairo(cairo.Context(cairo.ImageSurface(cairo.FORMAT_ARGB32, 1, 1)), "fonts/arial.ttf", char, 0, 0, pt_size)
+def save_char(font_path, char, pt_size=128):
+    surface, glyph_name, xMin, xMax, yMin, yMax, advance = draw_glyph_cairo(cairo.Context(cairo.ImageSurface(cairo.FORMAT_ARGB32, 1, 1)), font_path, char, 0, 0, pt_size)
     # surface.write_to_png(f"glyphs/{char}_{'upper' if char.isupper() else 'lower'}.png")
     if surface is not None:
-        glyphs[f'{char}'] = {'data': surface.get_data().tobytes(), 'width': pt_size, 'height': pt_size, 'xMin': xMin, 'xMax': xMax, 'yMin': yMin, 'yMax': yMax, 'advance': advance}
+        glyphs[f'{char}'] = {'data': surface.get_data().tobytes(), 'name': glyph_name, 'width': pt_size, 'height': pt_size, 'xMin': xMin, 'xMax': xMax, 'yMin': yMin, 'yMax': yMax, 'advance': advance}
     else:
-        glyphs[f'{char}'] = {'data': None, 'width': pt_size, 'height': pt_size, 'xMin': xMin, 'xMax': xMax, 'yMin': yMin, 'yMax': yMax, 'advance': advance}
+        glyphs[f'{char}'] = {'data': None, 'name': glyph_name, 'width': pt_size, 'height': pt_size, 'xMin': xMin, 'xMax': xMax, 'yMin': yMin, 'yMax': yMax, 'advance': advance}
 
 
-def create_canvas(width, height):
-    root = tk.Tk()
-    canvas = tk.Canvas(root, width=width, height=height)
-    canvas.pack()
-    return root, canvas
+def header_start(font_name: str):
+    header = f'#ifndef {font_name.upper()}_H\n#define {font_name.upper()}_H\n\n#include "font.h"\n\n'
+    return header
 
-for char in [bytes([code]).decode('ascii') for code in range(256)]:
-    save_char(char, pt_size=256)
+def header_end(header, font_name: str):
+    header += f'\n#endif // {font_name.upper()}_H'
+    return header
 
-text_x, text_y = 50, 200
-width, height = 800, 480
-root, canvas = create_canvas(width, height)
-canvas.create_line(text_x - 10, text_y, text_x + 10, text_y, fill="red")
-canvas.create_line(text_x, text_y - 10, text_x, text_y + 10, fill="red")
+def header_pixels_to_array(header, glyph):
+    width = glyph['width']
+    height = glyph['height']
+    array = [0]*((width*height+1)//8)
+    for x in range(width):
+        for y in range(height):
+            offset_img = (y * glyph['width'] + x)*4
+            alpha = glyph['data'][offset_img + 3]
+            offset_array_pixel = (x * glyph['height'] + y)
+            offset_array_byte = offset_array_pixel//8
+            offset_array_bit = offset_array_pixel%8
+            if alpha > 0:
+                array[offset_array_byte] |= (0x1 << offset_array_bit)
 
-ctx = {'current_pos': (text_x, text_y), 'canvas': canvas, 'pt_size': 64}
+    byte_array = bytes(array)
+    for by in byte_array:
+        header += f'0x{by:02x},  '
 
-print(len(glyphs['A']['data']))
+    return header
 
-def draw_char_from_glyphs(char, msaa=4):
-    glyph = glyphs[char]
+def header_char(header, char):
+    glyph_name = glyphs[char]['name']
+    advance = glyphs[char]['advance']
+    if glyph_name != '':
+        glyph_struct_name = f'char_{glyph_name}'
+        if glyphs[char]['data'] is not None:
+            glyph_data_name = f'{glyph_struct_name}_data'
+            header += f'const uint8_t __attribute__((section(".ext_rodata"))) {glyph_data_name}[] = {{'
+            header = header_pixels_to_array(header, glyphs[char])
+            header += f'}};\n\n'
+            header += f'const Glyph {glyph_struct_name} = {{\n    .advance = {int(advance)},\n    .data = {glyph_data_name},\n}};\n\n'
+        else:
+            header += f'const Glyph {glyph_struct_name} = {{\n    .advance = {int(advance)},\n    .data = (uint8_t*)0,\n}};\n\n'
+    else:
+        hex = char.encode('ascii')[0]
+        glyph_struct_name = f'char_codepoint_0x{hex:02x}'
+        header += f'const Glyph {glyph_struct_name} = {{\n    .advance = {int(advance)},\n    .data = (uint8_t*)0,\n}};\n\n'
+    return header, glyph_struct_name
 
-    if glyph['data'] is None:
-        ctx['current_pos'] = (ctx['current_pos'][0] + glyph['advance'] * ctx['pt_size'] / glyph['width'], ctx['current_pos'][1])
-        return
+def header_font_manifest(header, pt_size, glyph_struct_names, font_name: str):
+    header += f'const Font {font_name.upper()} = {{\n    .width = {pt_size},\n    .height = {pt_size},\n    .glyphs = {{\n'
+    for name in glyph_struct_names:
+        header += f'        &{name},\n'
+    header += '    },\n};\n'
+    return header
+    
+def write_header(header, font_name: str):
+    # Make directory if nonexistent
+    if not os.path.isdir('include/fonts'):
+        os.mkdir('include/fonts')
+    
+    with open(f'include/fonts/{font_name.lower()}.h', 'w') as hf:
+        hf.write(header)
 
-    for x in range(ctx['pt_size']):
-        for y in range(ctx['pt_size']):
-            total_pixel = 0
-            for mx in range(msaa):
-                for my in range(msaa):
-                    # Determine pixel coords according to rescaling
-                    px = int(((x + mx/msaa) * glyph['width']) / ctx['pt_size'])
-                    py = int(((y + my/msaa) * glyph['height']) / ctx['pt_size'])
+print("Converting TTF fonts to bitmap headers")
 
-                    offset = (py * glyph['width'] + px)*4
-                    b = glyph['data'][offset]
-                    g = glyph['data'][offset + 1]
-                    r = glyph['data'][offset + 2]
-                    a = glyph['data'][offset + 3]
-                    if a > 0:
-                        total_pixel += 255
+if not os.path.isdir("fonts"):
+    print("No fonts directory!")
+    quit()
 
-            total_pixel = total_pixel // (msaa*msaa)
-            canvas_x = int(ctx['current_pos'][0] + x)
-            canvas_y = int(ctx['current_pos'][1] + (y - ctx['pt_size']))
-            gray = 255 - total_pixel
-            canvas.create_rectangle(canvas_x, canvas_y, canvas_x, canvas_y, fill=f"#{gray:02x}{gray:02x}{gray:02x}", outline="")
-    ctx['current_pos'] = (ctx['current_pos'][0] + glyph['advance'] * ctx['pt_size'] / glyph['width'], ctx['current_pos'][1])
+for font_file in os.listdir('fonts'):
+    font_name = font_file.split('.')[0].lower()
+    print(f'Converting {font_file}...')
 
-def draw_string_from_glyphs(string, msaa=4):
-    for char in string:
-        if char in glyphs:
-            draw_char_from_glyphs(char, msaa=msaa)
+    pt_size = 256
+    header = header_start(font_name)
+    glyph_structs = []
+    for char in [bytes([code]).decode('ascii') for code in range(128)]:
+        save_char(f'fonts/{font_file}', char, pt_size=pt_size)
+        header, glyph_struct_name = header_char(header, char)
+        glyph_structs.append(glyph_struct_name)
+    header = header_font_manifest(header, pt_size, glyph_structs, font_name)
+    header = header_end(header, font_name)
+    write_header(header, font_name)
 
-draw_string_from_glyphs("Hello, World!")
-ctx['current_pos'] = (text_x, text_y+ctx['pt_size']+10)
-draw_string_from_glyphs("Hello, World!", msaa=1)
-
-root.mainloop()
+    print(f'Finished converting {font_file}!')

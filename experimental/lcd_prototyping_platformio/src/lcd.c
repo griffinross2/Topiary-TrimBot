@@ -51,7 +51,7 @@ Status lcd_init()
 	}
 	nt35510_set_brightness(hdsi, 200);
 
-	HAL_DSI_Refresh(hdsi);
+	lcd_refresh();
 
 	HAL_LTDC_SetAddress(hltdc, (uint32_t)s_foreground_buffer, LTDC_LAYER_2);
 
@@ -72,6 +72,11 @@ uint32_t *lcd_get_framebuffer()
 	return s_foreground_buffer;
 }
 
+void lcd_refresh()
+{
+	HAL_DSI_Refresh(hdsi);
+}
+
 void lcd_set_background(const uint32_t *fb_address)
 {
 	HAL_DSI_Stop(hdsi);
@@ -79,13 +84,13 @@ void lcd_set_background(const uint32_t *fb_address)
 	HAL_LTDC_SetAddress(hltdc, (uint32_t)fb_address, LTDC_LAYER_1);
 	__HAL_LTDC_LAYER_ENABLE(hltdc, LTDC_LAYER_1);
 	HAL_DSI_Start(hdsi);
-	HAL_DSI_Refresh(hdsi);
+	lcd_refresh();
 }
 
 void lcd_clear_foreground()
 {
 	memset(s_foreground_buffer, 0x00, sizeof(s_foreground_buffer));
-	HAL_DSI_Refresh(hdsi);
+	lcd_refresh();
 }
 
 void lcd_draw_rectangle(unsigned int x, unsigned int y, unsigned int w, unsigned int h, uint32_t color)
@@ -97,7 +102,7 @@ void lcd_draw_rectangle(unsigned int x, unsigned int y, unsigned int w, unsigned
 			s_foreground_buffer[yi + xi * LCD_HEIGHT] = color;
 		}
 	}
-	HAL_DSI_Refresh(hdsi);
+	lcd_refresh();
 }
 
 void lcd_draw_circle(unsigned int x, unsigned int y, unsigned int r, uint32_t color)
@@ -115,7 +120,7 @@ void lcd_draw_circle(unsigned int x, unsigned int y, unsigned int r, uint32_t co
 			}
 		}
 	}
-	HAL_DSI_Refresh(hdsi);
+	lcd_refresh();
 }
 
 void lcd_copy_background_to_foreground(const uint32_t *fb_address)
@@ -131,13 +136,13 @@ void lcd_copy_background_to_foreground(const uint32_t *fb_address)
 
 		memcpy(s_foreground_buffer, (uint32_t *)hltdc->LayerCfg[0].FBStartAdress, sizeof(s_foreground_buffer));
 	}
-	HAL_DSI_Refresh(hdsi);
+	lcd_refresh();
 }
 
 void lcd_set_foreground_alpha(uint8_t alpha)
 {
 	HAL_LTDC_SetAlpha(hltdc, alpha, LTDC_LAYER_2);
-	HAL_DSI_Refresh(hdsi);
+	lcd_refresh();
 }
 
 void lcd_set_foreground_visibility(bool visible)
@@ -150,7 +155,7 @@ void lcd_set_foreground_visibility(bool visible)
 	{
 		__HAL_LTDC_LAYER_DISABLE(hltdc, LTDC_LAYER_2);
 	}
-	HAL_DSI_Refresh(hdsi);
+	lcd_refresh();
 }
 
 void lcd_wait_for_vsync()
@@ -172,5 +177,88 @@ void lcd_touch_irq()
 		{
 			lcd_draw_circle(x, y, 5, 0xFFFF0000);
 		}
+	}
+}
+
+void lcd_draw_char(const Font *font, char ch, unsigned start_x, unsigned start_y, unsigned pt_size, uint32_t color, unsigned int *advance)
+{
+	if (advance)
+	{
+		*advance = 0;
+	}
+
+	if (ch < 0)
+	{
+		return;
+	}
+
+	const Glyph *glyph = font->glyphs[(uint8_t)ch];
+	int width = font->width;
+	int height = font->height;
+
+	if (advance)
+	{
+		*advance = glyph->advance * pt_size / width;
+	}
+
+	if (glyph->data == NULL)
+	{
+		return;
+	}
+
+	for (int x = 0; x < pt_size; x++)
+	{
+		for (int y = 0; y < pt_size; y++)
+		{
+			int dest_x = (start_x + x);
+			int dest_y = (start_y + pt_size - y);
+			if (dest_y < 0 || dest_y >= LCD_HEIGHT || dest_x < 0 || dest_x >= LCD_WIDTH)
+			{
+				continue;
+			}
+
+			unsigned int pixel_weight = 0;
+
+			for (int mx = 0; mx < TEXT_MULTISAMPLE; mx++)
+			{
+				for (int my = 0; my < TEXT_MULTISAMPLE; my++)
+				{
+
+					// Determine texture coordinates
+					int px = (TEXT_MULTISAMPLE * x + mx) * width / pt_size / TEXT_MULTISAMPLE;
+					int py = (TEXT_MULTISAMPLE * y + my) * height / pt_size / TEXT_MULTISAMPLE;
+
+					int offset = px * height + py;
+					int offset_byte = offset / 8;
+					int offset_bit = offset % 8;
+
+					bool subpixel = (glyph->data[offset_byte] & (0x1 << offset_bit)) != 0;
+					if (subpixel)
+					{
+						pixel_weight += 255;
+					}
+				}
+			}
+
+			pixel_weight /= (TEXT_MULTISAMPLE * TEXT_MULTISAMPLE);
+			uint32_t new_color = (pixel_weight << 24) | (color & 0x00FFFFFF);
+
+			lcd_wait_for_vsync();
+			s_foreground_buffer[(start_y + pt_size - y) + (start_x + x) * LCD_HEIGHT] = new_color;
+		}
+	}
+
+	lcd_refresh();
+}
+
+void lcd_draw_text(const Font *font, char *str, unsigned start_x, unsigned start_y, unsigned pt_size, uint32_t color)
+{
+	unsigned int cur_x = start_x;
+	unsigned int advance = 0;
+	while (*str != '\0')
+	{
+		lcd_draw_char(font, *str, cur_x, start_y, pt_size, color, &advance);
+		cur_x += advance;
+		str++;
 	}
 }

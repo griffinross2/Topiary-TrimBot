@@ -10,6 +10,7 @@
 // #include "images/squares.h"
 #include "images/splashscreen.h"
 #include "images/blank.h"
+#include "fonts/arial.h"
 
 #include <stdio.h>
 
@@ -27,6 +28,10 @@ int main(void)
   lcd_set_background(BLANK);
 
   lcd_clear_foreground();
+
+  lcd_draw_text(&ARIAL, "Hello, World!", 50, 150, 80, 0xFF000000);
+
+  lcd_refresh();
 
   if (ret == 0)
   {

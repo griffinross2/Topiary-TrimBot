@@ -3,17 +3,17 @@
 
 #include <stdint.h>
 
-typedef struct Glyph
+typedef struct
 {
-    int advance;
-    uint8_t *data;
-};
+    unsigned int advance;
+    const uint8_t *data;
+} Glyph;
 
 typedef struct
 {
-    int width;
-    int height;
-    Glyph glyphs[256];
+    unsigned int width;
+    unsigned int height;
+    const Glyph *glyphs[128];
 } Font;
 
 #endif // FONT_H
