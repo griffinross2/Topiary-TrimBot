@@ -5,6 +5,7 @@
 #include "lcd.h"
 #include "ram.h"
 #include "flash.h"
+#include "gui.h"
 
 // #include "images/test.h"
 // #include "images/squares.h"
@@ -23,20 +24,29 @@ int main(void) {
     ret |= flash_init() << 3;
     ret |= lcd_init() << 4;
 
-    // lcd_set_background(SPLASHSCREEN);
-    lcd_set_background(BLANK);
-
-    lcd_clear_foreground();
-
-    lcd_draw_text(&ARIAL, "Hello, World!", 50, 150, 80, 0xFF000000);
-
-    lcd_refresh();
-
     if (ret == 0) {
         printf("System initialized successfully.\n");
     } else {
         printf("System initialization failed with code: %x\n", ret);
     }
+
+    // lcd_set_background(SPLASHSCREEN);
+    lcd_set_background(BLANK);
+
+    lcd_clear_foreground();
+
+    // lcd_draw_text(&ARIAL, "Hello, World!", 50, 150, 80, 0xFF000000);
+
+    // lcd_refresh();
+
+    Scene scene;
+    std::shared_ptr<Button> button =
+        std::make_shared<Button>(&scene, 100, 200, 200, 50);
+    std::shared_ptr<Label> label =
+        std::make_shared<Label>(&scene, 100, 200, "Hello, World!", 24);
+    scene.add_object(button);
+    scene.add_object(label);
+    HAL_Delay(5000);
 
     // Loading bar
     // for (int w = 0; w < 703; w++)
@@ -71,6 +81,11 @@ int main(void) {
     // lcd_set_foreground_alpha(0xFF);
 
     while (1) {
+        label->set_color(0xFFFF0000);
+        label->set_color(0xFFFFFF00);
+        label->set_color(0xFF00FFFF);
+        label->set_color(0xFF0000FF);
+        label->set_color(0xFFFF00FF);
     }
 
     return 0;

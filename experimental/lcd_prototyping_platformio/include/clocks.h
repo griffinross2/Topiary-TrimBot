@@ -5,4 +5,4 @@
 
 Status clocks_init();
 
-#endif // CLOCKS_H
+#endif  // CLOCKS_H

@@ -104,7 +104,7 @@ void lcd_draw_circle(unsigned int x, unsigned int y, unsigned int r,
             int dx = (int)xi - (int)x;
             int dy = (int)yi - (int)y;
 
-            if (dx * dx + dy * dy < r * r) {
+            if ((unsigned int)(dx * dx + dy * dy) < r * r) {
                 s_foreground_buffer[yi + xi * LCD_HEIGHT] = color;
             }
         }
@@ -180,8 +180,8 @@ void lcd_draw_char(const Font* font, char ch, unsigned start_x,
         return;
     }
 
-    for (int x = 0; x < pt_size; x++) {
-        for (int y = 0; y < pt_size; y++) {
+    for (int x = 0; x < (int)pt_size; x++) {
+        for (int y = 0; y < (int)pt_size; y++) {
             int dest_x = (start_x + x);
             int dest_y = (start_y + pt_size - y);
             if (dest_y < 0 || dest_y >= LCD_HEIGHT || dest_x < 0 ||
@@ -212,11 +212,31 @@ void lcd_draw_char(const Font* font, char ch, unsigned start_x,
             }
 
             pixel_weight /= (TEXT_MULTISAMPLE * TEXT_MULTISAMPLE);
-            uint32_t new_color = (pixel_weight << 24) | (color & 0x00FFFFFF);
 
-            lcd_wait_for_vsync();
-            s_foreground_buffer[(start_y + pt_size - y) +
-                                (start_x + x) * LCD_HEIGHT] = new_color;
+            if (pixel_weight) {
+                lcd_wait_for_vsync();
+                uint32_t new_color = 0;
+                if (pixel_weight < 255) {
+                    uint32_t old_color =
+                        s_foreground_buffer[(start_y + pt_size - y) +
+                                            (start_x + x) * LCD_HEIGHT];
+                    uint32_t new_alpha =
+                        (pixel_weight + ((old_color >> 24) & 0xFF)) / 2;
+                    uint32_t new_red =
+                        (((color >> 16) & 0xFF) + ((old_color >> 16) & 0xFF)) /
+                        2;
+                    uint32_t new_green =
+                        (((color >> 8) & 0xFF) + ((old_color >> 8) & 0xFF)) / 2;
+                    uint32_t new_blue =
+                        ((color & 0xFF) + (old_color & 0xFF)) / 2;
+                    new_color = (new_alpha << 24) | (new_red << 16) |
+                                (new_green << 8) | new_blue;
+                } else {
+                    new_color = 0xFF000000 | (color & 0x00FFFFFF);
+                }
+                s_foreground_buffer[(start_y + pt_size - y) +
+                                    (start_x + x) * LCD_HEIGHT] = new_color;
+            }
         }
     }
 

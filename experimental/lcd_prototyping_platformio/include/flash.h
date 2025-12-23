@@ -5,4 +5,4 @@
 
 Status flash_init();
 
-#endif // FLASH_H
+#endif  // FLASH_H

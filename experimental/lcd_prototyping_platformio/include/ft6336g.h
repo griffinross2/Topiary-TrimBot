@@ -3,8 +3,7 @@
 
 #include "status.h"
 
-typedef enum
-{
+typedef enum {
     FT6336G_TOUCH_EVENT_DOWN = 0,
     FT6336G_TOUCH_EVENT_UP = 1,
     FT6336G_TOUCH_EVENT_CONTACT = 2,
@@ -14,7 +13,7 @@ typedef enum
 Status ft6336g_init();
 void ft6336g_irq();
 FT6336G_TouchEvent ft6336g_get_touch_event(int touch_point_index);
-Status ft6336g_read_pos(int *x, int *y, int *weight, int touch_point_index);
+Status ft6336g_read_pos(int* x, int* y, int* weight, int touch_point_index);
 
 #define FT6336G_DEV_MODE 0x00
 #define FT6336G_GEST_ID 0x01
@@ -53,4 +52,4 @@ Status ft6336g_read_pos(int *x, int *y, int *weight, int touch_point_index);
 #define FT6336G_RELEASE_CODE_ID 0xAF
 #define FT6336G_STATE 0xBC
 
-#endif // FT6336G_H
+#endif  // FT6336G_H

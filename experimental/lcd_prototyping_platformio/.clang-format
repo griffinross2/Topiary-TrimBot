@@ -5,4 +5,5 @@ AccessModifierOffset: -4
 SortIncludes: false
 BinPackArguments: true
 BinPackParameters: true
+ConstructorInitializerAllOnOneLineOrOnePerLine: false
 ...
