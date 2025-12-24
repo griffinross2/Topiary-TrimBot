@@ -59,8 +59,8 @@ int main(void) {
     gui_set_current_scene(&scene);
 
     while (1) {
-        HAL_Delay(1000);
-        printf("Main loop heartbeat.\n");
+        HAL_Delay(10);
+        gui_update_loop();
     }
 
     return 0;

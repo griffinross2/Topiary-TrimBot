@@ -21,7 +21,6 @@ public:
 
     virtual void redraw() {}
     virtual void handle_press(int x, int y) {}
-    virtual void handle_contact(int x, int y) {}
     virtual void handle_release(int x, int y) {}
 
 protected:
@@ -59,7 +58,6 @@ public:
 
     void redraw() override;
     void handle_press(int x, int y) override {}
-    void handle_contact(int x, int y) override {}
     void handle_release(int x, int y) override {}
 
 private:
@@ -77,7 +75,6 @@ public:
 
     void redraw() override;
     void handle_press(int x, int y) override;
-    void handle_contact(int x, int y) override;
     void handle_release(int x, int y) override;
 
 private:
@@ -88,8 +85,17 @@ private:
     bool m_pressed = false;
 };
 
+typedef struct {
+    bool pressed;
+    int x;
+    int y;
+} TouchState;
+
 void gui_set_current_scene(Scene* scene);
 Scene* gui_get_current_scene();
+void gui_touch_update();
 void gui_touch_irq();
+
+void gui_update_loop();
 
 #endif  // GUI_H

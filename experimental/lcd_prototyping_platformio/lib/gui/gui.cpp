@@ -4,6 +4,7 @@
 #include "ft6336g.h"
 
 Scene* g_current_scene = nullptr;
+TouchState g_touch_state = {false, 0, 0};
 
 void gui_set_current_scene(Scene* scene) {
     g_current_scene = scene;
@@ -100,16 +101,6 @@ void Button::redraw() {
 
 void Button::handle_press(int x, int y) {
 
-    if (x >= m_x && x <= m_x + m_width &&
-        y >= m_y && y <= m_y + m_height) {
-        // Inside button bounds
-        m_pressed = true;
-        trigger_redraw();
-    }
-}
-
-void Button::handle_contact(int x, int y) {
-
     if (x < m_x || x > m_x + m_width ||
         y < m_y || y > m_y + m_height) {
         if (m_pressed) {
@@ -120,6 +111,7 @@ void Button::handle_contact(int x, int y) {
     } else {
         if (!m_pressed) {
             // Movement from outside to inside button bounds
+            // Or start of a press
             m_pressed = true;
             trigger_redraw();
         }
@@ -132,8 +124,26 @@ void Button::handle_release(int x, int y) {
     if (m_pressed) {
         m_pressed = false;
         trigger_redraw();
-        
+
         printf("Button clicked at (%d, %d)\n", x, y);
+    }
+}
+
+void gui_touch_update() {
+    int x = g_touch_state.x;
+    int y = g_touch_state.y;
+    if (g_touch_state.pressed) {
+        for (auto obj : g_current_scene->get_objects()) {
+            if (obj->is_clickable()) {
+                obj->handle_press(x, y);
+            }
+        }
+    } else {
+        for (auto obj : g_current_scene->get_objects()) {
+            if (obj->is_clickable()) {
+                obj->handle_release(x, y);
+            }
+        }
     }
 }
 
@@ -152,34 +162,32 @@ void gui_touch_irq() {
 
     if (event == FT6336G_TOUCH_EVENT_DOWN) {
         // Press event
-        for (auto obj : g_current_scene->get_objects()) {
-            if (obj->is_clickable()) {
-                obj->handle_press(x, y);
-            }
-        }
+        g_touch_state.pressed = true;
+        g_touch_state.x = x;
+        g_touch_state.y = y;
 
         return;
     }
 
     if (event == FT6336G_TOUCH_EVENT_CONTACT) {
         // Contact event
-        for (auto obj : g_current_scene->get_objects()) {
-            if (obj->is_clickable()) {
-                obj->handle_contact(x, y);
-            }
-        }
+        g_touch_state.pressed = true;
+        g_touch_state.x = x;
+        g_touch_state.y = y;
 
         return;
     }
 
     if (event == FT6336G_TOUCH_EVENT_UP) {
         // Release event
-        for (auto obj : g_current_scene->get_objects()) {
-            if (obj->is_clickable()) {
-                obj->handle_release(x, y);
-            }
-        }
+        g_touch_state.pressed = false;
+        g_touch_state.x = x;
+        g_touch_state.y = y;
 
         return;
     }
+}
+
+void gui_update_loop() {
+    gui_touch_update();
 }
