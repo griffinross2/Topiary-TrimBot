@@ -39,6 +39,10 @@ void terminal_write(const char *data, unsigned int size)
     HAL_UART_Transmit(&s_huart3, (uint8_t *)data, size, 100);
 }
 
+extern "C" {
+    int _write(int file, char *data, int len);
+}
+
 int _write(int file, char *data, int len)
 {
     terminal_write(data, len);

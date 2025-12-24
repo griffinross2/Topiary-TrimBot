@@ -20,7 +20,7 @@
 DSI_HandleTypeDef* hdsi;
 LTDC_HandleTypeDef* hltdc;
 
-static uint32_t __attribute__((
+static uint8_t __attribute__((
     section(".ext_ram"))) s_foreground_buffer[LCD_WIDTH * LCD_HEIGHT];
 
 Status lcd_init() {
@@ -65,7 +65,7 @@ Status lcd_init() {
     return STATUS_OK;
 }
 
-uint32_t* lcd_get_framebuffer() {
+uint8_t* lcd_get_framebuffer() {
     return s_foreground_buffer;
 }
 
@@ -73,7 +73,7 @@ void lcd_refresh() {
     HAL_DSI_Refresh(hdsi);
 }
 
-void lcd_set_background(const uint32_t* fb_address) {
+void lcd_set_background(const uint8_t* fb_address) {
     HAL_DSI_Stop(hdsi);
     __HAL_LTDC_LAYER_DISABLE(hltdc, LTDC_LAYER_1);
     HAL_LTDC_SetAddress(hltdc, (uint32_t)fb_address, LTDC_LAYER_1);
@@ -83,12 +83,17 @@ void lcd_set_background(const uint32_t* fb_address) {
 }
 
 void lcd_clear_foreground() {
+    // Wait until VSYNC to avoid stepping on the LTDC
+    lcd_wait_for_vsync();
     memset(s_foreground_buffer, 0x00, sizeof(s_foreground_buffer));
     lcd_refresh();
 }
 
 void lcd_draw_rectangle(unsigned int x, unsigned int y, unsigned int w,
-                        unsigned int h, uint32_t color) {
+                        unsigned int h, uint8_t color) {
+    // Wait until VSYNC to avoid stepping on the LTDC
+    lcd_wait_for_vsync();
+    
     for (unsigned int xi = x; xi < x + w; xi++) {
         for (unsigned int yi = y; yi < y + h; yi++) {
             s_foreground_buffer[yi + xi * LCD_HEIGHT] = color;
@@ -98,7 +103,10 @@ void lcd_draw_rectangle(unsigned int x, unsigned int y, unsigned int w,
 }
 
 void lcd_draw_circle(unsigned int x, unsigned int y, unsigned int r,
-                     uint32_t color) {
+                     uint8_t color) {
+    // Wait until VSYNC to avoid stepping on the LTDC
+    lcd_wait_for_vsync();
+
     for (unsigned int xi = x - r; xi < x + r; xi++) {
         for (unsigned int yi = y - r; yi < y + r; yi++) {
             int dx = (int)xi - (int)x;
@@ -113,12 +121,12 @@ void lcd_draw_circle(unsigned int x, unsigned int y, unsigned int r,
 }
 
 void lcd_copy_background_to_foreground(const uint32_t* fb_address) {
+    // Wait until VSYNC to avoid stepping on the LTDC
+    lcd_wait_for_vsync();
+
     if (fb_address != NULL) {
         memcpy(s_foreground_buffer, fb_address, sizeof(s_foreground_buffer));
     } else {
-        // Wait until VSYNC to avoid stepping on the LTDC
-        lcd_wait_for_vsync();
-
         memcpy(s_foreground_buffer, (uint32_t*)hltdc->LayerCfg[0].FBStartAdress,
                sizeof(s_foreground_buffer));
     }
@@ -144,21 +152,8 @@ void lcd_wait_for_vsync() {
     }
 }
 
-void lcd_touch_irq() {
-    ft6336g_irq();
-
-    FT6336G_TouchEvent event = ft6336g_get_touch_event(0);
-    if (event == FT6336G_TOUCH_EVENT_DOWN ||
-        event == FT6336G_TOUCH_EVENT_CONTACT) {
-        int x, y, weight;
-        if (ft6336g_read_pos(&y, &x, &weight, 0) == STATUS_OK) {
-            lcd_draw_circle(x, y, 5, 0xFFFF0000);
-        }
-    }
-}
-
 void lcd_draw_char(const Font* font, char ch, unsigned start_x,
-                   unsigned start_y, unsigned pt_size, uint32_t color,
+                   unsigned start_y, unsigned pt_size, uint8_t color,
                    unsigned int* advance) {
     if (advance) {
         *advance = 0;
@@ -189,53 +184,20 @@ void lcd_draw_char(const Font* font, char ch, unsigned start_x,
                 continue;
             }
 
-            unsigned int pixel_weight = 0;
+            // Determine texture coordinates
+            int px = x * width / pt_size;
+            int py = y * height / pt_size;
 
-            for (int mx = 0; mx < TEXT_MULTISAMPLE; mx++) {
-                for (int my = 0; my < TEXT_MULTISAMPLE; my++) {
-                    // Determine texture coordinates
-                    int px = (TEXT_MULTISAMPLE * x + mx) * width / pt_size /
-                             TEXT_MULTISAMPLE;
-                    int py = (TEXT_MULTISAMPLE * y + my) * height / pt_size /
-                             TEXT_MULTISAMPLE;
+            int offset = px * height + py;
+            int offset_byte = offset / 8;
+            int offset_bit = offset % 8;
 
-                    int offset = px * height + py;
-                    int offset_byte = offset / 8;
-                    int offset_bit = offset % 8;
-
-                    bool subpixel =
-                        (glyph->data[offset_byte] & (0x1 << offset_bit)) != 0;
-                    if (subpixel) {
-                        pixel_weight += 255;
-                    }
-                }
-            }
-
-            pixel_weight /= (TEXT_MULTISAMPLE * TEXT_MULTISAMPLE);
-
-            if (pixel_weight) {
+            bool subpixel =
+                (glyph->data[offset_byte] & (0x1 << offset_bit)) != 0;
+            if (subpixel) {
                 lcd_wait_for_vsync();
-                uint32_t new_color = 0;
-                if (pixel_weight < 255) {
-                    uint32_t old_color =
-                        s_foreground_buffer[(start_y + pt_size - y) +
-                                            (start_x + x) * LCD_HEIGHT];
-                    uint32_t new_alpha =
-                        (pixel_weight + ((old_color >> 24) & 0xFF)) / 2;
-                    uint32_t new_red =
-                        (((color >> 16) & 0xFF) + ((old_color >> 16) & 0xFF)) /
-                        2;
-                    uint32_t new_green =
-                        (((color >> 8) & 0xFF) + ((old_color >> 8) & 0xFF)) / 2;
-                    uint32_t new_blue =
-                        ((color & 0xFF) + (old_color & 0xFF)) / 2;
-                    new_color = (new_alpha << 24) | (new_red << 16) |
-                                (new_green << 8) | new_blue;
-                } else {
-                    new_color = 0xFF000000 | (color & 0x00FFFFFF);
-                }
                 s_foreground_buffer[(start_y + pt_size - y) +
-                                    (start_x + x) * LCD_HEIGHT] = new_color;
+                                    (start_x + x) * LCD_HEIGHT] = color;
             }
         }
     }
@@ -244,7 +206,7 @@ void lcd_draw_char(const Font* font, char ch, unsigned start_x,
 }
 
 void lcd_draw_text(const Font* font, const char* str, unsigned start_x,
-                   unsigned start_y, unsigned pt_size, uint32_t color) {
+                   unsigned start_y, unsigned pt_size, uint8_t color) {
     unsigned int cur_x = start_x;
     unsigned int advance = 0;
     while (*str != '\0') {

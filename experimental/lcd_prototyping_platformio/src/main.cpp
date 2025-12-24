@@ -15,6 +15,8 @@
 
 #include <stdio.h>
 
+extern TIM_HandleTypeDef htim3;
+
 int main(void) {
     HAL_Init();
 
@@ -40,52 +42,25 @@ int main(void) {
     // lcd_refresh();
 
     Scene scene;
-    std::shared_ptr<Button> button =
-        std::make_shared<Button>(&scene, 100, 200, 200, 50);
-    std::shared_ptr<Label> label =
-        std::make_shared<Label>(&scene, 100, 200, "Hello, World!", 24);
-    scene.add_object(button);
-    scene.add_object(label);
-    HAL_Delay(5000);
+    std::shared_ptr<Button> button0 =
+        std::make_shared<Button>(&scene, 20, 200, 300, 100);
+    std::shared_ptr<Label> label0 =
+        std::make_shared<Label>(&scene, 40, 220, "Hello, World!", 48);
 
-    // Loading bar
-    // for (int w = 0; w < 703; w++)
-    // {
-    //   if (w == 0)
-    //   {
-    //     lcd_clear_foreground();
-    //     lcd_draw_circle(49, 111, 10, 0xFFFFFFFF);
-    //   }
+    std::shared_ptr<Button> button1 =
+        std::make_shared<Button>(&scene, 450, 200, 300, 100);
+    std::shared_ptr<Label> label1 =
+        std::make_shared<Label>(&scene, 490, 220, "Push Me!", 48);
 
-    //   lcd_draw_rectangle(49, 101, w, 21, 0xFFFFFFFF);
-
-    //   if (w == 702)
-    //   {
-    //     lcd_draw_circle(49 + 701, 111, 10, 0xFFFFFFFF);
-    //   }
-
-    //   HAL_Delay(2);
-    // }
-
-    // // Fade out
-    // lcd_copy_background_to_foreground(NULL);
-    // lcd_set_background(BLANK);
-
-    // for (int a = 0xFF; a >= 0; a--)
-    // {
-    //   lcd_set_foreground_alpha(a);
-    //   HAL_Delay(1);
-    // }
-
-    // lcd_clear_foreground();
-    // lcd_set_foreground_alpha(0xFF);
+    scene.add_object(button0);
+    scene.add_object(label0);
+    scene.add_object(button1);
+    scene.add_object(label1);
+    gui_set_current_scene(&scene);
 
     while (1) {
-        label->set_color(0xFFFF0000);
-        label->set_color(0xFFFFFF00);
-        label->set_color(0xFF00FFFF);
-        label->set_color(0xFF0000FF);
-        label->set_color(0xFFFF00FF);
+        HAL_Delay(1000);
+        printf("Main loop heartbeat.\n");
     }
 
     return 0;
@@ -139,9 +114,7 @@ void SysTick_Handler(void) {
 
 extern EXTI_HandleTypeDef g_hexti;
 void EXTI9_5_IRQHandler(void) {
-    if (__HAL_GPIO_EXTI_GET_IT(GPIO_PIN_5) != RESET) {
-        lcd_touch_irq();
-    }
-
     HAL_EXTI_IRQHandler(&g_hexti);
+    
+    gui_touch_irq();
 }

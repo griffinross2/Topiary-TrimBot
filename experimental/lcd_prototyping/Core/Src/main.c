@@ -47,6 +47,8 @@ I2C_HandleTypeDef hi2c1;
 
 LTDC_HandleTypeDef hltdc;
 
+TIM_HandleTypeDef htim3;
+
 UART_HandleTypeDef huart6;
 
 SDRAM_HandleTypeDef hsdram1;
@@ -63,6 +65,7 @@ static void MX_LTDC_Init(void);
 static void MX_DSIHOST_DSI_Init(void);
 static void MX_FMC_Init(void);
 static void MX_I2C1_Init(void);
+static void MX_TIM3_Init(void);
 /* USER CODE BEGIN PFP */
 /* USER CODE END PFP */
 
@@ -108,6 +111,7 @@ int main(void)
   MX_DSIHOST_DSI_Init();
   MX_FMC_Init();
   MX_I2C1_Init();
+  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
   if (lcd_init() != LCD_OK) {
 	  printf("LCD failed to initialize!\n");
@@ -350,13 +354,13 @@ static void MX_LTDC_Init(void)
   hltdc.Init.DEPolarity = LTDC_DEPOLARITY_AL;
   hltdc.Init.PCPolarity = LTDC_PCPOLARITY_IPC;
   hltdc.Init.HorizontalSync = 0;
-  hltdc.Init.VerticalSync = 0;
-  hltdc.Init.AccumulatedHBP = 1;
-  hltdc.Init.AccumulatedVBP = 1;
-  hltdc.Init.AccumulatedActiveW = 801;
-  hltdc.Init.AccumulatedActiveH = 481;
-  hltdc.Init.TotalWidth = 802;
-  hltdc.Init.TotalHeigh = 482;
+  hltdc.Init.VerticalSync = 99;
+  hltdc.Init.AccumulatedHBP = 3;
+  hltdc.Init.AccumulatedVBP = 102;
+  hltdc.Init.AccumulatedActiveW = 803;
+  hltdc.Init.AccumulatedActiveH = 582;
+  hltdc.Init.TotalWidth = 804;
+  hltdc.Init.TotalHeigh = 583;
   hltdc.Init.Backcolor.Blue = 0;
   hltdc.Init.Backcolor.Green = 0;
   hltdc.Init.Backcolor.Red = 255;
@@ -386,6 +390,51 @@ static void MX_LTDC_Init(void)
   /* USER CODE BEGIN LTDC_Init 2 */
 
   /* USER CODE END LTDC_Init 2 */
+
+}
+
+/**
+  * @brief TIM3 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM3_Init(void)
+{
+
+  /* USER CODE BEGIN TIM3_Init 0 */
+
+  /* USER CODE END TIM3_Init 0 */
+
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+  /* USER CODE BEGIN TIM3_Init 1 */
+
+  /* USER CODE END TIM3_Init 1 */
+  htim3.Instance = TIM3;
+  htim3.Init.Prescaler = 179;
+  htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim3.Init.Period = 9999;
+  htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim3, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_UPDATE;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM3_Init 2 */
+
+  /* USER CODE END TIM3_Init 2 */
 
 }
 

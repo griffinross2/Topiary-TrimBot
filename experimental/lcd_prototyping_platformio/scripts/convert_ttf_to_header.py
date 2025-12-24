@@ -127,8 +127,11 @@ def write_header(header, font_name: str):
 print("Converting TTF fonts to bitmap headers")
 
 if not os.path.isdir("fonts"):
-    print("No fonts directory!")
-    quit()
+    print("No fonts directory, creating...")
+    try:
+        os.mkdir("fonts")
+    except OSError:
+        quit()
 
 for font_file in os.listdir('fonts'):
     font_name = font_file.split('.')[0].lower()

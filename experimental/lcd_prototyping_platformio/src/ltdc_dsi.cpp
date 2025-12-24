@@ -1,5 +1,7 @@
 #include "ltdc_dsi.h"
 
+#include "images/lut.h"
+
 LTDC_HandleTypeDef g_hltdc;
 DSI_HandleTypeDef g_hdsi;
 
@@ -20,13 +22,13 @@ Status ltdc_dsi_init()
     g_hltdc.Init.DEPolarity = LTDC_DEPOLARITY_AL;
     g_hltdc.Init.PCPolarity = LTDC_PCPOLARITY_IPC;
     g_hltdc.Init.HorizontalSync = 1;
-    g_hltdc.Init.VerticalSync = 1;
+    g_hltdc.Init.VerticalSync = 99;
     g_hltdc.Init.AccumulatedHBP = 3;
-    g_hltdc.Init.AccumulatedVBP = 3;
+    g_hltdc.Init.AccumulatedVBP = 102;
     g_hltdc.Init.AccumulatedActiveW = 803;
-    g_hltdc.Init.AccumulatedActiveH = 483;
-    g_hltdc.Init.TotalWidth = 805;
-    g_hltdc.Init.TotalHeigh = 485;
+    g_hltdc.Init.AccumulatedActiveH = 582;
+    g_hltdc.Init.TotalWidth = 804;
+    g_hltdc.Init.TotalHeigh = 583;
     g_hltdc.Init.Backcolor.Blue = 255;
     g_hltdc.Init.Backcolor.Green = 255;
     g_hltdc.Init.Backcolor.Red = 255;
@@ -39,7 +41,7 @@ Status ltdc_dsi_init()
     pLayerCfg.WindowX1 = 800;
     pLayerCfg.WindowY0 = 0;
     pLayerCfg.WindowY1 = 480;
-    pLayerCfg.PixelFormat = LTDC_PIXEL_FORMAT_ARGB8888;
+    pLayerCfg.PixelFormat = LTDC_PIXEL_FORMAT_AL44;
     pLayerCfg.Alpha = 0xFF;
     pLayerCfg.Alpha0 = 0xFF;
     pLayerCfg.BlendingFactor1 = LTDC_BLENDING_FACTOR1_PAxCA;
@@ -56,6 +58,28 @@ Status ltdc_dsi_init()
     }
 
     if (HAL_LTDC_ConfigLayer(&g_hltdc, &pLayerCfg, LTDC_LAYER_2) != HAL_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    // Configure CLUT for both layers
+    if (HAL_LTDC_ConfigCLUT(&g_hltdc, const_cast<uint32_t *>(LUT), sizeof(LUT) / sizeof(uint32_t), LTDC_LAYER_1) != HAL_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    if (HAL_LTDC_ConfigCLUT(&g_hltdc, const_cast<uint32_t *>(LUT), sizeof(LUT) / sizeof(uint32_t), LTDC_LAYER_2) != HAL_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    // Enable CLUT for both layers
+    if (HAL_LTDC_EnableCLUT(&g_hltdc, LTDC_LAYER_1) != HAL_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    if (HAL_LTDC_EnableCLUT(&g_hltdc, LTDC_LAYER_2) != HAL_OK)
     {
         return STATUS_ERROR;
     }
