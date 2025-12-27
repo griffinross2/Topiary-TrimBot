@@ -3,11 +3,12 @@
 
 #include "font.h"
 
+#include "fonts/arial.h"
+#include "lcd.h"
+
 #include <vector>
 #include <string>
 #include <memory>
-
-#include "fonts/arial.h"
 
 typedef struct {
     int xl;
@@ -58,19 +59,40 @@ private:
     std::vector<std::shared_ptr<SceneObject>> m_objects;
 };
 
+class Rectangle : public SceneObject {
+public:
+    Rectangle(Scene* parent, int x, int y, int w, int h, Color color);
+
+    void set_position(int x, int y);
+    void set_size(int w, int h);
+    void set_color(Color color);
+
+    void redraw() override;
+    void handle_press(int x, int y) override {}
+    void handle_release(int x, int y) override {}
+    Bounds calc_bounds() override;
+
+private:
+    int m_x = 0;
+    int m_y = 0;
+    int m_width = 0;
+    int m_height = 0;
+    Color m_color = 0x00;
+};
+
 class Label : public SceneObject {
 public:
     Label(Scene* parent, int x, int y);
     Label(Scene* parent, int x, int y, std::string text);
     Label(Scene* parent, int x, int y, std::string text, int size);
     Label(Scene* parent, int x, int y, std::string text, int size,
-          uint8_t color);
+          Color color);
     Label(Scene* parent, int x, int y, std::string text, int size,
-          uint8_t color, const Font* font);
+          Color color, const Font* font);
 
     void set_position(int x, int);
     void set_text(std::string text);
-    void set_color(uint8_t color);
+    void set_color(Color color);
     void set_font(const Font* font);
 
     void redraw() override;

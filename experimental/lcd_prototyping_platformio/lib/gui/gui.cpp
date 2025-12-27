@@ -1,6 +1,5 @@
 #include "gui.h"
 
-#include "lcd.h"
 #include "ft6336g.h"
 
 #include <algorithm>
@@ -155,6 +154,47 @@ void SceneObject::set_visible(bool visible) {
     trigger_redraw();
 }
 
+Rectangle::Rectangle(Scene* parent, int x, int y, int w, int h, Color color)
+    : SceneObject(parent), m_x(x), m_y(y), m_width(w), m_height(h), m_color(color) {}
+
+void Rectangle::set_position(int x, int y) {
+    m_x = x;
+    m_y = y;
+    trigger_redraw();
+}
+
+void Rectangle::set_size(int w, int h) {
+    m_width = w;
+    m_height = h;
+    trigger_redraw();
+}
+
+void Rectangle::set_color(Color color) {
+    m_color = color;
+    trigger_redraw();
+}
+
+void Rectangle::redraw() {
+    if (m_visible) {
+        int x = std::min(std::max(0, m_x), LCD_WIDTH - 1);
+        int y = std::min(std::max(0, m_y), LCD_HEIGHT - 1);
+        unsigned int w = std::min(m_width, LCD_WIDTH - x);
+        unsigned int h = std::min(m_height, LCD_HEIGHT - y);
+        lcd_draw_rectangle(x, y, w, h, m_color);
+    }
+}
+
+Bounds Rectangle::calc_bounds() {
+    Bounds ret = {
+        .xl = m_x,
+        .xr = m_x + m_width,
+        .yb = m_y,
+        .yt = m_y + m_height,
+    };
+
+    return ret;
+}
+
 Label::Label(Scene* parent, int x, int y)
     : SceneObject(parent), m_x(x), m_y(y), m_text("") {}
 
@@ -165,12 +205,12 @@ Label::Label(Scene* parent, int x, int y, std::string text, int size)
     : SceneObject(parent), m_x(x), m_y(y), m_text(text), m_size(size) {}
 
 Label::Label(Scene* parent, int x, int y, std::string text, int size,
-             uint8_t color)
+             Color color)
     : SceneObject(parent), m_x(x), m_y(y), m_text(text), m_size(size),
       m_color(color) {}
 
 Label::Label(Scene* parent, int x, int y, std::string text, int size,
-             uint8_t color, const Font* font)
+             Color color, const Font* font)
     : SceneObject(parent), m_x(x), m_y(y), m_text(text), m_size(size),
       m_color(color), m_font(font) {}
 
@@ -185,7 +225,7 @@ void Label::set_text(std::string text) {
     trigger_redraw();
 }
 
-void Label::set_color(uint8_t color) {
+void Label::set_color(Color color) {
     m_color = color;
     trigger_redraw();
 }
@@ -223,7 +263,11 @@ Button::Button(Scene* parent, int x, int y, int w, int h)
 
 void Button::redraw() {
     if (m_visible) {
-        lcd_draw_rectangle(m_x, m_y, m_width, m_height, m_pressed ? 0x82 : 0xF2);
+        int x = std::min(std::max(0, m_x), LCD_WIDTH - 1);
+        int y = std::min(std::max(0, m_y), LCD_HEIGHT - 1);
+        unsigned int w = std::min(m_width, LCD_WIDTH - x);
+        unsigned int h = std::min(m_height, LCD_HEIGHT - y);
+        lcd_draw_rectangle(x, y, w, h, m_pressed ? 0x82 : 0xF2);
     }
 }
 

@@ -52,15 +52,38 @@ int main(void) {
     std::shared_ptr<Label> label1 =
         std::make_shared<Label>(&scene, 490, 220, "Push Me!", 48);
 
+    std::shared_ptr<Rectangle> rect0 =
+        std::make_shared<Rectangle>(&scene, 0, 0, 50, 50, 0xF5);
+    int rect_x = 0;
+    int rect_y = 0;
+
     scene.add_object(button0);
     scene.add_object(label0);
     scene.add_object(button1);
     scene.add_object(label1);
+    scene.add_object(rect0);
     gui_set_current_scene(&scene);
 
+    unsigned int tick = HAL_GetTick();
     while (1) {
         HAL_Delay(10);
         gui_update_loop();
+
+        if (HAL_GetTick() - tick >= 10) {
+            tick = HAL_GetTick();
+
+            rect_x += 15;
+            if (rect_x + 50 >= LCD_WIDTH) {
+                rect_x = 0;
+                rect_y += 15;
+
+                if (rect_y + 50 >= LCD_HEIGHT) {
+                    rect_y = 0;
+                }
+            }
+
+            rect0->set_position(rect_x, rect_y);
+        }
     }
 
     return 0;
