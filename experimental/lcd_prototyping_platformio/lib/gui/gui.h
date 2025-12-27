@@ -9,6 +9,13 @@
 
 #include "fonts/arial.h"
 
+typedef struct {
+    int xl;
+    int xr;
+    int yb;
+    int yt;
+} Bounds;
+
 class Scene;
 
 class SceneObject {
@@ -22,6 +29,7 @@ public:
     virtual void redraw() {}
     virtual void handle_press(int x, int y) {}
     virtual void handle_release(int x, int y) {}
+    virtual Bounds calc_bounds() { return Bounds{0,0,0,0}; }
 
 protected:
     Scene* m_parent = nullptr;
@@ -29,15 +37,24 @@ protected:
     bool m_visible = true;
 };
 
+
+typedef struct {
+    std::vector<std::shared_ptr<SceneObject>> objects;
+    Bounds bounds;
+} DrawGroup;
+
 class Scene {
 public:
     Scene();
 
     void add_object(std::shared_ptr<SceneObject> obj);
-    void redraw();
+    void redraw(SceneObject* obj);
     std::vector<std::shared_ptr<SceneObject>>& get_objects() { return m_objects; }
 
 private:
+    std::vector<DrawGroup> create_draw_groups();
+
+    std::vector<DrawGroup> m_draw_groups;
     std::vector<std::shared_ptr<SceneObject>> m_objects;
 };
 
@@ -59,6 +76,7 @@ public:
     void redraw() override;
     void handle_press(int x, int y) override {}
     void handle_release(int x, int y) override {}
+    Bounds calc_bounds() override;
 
 private:
     int m_x = 0;
@@ -76,6 +94,7 @@ public:
     void redraw() override;
     void handle_press(int x, int y) override;
     void handle_release(int x, int y) override;
+    Bounds calc_bounds() override;
 
 private:
     int m_x = 0;

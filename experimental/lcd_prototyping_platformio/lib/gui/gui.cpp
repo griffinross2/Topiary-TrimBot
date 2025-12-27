@@ -3,12 +3,14 @@
 #include "lcd.h"
 #include "ft6336g.h"
 
+#include <algorithm>
+
 Scene* g_current_scene = nullptr;
 TouchState g_touch_state = {false, 0, 0};
 
 void gui_set_current_scene(Scene* scene) {
     g_current_scene = scene;
-    g_current_scene->redraw();
+    g_current_scene->redraw(nullptr);
 }
 
 Scene* gui_get_current_scene() {
@@ -20,22 +22,131 @@ Scene::Scene() {}
 void Scene::add_object(std::shared_ptr<SceneObject> obj) {
     m_objects.push_back(std::move(obj));
     if (g_current_scene == this) {
-        obj->redraw();
+        redraw(obj.get());
     }
 }
 
-void Scene::redraw() {
-    lcd_clear_foreground();
-    for (auto obj : m_objects) {
-        obj->redraw();
+void Scene::redraw(SceneObject* obj) {
+    // If obj is nullptr, redraw the entire scene
+    if (obj == nullptr) {
+        lcd_clear_foreground();
+        for (auto& o : m_objects) {
+            o->redraw();
+        }
+        m_draw_groups = create_draw_groups();
+        return;
     }
+
+    // Otherwise find the draw group containing the object
+    // wanting to be redrawn
+    for (auto& group : m_draw_groups) {
+        auto it = std::find_if(
+            group.objects.begin(),
+            group.objects.end(),
+            [obj](const std::shared_ptr<SceneObject>& o) {
+                return o.get() == obj;
+            }
+        );
+
+        if (it != group.objects.end()) {
+            // Found a group containing the object
+
+            // Clear the area of the group
+            int clear_xl = std::min(std::max(0, group.bounds.xl), LCD_WIDTH - 1);
+            int clear_xr = std::min(std::max(0, group.bounds.xr), LCD_WIDTH - 1);
+            int clear_yb = std::min(std::max(0, group.bounds.yb), LCD_HEIGHT - 1);
+            int clear_yt = std::min(std::max(0, group.bounds.yt), LCD_HEIGHT - 1);
+            lcd_clear_area(
+                clear_xl,
+                clear_xr,
+                clear_yb,
+                clear_yt
+            );
+
+            // Redraw all objects in this group
+            for (auto& o : group.objects) {
+                o->redraw();
+            }
+
+            // Recalculate draw groups
+            m_draw_groups = create_draw_groups();
+
+            // Done
+            return;
+        }
+    }
+
+    // We should only be here if an object was just added
+    // In this case, we are drawing it on top of everything
+    // else so don't worry about clearing anything
+    obj->redraw();
+    m_draw_groups = create_draw_groups();
+}
+
+std::vector<DrawGroup> Scene::create_draw_groups() {
+    // Start with all scene elements in individual groups
+    // Then we will merge groups that overlap until none
+    // overlap.
+
+    std::vector<DrawGroup> groups;
+    for (auto obj : m_objects) {
+        DrawGroup group;
+        group.objects.push_back(obj);
+        group.bounds = obj->calc_bounds();
+        groups.push_back(group);
+    }
+
+    bool overlapping = true;
+    while (overlapping) {
+        overlapping = false;
+
+        for (size_t i = 0; i < groups.size(); i++) {
+            for (size_t j = i + 1; j < groups.size(); j++) {
+                // Check for overlap between groups
+                Bounds& a = groups[i].bounds;
+                Bounds& b = groups[j].bounds;
+
+                bool overlap = (a.xl <= b.xr) && (a.xr >= b.xl) &&
+                               (a.yb <= b.yt) && (a.yt >= b.yb);
+
+                if (overlap) {
+                    // Merge groups[j] into groups[i]
+                    groups[i].objects.insert(
+                        groups[i].objects.end(),
+                        groups[j].objects.begin(),
+                        groups[j].objects.end()
+                    );
+
+                    // Update bounds
+                    groups[i].bounds.xl = std::min(a.xl, b.xl);
+                    groups[i].bounds.xr = std::max(a.xr, b.xr);
+                    groups[i].bounds.yb = std::min(a.yb, b.yb);
+                    groups[i].bounds.yt = std::max(a.yt, b.yt);
+
+                    // Remove groups[j]
+                    groups.erase(groups.begin() + j);
+
+                    // Check again
+                    overlapping = true;
+                    break;
+                }
+            }
+
+            if (overlapping) {
+                // Check again
+                break;
+            }
+        }
+    }
+
+    return groups;
 }
 
 SceneObject::SceneObject(Scene* parent, bool clickable) : m_parent(parent), m_clickable(clickable) {}
 
 void SceneObject::trigger_redraw() {
     if (m_parent && g_current_scene == m_parent) {
-        m_parent->redraw();
+        m_parent->redraw(this);
     }
 }
 
@@ -90,6 +201,23 @@ void Label::redraw() {
     }
 }
 
+Bounds Label::calc_bounds() {
+    // Calculate bounds based on text size and font metrics
+    Bounds ret;
+    ret.xl = m_x;
+    ret.yb = m_y;
+    ret.yt = m_y + m_size + 1;
+
+    unsigned int text_width = 0;
+    for (char ch : m_text) {
+        text_width += m_font->glyphs[(uint8_t)ch]->advance * m_size / m_font->width;
+    }
+
+    ret.xr = ret.xl + text_width;
+
+    return ret;
+}
+
 Button::Button(Scene* parent, int x, int y, int w, int h)
     : SceneObject(parent, true), m_x(x), m_y(y), m_width(w), m_height(h) {}
 
@@ -127,6 +255,17 @@ void Button::handle_release(int x, int y) {
 
         printf("Button clicked at (%d, %d)\n", x, y);
     }
+}
+
+Bounds Button::calc_bounds() {
+    Bounds ret = {
+        .xl = m_x,
+        .xr = m_x + m_width,
+        .yb = m_y,
+        .yt = m_y + m_height,
+    };
+
+    return ret;
 }
 
 void gui_touch_update() {

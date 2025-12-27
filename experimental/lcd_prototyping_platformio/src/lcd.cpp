@@ -89,6 +89,19 @@ void lcd_clear_foreground() {
     lcd_refresh();
 }
 
+void lcd_clear_area(unsigned int xl, unsigned int xr,
+                    unsigned int yb, unsigned int yt) {
+    // Wait until VSYNC to avoid stepping on the LTDC
+    lcd_wait_for_vsync();
+    
+    for (unsigned int xi = xl; xi <= xr; xi++) {
+        for (unsigned int yi = yb; yi <= yt; yi++) {
+            s_foreground_buffer[yi + xi * LCD_HEIGHT] = 0x00;
+        }
+    }
+    lcd_refresh();
+}
+
 void lcd_draw_rectangle(unsigned int x, unsigned int y, unsigned int w,
                         unsigned int h, uint8_t color) {
     // Wait until VSYNC to avoid stepping on the LTDC
