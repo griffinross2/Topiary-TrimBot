@@ -408,6 +408,35 @@
     "subpart_first_id": 65,
     "subpart_id_separator": 0
   },
-  "sheets": [],
+  "sheets": [
+    [
+      "2826ff7c-9767-4078-8ea2-1cd3a432abf3",
+      "Root"
+    ],
+    [
+      "b9dd42db-ce69-476f-af46-2e9dff9090cd",
+      "Power"
+    ],
+    [
+      "85803a25-8176-4fac-b186-52d9676cab71",
+      "MCU"
+    ],
+    [
+      "60c25ff0-1584-491b-871e-d697acc05978",
+      "Motor Control"
+    ],
+    [
+      "c95f1fc4-1ba1-4ddd-af2e-ed3477b5512d",
+      "Raspberry Pi"
+    ],
+    [
+      "5e1a5ae0-b63d-4e63-8db3-55a7cc5df283",
+      "Storage"
+    ],
+    [
+      "e982bc10-c57a-42ac-b92d-a536dd69a0fd",
+      "LCD"
+    ]
+  ],
   "text_variables": {}
 }

@@ -97,5 +97,7 @@ void nt35510_normal_mode(DSI_HandleTypeDef *hdsi);
 void nt35510_partial_mode(DSI_HandleTypeDef *hdsi);
 void nt35510_nop(DSI_HandleTypeDef *hdsi);
 void nt35510_madctl(DSI_HandleTypeDef *hdsi, uint8_t val);
+void nt35510_raset(DSI_HandleTypeDef *hdsi, uint16_t start, uint16_t end);
+void nt35510_caset(DSI_HandleTypeDef *hdsi, uint16_t start, uint16_t end);
 
 #endif // NT35510_H

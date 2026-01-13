@@ -10,6 +10,9 @@
 #define LCD_WIDTH 800
 #define LCD_HEIGHT 480
 
+#define WINDOW_WIDTH 480
+#define WINDOW_HEIGHT 272
+
 typedef uint8_t Color;
 
 Status lcd_init();

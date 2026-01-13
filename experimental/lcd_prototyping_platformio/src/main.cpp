@@ -14,6 +14,7 @@
 #include "fonts/arial.h"
 
 #include <stdio.h>
+#include <malloc.h>
 
 extern TIM_HandleTypeDef htim3;
 
@@ -43,17 +44,17 @@ int main(void) {
 
     Scene scene;
     std::shared_ptr<Button> button0 =
-        std::make_shared<Button>(&scene, 20, 200, 300, 100);
+        std::make_shared<Button>(&scene, 10, 100, 150, 50);
     std::shared_ptr<Label> label0 =
-        std::make_shared<Label>(&scene, 40, 220, "Hello, World!", 48);
+        std::make_shared<Label>(&scene, 20, 110, "Hello, World!", 24);
 
     std::shared_ptr<Button> button1 =
-        std::make_shared<Button>(&scene, 450, 200, 300, 100);
+        std::make_shared<Button>(&scene, 225, 100, 150, 50);
     std::shared_ptr<Label> label1 =
-        std::make_shared<Label>(&scene, 490, 220, "Push Me!", 48);
+        std::make_shared<Label>(&scene, 245, 110, "Push Me!", 24);
 
     std::shared_ptr<Rectangle> rect0 =
-        std::make_shared<Rectangle>(&scene, 0, 0, 50, 50, 0xF5);
+        std::make_shared<Rectangle>(&scene, 0, 0, 25, 25, 0xF5);
     int rect_x = 0;
     int rect_y = 0;
 
@@ -66,22 +67,21 @@ int main(void) {
 
     unsigned int tick = HAL_GetTick();
     while (1) {
-        HAL_Delay(10);
         gui_update_loop();
 
         if (HAL_GetTick() - tick >= 10) {
             tick = HAL_GetTick();
 
-            rect_x += 15;
-            if (rect_x + 50 >= LCD_WIDTH) {
+            rect_x += 10;
+            if (rect_x + 25 >= WINDOW_WIDTH) {
                 rect_x = 0;
-                rect_y += 15;
+                rect_y += 10;
 
-                if (rect_y + 50 >= LCD_HEIGHT) {
+                if (rect_y + 25 >= WINDOW_WIDTH) {
                     rect_y = 0;
                 }
             }
-
+            
             rect0->set_position(rect_x, rect_y);
         }
     }

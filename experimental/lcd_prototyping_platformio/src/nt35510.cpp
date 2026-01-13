@@ -82,3 +82,23 @@ void nt35510_madctl(DSI_HandleTypeDef *hdsi, uint8_t val)
 {
 	nt35510_write(hdsi, NT35510_CMD_MADCTL, 1, &val);
 }
+
+void nt35510_raset(DSI_HandleTypeDef *hdsi, uint16_t start, uint16_t end)
+{
+	uint8_t data[4];
+	data[0] = (start >> 8) & 0xFF;
+	data[1] = start & 0xFF;
+	data[2] = (end >> 8) & 0xFF;
+	data[3] = end & 0xFF;
+	nt35510_write(hdsi, NT35510_CMD_RASET, 4, data);
+}
+
+void nt35510_caset(DSI_HandleTypeDef *hdsi, uint16_t start, uint16_t end)
+{
+	uint8_t data[4];
+	data[0] = (start >> 8) & 0xFF;
+	data[1] = start & 0xFF;
+	data[2] = (end >> 8) & 0xFF;
+	data[3] = end & 0xFF;
+	nt35510_write(hdsi, NT35510_CMD_CASET, 4, data);
+}

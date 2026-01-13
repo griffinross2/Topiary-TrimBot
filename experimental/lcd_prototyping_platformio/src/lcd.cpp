@@ -50,7 +50,15 @@ Status lcd_init() {
     }
     nt35510_set_brightness(hdsi, 200);
 
+    HAL_Delay(200);
+    nt35510_madctl(hdsi, 0x60); // Needed in video mode?
+    nt35510_raset(hdsi, 0, LCD_HEIGHT - 1); // Needed in video mode?
+    nt35510_caset(hdsi, 0, LCD_WIDTH - 1); // Needed in video mode?
+    nt35510_ram_write(hdsi);    // Needed in video mode?
+
     lcd_refresh();
+
+    // ltdc_dsi_video_mode();
 
     HAL_LTDC_SetAddress(hltdc, (uint32_t)s_foreground_buffer, LTDC_LAYER_2);
 
@@ -161,7 +169,8 @@ void lcd_set_foreground_visibility(bool visible) {
 }
 
 void lcd_wait_for_vsync() {
-    while ((hltdc->Instance->CDSR & LTDC_CDSR_VSYNCS) == 0) {
+    while ((hltdc->Instance->CPSR & 0xFFFF) >= LTDC_VSYNC && 
+           (hltdc->Instance->CPSR & 0xFFFF) < (LTDC_VBP + LTDC_HEIGHT + LTDC_VSYNC - 2)) {
     }
 }
 
