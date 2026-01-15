@@ -7,37 +7,6 @@ DSI_HandleTypeDef g_hdsi;
 
 Status ltdc_dsi_init()
 {
-    
-    DSI_VidCfgTypeDef VidCfg = {0};
-    uint32_t lcd_clock  = 9000;
-    uint32_t byte_clock = 62500;
-
-    VidCfg.VirtualChannelID = 0;
-    VidCfg.ColorCoding = DSI_RGB888;
-    VidCfg.VSPolarity = DSI_VSYNC_ACTIVE_HIGH;
-    VidCfg.HSPolarity = DSI_HSYNC_ACTIVE_HIGH;
-    VidCfg.DEPolarity = DSI_DATA_ENABLE_ACTIVE_HIGH;
-    VidCfg.Mode = DSI_VID_MODE_BURST;
-    VidCfg.PacketSize = LTDC_WIDTH;
-    VidCfg.NumberOfChunks = 0;
-    VidCfg.NullPacketSize = 0xFFF;
-    VidCfg.HorizontalSyncActive = LTDC_HSYNC * byte_clock / lcd_clock;
-    VidCfg.HorizontalBackPorch = LTDC_HBP * byte_clock / lcd_clock;
-    VidCfg.HorizontalLine = (LTDC_HSYNC + LTDC_HBP + LTDC_WIDTH + LTDC_HFP) * byte_clock / lcd_clock;
-    VidCfg.VerticalSyncActive = LTDC_VSYNC;
-    VidCfg.VerticalBackPorch = LTDC_VBP;
-    VidCfg.VerticalFrontPorch = LTDC_VFP;
-    VidCfg.VerticalActive = LTDC_HEIGHT;
-    VidCfg.LPCommandEnable = DSI_LP_COMMAND_ENABLE;
-    VidCfg.LPLargestPacketSize = 16;
-    VidCfg.LPVACTLargestPacketSize = 0;
-    VidCfg.LPHorizontalFrontPorchEnable = DSI_LP_HFP_ENABLE;
-    VidCfg.LPHorizontalBackPorchEnable = DSI_LP_HBP_ENABLE;
-    VidCfg.LPVerticalActiveEnable = DSI_LP_VACT_ENABLE;
-    VidCfg.LPVerticalBackPorchEnable = DSI_LP_VBP_ENABLE;
-    VidCfg.LPVerticalFrontPorchEnable = DSI_LP_VFP_ENABLE;
-    VidCfg.LPVerticalSyncActiveEnable = DSI_LP_VSYNC_ENABLE;
-
     /*************/
     /* LTDC Init */
     /*************/
@@ -62,7 +31,6 @@ Status ltdc_dsi_init()
     g_hltdc.Init.Backcolor.Blue = 255;
     g_hltdc.Init.Backcolor.Green = 255;
     g_hltdc.Init.Backcolor.Red = 255;
-    HAL_LTDCEx_StructInitFromVideoConfig(&g_hltdc, &VidCfg);
 
     if (HAL_LTDC_Init(&g_hltdc) != HAL_OK)
     {
@@ -134,7 +102,7 @@ Status ltdc_dsi_init()
     DSI_HOST_TimeoutTypeDef HostTimeouts = {0};
     DSI_PHY_TimerTypeDef PhyTimings = {0};
     DSI_LPCmdTypeDef LPCmd = {0};
-    // DSI_CmdCfgTypeDef CmdCfg = {0};
+    DSI_CmdCfgTypeDef CmdCfg = {0};
 
     g_hdsi.Instance = DSI;
     g_hdsi.Init.AutomaticClockLaneControl = DSI_AUTO_CLK_LANE_CTRL_DISABLE;
@@ -161,18 +129,12 @@ Status ltdc_dsi_init()
     {
         return STATUS_ERROR;
     }
-    // PhyTimings.ClockLaneHS2LPTime = 28;
-    // PhyTimings.ClockLaneLP2HSTime = 33;
-    // PhyTimings.DataLaneHS2LPTime = 15;
-    // PhyTimings.DataLaneLP2HSTime = 25;
-    // PhyTimings.DataLaneMaxReadTime = 0;
-    // PhyTimings.StopWaitTime = 0;
-    PhyTimings.ClockLaneHS2LPTime = 35;
-    PhyTimings.ClockLaneLP2HSTime = 35;
-    PhyTimings.DataLaneHS2LPTime = 35;
-    PhyTimings.DataLaneLP2HSTime = 35;
+    PhyTimings.ClockLaneHS2LPTime = 28;
+    PhyTimings.ClockLaneLP2HSTime = 33;
+    PhyTimings.DataLaneHS2LPTime = 15;
+    PhyTimings.DataLaneLP2HSTime = 25;
     PhyTimings.DataLaneMaxReadTime = 0;
-    PhyTimings.StopWaitTime = 10;
+    PhyTimings.StopWaitTime = 0;
     if (HAL_DSI_ConfigPhyTimer(&g_hdsi, &PhyTimings) != HAL_OK)
     {
         return STATUS_ERROR;
@@ -206,23 +168,23 @@ Status ltdc_dsi_init()
     {
         return STATUS_ERROR;
     }
-    // CmdCfg.VirtualChannelID = 0;
-    // CmdCfg.ColorCoding = DSI_RGB888;
-    // CmdCfg.CommandSize = LTDC_WIDTH;
-    // CmdCfg.TearingEffectSource = DSI_TE_EXTERNAL;
-    // CmdCfg.TearingEffectPolarity = DSI_TE_RISING_EDGE;
-    // CmdCfg.HSPolarity = DSI_HSYNC_ACTIVE_LOW;
-    // CmdCfg.VSPolarity = DSI_VSYNC_ACTIVE_LOW;
-    // CmdCfg.DEPolarity = DSI_DATA_ENABLE_ACTIVE_HIGH;
-    // CmdCfg.VSyncPol = DSI_VSYNC_FALLING;
-    // CmdCfg.AutomaticRefresh = DSI_AR_ENABLE;
-    // CmdCfg.TEAcknowledgeRequest = DSI_TE_ACKNOWLEDGE_DISABLE;
-    // if (HAL_DSI_ConfigAdaptedCommandMode(&g_hdsi, &CmdCfg) != HAL_OK)
-    // {
-    //     return STATUS_ERROR;
-    // }
+    CmdCfg.VirtualChannelID = 0;
+    CmdCfg.ColorCoding = DSI_RGB888;
+    CmdCfg.CommandSize = LTDC_WIDTH;
+    CmdCfg.TearingEffectSource = DSI_TE_EXTERNAL;
+    CmdCfg.TearingEffectPolarity = DSI_TE_RISING_EDGE;
+    CmdCfg.HSPolarity = DSI_HSYNC_ACTIVE_LOW;
+    CmdCfg.VSPolarity = DSI_VSYNC_ACTIVE_LOW;
+    CmdCfg.DEPolarity = DSI_DATA_ENABLE_ACTIVE_HIGH;
+    CmdCfg.VSyncPol = DSI_VSYNC_FALLING;
+    CmdCfg.AutomaticRefresh = DSI_AR_ENABLE;
+    CmdCfg.TEAcknowledgeRequest = DSI_TE_ACKNOWLEDGE_DISABLE;
+    if (HAL_DSI_ConfigAdaptedCommandMode(&g_hdsi, &CmdCfg) != HAL_OK)
+    {
+        return STATUS_ERROR;
+    }
 
-    if (HAL_DSI_ConfigVideoMode(&g_hdsi, &VidCfg) != HAL_OK)
+    if (HAL_DSI_ConfigAdaptedCommandMode(&g_hdsi, &CmdCfg) != HAL_OK)
     {
         return STATUS_ERROR;
     }
