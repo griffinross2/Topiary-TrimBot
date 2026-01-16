@@ -32,7 +32,11 @@ void Scene::redraw(SceneObject* obj) {
         for (auto& o : m_objects) {
             o->redraw();
         }
+
+        // Request a refresh, and remake draw groups
+        lcd_request_refresh();
         m_draw_groups = create_draw_groups();
+
         return;
     }
 
@@ -67,6 +71,9 @@ void Scene::redraw(SceneObject* obj) {
                 o->redraw();
             }
 
+            // Request a refresh
+            lcd_request_refresh();
+
             // Recalculate draw groups
             m_draw_groups = create_draw_groups();
 
@@ -79,6 +86,7 @@ void Scene::redraw(SceneObject* obj) {
     // In this case, we are drawing it on top of everything
     // else so don't worry about clearing anything
     obj->redraw();
+    lcd_request_refresh();
     m_draw_groups = create_draw_groups();
 }
 

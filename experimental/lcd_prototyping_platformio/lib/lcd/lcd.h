@@ -16,9 +16,15 @@
 typedef uint8_t Color;
 
 Status lcd_init();
-void lcd_refresh();
 
-uint8_t* lcd_get_framebuffer();
+void lcd_refresh();
+void lcd_request_refresh();
+
+void lcd_swap_buffers();
+uint8_t* lcd_get_backbuffer();
+uint8_t* lcd_get_frontbuffer();
+
+void lcd_set_foreground(const uint8_t* fb_address);
 void lcd_set_background(const uint8_t* fb_address);
 void lcd_clear_foreground();
 void lcd_clear_area(unsigned int xl, unsigned int xr,

@@ -20,8 +20,29 @@
 DSI_HandleTypeDef* hdsi;
 LTDC_HandleTypeDef* hltdc;
 
+// Double-buffered setup
 static uint8_t __attribute__((
-    section(".ext_ram"))) s_foreground_buffer[LCD_WIDTH * LCD_HEIGHT];
+    section(".ext_ram"))) s_foreground_buffer_0[LCD_WIDTH * LCD_HEIGHT];
+static uint8_t __attribute__((
+    section(".ext_ram"))) s_foreground_buffer_1[LCD_WIDTH * LCD_HEIGHT];
+
+static uint8_t** s_foreground_buffers = (uint8_t*[]){
+    s_foreground_buffer_0,
+    s_foreground_buffer_1,
+};
+static int s_current_frontbuffer = 0;
+
+// Sorry about macros
+#define FRONTBUFFER \
+    s_foreground_buffers[s_current_frontbuffer]
+#define BACKBUFFER \
+    s_foreground_buffers[1 - s_current_frontbuffer]
+
+// EOF callback
+void lcd_end_of_refresh_callback(DSI_HandleTypeDef *hdsi);
+
+// Refresh request flag
+static volatile bool s_refresh_req = false;
 
 Status lcd_init() {
     ltdc_dsi_init();
@@ -50,9 +71,12 @@ Status lcd_init() {
     }
     nt35510_set_brightness(hdsi, 200);
 
-    lcd_refresh();
+    // Register refresh end callback
+    HAL_DSI_RegisterCallback(dsi_get_handle(), HAL_DSI_ENDOF_REFRESH_CB_ID, lcd_end_of_refresh_callback);
 
-    HAL_LTDC_SetAddress(hltdc, (uint32_t)s_foreground_buffer, LTDC_LAYER_2);
+    lcd_refresh();
+    
+    HAL_LTDC_SetAddress(hltdc, (uint32_t)s_current_frontbuffer, LTDC_LAYER_2);
 
     // Touchscreen init
     // Give some time after reset for the TS driver to become ready
@@ -65,12 +89,43 @@ Status lcd_init() {
     return STATUS_OK;
 }
 
-uint8_t* lcd_get_framebuffer() {
-    return s_foreground_buffer;
+void lcd_request_refresh() {
+    // Set the refresh request flag
+    s_refresh_req = true;
+}
+
+void lcd_swap_buffers() {
+    // First swap the buffer index
+    s_current_frontbuffer = 1 - s_current_frontbuffer;
+
+    // Next copy the new frontbuffer (old backbuffer) to the new backbuffer
+    memcpy(BACKBUFFER,
+           FRONTBUFFER,
+           sizeof(s_foreground_buffer_0));
+
+    // Finally update the framebuffer address and refresh the display
+    lcd_set_foreground(FRONTBUFFER);
+}
+
+uint8_t* lcd_get_backbuffer() {
+    return BACKBUFFER;
+}
+
+uint8_t* lcd_get_frontbuffer() {
+    return FRONTBUFFER;
 }
 
 void lcd_refresh() {
     HAL_DSI_Refresh(hdsi);
+}
+
+void lcd_set_foreground(const uint8_t* fb_address) {
+    HAL_DSI_Stop(hdsi);
+    __HAL_LTDC_LAYER_DISABLE(hltdc, LTDC_LAYER_2);
+    HAL_LTDC_SetAddress(hltdc, (uint32_t)fb_address, LTDC_LAYER_2);
+    __HAL_LTDC_LAYER_ENABLE(hltdc, LTDC_LAYER_2);
+    HAL_DSI_Start(hdsi);
+    lcd_refresh();
 }
 
 void lcd_set_background(const uint8_t* fb_address) {
@@ -83,67 +138,48 @@ void lcd_set_background(const uint8_t* fb_address) {
 }
 
 void lcd_clear_foreground() {
-    // Wait until VSYNC to avoid stepping on the LTDC
-    lcd_wait_for_vsync();
-    memset(s_foreground_buffer, 0x00, sizeof(s_foreground_buffer));
-    lcd_refresh();
+    memset(BACKBUFFER, 0x00, sizeof(s_foreground_buffer_0));
 }
 
 void lcd_clear_area(unsigned int xl, unsigned int xr,
                     unsigned int yb, unsigned int yt) {
-    // Wait until VSYNC to avoid stepping on the LTDC
-    lcd_wait_for_vsync();
-    
     for (unsigned int xi = xl; xi <= xr; xi++) {
         for (unsigned int yi = yb; yi <= yt; yi++) {
-            s_foreground_buffer[yi + xi * LCD_HEIGHT] = 0x00;
+            BACKBUFFER[yi + xi * LCD_HEIGHT] = 0x00;
         }
     }
-    lcd_refresh();
 }
 
 void lcd_draw_rectangle(unsigned int x, unsigned int y, unsigned int w,
                         unsigned int h, uint8_t color) {
-    // Wait until VSYNC to avoid stepping on the LTDC
-    lcd_wait_for_vsync();
-    
     for (unsigned int xi = x; xi < x + w; xi++) {
         for (unsigned int yi = y; yi < y + h; yi++) {
-            s_foreground_buffer[yi + xi * LCD_HEIGHT] = color;
+            BACKBUFFER[yi + xi * LCD_HEIGHT] = color;
         }
     }
-    lcd_refresh();
 }
 
 void lcd_draw_circle(unsigned int x, unsigned int y, unsigned int r,
                      uint8_t color) {
-    // Wait until VSYNC to avoid stepping on the LTDC
-    lcd_wait_for_vsync();
-
     for (unsigned int xi = x - r; xi < x + r; xi++) {
         for (unsigned int yi = y - r; yi < y + r; yi++) {
             int dx = (int)xi - (int)x;
             int dy = (int)yi - (int)y;
 
             if ((unsigned int)(dx * dx + dy * dy) < r * r) {
-                s_foreground_buffer[yi + xi * LCD_HEIGHT] = color;
+                BACKBUFFER[yi + xi * LCD_HEIGHT] = color;
             }
         }
     }
-    lcd_refresh();
 }
 
 void lcd_copy_background_to_foreground(const uint32_t* fb_address) {
-    // Wait until VSYNC to avoid stepping on the LTDC
-    lcd_wait_for_vsync();
-
     if (fb_address != NULL) {
-        memcpy(s_foreground_buffer, fb_address, sizeof(s_foreground_buffer));
+        memcpy(BACKBUFFER, fb_address, sizeof(s_foreground_buffer_0));
     } else {
-        memcpy(s_foreground_buffer, (uint32_t*)hltdc->LayerCfg[0].FBStartAdress,
-               sizeof(s_foreground_buffer));
+        memcpy(BACKBUFFER, (uint32_t*)hltdc->LayerCfg[0].FBStartAdress,
+               sizeof(s_foreground_buffer_0));
     }
-    lcd_refresh();
 }
 
 void lcd_set_foreground_alpha(uint8_t alpha) {
@@ -209,14 +245,11 @@ void lcd_draw_char(const Font* font, char ch, unsigned start_x,
             bool subpixel =
                 (glyph->data[offset_byte] & (0x1 << offset_bit)) != 0;
             if (subpixel) {
-                lcd_wait_for_vsync();
-                s_foreground_buffer[(start_y + pt_size - y) +
+                BACKBUFFER[(start_y + pt_size - y) +
                                     (start_x + x) * LCD_HEIGHT] = color;
             }
         }
     }
-
-    lcd_refresh();
 }
 
 void lcd_draw_text(const Font* font, const char* str, unsigned start_x,
@@ -227,5 +260,26 @@ void lcd_draw_text(const Font* font, const char* str, unsigned start_x,
         lcd_draw_char(font, *str, cur_x, start_y, pt_size, color, &advance);
         cur_x += advance;
         str++;
+    }
+}
+
+void lcd_end_of_refresh_callback(DSI_HandleTypeDef *hdsi) {
+    // Frame rate tracking
+    static unsigned int last_tick = 0;
+    static unsigned int frame_count = 0;
+    frame_count++;
+    unsigned int current_tick = HAL_GetTick();
+    if (frame_count >= 10) {
+        unsigned int delta = current_tick - last_tick;
+        unsigned int fps = (frame_count * 1000) / delta;
+        printf("FPS: %u\n", fps);
+        frame_count = 0;
+        last_tick = current_tick;
+    }
+
+    // Only swap the buffers if a refresh was requested
+    if (s_refresh_req) {
+        lcd_swap_buffers();
+        s_refresh_req = false;
     }
 }

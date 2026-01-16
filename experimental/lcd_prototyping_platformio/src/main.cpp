@@ -35,8 +35,8 @@ int main(void) {
 
     // lcd_set_background(SPLASHSCREEN);
     lcd_set_background(BLANK);
-
     lcd_clear_foreground();
+    lcd_request_refresh();
 
     // lcd_draw_text(&ARIAL, "Hello, World!", 50, 150, 80, 0xFF000000);
 
@@ -77,7 +77,7 @@ int main(void) {
                 rect_x = 0;
                 rect_y += 10;
 
-                if (rect_y + 25 >= WINDOW_WIDTH) {
+                if (rect_y + 25 >= WINDOW_HEIGHT) {
                     rect_y = 0;
                 }
             }

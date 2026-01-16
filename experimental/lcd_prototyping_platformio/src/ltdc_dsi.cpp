@@ -193,6 +193,10 @@ Status ltdc_dsi_init()
         return STATUS_ERROR;
     }
 
+    __HAL_DSI_ENABLE_IT(&g_hdsi, DSI_IT_ER);
+    __NVIC_EnableIRQ(DSI_IRQn);
+    NVIC_SetPriority(DSI_IRQn, 0);
+
     return STATUS_OK;
 }
 
@@ -204,4 +208,12 @@ LTDC_HandleTypeDef *ltdc_get_handle()
 DSI_HandleTypeDef *dsi_get_handle()
 {
     return &g_hdsi;
+}
+
+extern "C" {
+    void DSI_IRQHandler(void);
+}
+
+void DSI_IRQHandler(void) {
+    HAL_DSI_IRQHandler(&g_hdsi);
 }

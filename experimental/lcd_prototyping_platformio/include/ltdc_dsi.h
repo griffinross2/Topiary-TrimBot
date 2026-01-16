@@ -5,12 +5,12 @@
 
 #include "status.h"
 
-#define LTDC_VSYNC 120
-#define LTDC_VBP 150
-#define LTDC_VFP 150
-#define LTDC_HSYNC 2
-#define LTDC_HBP 34
-#define LTDC_HFP 34
+#define LTDC_VSYNC 1
+#define LTDC_VBP 3
+#define LTDC_VFP 1
+#define LTDC_HSYNC 1
+#define LTDC_HBP 3
+#define LTDC_HFP 1
 #define LTDC_WIDTH 800
 #define LTDC_HEIGHT 480
 
