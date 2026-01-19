@@ -19,7 +19,6 @@ typedef uint8_t Color;
 Status lcd_init();
 
 void lcd_refresh();
-void lcd_request_refresh();
 
 void lcd_swap_buffers();
 uint8_t* lcd_get_backbuffer();

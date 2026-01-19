@@ -185,7 +185,7 @@ Status ltdc_dsi_init() {
 
     __HAL_DSI_ENABLE_IT(&g_hdsi, DSI_IT_ER);
     __NVIC_EnableIRQ(DSI_IRQn);
-    NVIC_SetPriority(DSI_IRQn, 0);
+    NVIC_SetPriority(DSI_IRQn, 2);
 
     return STATUS_OK;
 }
@@ -203,8 +203,5 @@ void DSI_IRQHandler(void);
 }
 
 void DSI_IRQHandler(void) {
-    unsigned int start_tick = HAL_GetTick();
     HAL_DSI_IRQHandler(&g_hdsi);
-    unsigned int end_tick = HAL_GetTick();
-    printf("HAL_DSI_IRQHandler took %u ms\n", end_tick - start_tick);
 }

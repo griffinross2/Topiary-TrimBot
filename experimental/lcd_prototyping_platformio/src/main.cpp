@@ -36,7 +36,7 @@ int main(void) {
     // lcd_set_background(SPLASHSCREEN);
     lcd_set_background(BLANK);
     lcd_clear_foreground();
-    lcd_request_refresh();
+    lcd_swap_buffers();
 
     // lcd_draw_text(&ARIAL, "Hello, World!", 50, 150, 80, 0xFF000000);
 
@@ -67,7 +67,7 @@ int main(void) {
 
     unsigned int tick = HAL_GetTick();
     while (1) {
-        gui_update_loop();
+        gui_update();
 
         if (HAL_GetTick() - tick >= 10) {
             tick = HAL_GetTick();
@@ -84,6 +84,8 @@ int main(void) {
 
             rect0->set_position(rect_x, rect_y);
         }
+
+        gui_render();
     }
 
     return 0;

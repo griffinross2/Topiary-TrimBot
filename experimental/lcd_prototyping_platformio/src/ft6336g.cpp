@@ -84,7 +84,7 @@ Status ft6336g_init() {
     };
     HAL_EXTI_SetConfigLine(&g_hexti, &exti_config);
 
-    NVIC_SetPriority(EXTI9_5_IRQn, 5);
+    NVIC_SetPriority(EXTI9_5_IRQn, 1);
     NVIC_EnableIRQ(EXTI9_5_IRQn);
 
     return STATUS_OK;
