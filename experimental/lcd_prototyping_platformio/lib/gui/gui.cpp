@@ -18,6 +18,10 @@ Scene* gui_get_current_scene() {
 
 Scene::Scene() {}
 
+Scene::Scene(ColorRGB888 background_color) {
+    m_background_color = rgb888_to_rgb565(background_color);
+}
+
 void Scene::add_object(std::shared_ptr<SceneObject> obj) {
     m_objects.push_back(std::move(obj));
     if (g_current_scene == this) {
@@ -26,7 +30,13 @@ void Scene::add_object(std::shared_ptr<SceneObject> obj) {
 }
 
 void Scene::redraw() {
-    lcd_clear_foreground();
+    if (m_background_color != 0xFFFF) {
+        lcd_draw_rectangle(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT,
+                           m_background_color);
+    } else {
+        lcd_clear_foreground();
+    }
+
     for (auto& o : m_objects) {
         o->redraw();
     }
@@ -41,9 +51,11 @@ void SceneObject::set_visible(bool visible) {
     m_visible = visible;
 }
 
-Rectangle::Rectangle(Scene* parent, int x, int y, int w, int h, Color color)
-    : SceneObject(parent), m_x(x), m_y(y), m_width(w), m_height(h),
-      m_color(color) {}
+Rectangle::Rectangle(Scene* parent, int x, int y, int w, int h,
+                     ColorRGB888 color)
+    : SceneObject(parent), m_x(x), m_y(y), m_width(w), m_height(h) {
+    m_color = rgb888_to_rgb565(color);
+}
 
 void Rectangle::set_position(int x, int y) {
     m_x = x;
@@ -55,8 +67,8 @@ void Rectangle::set_size(int w, int h) {
     m_height = h;
 }
 
-void Rectangle::set_color(Color color) {
-    m_color = color;
+void Rectangle::set_color(ColorRGB888 color) {
+    m_color = rgb888_to_rgb565(color);
 }
 
 void Rectangle::redraw() {
@@ -79,14 +91,17 @@ Label::Label(Scene* parent, int x, int y, std::string text, int size)
     : SceneObject(parent), m_x(x), m_y(y), m_text(text), m_size(size) {}
 
 Label::Label(Scene* parent, int x, int y, std::string text, int size,
-             Color color)
-    : SceneObject(parent), m_x(x), m_y(y), m_text(text), m_size(size),
-      m_color(color) {}
+             ColorRGB888 color)
+    : SceneObject(parent), m_x(x), m_y(y), m_text(text), m_size(size) {
+    m_color = rgb888_to_rgb565(color);
+}
 
 Label::Label(Scene* parent, int x, int y, std::string text, int size,
-             Color color, const Font* font)
+             ColorRGB888 color, const Font* font)
     : SceneObject(parent), m_x(x), m_y(y), m_text(text), m_size(size),
-      m_color(color), m_font(font) {}
+      m_font(font) {
+    m_color = rgb888_to_rgb565(color);
+}
 
 void Label::set_position(int x, int y) {
     m_x = x;
@@ -97,8 +112,8 @@ void Label::set_text(std::string text) {
     m_text = text;
 }
 
-void Label::set_color(Color color) {
-    m_color = color;
+void Label::set_color(ColorRGB888 color) {
+    m_color = rgb888_to_rgb565(color);
 }
 
 void Label::set_font(const Font* font) {
@@ -120,7 +135,9 @@ void Button::redraw() {
         int y = std::min(std::max(0, m_y), LCD_HEIGHT - 1);
         unsigned int w = std::min(m_width, LCD_WIDTH - x);
         unsigned int h = std::min(m_height, LCD_HEIGHT - y);
-        lcd_draw_rectangle(x, y, w, h, m_pressed ? 0x82 : 0xF2);
+        lcd_draw_rectangle(x, y, w, h,
+                           m_pressed ? LITERAL_RGB888_TO_RGB565(0xBBBBBB)
+                                     : LITERAL_RGB888_TO_RGB565(0x888888));
     }
 }
 

@@ -32,6 +32,7 @@ protected:
 class Scene {
 public:
     Scene();
+    Scene(ColorRGB888 background_color);
 
     void add_object(std::shared_ptr<SceneObject> obj);
     void redraw();
@@ -40,16 +41,17 @@ public:
     }
 
 private:
+    ColorRGB565 m_background_color = 0xFFFF;
     std::vector<std::shared_ptr<SceneObject>> m_objects;
 };
 
 class Rectangle : public SceneObject {
 public:
-    Rectangle(Scene* parent, int x, int y, int w, int h, Color color);
+    Rectangle(Scene* parent, int x, int y, int w, int h, ColorRGB888 color);
 
     void set_position(int x, int y);
     void set_size(int w, int h);
-    void set_color(Color color);
+    void set_color(ColorRGB888 color);
 
     void redraw() override;
     void handle_press(int x, int y) override {}
@@ -60,7 +62,7 @@ private:
     int m_y = 0;
     int m_width = 0;
     int m_height = 0;
-    Color m_color = 0x00;
+    ColorRGB565 m_color = 0;
 };
 
 class Label : public SceneObject {
@@ -68,13 +70,14 @@ public:
     Label(Scene* parent, int x, int y);
     Label(Scene* parent, int x, int y, std::string text);
     Label(Scene* parent, int x, int y, std::string text, int size);
-    Label(Scene* parent, int x, int y, std::string text, int size, Color color);
-    Label(Scene* parent, int x, int y, std::string text, int size, Color color,
-          const Font* font);
+    Label(Scene* parent, int x, int y, std::string text, int size,
+          ColorRGB888 color);
+    Label(Scene* parent, int x, int y, std::string text, int size,
+          ColorRGB888 color, const Font* font);
 
     void set_position(int x, int);
     void set_text(std::string text);
-    void set_color(Color color);
+    void set_color(ColorRGB888 color);
     void set_font(const Font* font);
 
     void redraw() override;
@@ -86,7 +89,7 @@ private:
     int m_y = 0;
     std::string m_text = "";
     int m_size = 24;
-    uint8_t m_color = 0xF0;
+    ColorRGB565 m_color = 0;
     const Font* m_font = &ARIAL;
 };
 

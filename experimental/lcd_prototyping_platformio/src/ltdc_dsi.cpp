@@ -1,7 +1,5 @@
 #include "ltdc_dsi.h"
 
-#include "images/lut.h"
-
 #include <stdio.h>
 
 LTDC_HandleTypeDef g_hltdc;
@@ -43,11 +41,11 @@ Status ltdc_dsi_init() {
     pLayerCfg.WindowX1 = LTDC_WIDTH;
     pLayerCfg.WindowY0 = 0;
     pLayerCfg.WindowY1 = LTDC_HEIGHT;
-    pLayerCfg.PixelFormat = LTDC_PIXEL_FORMAT_AL44;
+    pLayerCfg.PixelFormat = LTDC_PIXEL_FORMAT_RGB565;
     pLayerCfg.Alpha = 0xFF;
     pLayerCfg.Alpha0 = 0xFF;
-    pLayerCfg.BlendingFactor1 = LTDC_BLENDING_FACTOR1_PAxCA;
-    pLayerCfg.BlendingFactor2 = LTDC_BLENDING_FACTOR2_PAxCA;
+    pLayerCfg.BlendingFactor1 = LTDC_BLENDING_FACTOR1_CA;
+    pLayerCfg.BlendingFactor2 = LTDC_BLENDING_FACTOR2_CA;
     pLayerCfg.FBStartAdress = 0x0;
     pLayerCfg.ImageWidth = LTDC_WIDTH;
     pLayerCfg.ImageHeight = LTDC_HEIGHT;
@@ -59,28 +57,6 @@ Status ltdc_dsi_init() {
     }
 
     if (HAL_LTDC_ConfigLayer(&g_hltdc, &pLayerCfg, LTDC_LAYER_2) != HAL_OK) {
-        return STATUS_ERROR;
-    }
-
-    // Configure CLUT for both layers
-    if (HAL_LTDC_ConfigCLUT(&g_hltdc, const_cast<uint32_t*>(LUT),
-                            sizeof(LUT) / sizeof(uint32_t),
-                            LTDC_LAYER_1) != HAL_OK) {
-        return STATUS_ERROR;
-    }
-
-    if (HAL_LTDC_ConfigCLUT(&g_hltdc, const_cast<uint32_t*>(LUT),
-                            sizeof(LUT) / sizeof(uint32_t),
-                            LTDC_LAYER_2) != HAL_OK) {
-        return STATUS_ERROR;
-    }
-
-    // Enable CLUT for both layers
-    if (HAL_LTDC_EnableCLUT(&g_hltdc, LTDC_LAYER_1) != HAL_OK) {
-        return STATUS_ERROR;
-    }
-
-    if (HAL_LTDC_EnableCLUT(&g_hltdc, LTDC_LAYER_2) != HAL_OK) {
         return STATUS_ERROR;
     }
 

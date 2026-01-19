@@ -23,12 +23,12 @@ LTDC_HandleTypeDef* hltdc;
 DMA_HandleTypeDef hdma = {0};
 
 // Double-buffered setup
-static uint8_t __attribute__((
+static ColorRGB565 __attribute__((
     section(".ext_ram"))) s_foreground_buffer_0[LCD_WIDTH * LCD_HEIGHT];
-static uint8_t __attribute__((
+static ColorRGB565 __attribute__((
     section(".ext_ram"))) s_foreground_buffer_1[LCD_WIDTH * LCD_HEIGHT];
 
-static uint8_t** s_foreground_buffers = (uint8_t*[]){
+static ColorRGB565** s_foreground_buffers = (ColorRGB565*[]){
     s_foreground_buffer_0,
     s_foreground_buffer_1,
 };
@@ -45,6 +45,11 @@ void lcd_end_of_refresh_callback(DSI_HandleTypeDef* hdsi);
 static volatile bool s_refreshing = false;
 
 #define DMA_MAX_TRANSFER_SIZE 65535UL
+
+ColorRGB565 rgb888_to_rgb565(ColorRGB888 color) {
+    return ((color >> 8) & 0xF800) | ((color >> 5) & 0x07E0) |
+           ((color >> 3) & 0x001F);
+}
 
 Status lcd_init() {
     ltdc_dsi_init();
@@ -107,11 +112,11 @@ void lcd_swap_buffers() {
     lcd_set_foreground(FRONTBUFFER);
 }
 
-uint8_t* lcd_get_backbuffer() {
+ColorRGB565* lcd_get_backbuffer() {
     return BACKBUFFER;
 }
 
-uint8_t* lcd_get_frontbuffer() {
+ColorRGB565* lcd_get_frontbuffer() {
     return FRONTBUFFER;
 }
 
@@ -119,7 +124,7 @@ void lcd_refresh() {
     HAL_DSI_Refresh(hdsi);
 }
 
-void lcd_set_foreground(const uint8_t* fb_address) {
+void lcd_set_foreground(const ColorRGB565* fb_address) {
     HAL_DSI_Stop(hdsi);
     __HAL_LTDC_LAYER_DISABLE(hltdc, LTDC_LAYER_2);
     HAL_LTDC_SetAddress(hltdc, (uint32_t)fb_address, LTDC_LAYER_2);
@@ -128,7 +133,7 @@ void lcd_set_foreground(const uint8_t* fb_address) {
     lcd_refresh();
 }
 
-void lcd_set_background(const uint8_t* fb_address) {
+void lcd_set_background(const ColorRGB565* fb_address) {
     HAL_DSI_Stop(hdsi);
     __HAL_LTDC_LAYER_DISABLE(hltdc, LTDC_LAYER_1);
     HAL_LTDC_SetAddress(hltdc, (uint32_t)fb_address, LTDC_LAYER_1);
@@ -138,20 +143,20 @@ void lcd_set_background(const uint8_t* fb_address) {
 }
 
 void lcd_clear_foreground() {
-    memset(BACKBUFFER, 0x00, sizeof(s_foreground_buffer_0));
+    memset(BACKBUFFER, 0xFF, sizeof(s_foreground_buffer_0));
 }
 
 void lcd_clear_area(unsigned int xl, unsigned int xr, unsigned int yb,
                     unsigned int yt) {
     for (unsigned int xi = xl; xi <= xr; xi++) {
         for (unsigned int yi = yb; yi <= yt; yi++) {
-            BACKBUFFER[yi + xi * LCD_HEIGHT] = 0x00;
+            BACKBUFFER[yi + xi * LCD_HEIGHT] = 0xFF;
         }
     }
 }
 
 void lcd_draw_rectangle(unsigned int x, unsigned int y, unsigned int w,
-                        unsigned int h, uint8_t color) {
+                        unsigned int h, ColorRGB565 color) {
     for (unsigned int xi = x; xi < x + w; xi++) {
         for (unsigned int yi = y; yi < y + h; yi++) {
             BACKBUFFER[yi + xi * LCD_HEIGHT] = color;
@@ -160,7 +165,7 @@ void lcd_draw_rectangle(unsigned int x, unsigned int y, unsigned int w,
 }
 
 void lcd_draw_circle(unsigned int x, unsigned int y, unsigned int r,
-                     uint8_t color) {
+                     ColorRGB565 color) {
     for (unsigned int xi = x - r; xi < x + r; xi++) {
         for (unsigned int yi = y - r; yi < y + r; yi++) {
             int dx = (int)xi - (int)x;
@@ -173,11 +178,11 @@ void lcd_draw_circle(unsigned int x, unsigned int y, unsigned int r,
     }
 }
 
-void lcd_copy_background_to_foreground(const uint32_t* fb_address) {
+void lcd_copy_background_to_foreground(const ColorRGB565* fb_address) {
     if (fb_address != NULL) {
         memcpy(BACKBUFFER, fb_address, sizeof(s_foreground_buffer_0));
     } else {
-        memcpy(BACKBUFFER, (uint32_t*)hltdc->LayerCfg[0].FBStartAdress,
+        memcpy(BACKBUFFER, (ColorRGB565*)hltdc->LayerCfg[0].FBStartAdress,
                sizeof(s_foreground_buffer_0));
     }
 }
@@ -204,7 +209,7 @@ void lcd_wait_for_vsync() {
 }
 
 void lcd_draw_char(const Font* font, char ch, unsigned start_x,
-                   unsigned start_y, unsigned pt_size, uint8_t color,
+                   unsigned start_y, unsigned pt_size, ColorRGB565 color,
                    unsigned int* advance) {
     if (advance) {
         *advance = 0;
@@ -254,7 +259,7 @@ void lcd_draw_char(const Font* font, char ch, unsigned start_x,
 }
 
 void lcd_draw_text(const Font* font, const char* str, unsigned start_x,
-                   unsigned start_y, unsigned pt_size, uint8_t color) {
+                   unsigned start_y, unsigned pt_size, ColorRGB565 color) {
     unsigned int cur_x = start_x;
     unsigned int advance = 0;
     while (*str != '\0') {
