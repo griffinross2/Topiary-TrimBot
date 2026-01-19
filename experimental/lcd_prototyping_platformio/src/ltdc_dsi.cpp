@@ -2,11 +2,12 @@
 
 #include "images/lut.h"
 
+#include <stdio.h>
+
 LTDC_HandleTypeDef g_hltdc;
 DSI_HandleTypeDef g_hdsi;
 
-Status ltdc_dsi_init()
-{
+Status ltdc_dsi_init() {
     /*************/
     /* LTDC Init */
     /*************/
@@ -26,14 +27,15 @@ Status ltdc_dsi_init()
     g_hltdc.Init.AccumulatedVBP = (LTDC_VBP + LTDC_VSYNC - 1);
     g_hltdc.Init.AccumulatedActiveW = (LTDC_HBP + LTDC_WIDTH + LTDC_HSYNC - 1);
     g_hltdc.Init.AccumulatedActiveH = (LTDC_VBP + LTDC_HEIGHT + LTDC_VSYNC - 1);
-    g_hltdc.Init.TotalWidth = (LTDC_HBP + LTDC_WIDTH + LTDC_HSYNC + LTDC_HFP - 1);
-    g_hltdc.Init.TotalHeigh = (LTDC_VBP + LTDC_HEIGHT + LTDC_VSYNC + LTDC_VFP - 1);
+    g_hltdc.Init.TotalWidth =
+        (LTDC_HBP + LTDC_WIDTH + LTDC_HSYNC + LTDC_HFP - 1);
+    g_hltdc.Init.TotalHeigh =
+        (LTDC_VBP + LTDC_HEIGHT + LTDC_VSYNC + LTDC_VFP - 1);
     g_hltdc.Init.Backcolor.Blue = 255;
     g_hltdc.Init.Backcolor.Green = 255;
     g_hltdc.Init.Backcolor.Red = 255;
 
-    if (HAL_LTDC_Init(&g_hltdc) != HAL_OK)
-    {
+    if (HAL_LTDC_Init(&g_hltdc) != HAL_OK) {
         return STATUS_ERROR;
     }
 
@@ -52,35 +54,33 @@ Status ltdc_dsi_init()
     pLayerCfg.Backcolor.Blue = 255;
     pLayerCfg.Backcolor.Green = 255;
     pLayerCfg.Backcolor.Red = 255;
-    if (HAL_LTDC_ConfigLayer(&g_hltdc, &pLayerCfg, LTDC_LAYER_1) != HAL_OK)
-    {
+    if (HAL_LTDC_ConfigLayer(&g_hltdc, &pLayerCfg, LTDC_LAYER_1) != HAL_OK) {
         return STATUS_ERROR;
     }
 
-    if (HAL_LTDC_ConfigLayer(&g_hltdc, &pLayerCfg, LTDC_LAYER_2) != HAL_OK)
-    {
+    if (HAL_LTDC_ConfigLayer(&g_hltdc, &pLayerCfg, LTDC_LAYER_2) != HAL_OK) {
         return STATUS_ERROR;
     }
 
     // Configure CLUT for both layers
-    if (HAL_LTDC_ConfigCLUT(&g_hltdc, const_cast<uint32_t *>(LUT), sizeof(LUT) / sizeof(uint32_t), LTDC_LAYER_1) != HAL_OK)
-    {
+    if (HAL_LTDC_ConfigCLUT(&g_hltdc, const_cast<uint32_t*>(LUT),
+                            sizeof(LUT) / sizeof(uint32_t),
+                            LTDC_LAYER_1) != HAL_OK) {
         return STATUS_ERROR;
     }
 
-    if (HAL_LTDC_ConfigCLUT(&g_hltdc, const_cast<uint32_t *>(LUT), sizeof(LUT) / sizeof(uint32_t), LTDC_LAYER_2) != HAL_OK)
-    {
+    if (HAL_LTDC_ConfigCLUT(&g_hltdc, const_cast<uint32_t*>(LUT),
+                            sizeof(LUT) / sizeof(uint32_t),
+                            LTDC_LAYER_2) != HAL_OK) {
         return STATUS_ERROR;
     }
 
     // Enable CLUT for both layers
-    if (HAL_LTDC_EnableCLUT(&g_hltdc, LTDC_LAYER_1) != HAL_OK)
-    {
+    if (HAL_LTDC_EnableCLUT(&g_hltdc, LTDC_LAYER_1) != HAL_OK) {
         return STATUS_ERROR;
     }
 
-    if (HAL_LTDC_EnableCLUT(&g_hltdc, LTDC_LAYER_2) != HAL_OK)
-    {
+    if (HAL_LTDC_EnableCLUT(&g_hltdc, LTDC_LAYER_2) != HAL_OK) {
         return STATUS_ERROR;
     }
 
@@ -111,8 +111,7 @@ Status ltdc_dsi_init()
     PLLInit.PLLNDIV = 125;
     PLLInit.PLLIDF = DSI_PLL_IN_DIV2;
     PLLInit.PLLODF = DSI_PLL_OUT_DIV1;
-    if (HAL_DSI_Init(&g_hdsi, &PLLInit) != HAL_OK)
-    {
+    if (HAL_DSI_Init(&g_hdsi, &PLLInit) != HAL_OK) {
         return STATUS_ERROR;
     }
 
@@ -125,8 +124,7 @@ Status ltdc_dsi_init()
     HostTimeouts.HighSpeedWritePrespMode = DSI_HS_PM_DISABLE;
     HostTimeouts.LowPowerWriteTimeout = 0;
     HostTimeouts.BTATimeout = 0;
-    if (HAL_DSI_ConfigHostTimeouts(&g_hdsi, &HostTimeouts) != HAL_OK)
-    {
+    if (HAL_DSI_ConfigHostTimeouts(&g_hdsi, &HostTimeouts) != HAL_OK) {
         return STATUS_ERROR;
     }
     PhyTimings.ClockLaneHS2LPTime = 28;
@@ -135,20 +133,16 @@ Status ltdc_dsi_init()
     PhyTimings.DataLaneLP2HSTime = 25;
     PhyTimings.DataLaneMaxReadTime = 0;
     PhyTimings.StopWaitTime = 0;
-    if (HAL_DSI_ConfigPhyTimer(&g_hdsi, &PhyTimings) != HAL_OK)
-    {
+    if (HAL_DSI_ConfigPhyTimer(&g_hdsi, &PhyTimings) != HAL_OK) {
         return STATUS_ERROR;
     }
-    if (HAL_DSI_ConfigFlowControl(&g_hdsi, DSI_FLOW_CONTROL_BTA) != HAL_OK)
-    {
+    if (HAL_DSI_ConfigFlowControl(&g_hdsi, DSI_FLOW_CONTROL_BTA) != HAL_OK) {
         return STATUS_ERROR;
     }
-    if (HAL_DSI_SetLowPowerRXFilter(&g_hdsi, 10000) != HAL_OK)
-    {
+    if (HAL_DSI_SetLowPowerRXFilter(&g_hdsi, 10000) != HAL_OK) {
         return STATUS_ERROR;
     }
-    if (HAL_DSI_ConfigErrorMonitor(&g_hdsi, HAL_DSI_ERROR_NONE) != HAL_OK)
-    {
+    if (HAL_DSI_ConfigErrorMonitor(&g_hdsi, HAL_DSI_ERROR_NONE) != HAL_OK) {
         return STATUS_ERROR;
     }
     LPCmd.LPGenShortWriteNoP = DSI_LP_GSW0P_DISABLE;
@@ -164,8 +158,7 @@ Status ltdc_dsi_init()
     LPCmd.LPDcsLongWrite = DSI_LP_DLW_DISABLE;
     LPCmd.LPMaxReadPacket = DSI_LP_MRDP_DISABLE;
     LPCmd.AcknowledgeRequest = DSI_ACKNOWLEDGE_DISABLE;
-    if (HAL_DSI_ConfigCommand(&g_hdsi, &LPCmd) != HAL_OK)
-    {
+    if (HAL_DSI_ConfigCommand(&g_hdsi, &LPCmd) != HAL_OK) {
         return STATUS_ERROR;
     }
     CmdCfg.VirtualChannelID = 0;
@@ -179,17 +172,14 @@ Status ltdc_dsi_init()
     CmdCfg.VSyncPol = DSI_VSYNC_FALLING;
     CmdCfg.AutomaticRefresh = DSI_AR_ENABLE;
     CmdCfg.TEAcknowledgeRequest = DSI_TE_ACKNOWLEDGE_DISABLE;
-    if (HAL_DSI_ConfigAdaptedCommandMode(&g_hdsi, &CmdCfg) != HAL_OK)
-    {
+    if (HAL_DSI_ConfigAdaptedCommandMode(&g_hdsi, &CmdCfg) != HAL_OK) {
         return STATUS_ERROR;
     }
 
-    if (HAL_DSI_ConfigAdaptedCommandMode(&g_hdsi, &CmdCfg) != HAL_OK)
-    {
+    if (HAL_DSI_ConfigAdaptedCommandMode(&g_hdsi, &CmdCfg) != HAL_OK) {
         return STATUS_ERROR;
     }
-    if (HAL_DSI_SetGenericVCID(&g_hdsi, 0) != HAL_OK)
-    {
+    if (HAL_DSI_SetGenericVCID(&g_hdsi, 0) != HAL_OK) {
         return STATUS_ERROR;
     }
 
@@ -200,20 +190,21 @@ Status ltdc_dsi_init()
     return STATUS_OK;
 }
 
-LTDC_HandleTypeDef *ltdc_get_handle()
-{
+LTDC_HandleTypeDef* ltdc_get_handle() {
     return &g_hltdc;
 }
 
-DSI_HandleTypeDef *dsi_get_handle()
-{
+DSI_HandleTypeDef* dsi_get_handle() {
     return &g_hdsi;
 }
 
 extern "C" {
-    void DSI_IRQHandler(void);
+void DSI_IRQHandler(void);
 }
 
 void DSI_IRQHandler(void) {
+    unsigned int start_tick = HAL_GetTick();
     HAL_DSI_IRQHandler(&g_hdsi);
+    unsigned int end_tick = HAL_GetTick();
+    printf("HAL_DSI_IRQHandler took %u ms\n", end_tick - start_tick);
 }

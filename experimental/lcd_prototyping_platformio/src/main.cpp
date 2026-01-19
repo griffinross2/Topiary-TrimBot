@@ -81,7 +81,7 @@ int main(void) {
                     rect_y = 0;
                 }
             }
-            
+
             rect0->set_position(rect_x, rect_y);
         }
     }
@@ -138,6 +138,6 @@ void SysTick_Handler(void) {
 extern EXTI_HandleTypeDef g_hexti;
 void EXTI9_5_IRQHandler(void) {
     HAL_EXTI_IRQHandler(&g_hexti);
-    
+
     gui_touch_irq();
 }
