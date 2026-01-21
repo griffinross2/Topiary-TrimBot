@@ -78,13 +78,17 @@ Status lcd_init() {
     }
     nt35510_set_brightness(hdsi, 200);
 
+    // Blank both buffers
+    memset(s_foreground_buffer_0, 0xFF, sizeof(s_foreground_buffer_0));
+    memset(s_foreground_buffer_1, 0xFF, sizeof(s_foreground_buffer_1));
+
     // Register refresh end callback
     HAL_DSI_RegisterCallback(hdsi, HAL_DSI_ENDOF_REFRESH_CB_ID,
                              lcd_end_of_refresh_callback);
 
     lcd_refresh();
 
-    HAL_LTDC_SetAddress(hltdc, (uint32_t)s_current_frontbuffer, LTDC_LAYER_2);
+    HAL_LTDC_SetAddress(hltdc, (uint32_t)FRONTBUFFER, LTDC_LAYER_2);
 
     // Touchscreen init
     // Give some time after reset for the TS driver to become ready
