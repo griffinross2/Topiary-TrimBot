@@ -784,6 +784,176 @@
 		)
 		(embedded_fonts no)
 	)
+	(symbol "BCR421UW6-7"
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(property "Reference" "U"
+			(at -0.254 4.826 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "BCR421UW6-7"
+			(at -0.254 4.826 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-6_Handsoldering"
+			(at -0.254 4.826 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.diodes.com/assets/Datasheets/BCR420UW6-BCR421UW6.pdf"
+			(at -0.254 4.826 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "LED Driver Linear 500mA SOT26"
+			(at -0.254 4.826 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(symbol "BCR421UW6-7_1_1"
+			(rectangle
+				(start -8.89 2.54)
+				(end 8.89 -7.62)
+				(stroke
+					(width 0)
+					(type solid)
+				)
+				(fill
+					(type background)
+				)
+			)
+			(pin input line
+				(at -11.43 0 0)
+				(length 2.54)
+				(name "EN"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -11.43 -5.08 0)
+				(length 2.54)
+				(name "R_EXT"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "6"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin power_in line
+				(at 0 -10.16 90)
+				(length 2.54)
+				(name "GND"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "4"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin output line
+				(at 11.43 0 180)
+				(length 2.54)
+				(name "OUT"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin output line
+				(at 11.43 -2.54 180)
+				(length 2.54)
+				(name "OUT"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin output line
+				(at 11.43 -5.08 180)
+				(length 2.54)
+				(name "OUT"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "5"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
 	(symbol "TSC2013QRSARQ1"
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -834,7 +1004,7 @@
 		(symbol "TSC2013QRSARQ1_1_1"
 			(rectangle
 				(start -15.24 63.5)
-				(end 15.24 38.1)
+				(end 12.7 38.1)
 				(stroke
 					(width 0)
 					(type solid)
@@ -951,6 +1121,24 @@
 					)
 				)
 			)
+			(pin passive line
+				(at -5.08 35.56 90)
+				(length 2.54)
+				(name "AUX"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "8"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
 			(pin power_in line
 				(at -2.54 66.04 270)
 				(length 2.54)
@@ -972,14 +1160,14 @@
 			(pin power_in line
 				(at -2.54 35.56 90)
 				(length 2.54)
-				(name "DGND"
+				(name "SNSGND"
 					(effects
 						(font
 							(size 1.27 1.27)
 						)
 					)
 				)
-				(number "6"
+				(number "15"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -1008,24 +1196,6 @@
 			(pin power_in line
 				(at 0 35.56 90)
 				(length 2.54)
-				(name "SNSGND"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "15"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin power_in line
-				(at 2.54 35.56 90)
-				(length 2.54)
 				(name "AGND"
 					(effects
 						(font
@@ -1041,17 +1211,17 @@
 					)
 				)
 			)
-			(pin passive line
-				(at 17.78 60.96 180)
+			(pin power_in line
+				(at 2.54 35.56 90)
 				(length 2.54)
-				(name "AUX"
+				(name "DGND"
 					(effects
 						(font
 							(size 1.27 1.27)
 						)
 					)
 				)
-				(number "8"
+				(number "6"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -1060,7 +1230,7 @@
 				)
 			)
 			(pin passive line
-				(at 17.78 55.88 180)
+				(at 15.24 55.88 180)
 				(length 2.54)
 				(name "X+"
 					(effects
@@ -1078,7 +1248,7 @@
 				)
 			)
 			(pin passive line
-				(at 17.78 53.34 180)
+				(at 15.24 53.34 180)
 				(length 2.54)
 				(name "Y+"
 					(effects
@@ -1096,7 +1266,7 @@
 				)
 			)
 			(pin passive line
-				(at 17.78 50.8 180)
+				(at 15.24 50.8 180)
 				(length 2.54)
 				(name "X-"
 					(effects
@@ -1114,7 +1284,7 @@
 				)
 			)
 			(pin passive line
-				(at 17.78 48.26 180)
+				(at 15.24 48.26 180)
 				(length 2.54)
 				(name "Y-"
 					(effects

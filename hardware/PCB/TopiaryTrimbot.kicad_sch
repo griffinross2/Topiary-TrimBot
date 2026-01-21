@@ -5,9 +5,9 @@
 	(uuid "2826ff7c-9767-4078-8ea2-1cd3a432abf3")
 	(paper "A4")
 	(lib_symbols)
-	(text "Top-level Topiary Trimbot Schematic"
+	(text "Topiary Trimbot - Top-level"
 		(exclude_from_sim no)
-		(at 220.98 173.99 0)
+		(at 214.63 173.99 0)
 		(effects
 			(font
 				(size 3 3)
