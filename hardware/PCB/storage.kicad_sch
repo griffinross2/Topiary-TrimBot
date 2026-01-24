@@ -1182,6 +1182,16 @@
 			(embedded_fonts no)
 		)
 	)
+	(text "MicroSD Slot"
+		(exclude_from_sim no)
+		(at 180.848 69.342 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "1875f44f-cc36-4f3c-99fd-76d405d8b88a")
+	)
 	(text "Topiary Trimbot - Storage"
 		(exclude_from_sim no)
 		(at 213.106 174.244 0)
@@ -1191,6 +1201,16 @@
 			)
 		)
 		(uuid "1aaa5871-a9f8-42d5-a0cc-ad2363d6f8d7")
+	)
+	(text "128Mb NOR Flash"
+		(exclude_from_sim no)
+		(at 178.308 129.032 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "c6479e51-82d5-4115-bbd2-6d167a9e9cca")
 	)
 	(junction
 		(at 134.62 68.58)
@@ -1849,6 +1869,292 @@
 			(justify left bottom)
 		)
 		(uuid "35f8b8b0-d484-4dcf-b6ae-0d2adc17f8fe")
+	)
+	(global_label "SD_D3"
+		(shape bidirectional)
+		(at 91.44 68.58 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "049d289f-7d3d-496e-b558-da65717334dc")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 82.5282 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "NOR_CS"
+		(shape input)
+		(at 129.54 120.65 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "13548121-c85f-43f3-adf9-34ffad1c6eb0")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 119.1767 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "SD_D0"
+		(shape bidirectional)
+		(at 91.44 60.96 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "2d230284-649f-40de-bc94-e936a82eb50a")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 82.5282 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "NOR_D0"
+		(shape bidirectional)
+		(at 129.54 123.19 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "36abfe0f-989d-45b7-bbb7-eb24c34bc6e8")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 119.1767 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "NOR_D1"
+		(shape bidirectional)
+		(at 129.54 125.73 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "4e2fe545-84f0-42ef-9756-7d35eee12b74")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 119.1767 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "NOR_CLK"
+		(shape input)
+		(at 129.54 118.11 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "7dc1b12c-865e-4b99-a0d6-d004ab11f2a1")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 118.0881 118.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "SD_D2"
+		(shape bidirectional)
+		(at 91.44 66.04 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "8369d066-56fb-4988-8743-57ece0d1b3dd")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 82.5282 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "SD_CMD"
+		(shape input)
+		(at 91.44 58.42 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "85405a84-0fe8-490b-b722-240e81071ed1")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 81.0163 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "SD_CLK"
+		(shape input)
+		(at 91.44 55.88 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "8650cf59-a555-495f-864e-fd46579dc26e")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 81.4396 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "SD_CD"
+		(shape output)
+		(at 91.44 73.66 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "8d2beee9-58a2-4f02-8089-0ea9ee382aac")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 82.4677 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "NOR_D3"
+		(shape bidirectional)
+		(at 129.54 130.81 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "d4cf1409-db29-49a3-8757-aa7538cf45cd")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 119.1767 130.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "NOR_D2"
+		(shape bidirectional)
+		(at 129.54 128.27 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "d4e014fd-4a2c-4b55-94b0-709fb0821e7d")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 119.1767 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "SD_D1"
+		(shape bidirectional)
+		(at 91.44 63.5 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "ee963d38-893d-49e3-91e3-e7a7eb2fe386")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 82.5282 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
 	)
 	(symbol
 		(lib_id "Device:R_US")
@@ -2607,7 +2913,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "MicroSD Slot"
+		(property "Value" "MEM2052-00-195-00-A"
 			(at 174.625 65.9821 0)
 			(effects
 				(font
