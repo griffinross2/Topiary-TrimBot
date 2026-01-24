@@ -1,0 +1,128 @@
+#include "stm32f0xx_hal.h"
+#include "status.h"
+#include "clocks.h"
+#include "terminal.h"
+#include "ra8875.h"
+#include "lcd.h"
+#include "gui.h"
+
+#include <stdio.h>
+#include <malloc.h>
+
+extern TIM_HandleTypeDef htim3;
+
+int main(void) {
+    HAL_Init();
+
+    int ret = clocks_init();
+    ret |= terminal_init() << 1;
+    ret |= lcd_init() << 2;
+
+    if (ret == 0) {
+        printf("System initialized successfully.\n");
+    } else {
+        printf("System initialization failed with code: %x\n", ret);
+    }
+
+    lcd_clear_foreground();
+    lcd_swap_buffers();
+
+    Scene scene(0xA0A0A0);
+
+    std::shared_ptr<Button> button0 =
+        std::make_shared<Button>(&scene, 10, 120, 180, 50);
+    std::shared_ptr<Label> label0 =
+        std::make_shared<Label>(&scene, 20, 130, "Hello, World!", 28);
+
+    std::shared_ptr<Button> button1 =
+        std::make_shared<Button>(&scene, 290, 120, 180, 50);
+    std::shared_ptr<Label> label1 =
+        std::make_shared<Label>(&scene, 320, 130, "Push Me!", 28);
+
+    std::shared_ptr<Rectangle> rect0 =
+        std::make_shared<Rectangle>(&scene, 0, 0, 25, 25, 0xFF0000);
+    int rect_x = 0;
+    int rect_y = 0;
+
+    scene.add_object(button0);
+    scene.add_object(label0);
+    scene.add_object(button1);
+    scene.add_object(label1);
+    scene.add_object(rect0);
+    gui_set_current_scene(&scene);
+
+    unsigned int tick = HAL_GetTick();
+
+    while (1) {
+        if (HAL_GetTick() - tick >= 10) {
+            tick = HAL_GetTick();
+
+            rect_x += 10;
+            if (rect_x + 25 >= WINDOW_WIDTH) {
+                rect_x = 0;
+                rect_y += 10;
+
+                if (rect_y + 25 >= WINDOW_HEIGHT) {
+                    rect_y = 0;
+                }
+            }
+
+            rect0->set_position(rect_x, rect_y);
+        }
+
+        gui_render();
+    }
+
+    return 0;
+}
+
+// Interrupt handlers mapped to interrupt vectors require C linkage
+extern "C" {
+void NMI_Handler(void);
+void HardFault_Handler(void);
+void MemManage_Handler(void);
+void BusFault_Handler(void);
+void UsageFault_Handler(void);
+void SVC_Handler(void);
+void DebugMon_Handler(void);
+void PendSV_Handler(void);
+void SysTick_Handler(void);
+void EXTI9_5_IRQHandler(void);
+}
+
+void NMI_Handler(void) {}
+
+void HardFault_Handler(void) {
+    while (1) {
+    }
+}
+
+void MemManage_Handler(void) {
+    while (1) {
+    }
+}
+
+void BusFault_Handler(void) {
+    while (1) {
+    }
+}
+
+void UsageFault_Handler(void) {
+    while (1) {
+    }
+}
+
+void SVC_Handler(void) {}
+
+void DebugMon_Handler(void) {}
+
+void PendSV_Handler(void) {}
+
+void SysTick_Handler(void) {
+    HAL_IncTick();
+}
+
+// extern EXTI_HandleTypeDef g_hexti;
+// void EXTI9_5_IRQHandler(void) {
+//     HAL_EXTI_IRQHandler(&g_hexti);
+// }
