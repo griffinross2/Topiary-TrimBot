@@ -2090,9 +2090,9 @@
 		)
 		(uuid 925bcd3d-172a-46c9-977a-d6caa960bbb9)
 	)
-	(text "Short and expose \ncopper in layout"
+	(text "May be replaced\nwith resistor for\ndual-touch"
 		(exclude_from_sim no)
-		(at 124.46 170.18 0)
+		(at 124.968 170.18 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4811,7 +4811,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0b369ed7-4991-4575-be42-64fd4ad7db97")
 		(property "Reference" "R6"
@@ -4822,7 +4822,7 @@
 				)
 			)
 		)
-		(property "Value" "47"
+		(property "Value" "0"
 			(at 127 162.4908 90)
 			(effects
 				(font
@@ -7132,7 +7132,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "4"
+		(property "Value" "100"
 			(at 113.411 55.8221 0)
 			(effects
 				(font
