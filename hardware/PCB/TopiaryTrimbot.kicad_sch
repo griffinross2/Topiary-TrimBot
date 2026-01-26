@@ -5,6 +5,66 @@
 	(uuid "2826ff7c-9767-4078-8ea2-1cd3a432abf3")
 	(paper "A4")
 	(lib_symbols)
+	(text "Raspberry Pi"
+		(exclude_from_sim no)
+		(at 146.812 118.11 0)
+		(effects
+			(font
+				(size 3 3)
+			)
+		)
+		(uuid "1e23a91d-26a7-4405-9b71-026256ae7391")
+	)
+	(text "Power"
+		(exclude_from_sim no)
+		(at 81.788 74.422 0)
+		(effects
+			(font
+				(size 3 3)
+			)
+		)
+		(uuid "6225bd39-45ec-4037-9ea2-d1f3e5d50721")
+	)
+	(text "Storage"
+		(exclude_from_sim no)
+		(at 214.376 74.422 0)
+		(effects
+			(font
+				(size 4 4)
+			)
+		)
+		(uuid "6560b7d1-b56b-4399-b865-7a64ddfac1ee")
+	)
+	(text "Motor Control"
+		(exclude_from_sim no)
+		(at 80.772 118.618 0)
+		(effects
+			(font
+				(size 3 3)
+			)
+		)
+		(uuid "8908fbcf-1626-44c6-ae99-e2e0e036f9dd")
+	)
+	(text "MCU"
+		(exclude_from_sim no)
+		(at 146.05 74.676 0)
+		(effects
+			(font
+				(size 3 3)
+			)
+		)
+		(uuid "8ec8649f-d844-4737-b127-dd4d67295ccb")
+	)
+	(text "LCD"
+		(exclude_from_sim no)
+		(at 214.63 119.126 0)
+		(effects
+			(font
+				(size 3 3)
+			)
+		)
+		(uuid "bda2e804-c896-4cbf-9fb4-cef2ff31b9da")
+	)
 	(text "Topiary Trimbot - Top-level"
 		(exclude_from_sim no)
 		(at 214.63 173.99 0)
@@ -22,7 +82,6 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
 			(type solid)
@@ -32,12 +91,12 @@
 		)
 		(uuid "5e1a5ae0-b63d-4e63-8db3-55a7cc5df283")
 		(property "Sheetname" "Storage"
-			(at 189.23 58.9784 0)
+			(at 189.23 57.404 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left bottom)
+				(justify left top)
 			)
 		)
 		(property "Sheetfile" "storage.kicad_sch"
