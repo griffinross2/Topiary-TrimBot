@@ -1786,7 +1786,7 @@
 	)
 	(wire
 		(pts
-			(xy 58.42 107.95) (xy 58.42 111.76)
+			(xy 59.69 107.95) (xy 59.69 111.76)
 		)
 		(stroke
 			(width 0)
@@ -1916,7 +1916,7 @@
 	)
 	(wire
 		(pts
-			(xy 167.64 107.95) (xy 167.64 111.76)
+			(xy 168.91 107.95) (xy 168.91 111.76)
 		)
 		(stroke
 			(width 0)
@@ -2146,7 +2146,7 @@
 	)
 	(wire
 		(pts
-			(xy 58.42 92.71) (xy 67.31 92.71)
+			(xy 59.69 92.71) (xy 67.31 92.71)
 		)
 		(stroke
 			(width 0)
@@ -2316,7 +2316,7 @@
 	)
 	(wire
 		(pts
-			(xy 167.64 92.71) (xy 176.53 92.71)
+			(xy 168.91 92.71) (xy 176.53 92.71)
 		)
 		(stroke
 			(width 0)
@@ -2756,7 +2756,7 @@
 	)
 	(wire
 		(pts
-			(xy 58.42 97.79) (xy 58.42 92.71)
+			(xy 59.69 97.79) (xy 59.69 92.71)
 		)
 		(stroke
 			(width 0)
@@ -2816,7 +2816,7 @@
 	)
 	(wire
 		(pts
-			(xy 167.64 97.79) (xy 167.64 92.71)
+			(xy 168.91 97.79) (xy 168.91 92.71)
 		)
 		(stroke
 			(width 0)
@@ -3016,7 +3016,7 @@
 	)
 	(wire
 		(pts
-			(xy 58.42 111.76) (xy 67.31 111.76)
+			(xy 59.69 111.76) (xy 67.31 111.76)
 		)
 		(stroke
 			(width 0)
@@ -3126,7 +3126,7 @@
 	)
 	(wire
 		(pts
-			(xy 167.64 111.76) (xy 176.53 111.76)
+			(xy 168.91 111.76) (xy 176.53 111.76)
 		)
 		(stroke
 			(width 0)
@@ -4566,7 +4566,7 @@
 	)
 	(symbol
 		(lib_id "Jumper:Jumper_2_Open")
-		(at 58.42 102.87 90)
+		(at 59.69 102.87 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4574,7 +4574,7 @@
 		(dnp no)
 		(uuid "1c99ff8e-dd27-4396-9413-41b32bf6f2a1")
 		(property "Reference" "JP7"
-			(at 51.816 101.346 90)
+			(at 53.086 101.346 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4583,7 +4583,7 @@
 			)
 		)
 		(property "Value" "Jumper_2_Open"
-			(at 40.894 103.632 90)
+			(at 42.164 103.632 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4592,7 +4592,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 58.42 102.87 0)
+			(at 59.69 102.87 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4601,7 +4601,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 58.42 102.87 0)
+			(at 59.69 102.87 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4610,7 +4610,7 @@
 			)
 		)
 		(property "Description" "Jumper, 2-pole, open"
-			(at 58.42 102.87 0)
+			(at 59.69 102.87 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7767,7 +7767,7 @@
 	)
 	(symbol
 		(lib_id "Jumper:Jumper_2_Open")
-		(at 167.64 102.87 90)
+		(at 168.91 102.87 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7775,7 +7775,7 @@
 		(dnp no)
 		(uuid "d27e2f8c-c0bd-4a82-b779-96fd8ab61c0c")
 		(property "Reference" "JP8"
-			(at 161.036 101.346 90)
+			(at 162.306 101.346 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7784,7 +7784,7 @@
 			)
 		)
 		(property "Value" "Jumper_2_Open"
-			(at 150.114 103.632 90)
+			(at 151.384 103.632 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7793,7 +7793,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 167.64 102.87 0)
+			(at 168.91 102.87 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7802,7 +7802,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 167.64 102.87 0)
+			(at 168.91 102.87 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7811,7 +7811,7 @@
 			)
 		)
 		(property "Description" "Jumper, 2-pole, open"
-			(at 167.64 102.87 0)
+			(at 168.91 102.87 0)
 			(effects
 				(font
 					(size 1.27 1.27)
