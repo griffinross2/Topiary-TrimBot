@@ -144,7 +144,7 @@ def process_angle(angle, angle_step):
 
     disparity = get_disparity_level(left_image, right_image)
     depth = disp_to_depth(disparity)
-    print(f"Disp: {disparity:03d} pixels, depth: {depth:0.2f} in")
+    print(f"Disp: {disparity:03d} pixels, depth: {depth:0.2f} in, offset: {18.0 - depth:0.2f} in")
 
     outline_points = []
     for a in range(0, 360, 10):

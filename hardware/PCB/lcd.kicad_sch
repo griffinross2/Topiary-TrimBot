@@ -2466,7 +2466,17 @@
 	)
 	(wire
 		(pts
-			(xy 143.51 134.62) (xy 193.04 134.62)
+			(xy 201.93 91.44) (xy 203.2 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "017aaa67-35ca-4f43-8000-76a030afa21e")
+	)
+	(wire
+		(pts
+			(xy 143.51 134.62) (xy 203.2 134.62)
 		)
 		(stroke
 			(width 0)
@@ -2476,7 +2486,7 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 106.68) (xy 193.04 106.68)
+			(xy 160.02 106.68) (xy 194.31 106.68)
 		)
 		(stroke
 			(width 0)
@@ -2486,7 +2496,7 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 66.04) (xy 193.04 66.04)
+			(xy 160.02 66.04) (xy 194.31 66.04)
 		)
 		(stroke
 			(width 0)
@@ -2496,13 +2506,33 @@
 	)
 	(wire
 		(pts
-			(xy 180.34 127) (xy 193.04 127)
+			(xy 201.93 81.28) (xy 203.2 81.28)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "041faa9b-b932-4169-bcae-c125b4a4c1f0")
+		(uuid "080076f3-3f7f-43ef-928d-fd6168348227")
+	)
+	(wire
+		(pts
+			(xy 201.93 60.96) (xy 203.2 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "082ec3a1-05e9-4dd3-ab03-2a176be5f2de")
+	)
+	(wire
+		(pts
+			(xy 201.93 88.9) (xy 203.2 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0c2e497b-7928-4be1-b2bf-0ad234e7335f")
 	)
 	(wire
 		(pts
@@ -2513,6 +2543,26 @@
 			(type default)
 		)
 		(uuid "0e39a7e2-c763-4bb1-b555-3f0501e21579")
+	)
+	(wire
+		(pts
+			(xy 201.93 93.98) (xy 203.2 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0e88ddaf-6eae-4418-b7ee-d8207cd9d6f2")
+	)
+	(wire
+		(pts
+			(xy 201.93 53.34) (xy 203.2 53.34)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0f7fcbaa-97fc-48c9-bc38-5cab958d0cff")
 	)
 	(wire
 		(pts
@@ -2536,7 +2586,7 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 99.06) (xy 193.04 99.06)
+			(xy 160.02 99.06) (xy 194.31 99.06)
 		)
 		(stroke
 			(width 0)
@@ -2556,7 +2606,7 @@
 	)
 	(wire
 		(pts
-			(xy 161.29 114.3) (xy 193.04 114.3)
+			(xy 161.29 114.3) (xy 203.2 114.3)
 		)
 		(stroke
 			(width 0)
@@ -2566,7 +2616,7 @@
 	)
 	(wire
 		(pts
-			(xy 143.51 142.24) (xy 193.04 142.24)
+			(xy 143.51 142.24) (xy 203.2 142.24)
 		)
 		(stroke
 			(width 0)
@@ -2576,7 +2626,7 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 58.42) (xy 193.04 58.42)
+			(xy 160.02 58.42) (xy 194.31 58.42)
 		)
 		(stroke
 			(width 0)
@@ -2606,7 +2656,7 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 111.76) (xy 193.04 111.76)
+			(xy 160.02 111.76) (xy 194.31 111.76)
 		)
 		(stroke
 			(width 0)
@@ -2656,6 +2706,16 @@
 	)
 	(wire
 		(pts
+			(xy 201.93 76.2) (xy 203.2 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "21e0e2ad-3e28-4d7b-b65a-fc528216b920")
+	)
+	(wire
+		(pts
 			(xy 135.89 165.1) (xy 135.89 167.64)
 		)
 		(stroke
@@ -2666,7 +2726,7 @@
 	)
 	(wire
 		(pts
-			(xy 143.51 139.7) (xy 193.04 139.7)
+			(xy 143.51 139.7) (xy 203.2 139.7)
 		)
 		(stroke
 			(width 0)
@@ -2676,7 +2736,7 @@
 	)
 	(wire
 		(pts
-			(xy 180.34 45.72) (xy 193.04 45.72)
+			(xy 180.34 45.72) (xy 203.2 45.72)
 		)
 		(stroke
 			(width 0)
@@ -2756,7 +2816,7 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 55.88) (xy 193.04 55.88)
+			(xy 160.02 55.88) (xy 194.31 55.88)
 		)
 		(stroke
 			(width 0)
@@ -2766,7 +2826,7 @@
 	)
 	(wire
 		(pts
-			(xy 161.29 132.08) (xy 193.04 132.08)
+			(xy 161.29 132.08) (xy 203.2 132.08)
 		)
 		(stroke
 			(width 0)
@@ -2776,13 +2836,23 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 93.98) (xy 193.04 93.98)
+			(xy 160.02 93.98) (xy 194.31 93.98)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "358ac892-b72b-4ecc-a811-7d8466a4a25d")
+	)
+	(wire
+		(pts
+			(xy 201.93 124.46) (xy 203.2 124.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "365cdad5-72b3-4db1-bfcd-f44d997dddaf")
 	)
 	(polyline
 		(pts
@@ -2796,6 +2866,16 @@
 	)
 	(wire
 		(pts
+			(xy 201.93 119.38) (xy 203.2 119.38)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "393555c6-2537-417c-bbf9-ad5b09302f44")
+	)
+	(wire
+		(pts
 			(xy 121.92 157.48) (xy 121.92 165.1)
 		)
 		(stroke
@@ -2806,7 +2886,17 @@
 	)
 	(wire
 		(pts
-			(xy 139.7 43.18) (xy 193.04 43.18)
+			(xy 201.93 55.88) (xy 203.2 55.88)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3c0dad35-250f-462b-ab9a-7610845d2351")
+	)
+	(wire
+		(pts
+			(xy 139.7 43.18) (xy 203.2 43.18)
 		)
 		(stroke
 			(width 0)
@@ -2816,7 +2906,7 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 91.44) (xy 193.04 91.44)
+			(xy 160.02 91.44) (xy 194.31 91.44)
 		)
 		(stroke
 			(width 0)
@@ -2856,13 +2946,23 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 53.34) (xy 193.04 53.34)
+			(xy 160.02 53.34) (xy 194.31 53.34)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "40c2be56-7a45-45fa-9c4f-845acb1168db")
+	)
+	(wire
+		(pts
+			(xy 201.93 101.6) (xy 203.2 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "42ab2aa4-0f1e-4561-ac81-71dab56f491a")
 	)
 	(wire
 		(pts
@@ -2896,7 +2996,7 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 86.36) (xy 193.04 86.36)
+			(xy 160.02 86.36) (xy 194.31 86.36)
 		)
 		(stroke
 			(width 0)
@@ -2946,7 +3046,7 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 88.9) (xy 193.04 88.9)
+			(xy 160.02 88.9) (xy 194.31 88.9)
 		)
 		(stroke
 			(width 0)
@@ -2956,7 +3056,7 @@
 	)
 	(wire
 		(pts
-			(xy 180.34 121.92) (xy 193.04 121.92)
+			(xy 180.34 121.92) (xy 194.31 121.92)
 		)
 		(stroke
 			(width 0)
@@ -2996,7 +3096,7 @@
 	)
 	(wire
 		(pts
-			(xy 180.34 119.38) (xy 193.04 119.38)
+			(xy 180.34 119.38) (xy 194.31 119.38)
 		)
 		(stroke
 			(width 0)
@@ -3036,13 +3136,23 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 104.14) (xy 193.04 104.14)
+			(xy 160.02 104.14) (xy 194.31 104.14)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "64853219-1985-4fa3-9689-0a75f249f1cc")
+	)
+	(wire
+		(pts
+			(xy 201.93 99.06) (xy 203.2 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "64a48c41-9a1c-4da0-be90-2b1b042f470a")
 	)
 	(wire
 		(pts
@@ -3056,7 +3166,7 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 109.22) (xy 193.04 109.22)
+			(xy 160.02 109.22) (xy 194.31 109.22)
 		)
 		(stroke
 			(width 0)
@@ -3076,7 +3186,7 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 68.58) (xy 193.04 68.58)
+			(xy 160.02 68.58) (xy 194.31 68.58)
 		)
 		(stroke
 			(width 0)
@@ -3086,13 +3196,43 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 81.28) (xy 193.04 81.28)
+			(xy 160.02 81.28) (xy 194.31 81.28)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "6c803e73-adb2-4c32-8310-bedcdd95e922")
+	)
+	(wire
+		(pts
+			(xy 201.93 78.74) (xy 203.2 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6eae0974-48d8-4b9e-a0b2-6b0de2c8af82")
+	)
+	(wire
+		(pts
+			(xy 201.93 116.84) (xy 203.2 116.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "71bb06e3-744b-4a27-be15-eed3a1c55ad7")
+	)
+	(wire
+		(pts
+			(xy 201.93 109.22) (xy 203.2 109.22)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "744b3dbd-2700-4cca-8350-3b36ad83811d")
 	)
 	(wire
 		(pts
@@ -3116,6 +3256,16 @@
 	)
 	(wire
 		(pts
+			(xy 201.93 58.42) (xy 203.2 58.42)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "782b0d5d-6354-41dc-9b31-7ee31c3ce558")
+	)
+	(wire
+		(pts
 			(xy 254 48.26) (xy 266.7 48.26)
 		)
 		(stroke
@@ -3126,7 +3276,7 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 76.2) (xy 193.04 76.2)
+			(xy 160.02 76.2) (xy 194.31 76.2)
 		)
 		(stroke
 			(width 0)
@@ -3166,13 +3316,43 @@
 	)
 	(wire
 		(pts
-			(xy 180.34 116.84) (xy 193.04 116.84)
+			(xy 201.93 68.58) (xy 203.2 68.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "82c94642-991d-4dab-9ad1-438a24d40cfc")
+	)
+	(wire
+		(pts
+			(xy 201.93 71.12) (xy 203.2 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8487a68a-8832-4a33-9566-4e049f984a5b")
+	)
+	(wire
+		(pts
+			(xy 180.34 116.84) (xy 194.31 116.84)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "8b299608-9e79-4351-844f-96168b230a3f")
+	)
+	(wire
+		(pts
+			(xy 201.93 66.04) (xy 203.2 66.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8d525d8a-cfe7-48a9-bea4-2be2eb0e53e6")
 	)
 	(wire
 		(pts
@@ -3196,7 +3376,7 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 78.74) (xy 193.04 78.74)
+			(xy 160.02 78.74) (xy 194.31 78.74)
 		)
 		(stroke
 			(width 0)
@@ -3246,7 +3426,7 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 101.6) (xy 193.04 101.6)
+			(xy 160.02 101.6) (xy 194.31 101.6)
 		)
 		(stroke
 			(width 0)
@@ -3296,13 +3476,23 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 96.52) (xy 193.04 96.52)
+			(xy 160.02 96.52) (xy 194.31 96.52)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "9c27855d-ad6e-4620-9286-acca2b1d2b38")
+	)
+	(wire
+		(pts
+			(xy 201.93 106.68) (xy 203.2 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a43e0e8f-69d4-433b-abf7-a0dae7de0eaa")
 	)
 	(bus
 		(pts
@@ -3336,6 +3526,16 @@
 	)
 	(wire
 		(pts
+			(xy 201.93 86.36) (xy 203.2 86.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "acfd1fe6-bb20-4247-841c-0325ff6c2ce4")
+	)
+	(wire
+		(pts
 			(xy 254 63.5) (xy 266.7 63.5)
 		)
 		(stroke
@@ -3353,6 +3553,16 @@
 			(type default)
 		)
 		(uuid "ae73aab3-b4b9-4739-abb8-f38786467ab1")
+	)
+	(wire
+		(pts
+			(xy 201.93 111.76) (xy 203.2 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b1a8d545-63dc-4611-b5cd-33a54cca7541")
 	)
 	(wire
 		(pts
@@ -3456,7 +3666,17 @@
 	)
 	(wire
 		(pts
-			(xy 143.51 137.16) (xy 193.04 137.16)
+			(xy 201.93 73.66) (xy 203.2 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cb51a2af-f970-457a-ad0b-bc25d048abd4")
+	)
+	(wire
+		(pts
+			(xy 143.51 137.16) (xy 203.2 137.16)
 		)
 		(stroke
 			(width 0)
@@ -3524,6 +3744,16 @@
 		)
 		(uuid "d51a2776-c160-49ef-aa20-bb43e37f4ed6")
 	)
+	(wire
+		(pts
+			(xy 201.93 127) (xy 203.2 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d5da2cc3-cd2f-41db-8e3c-9ebf687a11dd")
+	)
 	(polyline
 		(pts
 			(xy 48.26 175.26) (xy 158.75 175.26)
@@ -3546,6 +3776,16 @@
 	)
 	(wire
 		(pts
+			(xy 201.93 83.82) (xy 203.2 83.82)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d8a41b34-45d9-4e39-b0e0-7a2b19d3d83d")
+	)
+	(wire
+		(pts
 			(xy 128.27 157.48) (xy 132.08 157.48)
 		)
 		(stroke
@@ -3556,7 +3796,7 @@
 	)
 	(wire
 		(pts
-			(xy 180.34 124.46) (xy 193.04 124.46)
+			(xy 180.34 124.46) (xy 194.31 124.46)
 		)
 		(stroke
 			(width 0)
@@ -3616,7 +3856,7 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 60.96) (xy 193.04 60.96)
+			(xy 160.02 60.96) (xy 194.31 60.96)
 		)
 		(stroke
 			(width 0)
@@ -3636,13 +3876,43 @@
 	)
 	(wire
 		(pts
-			(xy 153.67 48.26) (xy 193.04 48.26)
+			(xy 153.67 48.26) (xy 203.2 48.26)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "e5179980-646c-432a-bd16-838a3b296435")
+	)
+	(wire
+		(pts
+			(xy 201.93 96.52) (xy 203.2 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e6a351d4-a296-4bf3-9589-523cc2cd8ad1")
+	)
+	(wire
+		(pts
+			(xy 201.93 121.92) (xy 203.2 121.92)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "eb8baa7b-7215-4e19-b4f9-4132448311d9")
+	)
+	(wire
+		(pts
+			(xy 201.93 63.5) (xy 203.2 63.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ec1739aa-8afb-438a-9d28-22b9fb340cf8")
 	)
 	(wire
 		(pts
@@ -3663,6 +3933,16 @@
 			(type default)
 		)
 		(uuid "f226f201-4bb8-4587-83fc-74a9eeeff3a0")
+	)
+	(wire
+		(pts
+			(xy 201.93 104.14) (xy 203.2 104.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f2ed0013-af66-4f46-aa4a-0622ccbad17b")
 	)
 	(bus
 		(pts
@@ -3696,7 +3976,7 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 63.5) (xy 193.04 63.5)
+			(xy 160.02 63.5) (xy 194.31 63.5)
 		)
 		(stroke
 			(width 0)
@@ -3716,7 +3996,17 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 73.66) (xy 193.04 73.66)
+			(xy 180.34 127) (xy 194.31 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f8bd0653-53e5-4068-8d6e-e32fd0a9049f")
+	)
+	(wire
+		(pts
+			(xy 160.02 73.66) (xy 194.31 73.66)
 		)
 		(stroke
 			(width 0)
@@ -3726,7 +4016,7 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 71.12) (xy 193.04 71.12)
+			(xy 160.02 71.12) (xy 194.31 71.12)
 		)
 		(stroke
 			(width 0)
@@ -3736,7 +4026,7 @@
 	)
 	(wire
 		(pts
-			(xy 180.34 50.8) (xy 193.04 50.8)
+			(xy 180.34 50.8) (xy 203.2 50.8)
 		)
 		(stroke
 			(width 0)
@@ -3746,7 +4036,7 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 83.82) (xy 193.04 83.82)
+			(xy 160.02 83.82) (xy 194.31 83.82)
 		)
 		(stroke
 			(width 0)
@@ -4806,6 +5096,73 @@
 	)
 	(symbol
 		(lib_id "Device:R_US")
+		(at 198.12 76.2 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "0a354a91-5fd3-4dee-ad9a-57adf27b10c2")
+		(property "Reference" "R33"
+			(at 193.548 75.184 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "30"
+			(at 201.422 75.184 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 198.374 75.184 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 198.12 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 198.12 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "08e67ae5-bc46-4064-8908-bca344fccd98")
+		)
+		(pin "2"
+			(uuid "164454bb-3b30-4a21-bf37-0d41771fd8e4")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
+					(reference "R33")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
 		(at 127 165.1 90)
 		(unit 1)
 		(exclude_from_sim no)
@@ -4939,6 +5296,274 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R_US")
+		(at 198.12 93.98 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "0e877fb7-6c17-44b7-bd6f-6540989b2051")
+		(property "Reference" "R26"
+			(at 193.548 92.964 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "30"
+			(at 201.422 92.964 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 198.374 92.964 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 198.12 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 198.12 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "eb21685b-4bb2-4a8a-a6ef-f8d51f3a9cb0")
+		)
+		(pin "2"
+			(uuid "4e5a2828-38b5-4cca-b69e-e12ca75b020f")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
+					(reference "R26")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 198.12 119.38 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "0f0d755f-8548-4636-a88b-c6314b4fce47")
+		(property "Reference" "R17"
+			(at 193.548 118.364 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "30"
+			(at 201.422 118.364 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 198.374 118.364 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 198.12 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 198.12 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "2ac032e2-488f-4da5-b65d-376fed40db6d")
+		)
+		(pin "2"
+			(uuid "360200c9-9973-4b01-879c-e4c68948db80")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
+					(reference "R17")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 198.12 111.76 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "180437a5-7c71-4591-a70e-91a0728b699e")
+		(property "Reference" "R19"
+			(at 193.548 110.744 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "30"
+			(at 201.422 110.744 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 198.374 110.744 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 198.12 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 198.12 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a6cee234-8987-472e-8f13-a2c690b6892c")
+		)
+		(pin "2"
+			(uuid "38619e19-3f03-4998-aaeb-8d0dd3afa5ab")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
+					(reference "R19")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 198.12 116.84 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "1f4f77b8-761f-4a68-9160-6bdda53ef387")
+		(property "Reference" "R18"
+			(at 193.548 115.824 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "30"
+			(at 201.422 115.824 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 198.374 115.824 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 198.12 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 198.12 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "42de4c65-7d49-4165-bbea-5eb4f5afc827")
+		)
+		(pin "2"
+			(uuid "2703bb7b-effe-4ab5-be92-ca4a318bd798")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
+					(reference "R18")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 140.97 167.64 0)
 		(unit 1)
@@ -4998,6 +5623,73 @@
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
 					(reference "#PWR012")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 198.12 96.52 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "3246359f-9c80-4b6f-9cdc-9120a644546f")
+		(property "Reference" "R25"
+			(at 193.548 95.504 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "30"
+			(at 201.422 95.504 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 198.374 95.504 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 198.12 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 198.12 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8151b815-e6cf-462b-9c1b-d13be0605482")
+		)
+		(pin "2"
+			(uuid "774d1bf6-0d44-4cc9-8a55-4af12addd836")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
+					(reference "R25")
 					(unit 1)
 				)
 			)
@@ -5335,6 +6027,73 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R_US")
+		(at 198.12 104.14 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "527f2bd7-2d08-407a-b418-3ca8da0a0404")
+		(property "Reference" "R22"
+			(at 193.548 103.124 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "30"
+			(at 201.422 103.124 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 198.374 103.124 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 198.12 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 198.12 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "1f39b650-2319-4a91-9a66-e384e96b2499")
+		)
+		(pin "2"
+			(uuid "bb1b4fe6-a7fd-4b33-8fc3-a34ddee27eb2")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
+					(reference "R22")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+3.3V")
 		(at 125.73 110.49 0)
 		(unit 1)
@@ -5395,6 +6154,73 @@
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
 					(reference "#PWR014")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 198.12 63.5 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "56ae6ce2-e0af-4318-8a00-0b4c20ce2028")
+		(property "Reference" "R38"
+			(at 193.548 62.484 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "30"
+			(at 201.422 62.484 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 198.374 62.484 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 198.12 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 198.12 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "2fb1afe5-deb6-4123-8d55-d7e7d8a4f3d8")
+		)
+		(pin "2"
+			(uuid "3d44bc04-fc7f-4d45-9d2f-cbc33bb4c61c")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
+					(reference "R38")
 					(unit 1)
 				)
 			)
@@ -5572,6 +6398,73 @@
 			(project ""
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
 					(reference "U1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 198.12 86.36 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "5f3eec30-ef3e-4ffb-a6bf-37d492746b65")
+		(property "Reference" "R29"
+			(at 193.548 85.344 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "30"
+			(at 201.422 85.344 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 198.374 85.344 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 198.12 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 198.12 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "9f445ba4-a3fb-4c42-8e94-99254be0f6d6")
+		)
+		(pin "2"
+			(uuid "4b6b8194-fa0d-4ff2-a333-379fd7313bd0")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
+					(reference "R29")
 					(unit 1)
 				)
 			)
@@ -5775,6 +6668,73 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R_US")
+		(at 198.12 83.82 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "65d118ac-9bac-4b90-90f1-8aebf1e967b8")
+		(property "Reference" "R30"
+			(at 193.548 82.804 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "30"
+			(at 201.422 82.804 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 198.374 82.804 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 198.12 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 198.12 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f0b0d38d-f6fb-4820-aabe-aa30f2e70152")
+		)
+		(pin "2"
+			(uuid "ddff9092-4fad-4882-8b78-e0ba5e551b5f")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
+					(reference "R30")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 111.76 58.42 0)
 		(unit 1)
@@ -5834,6 +6794,140 @@
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
 					(reference "#PWR05")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 198.12 81.28 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "6e375b8b-a654-439b-999c-d585f0cfb62c")
+		(property "Reference" "R31"
+			(at 193.548 80.264 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "30"
+			(at 201.422 80.264 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 198.374 80.264 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 198.12 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 198.12 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "bcf85f9c-06a1-4fa2-9268-3b860c9cdffe")
+		)
+		(pin "2"
+			(uuid "6b631777-6aa0-4c23-aa4e-c50b39240cb3")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
+					(reference "R31")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 198.12 73.66 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "702542f2-9b69-49a7-adac-855d2251c7d2")
+		(property "Reference" "R34"
+			(at 193.548 72.644 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "30"
+			(at 201.422 72.644 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 198.374 72.644 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 198.12 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 198.12 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "38a3b6c8-e999-4ca7-98fe-580de802fbc4")
+		)
+		(pin "2"
+			(uuid "3bdb8b25-461b-4704-938e-16f8e748f9ec")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
+					(reference "R34")
 					(unit 1)
 				)
 			)
@@ -6241,6 +7335,408 @@
 	)
 	(symbol
 		(lib_id "Device:R_US")
+		(at 198.12 109.22 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "84a6cfce-4d2a-492d-a1d3-b2abbda0a274")
+		(property "Reference" "R20"
+			(at 193.548 108.204 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "30"
+			(at 201.422 108.204 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 198.374 108.204 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 198.12 109.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 198.12 109.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d8b9fe49-6d36-4942-a054-c78f7315e185")
+		)
+		(pin "2"
+			(uuid "955c30ab-4b6d-4313-b381-e43842a0a1b4")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
+					(reference "R20")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 198.12 124.46 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "85139380-5f55-451d-aebf-116315b6f812")
+		(property "Reference" "R15"
+			(at 193.548 123.444 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "30"
+			(at 201.422 123.444 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 198.374 123.444 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 198.12 124.46 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 198.12 124.46 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d00abcc8-16e7-4410-bbeb-2f4d48c8232c")
+		)
+		(pin "2"
+			(uuid "4d8fa076-7853-46f7-b884-51d19c607901")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
+					(reference "R15")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 198.12 60.96 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "8710a1eb-ca32-40c2-b350-97de11be2333")
+		(property "Reference" "R39"
+			(at 193.548 59.944 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "30"
+			(at 201.422 59.944 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 198.374 59.944 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 198.12 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 198.12 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "dce0df55-0303-4ac6-8589-28e00a15f2dd")
+		)
+		(pin "2"
+			(uuid "7cd38954-e9a5-4ca8-98db-ae33cd5f9a5f")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
+					(reference "R39")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 198.12 106.68 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "879d70a3-d23d-4e8d-89e1-d06a82dbfe98")
+		(property "Reference" "R21"
+			(at 193.548 105.664 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "30"
+			(at 201.422 105.664 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 198.374 105.664 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 198.12 106.68 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 198.12 106.68 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "aa680129-e8e1-4ce0-b34b-77558cef743a")
+		)
+		(pin "2"
+			(uuid "a3a87299-a05c-4a94-b2d0-59fda479daff")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
+					(reference "R21")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 198.12 127 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "967aff9c-72f9-417d-bbf9-4c3108cbde00")
+		(property "Reference" "R14"
+			(at 193.548 125.984 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "30"
+			(at 201.422 125.984 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 198.374 125.984 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 198.12 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 198.12 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "2eaecceb-0f83-400a-ab2c-8a0bac4034a6")
+		)
+		(pin "2"
+			(uuid "dc91cc15-a9ac-4a5f-a7de-e67407849b02")
+		)
+		(instances
+			(project ""
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
+					(reference "R14")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 198.12 53.34 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "99c2a03a-9c3b-4208-b4c1-29ebd3b47d94")
+		(property "Reference" "R42"
+			(at 193.548 52.324 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "30"
+			(at 201.422 52.324 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 198.374 52.324 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 198.12 53.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 198.12 53.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "0876bba5-ae7d-41bd-938a-5cc632a758d9")
+		)
+		(pin "2"
+			(uuid "fe91233e-3755-4d86-afdb-1cc0dbb4396c")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
+					(reference "R42")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
 		(at 81.28 123.19 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -6377,6 +7873,73 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R_US")
+		(at 198.12 121.92 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "a22bb05a-80c5-42e7-94d0-caa27bdee17a")
+		(property "Reference" "R16"
+			(at 193.548 120.904 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "30"
+			(at 201.422 120.904 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 198.374 120.904 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 198.12 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 198.12 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "53a4753f-4b19-424e-93e0-3ca56a5cdf8d")
+		)
+		(pin "2"
+			(uuid "81a47e40-a306-47ae-963a-e9811dc269c4")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
+					(reference "R16")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 158.75 123.19 0)
 		(unit 1)
@@ -6442,17 +8005,150 @@
 		)
 	)
 	(symbol
-		(lib_id "CustomSymbols:Adafruit_TFT_480x272_Touchscreen")
-		(at 195.58 93.98 0)
+		(lib_id "Device:R_US")
+		(at 198.12 99.06 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
+		(uuid "a559f214-7ca0-4496-8ab9-fb134dbf2bdb")
+		(property "Reference" "R24"
+			(at 193.548 98.044 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "30"
+			(at 201.422 98.044 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 198.374 98.044 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 198.12 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 198.12 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "46305edc-18e5-4ba4-9c6b-4e7c03183207")
+		)
+		(pin "2"
+			(uuid "94c01ad9-4df9-4f4d-ab98-fb2b2aa4c03b")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
+					(reference "R24")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 198.12 68.58 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "aa40df97-b82c-4d2d-a858-e36a1df874e9")
+		(property "Reference" "R36"
+			(at 193.548 67.564 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "30"
+			(at 201.422 67.564 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 198.374 67.564 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 198.12 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 198.12 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "2f288f0d-9276-4f90-94bc-b520121e3b58")
+		)
+		(pin "2"
+			(uuid "b1e7d99b-d2ae-44ea-8182-cb57bb65a1c1")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
+					(reference "R36")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "CustomSymbols:Adafruit_TFT_480x272_Touchscreen")
+		(at 205.74 93.98 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(uuid "ab2182b7-63f0-4eb8-a19f-c4a4d452df78")
 		(property "Reference" "DS1"
-			(at 203.835 91.4978 0)
+			(at 213.995 91.4978 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6461,7 +8157,7 @@
 			)
 		)
 		(property "Value" "CH430WQ12A-T"
-			(at 203.835 93.9221 0)
+			(at 213.995 93.9221 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6470,7 +8166,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 195.58 93.98 0)
+			(at 205.74 93.98 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6479,7 +8175,7 @@
 			)
 		)
 		(property "Datasheet" "https://cdn-shop.adafruit.com/product-files/1591/CH430WQ12A-T+display+diagram.png"
-			(at 198.882 149.86 0)
+			(at 209.042 149.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6488,7 +8184,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 195.58 93.98 0)
+			(at 205.74 93.98 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6617,9 +8313,143 @@
 			(uuid "1befbf72-abd7-4ff7-98fd-55b39acae6aa")
 		)
 		(instances
-			(project ""
+			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
 					(reference "DS1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 198.12 88.9 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "aea6ee09-62b6-4ff7-9cfd-0c21db55bba2")
+		(property "Reference" "R28"
+			(at 193.548 87.884 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "30"
+			(at 201.422 87.884 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 198.374 87.884 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 198.12 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 198.12 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ccaef697-a7cf-4c80-a6c3-f125ddcd4a96")
+		)
+		(pin "2"
+			(uuid "3cae0532-c2cf-4c98-8dc8-8b6f07bc33ee")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
+					(reference "R28")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 198.12 101.6 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "b07745a7-4bdf-44ee-b6ec-5300ea14d2dc")
+		(property "Reference" "R23"
+			(at 193.548 100.584 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "30"
+			(at 201.422 100.584 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 198.374 100.584 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 198.12 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 198.12 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "183b8bdb-701e-4c67-99ef-feffa7f6c0b1")
+		)
+		(pin "2"
+			(uuid "f245cbf2-acff-456a-8eb7-e8c78880025c")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
+					(reference "R23")
 					(unit 1)
 				)
 			)
@@ -6687,6 +8517,207 @@
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
 					(reference "TP3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 198.12 66.04 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "c013eb90-19c3-42d8-972f-cc8a0249d641")
+		(property "Reference" "R37"
+			(at 193.548 65.024 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "30"
+			(at 201.422 65.024 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 198.374 65.024 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 198.12 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 198.12 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "e6a62b52-0327-482c-9804-600c354304ba")
+		)
+		(pin "2"
+			(uuid "d8ee136c-65f1-4ada-9580-6a044e28317e")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
+					(reference "R37")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 198.12 55.88 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "c26bd3fd-3971-42c7-933f-18e27070046f")
+		(property "Reference" "R41"
+			(at 193.548 54.864 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "30"
+			(at 201.422 54.864 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 198.374 54.864 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 198.12 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 198.12 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "384aa81b-c45e-4dce-9ee5-68bd13356ed7")
+		)
+		(pin "2"
+			(uuid "5a2bd8ef-5f5f-4af8-8be4-1e316b3f11a1")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
+					(reference "R41")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 198.12 71.12 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "c2f4c378-8355-494b-a718-8bcf7dbba845")
+		(property "Reference" "R35"
+			(at 193.548 70.104 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "30"
+			(at 201.422 70.104 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 198.374 70.104 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 198.12 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 198.12 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "e6b12037-46dd-49b0-b90d-3e3a37bc9724")
+		)
+		(pin "2"
+			(uuid "5ff2f9d7-079e-47ad-8a63-1e88f70e8f1c")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
+					(reference "R35")
 					(unit 1)
 				)
 			)
@@ -6843,6 +8874,140 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R_US")
+		(at 198.12 91.44 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "db9c357c-c8ef-41ff-a699-83ad941aa2a1")
+		(property "Reference" "R27"
+			(at 193.548 90.424 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "30"
+			(at 201.422 90.424 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 198.374 90.424 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 198.12 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 198.12 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "da059cc5-278a-4b53-ba8a-1240ecfded29")
+		)
+		(pin "2"
+			(uuid "9d6accea-388c-4b79-ac77-2a8dc3c2b74f")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
+					(reference "R27")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 198.12 58.42 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "e126cb9d-e64d-40d2-87e5-ae0ed2f18c85")
+		(property "Reference" "R40"
+			(at 193.548 57.404 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "30"
+			(at 201.422 57.404 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 198.374 57.404 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 198.12 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 198.12 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "21de0966-69af-451e-85f2-8bbd193e44c6")
+		)
+		(pin "2"
+			(uuid "00221b63-ff04-4d18-8557-b3b065162c2e")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
+					(reference "R40")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Connector:TestPoint")
 		(at 266.7 73.66 270)
 		(unit 1)
@@ -6904,6 +9069,73 @@
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
 					(reference "TP8")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 198.12 78.74 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "f54fdcaa-8f5e-4d30-95f6-2ef2882cfa82")
+		(property "Reference" "R32"
+			(at 193.548 77.724 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "30"
+			(at 201.422 77.724 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 198.374 77.724 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 198.12 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 198.12 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "24e41f8b-12e9-4f3d-8c75-3bd67c023939")
+		)
+		(pin "2"
+			(uuid "8ec5e492-d82c-4f08-a3b1-9261a20326c1")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
+					(reference "R32")
 					(unit 1)
 				)
 			)
