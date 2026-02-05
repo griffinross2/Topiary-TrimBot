@@ -3814,16 +3814,6 @@
 	)
 	(wire
 		(pts
-			(xy 134.62 48.26) (xy 134.62 46.99)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4ef0cafb-b68d-4234-9bb9-cad617af2576")
-	)
-	(wire
-		(pts
 			(xy 182.88 87.63) (xy 217.17 87.63)
 		)
 		(stroke
@@ -6911,71 +6901,6 @@
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
 					(reference "R18")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 134.62 48.26 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "20d2eac7-537f-46a3-bf34-096e96910e38")
-		(property "Reference" "#PWR045"
-			(at 134.62 54.61 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 134.62 52.3931 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 134.62 48.26 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 134.62 48.26 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 134.62 48.26 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "58d94292-22cb-4f04-95cc-e7245ed4bd7d")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
-					(reference "#PWR045")
 					(unit 1)
 				)
 			)
@@ -10409,7 +10334,7 @@
 		(dnp no)
 		(uuid "ab2182b7-63f0-4eb8-a19f-c4a4d452df78")
 		(property "Reference" "DS1"
-			(at 236.855 90.2278 90)
+			(at 237.236 89.916 0)
 			(effects
 				(font
 					(size 1.27 1.27)
