@@ -6533,6 +6533,15 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Part_Number" ""
+			(at 82.55 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "2483bdd7-5573-49b1-9678-defa53c038e5")
 		)
@@ -6595,6 +6604,15 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 101.6 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
 			(at 101.6 127 0)
 			(effects
 				(font
@@ -6673,6 +6691,15 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Part_Number" ""
+			(at 266.7 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "2d1becb8-f83b-46c5-812d-0bce22bc1a6c")
 		)
@@ -6732,6 +6759,15 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 77.47 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
 			(at 77.47 81.28 0)
 			(effects
 				(font
@@ -6810,6 +6846,15 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Part_Number" ""
+			(at 266.7 53.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "39cc84c8-1df9-406a-9e5a-1089829723bd")
 		)
@@ -6866,6 +6911,15 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 220.98 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
 			(at 220.98 86.36 0)
 			(effects
 				(font
@@ -7007,6 +7061,15 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Part_Number" ""
+			(at 120.65 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "82969aef-b186-497a-b5ea-58f946cf4199")
 		)
@@ -7140,6 +7203,15 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Part_Number" ""
+			(at 220.98 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "eb21685b-4bb2-4a8a-a6ef-f8d51f3a9cb0")
 		)
@@ -7199,6 +7271,15 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 220.98 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
 			(at 220.98 129.54 0)
 			(effects
 				(font
@@ -7274,6 +7355,15 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Part_Number" ""
+			(at 220.98 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "a6cee234-8987-472e-8f13-a2c690b6892c")
 		)
@@ -7333,6 +7423,15 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 220.98 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
 			(at 220.98 127 0)
 			(effects
 				(font
@@ -7476,6 +7575,15 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Part_Number" ""
+			(at 138.43 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "eba1f287-547c-4135-95c9-5c02d04ad760")
 		)
@@ -7535,6 +7643,15 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 220.98 106.68 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
 			(at 220.98 106.68 0)
 			(effects
 				(font
@@ -7611,6 +7728,15 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Part_Number" ""
+			(at 193.04 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "b86935aa-6303-412a-8d26-2f08b897f8d4")
 		)
@@ -7676,6 +7802,15 @@
 			)
 		)
 		(property "Description" "test point"
+			(at 266.7 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
 			(at 266.7 38.1 0)
 			(effects
 				(font
@@ -7809,6 +7944,15 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 52.07 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
 			(at 52.07 49.53 0)
 			(effects
 				(font
@@ -7953,6 +8097,15 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Part_Number" ""
+			(at 40.64 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "491fe099-25d7-414b-9dc6-bc604bf8d2a6")
 		)
@@ -7986,7 +8139,7 @@
 				)
 			)
 		)
-		(property "Value" "B280-13-F"
+		(property "Value" ">1A"
 			(at 101.9175 52.07 0)
 			(effects
 				(font
@@ -8013,6 +8166,15 @@
 			)
 		)
 		(property "Description" "Schottky diode"
+			(at 101.6 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "B280-13-F"
 			(at 101.6 55.88 0)
 			(effects
 				(font
@@ -8156,6 +8318,15 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Part_Number" ""
+			(at 266.7 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "aec669f5-d9c5-49b3-9abe-5ebf0049189d")
 		)
@@ -8277,6 +8448,15 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 220.98 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
 			(at 220.98 114.3 0)
 			(effects
 				(font
@@ -8410,6 +8590,15 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 220.98 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
 			(at 220.98 73.66 0)
 			(effects
 				(font
@@ -8619,6 +8808,15 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Part_Number" "TSC2013QRSARQ1"
+			(at 121.92 200.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "10"
 			(uuid "47d8cf7b-d7e0-4d17-88c4-39bd46c17698")
 		)
@@ -8720,6 +8918,15 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 220.98 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
 			(at 220.98 96.52 0)
 			(effects
 				(font
@@ -8863,6 +9070,15 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Part_Number" ""
+			(at 266.7 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "032370d2-7a85-40b3-a3c7-5cfcbac7b15d")
 		)
@@ -8919,6 +9135,15 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 220.98 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
 			(at 220.98 93.98 0)
 			(effects
 				(font
@@ -8990,6 +9215,15 @@
 		)
 		(property "Description" "65V 1A Boost/Buck-Boost LED Driver with PWM/Analog Dimming"
 			(at 67.31 94.996 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "TPS923650"
+			(at 66.04 67.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9147,6 +9381,15 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Part_Number" ""
+			(at 220.98 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "bcf85f9c-06a1-4fa2-9268-3b860c9cdffe")
 		)
@@ -9207,6 +9450,15 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 124.46 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
 			(at 124.46 66.04 0)
 			(effects
 				(font
@@ -9282,6 +9534,15 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Part_Number" ""
+			(at 220.98 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "38a3b6c8-e999-4ca7-98fe-580de802fbc4")
 		)
@@ -9344,6 +9605,15 @@
 			)
 		)
 		(property "Description" "test point"
+			(at 266.7 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
 			(at 266.7 43.18 0)
 			(effects
 				(font
@@ -9476,6 +9746,15 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 67.31 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
 			(at 67.31 133.35 0)
 			(effects
 				(font
@@ -9621,6 +9900,15 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Part_Number" ""
+			(at 161.29 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "eae71be1-f2b6-4690-8aa6-1510231e6c9b")
 		)
@@ -9680,6 +9968,15 @@
 			)
 		)
 		(property "Description" "Jumper, 3-pole, both open"
+			(at 193.04 35.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
 			(at 193.04 35.56 0)
 			(effects
 				(font
@@ -9889,6 +10186,15 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Part_Number" ""
+			(at 220.98 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "d8b9fe49-6d36-4942-a054-c78f7315e185")
 		)
@@ -9948,6 +10254,15 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 220.98 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
 			(at 220.98 134.62 0)
 			(effects
 				(font
@@ -10023,6 +10338,15 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Part_Number" ""
+			(at 220.98 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "dce0df55-0303-4ac6-8589-28e00a15f2dd")
 		)
@@ -10082,6 +10406,15 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 220.98 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
 			(at 220.98 116.84 0)
 			(effects
 				(font
@@ -10225,6 +10558,15 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Part_Number" ""
+			(at 115.57 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "a78eec35-56a6-423c-b585-03e90baacf85")
 		)
@@ -10292,6 +10634,15 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Part_Number" ""
+			(at 220.98 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "2eaecceb-0f83-400a-ab2c-8a0bac4034a6")
 		)
@@ -10351,6 +10702,15 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 220.98 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
 			(at 220.98 63.5 0)
 			(effects
 				(font
@@ -10429,6 +10789,15 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Part_Number" ""
+			(at 74.93 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "207ae115-9498-41ce-bbea-66008a465fa2")
 		)
@@ -10491,6 +10860,15 @@
 			)
 		)
 		(property "Description" "test point"
+			(at 266.7 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
 			(at 266.7 63.5 0)
 			(effects
 				(font
@@ -10563,6 +10941,15 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Part_Number" ""
+			(at 220.98 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "53a4753f-4b19-424e-93e0-3ca56a5cdf8d")
 		)
@@ -10623,6 +11010,15 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 124.46 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
 			(at 124.46 55.88 0)
 			(effects
 				(font
@@ -10763,6 +11159,15 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Part_Number" ""
+			(at 220.98 109.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "46305edc-18e5-4ba4-9c6b-4e7c03183207")
 		)
@@ -10825,6 +11230,15 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 29.21 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
 			(at 29.21 49.53 0)
 			(effects
 				(font
@@ -10900,6 +11314,15 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Part_Number" ""
+			(at 220.98 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "2f288f0d-9276-4f90-94bc-b520121e3b58")
 		)
@@ -10933,7 +11356,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "FH12-40S-0.5SH(55)"
+		(property "Value" "40pin Adafruit LCD"
 			(at 236.855 104.0821 0)
 			(effects
 				(font
@@ -10961,6 +11384,15 @@
 			)
 		)
 		(property "Description" ""
+			(at 228.6 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "FH12-40S-0.5SH(55)"
 			(at 228.6 104.14 0)
 			(effects
 				(font
@@ -11150,6 +11582,15 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Part_Number" ""
+			(at 220.98 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "ccaef697-a7cf-4c80-a6c3-f125ddcd4a96")
 		)
@@ -11209,6 +11650,15 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 220.98 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
 			(at 220.98 111.76 0)
 			(effects
 				(font
@@ -11277,6 +11727,15 @@
 			)
 		)
 		(property "Description" "Jumper, 2-pole, open"
+			(at 139.7 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
 			(at 139.7 66.04 0)
 			(effects
 				(font
@@ -11355,6 +11814,15 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Part_Number" ""
+			(at 90.17 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "09b9c5d7-26d7-4db4-8735-b5c53fb9a574")
 		)
@@ -11425,6 +11893,15 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Part_Number" ""
+			(at 266.7 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "3e63b2c1-f8b1-45c3-b6ae-60c29297faf3")
 		)
@@ -11481,6 +11958,15 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 220.98 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
 			(at 220.98 76.2 0)
 			(effects
 				(font
@@ -11556,6 +12042,15 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Part_Number" ""
+			(at 220.98 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "384aa81b-c45e-4dce-9ee5-68bd13356ed7")
 		)
@@ -11590,7 +12085,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "33u, SRR1208-330YL"
+		(property "Value" "33u"
 			(at 83.82 50.7999 0)
 			(effects
 				(font
@@ -11618,6 +12113,15 @@
 			)
 		)
 		(property "Description" "Inductor"
+			(at 82.55 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "SRR1208-330YL"
 			(at 82.55 49.53 0)
 			(effects
 				(font
@@ -11685,6 +12189,15 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 220.98 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
 			(at 220.98 81.28 0)
 			(effects
 				(font
@@ -11762,6 +12275,15 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Part_Number" ""
+			(at 77.47 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "37e0ffd6-f05d-4ef5-a3f3-dcdd307c9dfc")
 		)
@@ -11822,6 +12344,15 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 105.41 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
 			(at 105.41 76.2 0)
 			(effects
 				(font
@@ -11891,6 +12422,15 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 29.21 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
 			(at 29.21 67.31 0)
 			(effects
 				(font
@@ -11969,6 +12509,15 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Part_Number" ""
+			(at 90.17 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "079a6651-6d8f-4da5-bf20-d3530795e869")
 		)
@@ -12030,6 +12579,15 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 91.44 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
 			(at 91.44 71.12 0)
 			(effects
 				(font
@@ -12105,6 +12663,15 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Part_Number" ""
+			(at 220.98 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "da059cc5-278a-4b53-ba8a-1240ecfded29")
 		)
@@ -12164,6 +12731,15 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 220.98 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
 			(at 220.98 68.58 0)
 			(effects
 				(font
@@ -12307,6 +12883,15 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Part_Number" ""
+			(at 266.7 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "dd3f6aac-49c0-4525-b65b-c45ce35639cf")
 		)
@@ -12366,6 +12951,15 @@
 			)
 		)
 		(property "Description" "test point"
+			(at 266.7 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
 			(at 266.7 93.98 0)
 			(effects
 				(font
@@ -12469,7 +13063,7 @@
 				)
 			)
 		)
-		(property "Value" "100 2W, AC05000001000JAC00"
+		(property "Value" "100 2W"
 			(at 207.264 23.622 90)
 			(effects
 				(font
@@ -12496,6 +13090,15 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 203.2 26.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "AC05000001000JAC00"
 			(at 203.2 26.67 0)
 			(effects
 				(font
@@ -12574,6 +13177,15 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Part_Number" ""
+			(at 149.86 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "91077721-0b4d-469e-8786-34152ee111e8")
 		)
@@ -12633,6 +13245,15 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 220.98 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
 			(at 220.98 88.9 0)
 			(effects
 				(font
@@ -12711,6 +13332,15 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Part_Number" ""
+			(at 266.7 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "e9d07c44-71ae-4417-9c20-52f923ad295d")
 		)
@@ -12770,6 +13400,15 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 110.49 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
 			(at 110.49 127 0)
 			(effects
 				(font
@@ -12840,6 +13479,15 @@
 			)
 		)
 		(property "Description" "test point"
+			(at 266.7 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
 			(at 266.7 78.74 0)
 			(effects
 				(font
