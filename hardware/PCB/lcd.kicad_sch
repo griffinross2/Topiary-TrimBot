@@ -10514,7 +10514,7 @@
 		(fields_autoplaced yes)
 		(uuid "8e27d479-ad4b-4944-a0e6-463bee569dae")
 		(property "Reference" "C55"
-			(at 119.38 69.8499 0)
+			(at 118.491 69.9078 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10522,8 +10522,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100n"
-			(at 119.38 72.3899 0)
+		(property "Value" "1u"
+			(at 118.491 72.3321 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12551,7 +12551,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1u"
+		(property "Value" "1n"
 			(at 95.25 72.3899 0)
 			(effects
 				(font
