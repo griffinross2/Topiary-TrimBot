@@ -150,7 +150,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" ""
+			(property "Description" "4.3\" TFT 480x272 RGB with Resistive Touchscreen"
 				(at 0 0 0)
 				(effects
 					(font
@@ -171,7 +171,7 @@
 						(type background)
 					)
 				)
-				(pin power_in line
+				(pin passive line
 					(at -2.54 50.8 0)
 					(length 2.54)
 					(name "VLED-"
@@ -189,7 +189,7 @@
 						)
 					)
 				)
-				(pin power_in line
+				(pin passive line
 					(at -2.54 48.26 0)
 					(length 2.54)
 					(name "VLED+"
@@ -693,7 +693,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin input clock
 					(at -2.54 -22.86 0)
 					(length 2.54)
 					(name "PCLK"
@@ -899,7 +899,7 @@
 			(in_bom yes)
 			(on_board yes)
 			(property "Reference" "U"
-				(at 0 -24.13 0)
+				(at 8.128 13.97 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -907,24 +907,15 @@
 				)
 			)
 			(property "Value" "TPS923650"
-				(at 0 -22.098 0)
+				(at 8.636 10.922 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
 				)
 			)
-			(property "Footprint" "Package_SO:Texas_DGN0008B_VSSOP-8-1EP_3x3mm_P0.65mm_EP2x3mm_Mask1.88x1.98mm"
-				(at -0.762 -27.432 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "https://www.ti.com/lit/ds/symlink/tps923650.pdf?ts=1770010181159&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FTPS923650"
-				(at 4.318 -27.686 0)
+			(property "Footprint" "Package_SO:HVSSOP-8-1EP_3x3mm_P0.65mm_EP1.57x1.89mm"
+				(at -0.254 -24.892 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -932,8 +923,17 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "65V 1A Boost/Buck-Boost LED Driver with PWM/Analog Dimming"
-				(at 1.27 -27.686 0)
+			(property "Datasheet" "https://www.ti.com/lit/ds/symlink/tps923650.pdf?ts=1770433717174&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FTPS923650"
+				(at 0.254 -22.098 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "65V 1A Boost/Buck-Boost LED Driver with PWM Dimming"
+				(at -0.254 -27.432 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -953,7 +953,7 @@
 						(type background)
 					)
 				)
-				(pin power_in line
+				(pin passive line
 					(at -10.16 3.81 0)
 					(length 2.54)
 					(name "VCC"
@@ -1231,7 +1231,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin input clock
 					(at -17.78 45.72 0)
 					(length 2.54)
 					(name "SCL"
@@ -1303,7 +1303,7 @@
 						)
 					)
 				)
-				(pin power_in line
+				(pin passive line
 					(at -2.54 35.56 90)
 					(length 2.54)
 					(name "SNSGND"
@@ -6942,7 +6942,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "0a946be7-4a1e-45de-b598-4694bee24502")
-		(property "Reference" "#PWR044"
+		(property "Reference" "#PWR0157"
 			(at 29.21 62.23 0)
 			(effects
 				(font
@@ -6992,7 +6992,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
-					(reference "#PWR044")
+					(reference "#PWR0157")
 					(unit 1)
 				)
 			)
@@ -9185,7 +9185,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_SO:Texas_DGN0008B_VSSOP-8-1EP_3x3mm_P0.65mm_EP2x3mm_Mask1.88x1.98mm"
+		(property "Footprint" "Package_SO:HVSSOP-8-1EP_3x3mm_P0.65mm_EP1.57x1.89mm"
 			(at 65.278 94.742 0)
 			(effects
 				(font
@@ -9194,7 +9194,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/tps923650.pdf?ts=1770010181159&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FTPS923650"
+		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/tps923650.pdf?ts=1770433717174&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FTPS923650"
 			(at 70.358 94.996 0)
 			(effects
 				(font
@@ -9203,7 +9203,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "65V 1A Boost/Buck-Boost LED Driver with PWM/Analog Dimming"
+		(property "Description" "65V 1A Boost/Buck-Boost LED Driver with PWM Dimming"
 			(at 67.31 94.996 0)
 			(effects
 				(font
@@ -9263,7 +9263,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "6d6044c8-de63-48dc-8b8c-1efa013b3cde")
-		(property "Reference" "#PWR043"
+		(property "Reference" "#PWR0158"
 			(at 29.21 77.47 0)
 			(effects
 				(font
@@ -9313,7 +9313,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
-					(reference "#PWR043")
+					(reference "#PWR0158")
 					(unit 1)
 				)
 			)
@@ -11364,7 +11364,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.hirose.com/product/document?clcode=&productname=&series=FH12&documenttype=Catalog&lang=en&documentid=D31648_en"
+		(property "Datasheet" "https://cdn-shop.adafruit.com/product-files/1591/CH430WQ12A-T+display+diagram.png"
 			(at 231.902 160.02 0)
 			(effects
 				(font
@@ -11373,7 +11373,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "4.3\" TFT 480x272 RGB with Resistive Touchscreen"
 			(at 228.6 104.14 0)
 			(effects
 				(font
@@ -12762,7 +12762,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "e1294242-420b-47df-a9ce-8d478029531c")
-		(property "Reference" "#PWR046"
+		(property "Reference" "#PWR0159"
 			(at 213.36 33.02 0)
 			(effects
 				(font
@@ -12812,7 +12812,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
-					(reference "#PWR046")
+					(reference "#PWR0159")
 					(unit 1)
 				)
 			)
@@ -12980,7 +12980,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ef17c94c-4e8f-4b16-aaa9-384b7144207f")
-		(property "Reference" "#PWR045"
+		(property "Reference" "#PWR0160"
 			(at 186.69 62.23 0)
 			(effects
 				(font
@@ -13030,7 +13030,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
-					(reference "#PWR045")
+					(reference "#PWR0160")
 					(unit 1)
 				)
 			)
