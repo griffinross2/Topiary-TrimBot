@@ -577,7 +577,7 @@
           "group_by": false,
           "label": "MANUFACTURER",
           "name": "MANUFACTURER",
-          "show": false
+          "show": true
         },
         {
           "group_by": false,
