@@ -103,7 +103,7 @@
 	)
 	(text "Raspberry Pi"
 		(exclude_from_sim no)
-		(at 146.812 118.11 0)
+		(at 146.812 116.84 0)
 		(effects
 			(font
 				(size 3 3)
@@ -113,7 +113,7 @@
 	)
 	(text "Mechanical Components"
 		(exclude_from_sim no)
-		(at 61.976 150.622 0)
+		(at 61.976 149.352 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -123,7 +123,7 @@
 	)
 	(text "Power"
 		(exclude_from_sim no)
-		(at 81.28 74.422 0)
+		(at 81.28 73.152 0)
 		(effects
 			(font
 				(size 3 3)
@@ -133,7 +133,7 @@
 	)
 	(text "Storage"
 		(exclude_from_sim no)
-		(at 214.376 74.422 0)
+		(at 213.106 73.152 0)
 		(effects
 			(font
 				(size 4 4)
@@ -143,7 +143,7 @@
 	)
 	(text "Motor Control"
 		(exclude_from_sim no)
-		(at 81.28 118.364 0)
+		(at 81.28 117.094 0)
 		(effects
 			(font
 				(size 3 3)
@@ -153,7 +153,7 @@
 	)
 	(text "MCU"
 		(exclude_from_sim no)
-		(at 146.05 74.676 0)
+		(at 146.05 73.406 0)
 		(effects
 			(font
 				(size 3 3)
@@ -163,7 +163,7 @@
 	)
 	(text "LCD"
 		(exclude_from_sim no)
-		(at 214.63 119.126 0)
+		(at 213.36 117.856 0)
 		(effects
 			(font
 				(size 3 3)
@@ -438,7 +438,7 @@
 		)
 	)
 	(sheet
-		(at 189.23 59.69)
+		(at 187.96 58.42)
 		(size 50.8 30.48)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -453,7 +453,7 @@
 		)
 		(uuid "5e1a5ae0-b63d-4e63-8db3-55a7cc5df283")
 		(property "Sheetname" "Storage"
-			(at 189.23 57.404 0)
+			(at 187.96 56.134 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -462,7 +462,7 @@
 			)
 		)
 		(property "Sheetfile" "storage.kicad_sch"
-			(at 189.23 90.7546 0)
+			(at 187.96 89.4846 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -471,7 +471,7 @@
 			)
 		)
 		(property "Field2" ""
-			(at 189.23 59.69 0)
+			(at 187.96 58.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -487,7 +487,7 @@
 		)
 	)
 	(sheet
-		(at 57.15 104.14)
+		(at 57.15 102.87)
 		(size 49.53 29.21)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -503,7 +503,7 @@
 		)
 		(uuid "60c25ff0-1584-491b-871e-d697acc05978")
 		(property "Sheetname" "Motor Control"
-			(at 57.15 103.4284 0)
+			(at 57.15 102.1584 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -512,7 +512,7 @@
 			)
 		)
 		(property "Sheetfile" "motor.kicad_sch"
-			(at 57.15 133.9346 0)
+			(at 57.15 132.6646 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -529,7 +529,7 @@
 		)
 	)
 	(sheet
-		(at 121.92 59.69)
+		(at 121.92 58.42)
 		(size 50.8 30.48)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -545,7 +545,7 @@
 		)
 		(uuid "85803a25-8176-4fac-b186-52d9676cab71")
 		(property "Sheetname" "MCU"
-			(at 121.92 58.9784 0)
+			(at 121.92 57.7084 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -554,7 +554,7 @@
 			)
 		)
 		(property "Sheetfile" "mcu.kicad_sch"
-			(at 121.92 90.7546 0)
+			(at 121.92 89.4846 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -563,7 +563,7 @@
 			)
 		)
 		(property "Field2" ""
-			(at 121.92 59.69 0)
+			(at 121.92 58.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -579,7 +579,7 @@
 		)
 	)
 	(sheet
-		(at 57.15 59.69)
+		(at 57.15 58.42)
 		(size 49.53 30.48)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -595,7 +595,7 @@
 		)
 		(uuid "b9dd42db-ce69-476f-af46-2e9dff9090cd")
 		(property "Sheetname" "Power"
-			(at 57.15 58.9784 0)
+			(at 57.15 57.7084 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -604,7 +604,7 @@
 			)
 		)
 		(property "Sheetfile" "power.kicad_sch"
-			(at 57.15 90.7546 0)
+			(at 57.15 89.4846 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -613,7 +613,7 @@
 			)
 		)
 		(property "Field2" ""
-			(at 57.15 59.69 0)
+			(at 57.15 58.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -629,7 +629,7 @@
 		)
 	)
 	(sheet
-		(at 121.92 104.14)
+		(at 121.92 102.87)
 		(size 50.8 29.21)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -645,7 +645,7 @@
 		)
 		(uuid "c95f1fc4-1ba1-4ddd-af2e-ed3477b5512d")
 		(property "Sheetname" "Raspberry Pi"
-			(at 121.92 103.4284 0)
+			(at 121.92 102.1584 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -654,7 +654,7 @@
 			)
 		)
 		(property "Sheetfile" "rpi.kicad_sch"
-			(at 121.92 133.9346 0)
+			(at 121.92 132.6646 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -663,7 +663,7 @@
 			)
 		)
 		(property "Field2" ""
-			(at 121.92 104.14 0)
+			(at 121.92 102.87 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -679,7 +679,7 @@
 		)
 	)
 	(sheet
-		(at 189.23 104.14)
+		(at 187.96 102.87)
 		(size 50.8 29.21)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -695,7 +695,7 @@
 		)
 		(uuid "e982bc10-c57a-42ac-b92d-a536dd69a0fd")
 		(property "Sheetname" "LCD"
-			(at 189.23 103.4284 0)
+			(at 187.96 102.1584 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -704,7 +704,7 @@
 			)
 		)
 		(property "Sheetfile" "lcd.kicad_sch"
-			(at 189.23 133.9346 0)
+			(at 187.96 132.6646 0)
 			(effects
 				(font
 					(size 1.27 1.27)
