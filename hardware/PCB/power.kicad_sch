@@ -7942,6 +7942,15 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Texas Instruments"
+			(at 194.31 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "7"
 			(uuid "85d91305-4749-467f-8c4d-9cc7b67cddff")
 		)
@@ -9976,7 +9985,8 @@
 	)
 	(symbol
 		(lib_id "Device:R_Potentiometer_Trim_US")
-		(at 90.17 147.32 180)
+		(at 90.17 147.32 0)
+		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -9984,7 +9994,7 @@
 		(dnp no)
 		(uuid "8ae006e5-14f8-4f7c-8619-324b901351e7")
 		(property "Reference" "RV?"
-			(at 92.202 146.304 0)
+			(at 91.694 146.812 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9993,7 +10003,7 @@
 			)
 		)
 		(property "Value" "200k"
-			(at 91.44 147.828 0)
+			(at 91.44 148.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10010,7 +10020,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.bourns.com/docs/Product-Datasheets/3362.pdf"
 			(at 90.17 147.32 0)
 			(effects
 				(font
@@ -10020,6 +10030,24 @@
 			)
 		)
 		(property "Description" "Trim-potentiometer, US symbol"
+			(at 90.17 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Bourns"
+			(at 90.17 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "3362P-1-204LF"
 			(at 90.17 147.32 0)
 			(effects
 				(font
@@ -10040,12 +10068,6 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/b9dd42db-ce69-476f-af46-2e9dff9090cd"
-					(reference "RV?")
-					(unit 1)
-				)
-			)
-			(project ""
-				(path "/288cd01c-b1d5-44ca-91a2-b9192151afef"
 					(reference "RV?")
 					(unit 1)
 				)
@@ -11950,6 +11972,15 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Texas Instruments"
+			(at 196.85 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "ea00d4a9-9921-44de-815d-9942a292eb17")
 		)
@@ -12244,6 +12275,15 @@
 			)
 		)
 		(property "Description" "3A non-isolated switching regulator power module, 7-36V input voltage, 2.5-12.6V output voltage, EUW-7"
+			(at 193.04 148.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Texas Instruments"
 			(at 193.04 148.59 0)
 			(effects
 				(font
