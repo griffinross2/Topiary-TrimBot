@@ -2210,6 +2210,189 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Device:LED"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "D"
+				(at 0 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "LED"
+				(at 0 -2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Light emitting diode"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Sim.Pins" "1=K 2=A"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "LED diode"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "LED* LED_SMD:* LED_THT:*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "LED_0_1"
+				(polyline
+					(pts
+						(xy -3.048 -0.762) (xy -4.572 -2.286) (xy -3.81 -2.286) (xy -4.572 -2.286) (xy -4.572 -1.524)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.778 -0.762) (xy -3.302 -2.286) (xy -2.54 -2.286) (xy -3.302 -2.286) (xy -3.302 -1.524)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.27 0) (xy 1.27 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.27 -1.27) (xy -1.27 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 -1.27) (xy 1.27 1.27) (xy -1.27 0) (xy 1.27 -1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "LED_1_1"
+				(pin passive line
+					(at -3.81 0 0)
+					(length 2.54)
+					(name "K"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 3.81 0 180)
+					(length 2.54)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Device:R_US"
 			(pin_numbers
 				(hide yes)
@@ -7331,9 +7514,9 @@
 		)
 		(uuid "0e8cabfa-63a8-4edb-9384-76bf11ad20c3")
 	)
-	(text "Battery Decoupling"
+	(text "VBAT Decoupling"
 		(exclude_from_sim no)
-		(at 94.234 41.656 0)
+		(at 92.964 41.656 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7648,6 +7831,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "542ea56f-f71b-4f8a-95b3-ebfc6fdb78d8")
+	)
+	(junction
+		(at 39.37 104.14)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "54fa650c-84cc-40c3-87cd-2861431b342f")
 	)
 	(junction
 		(at 180.34 34.29)
@@ -8014,36 +8203,160 @@
 		(uuid "1654d317-a30d-4706-aa71-daa36b1c620f")
 	)
 	(no_connect
-		(at 29.21 111.76)
-		(uuid "18d841dc-c5a5-4d4d-80e8-96da1219cdf6")
+		(at 246.38 199.39)
+		(uuid "27ff3959-b4bb-40db-8944-c80c261a630e")
+	)
+	(no_connect
+		(at 284.48 254)
+		(uuid "30b44270-2100-4e83-90f2-e32fcf4237c3")
+	)
+	(no_connect
+		(at 246.38 176.53)
+		(uuid "33d0ad76-1ef1-4f7e-841e-ba05c0f7b351")
 	)
 	(no_connect
 		(at 271.78 251.46)
 		(uuid "3b96949a-2ec8-41eb-a404-3e830aac4cfe")
 	)
 	(no_connect
+		(at 246.38 194.31)
+		(uuid "3c45f1fc-0ce7-499a-9c21-3a0f6e93e103")
+	)
+	(no_connect
+		(at 246.38 85.09)
+		(uuid "3e70672f-5b3e-448c-88f7-753b37724025")
+	)
+	(no_connect
+		(at 149.86 179.07)
+		(uuid "465daf94-0886-464f-9c7d-1d4c5871d9c6")
+	)
+	(no_connect
 		(at 149.86 77.47)
 		(uuid "468a1c00-7923-4740-8f64-deb169f096ee")
+	)
+	(no_connect
+		(at 246.38 204.47)
+		(uuid "52f7d6e7-cbad-4801-b364-2e927eaea1cf")
+	)
+	(no_connect
+		(at 246.38 64.77)
+		(uuid "5eaab54d-3f82-47f1-a6f2-288d3cb6fc58")
+	)
+	(no_connect
+		(at 149.86 186.69)
+		(uuid "68c96e4f-dc43-48c5-a14c-7f404c825266")
+	)
+	(no_connect
+		(at 246.38 143.51)
+		(uuid "6d61ea9f-ad0d-448c-900f-d188d879a89a")
+	)
+	(no_connect
+		(at 246.38 196.85)
+		(uuid "6f1fa891-1a5c-4b67-ab2b-7df0ebecfdbe")
+	)
+	(no_connect
+		(at 246.38 166.37)
+		(uuid "77f22678-ec35-421c-8321-4848501c2417")
+	)
+	(no_connect
+		(at 246.38 140.97)
+		(uuid "823ae5a8-20e5-46e4-96f4-3d48f3975a37")
+	)
+	(no_connect
+		(at 149.86 212.09)
+		(uuid "847c92b9-4471-4906-8d7e-56d4d4960cf4")
+	)
+	(no_connect
+		(at 149.86 168.91)
+		(uuid "86feb85a-4fbf-4261-a7d9-f6a8c58c8a11")
 	)
 	(no_connect
 		(at 149.86 74.93)
 		(uuid "88bb125e-b7ec-453b-9860-bac5c439b405")
 	)
 	(no_connect
+		(at 149.86 110.49)
+		(uuid "8937f0c4-a6d0-42b4-a6ed-77ecadf40b64")
+	)
+	(no_connect
+		(at 246.38 128.27)
+		(uuid "95261a5b-3255-4d14-b741-aab6cf7c30bb")
+	)
+	(no_connect
+		(at 149.86 181.61)
+		(uuid "95c33044-bb71-4189-9685-65fe88557014")
+	)
+	(no_connect
+		(at 246.38 135.89)
+		(uuid "9aa62a0b-c14c-40a1-8da2-e56e574ed933")
+	)
+	(no_connect
 		(at 149.86 80.01)
 		(uuid "9cdd1f3d-fea4-4f96-9852-7a6fbed6f502")
+	)
+	(no_connect
+		(at 246.38 123.19)
+		(uuid "9eaa78b0-4c89-44aa-9101-ad06376d3f5a")
+	)
+	(no_connect
+		(at 149.86 153.67)
+		(uuid "9ebd0d5c-9ab6-44ca-97ed-1d7569fdafc7")
+	)
+	(no_connect
+		(at 149.86 143.51)
+		(uuid "a03e031d-dc55-4084-a861-f192a7b25c77")
+	)
+	(no_connect
+		(at 149.86 166.37)
+		(uuid "a14c0534-87fc-4ca7-83b9-2b5bb2ee2bf0")
+	)
+	(no_connect
+		(at 149.86 95.25)
+		(uuid "b2af8e9f-02ae-4c40-b780-4da3f3c1943e")
+	)
+	(no_connect
+		(at 246.38 189.23)
+		(uuid "b6bfd030-a257-401c-aa2d-32e699242640")
+	)
+	(no_connect
+		(at 149.86 163.83)
+		(uuid "bc258194-f1ee-40e8-9f5d-c1ae95467394")
 	)
 	(no_connect
 		(at 271.78 256.54)
 		(uuid "bd85686a-572d-4f73-8fd0-7cf6dea6d3be")
 	)
 	(no_connect
+		(at 246.38 146.05)
+		(uuid "c40bb3f1-7d3e-4d94-932d-a039bafc1760")
+	)
+	(no_connect
+		(at 246.38 184.15)
+		(uuid "c450137b-f408-48e0-bd64-2b161c82e75f")
+	)
+	(no_connect
 		(at 341.63 214.63)
 		(uuid "c909b6e0-5d61-4204-a7ea-9b4e830a1c3c")
 	)
 	(no_connect
+		(at 246.38 138.43)
+		(uuid "cb536fa4-b0ef-4086-b760-3932bb62f2d5")
+	)
+	(no_connect
 		(at 149.86 87.63)
 		(uuid "cfb65538-cba1-4128-9e74-5050bf4f938d")
+	)
+	(no_connect
+		(at 246.38 80.01)
+		(uuid "d3dab657-b3b1-4306-a31d-4dccad215246")
+	)
+	(no_connect
+		(at 149.86 92.71)
+		(uuid "d4956990-dcb6-4cea-b625-9a3c8226963a")
+	)
+	(no_connect
+		(at 246.38 82.55)
+		(uuid "d8a793a4-aaab-4bc4-a5fc-0f092b593b54")
 	)
 	(no_connect
 		(at 149.86 57.15)
@@ -8054,8 +8367,20 @@
 		(uuid "df3f8b42-9581-4697-965c-ff8b1736a9cb")
 	)
 	(no_connect
+		(at 149.86 148.59)
+		(uuid "eb619b69-38a1-4114-bf51-9ba38469006c")
+	)
+	(no_connect
+		(at 246.38 186.69)
+		(uuid "f37cde8d-049f-4d0f-b552-62a7da4e52bc")
+	)
+	(no_connect
 		(at 341.63 212.09)
 		(uuid "fbe536cd-f3ea-4c22-bcf4-e9388e235fc8")
+	)
+	(no_connect
+		(at 246.38 67.31)
+		(uuid "fc0082e6-5e1e-4c5f-b6f4-124dffd115d4")
 	)
 	(no_connect
 		(at 149.86 72.39)
@@ -8346,6 +8671,16 @@
 			(type default)
 		)
 		(uuid "059e4e13-ea08-43af-a8ed-3f6f32b197e1")
+	)
+	(wire
+		(pts
+			(xy 93.98 142.24) (xy 93.98 147.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "07d05089-dd20-481c-91ca-8af3cfd4af4b")
 	)
 	(bus
 		(pts
@@ -8749,7 +9084,7 @@
 	)
 	(wire
 		(pts
-			(xy 138.43 59.69) (xy 149.86 59.69)
+			(xy 134.62 59.69) (xy 149.86 59.69)
 		)
 		(stroke
 			(width 0)
@@ -8859,6 +9194,16 @@
 	)
 	(wire
 		(pts
+			(xy 116.84 130.81) (xy 149.86 130.81)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2bebd5ee-0293-403a-b246-0cc93cda77f3")
+	)
+	(wire
+		(pts
 			(xy 57.15 58.42) (xy 69.85 58.42)
 		)
 		(stroke
@@ -8886,6 +9231,16 @@
 			(type default)
 		)
 		(uuid "2ee48ab1-a4f9-403b-baa3-4ef016bdd801")
+	)
+	(wire
+		(pts
+			(xy 116.84 134.62) (xy 116.84 130.81)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2f8d5462-4d63-4e5c-9a79-8c2aa55d1e36")
 	)
 	(wire
 		(pts
@@ -9189,6 +9544,16 @@
 	)
 	(wire
 		(pts
+			(xy 101.6 142.24) (xy 101.6 147.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3fc02ddc-779d-4278-a173-7c3242dd78fc")
+	)
+	(wire
+		(pts
 			(xy 44.45 149.86) (xy 63.5 149.86)
 		)
 		(stroke
@@ -9279,6 +9644,16 @@
 	)
 	(wire
 		(pts
+			(xy 101.6 134.62) (xy 101.6 120.65)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "455fe877-f1fc-425a-8af9-ec2052a163aa")
+	)
+	(wire
+		(pts
 			(xy 334.01 124.46) (xy 351.79 124.46)
 		)
 		(stroke
@@ -9356,6 +9731,16 @@
 			(type default)
 		)
 		(uuid "4c4bb305-9eaf-4356-a6fb-3a36273c3451")
+	)
+	(wire
+		(pts
+			(xy 93.98 118.11) (xy 149.86 118.11)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4cbca742-8dd8-4eb1-a1ea-79018a8e7552")
 	)
 	(wire
 		(pts
@@ -9629,7 +10014,7 @@
 	)
 	(wire
 		(pts
-			(xy 133.35 64.77) (xy 149.86 64.77)
+			(xy 129.54 64.77) (xy 149.86 64.77)
 		)
 		(stroke
 			(width 0)
@@ -9639,7 +10024,7 @@
 	)
 	(wire
 		(pts
-			(xy 138.43 85.09) (xy 149.86 85.09)
+			(xy 134.62 85.09) (xy 149.86 85.09)
 		)
 		(stroke
 			(width 0)
@@ -9656,6 +10041,16 @@
 			(type default)
 		)
 		(uuid "5f6478e2-cc0c-46f6-976c-34b7e26557aa")
+	)
+	(wire
+		(pts
+			(xy 109.22 134.62) (xy 109.22 123.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "60aadeae-3764-4d49-8d6b-cd94366f4752")
 	)
 	(wire
 		(pts
@@ -9719,7 +10114,7 @@
 	)
 	(wire
 		(pts
-			(xy 138.43 67.31) (xy 149.86 67.31)
+			(xy 129.54 67.31) (xy 149.86 67.31)
 		)
 		(stroke
 			(width 0)
@@ -9816,6 +10211,16 @@
 			(type default)
 		)
 		(uuid "6dbd8dcd-d8f6-4d0c-af4f-e666a3f9d443")
+	)
+	(wire
+		(pts
+			(xy 93.98 134.62) (xy 93.98 118.11)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6e0ae7a6-d5da-4e07-93e0-8481fa023f20")
 	)
 	(wire
 		(pts
@@ -10169,6 +10574,16 @@
 	)
 	(wire
 		(pts
+			(xy 101.6 120.65) (xy 149.86 120.65)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8f422240-cc62-4528-a298-3e5b18573b97")
+	)
+	(wire
+		(pts
 			(xy 137.16 229.87) (xy 149.86 229.87)
 		)
 		(stroke
@@ -10196,6 +10611,16 @@
 			(type default)
 		)
 		(uuid "9182eaa1-5fdd-485c-b5dc-b671000a4747")
+	)
+	(wire
+		(pts
+			(xy 109.22 123.19) (xy 149.86 123.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "91b0d21b-8e93-4f66-b522-5c2bf4f60c53")
 	)
 	(wire
 		(pts
@@ -10759,6 +11184,16 @@
 	)
 	(wire
 		(pts
+			(xy 116.84 142.24) (xy 116.84 147.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ba773575-b908-42f8-b6e0-2f7834b53440")
+	)
+	(wire
+		(pts
 			(xy 39.37 149.86) (xy 44.45 149.86)
 		)
 		(stroke
@@ -10766,6 +11201,16 @@
 			(type default)
 		)
 		(uuid "bc2fbaa9-1e20-425a-a6f4-e8ee0bc8fe4a")
+	)
+	(wire
+		(pts
+			(xy 29.21 111.76) (xy 29.21 104.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bcf8bc56-0669-45d8-a199-1c51d29fff76")
 	)
 	(wire
 		(pts
@@ -11219,6 +11664,16 @@
 	)
 	(wire
 		(pts
+			(xy 29.21 104.14) (xy 39.37 104.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d9c87d66-64ce-4f8e-827b-471bda486649")
+	)
+	(wire
+		(pts
 			(xy 351.79 147.32) (xy 334.01 147.32)
 		)
 		(stroke
@@ -11329,7 +11784,7 @@
 	)
 	(wire
 		(pts
-			(xy 138.43 46.99) (xy 149.86 46.99)
+			(xy 134.62 46.99) (xy 149.86 46.99)
 		)
 		(stroke
 			(width 0)
@@ -11479,7 +11934,7 @@
 	)
 	(wire
 		(pts
-			(xy 138.43 52.07) (xy 149.86 52.07)
+			(xy 134.62 52.07) (xy 149.86 52.07)
 		)
 		(stroke
 			(width 0)
@@ -11586,6 +12041,16 @@
 			(type default)
 		)
 		(uuid "f6ee246b-20a4-439f-9dda-02fa61161ee6")
+	)
+	(wire
+		(pts
+			(xy 109.22 142.24) (xy 109.22 147.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f7931157-0713-497e-9da4-2cc7f5ae51d3")
 	)
 	(wire
 		(pts
@@ -11868,7 +12333,7 @@
 		(uuid "106d73d0-0dae-4b2d-9abf-6d19c0c2fe3f")
 	)
 	(label "OSC_IN"
-		(at 138.43 85.09 0)
+		(at 134.62 85.09 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -12738,7 +13203,7 @@
 		(uuid "9302e262-c50d-4817-813a-d3ad038417a5")
 	)
 	(label "PROG"
-		(at 138.43 52.07 0)
+		(at 134.62 52.07 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -13398,7 +13863,7 @@
 		(uuid "ea84c03f-2cc5-4a14-bf95-68db697fd12a")
 	)
 	(label "VDDA"
-		(at 138.43 59.69 0)
+		(at 134.62 59.69 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -13428,7 +13893,7 @@
 		(uuid "ec2bdbeb-f409-457f-ac99-0a287e103310")
 	)
 	(label "RESET"
-		(at 138.43 46.99 0)
+		(at 134.62 46.99 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -14623,6 +15088,72 @@
 	)
 	(symbol
 		(lib_id "power:GND")
+		(at 101.6 154.94 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "086b7130-0b2f-45f0-a280-a8c7fce25336")
+		(property "Reference" "#PWR077"
+			(at 101.6 161.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 101.6 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 101.6 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 101.6 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 101.6 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "45492ea7-fb81-42b0-a0eb-b3fe34e5bb20")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
+					(reference "#PWR077")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
 		(at 318.77 222.25 0)
 		(mirror y)
 		(unit 1)
@@ -14910,6 +15441,85 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:LED")
+		(at 101.6 138.43 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "125f72d0-2a41-4501-9f00-ed22db72ba78")
+		(property "Reference" "D3"
+			(at 104.521 138.8053 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "YEL"
+			(at 104.521 141.2296 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "LED_SMD:LED_0805_2012Metric"
+			(at 101.6 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 101.6 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Light emitting diode"
+			(at 101.6 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 101.6 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "fc7a2d4b-2d67-4d35-ba57-ac100325672a")
+		)
+		(pin "2"
+			(uuid "ebcc80b0-8265-430e-af65-ea7bf6313123")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
+					(reference "D3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 334.01 22.86 0)
 		(unit 1)
@@ -15047,6 +15657,72 @@
 	)
 	(symbol
 		(lib_id "power:GND")
+		(at 93.98 154.94 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "15d20d83-c0a1-4ffc-a6a0-c920aebc4bb0")
+		(property "Reference" "#PWR076"
+			(at 93.98 161.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 93.98 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 93.98 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 93.98 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 93.98 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "2ef10232-3c2b-4e86-8c40-0439143ab678")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
+					(reference "#PWR076")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
 		(at 41.91 190.5 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -15055,7 +15731,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "16bdc5e5-db31-42b0-ba0f-090d3ef2487a")
-		(property "Reference" "#PWR?"
+		(property "Reference" "#PWR0124"
 			(at 41.91 196.85 0)
 			(effects
 				(font
@@ -15105,7 +15781,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR?")
+					(reference "#PWR0124")
 					(unit 1)
 				)
 			)
@@ -16206,6 +16882,72 @@
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
 					(reference "#PWR068")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 116.84 154.94 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "29aed378-8156-4d73-982a-f79a137e1c15")
+		(property "Reference" "#PWR079"
+			(at 116.84 161.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 116.84 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 116.84 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 116.84 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 116.84 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ef06ee2b-dc50-48ab-b352-28b8eb2ec2df")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
+					(reference "#PWR079")
 					(unit 1)
 				)
 			)
@@ -17508,6 +18250,76 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R_US")
+		(at 116.84 151.13 0)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "4e77d2ed-d64c-486e-be5a-887c0d5d8fa3")
+		(property "Reference" "R62"
+			(at 119.38 152.4001 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "33"
+			(at 119.38 149.8601 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+			(at 117.856 150.876 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 116.84 151.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 116.84 151.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ef34d920-178e-411d-b1b1-17827e0a6d1f")
+		)
+		(pin "2"
+			(uuid "34186fa3-5dae-4c30-8269-141030cdafc9")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
+					(reference "R62")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+3.3V")
 		(at 36.83 175.26 0)
 		(unit 1)
@@ -17853,7 +18665,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 138.43 67.31 0)
+		(at 129.54 67.31 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -17862,7 +18674,7 @@
 		(dnp no)
 		(uuid "606f6c21-5801-4019-84ca-ba2063d51a3d")
 		(property "Reference" "#PWR041"
-			(at 138.43 73.66 0)
+			(at 129.54 73.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17871,7 +18683,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 138.43 72.39 0)
+			(at 129.54 72.39 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17879,7 +18691,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 138.43 67.31 0)
+			(at 129.54 67.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17888,7 +18700,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 138.43 67.31 0)
+			(at 129.54 67.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17897,7 +18709,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 138.43 67.31 0)
+			(at 129.54 67.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17912,6 +18724,84 @@
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
 					(reference "#PWR041")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:LED")
+		(at 116.84 138.43 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "61867574-637d-4c37-94cd-fc04521fb4cd")
+		(property "Reference" "D5"
+			(at 119.761 138.8053 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "BLU"
+			(at 119.761 141.2296 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "LED_SMD:LED_0805_2012Metric"
+			(at 116.84 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 116.84 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Light emitting diode"
+			(at 116.84 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 116.84 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "5ff26cf8-d7f5-4ac5-a0df-a869500c0b9f")
+		)
+		(pin "2"
+			(uuid "30268868-d1f0-43e1-b6ac-915eb81c4e65")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
+					(reference "D5")
 					(unit 1)
 				)
 			)
@@ -19235,6 +20125,85 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:LED")
+		(at 109.22 138.43 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "8774823c-7fcc-470d-822f-bf8ae4faaacd")
+		(property "Reference" "D4"
+			(at 112.141 138.8053 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "GRN"
+			(at 112.141 141.2296 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "LED_SMD:LED_0805_2012Metric"
+			(at 109.22 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 109.22 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Light emitting diode"
+			(at 109.22 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 109.22 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "797a2558-5cb2-4c23-87ba-7f7a5b4db010")
+		)
+		(pin "2"
+			(uuid "86fdbf8f-efaa-48f5-8bdc-fcfdf0901337")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
+					(reference "D4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 39.37 119.38 0)
 		(mirror y)
@@ -20186,6 +21155,76 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R_US")
+		(at 93.98 151.13 0)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "a77dfa42-9b2c-4840-ad1f-7bbff7e833fd")
+		(property "Reference" "R59"
+			(at 96.52 152.4001 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100"
+			(at 96.52 149.8601 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+			(at 94.996 150.876 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 93.98 151.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 93.98 151.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b93c5c4c-8986-4714-b844-fd4e0d1e13ae")
+		)
+		(pin "2"
+			(uuid "8b731954-9319-470b-9175-ab3f02a5fcf8")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
+					(reference "R59")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 35.56 149.86 270)
 		(mirror x)
@@ -20340,6 +21379,72 @@
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
 					(reference "J9")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 109.22 154.94 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "b466a31a-1d63-48aa-90fb-eaebd6cad5bf")
+		(property "Reference" "#PWR078"
+			(at 109.22 161.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 109.22 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 109.22 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 109.22 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 109.22 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b628192b-aa37-4fc6-bf31-df6587e2b8d4")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
+					(reference "#PWR078")
 					(unit 1)
 				)
 			)
@@ -21286,6 +22391,76 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R_US")
+		(at 109.22 151.13 0)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "d129b2dc-147e-406b-aef1-8875a4a82ded")
+		(property "Reference" "R61"
+			(at 111.76 152.4001 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100"
+			(at 111.76 149.8601 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+			(at 110.236 150.876 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 109.22 151.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 109.22 151.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b54fab64-5871-497f-bbaa-5a726d8d5268")
+		)
+		(pin "2"
+			(uuid "ac73891d-1f69-47df-83a9-e9d99c2aa48d")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
+					(reference "R61")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 50.8 80.01 0)
 		(unit 1)
@@ -21514,7 +22689,7 @@
 	)
 	(symbol
 		(lib_id "power:+3.3V")
-		(at 133.35 64.77 0)
+		(at 129.54 64.77 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -21523,7 +22698,7 @@
 		(fields_autoplaced yes)
 		(uuid "dd100f13-af5c-4418-b0fe-51d7a37acaf6")
 		(property "Reference" "#PWR039"
-			(at 133.35 68.58 0)
+			(at 129.54 68.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -21532,7 +22707,7 @@
 			)
 		)
 		(property "Value" "+3.3V"
-			(at 133.35 59.69 0)
+			(at 129.54 59.69 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -21540,7 +22715,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 133.35 64.77 0)
+			(at 129.54 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -21549,7 +22724,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 133.35 64.77 0)
+			(at 129.54 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -21558,7 +22733,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 133.35 64.77 0)
+			(at 129.54 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -22411,6 +23586,85 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:LED")
+		(at 93.98 138.43 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "fa40ff20-47cc-417d-a691-16fe66f7fd5c")
+		(property "Reference" "D2"
+			(at 96.901 138.8053 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "RED"
+			(at 96.901 141.2296 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "LED_SMD:LED_0805_2012Metric"
+			(at 93.98 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 93.98 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Light emitting diode"
+			(at 93.98 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 93.98 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b1aefc73-8f81-4600-98b8-119ac7b10aed")
+		)
+		(pin "2"
+			(uuid "bd3ebb56-5a07-4b7e-a166-7bc2c640e28a")
+		)
+		(instances
+			(project ""
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
+					(reference "D2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 361.95 201.93 0)
 		(unit 1)
@@ -22470,6 +23724,76 @@
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
 					(reference "#PWR052")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 101.6 151.13 0)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "fded95c2-9861-4c5d-911e-10d79929b1e0")
+		(property "Reference" "R60"
+			(at 104.14 152.4001 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100"
+			(at 104.14 149.8601 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+			(at 102.616 150.876 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 101.6 151.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 101.6 151.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "3fc555a3-343c-470a-9f0a-59c36a7a88ea")
+		)
+		(pin "2"
+			(uuid "ed115f09-479d-40ff-9900-e45fc3ceef62")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
+					(reference "R60")
 					(unit 1)
 				)
 			)
