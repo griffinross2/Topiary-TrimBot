@@ -58,7 +58,7 @@
 		(start -21 -10)
 		(end 21 10)
 		(stroke
-			(width 0.1)
+			(width 0.15)
 			(type solid)
 		)
 		(fill no)
