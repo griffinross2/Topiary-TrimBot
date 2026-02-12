@@ -443,596 +443,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Converter_DCDC:PTN78000W_EUS-5"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "U"
-				(at -6.35 6.35 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "PTN78000W_EUS-5"
-				(at 3.81 6.35 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" "Module:Texas_EUS_R-PDSS-T5_THT"
-				(at -2.54 -10.16 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "https://www.ti.com/lit/ds/symlink/ptn78000w.pdf"
-				(at -0.635 1.27 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "1.5A non-isolated switching regulator power module, 7-36V input voltage, 2.5-12.6V output voltage, EUS-5"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "texas dc-dc converter step down buck"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "Texas*EUS*R?PDSS?T5*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "PTN78000W_EUS-5_0_1"
-				(rectangle
-					(start -7.62 5.08)
-					(end 7.62 -5.08)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-			)
-			(symbol "PTN78000W_EUS-5_1_1"
-				(pin power_in line
-					(at -10.16 2.54 0)
-					(length 2.54)
-					(name "VI"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -10.16 0 0)
-					(length 2.54)
-					(name "~{Inhibit}"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at 0 -7.62 90)
-					(length 2.54)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_out line
-					(at 10.16 2.54 180)
-					(length 2.54)
-					(name "VO"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at 10.16 0 180)
-					(length 2.54)
-					(name "Vo_Adj"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "Converter_DCDC:PTN78020W_EUK-7"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "U"
-				(at -6.35 6.35 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "PTN78020W_EUK-7"
-				(at 3.81 6.35 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" "Module:Texas_EUK_R-PDSS-T7_THT"
-				(at -2.54 -10.16 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "https://www.ti.com/lit/ds/symlink/ptn78020w.pdf"
-				(at -0.635 1.27 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "6A non-isolated switching regulator power module, 7-36V input voltage, 2.5-12.6V output voltage, EUK-7"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "texas dc-dc converter step down buck"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "Texas*EUK*R?PDSS?T7*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "PTN78020W_EUK-7_0_1"
-				(rectangle
-					(start -10.16 5.08)
-					(end 10.16 -5.08)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-			)
-			(symbol "PTN78020W_EUK-7_1_1"
-				(pin power_in line
-					(at -12.7 2.54 0)
-					(length 2.54)
-					(name "VI"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -12.7 0 0)
-					(length 2.54)
-					(name "~{Inhibit}"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at 0 -7.62 90)
-					(length 2.54)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -7.62 90)
-					(length 2.54)
-					(hide yes)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "7"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_out line
-					(at 12.7 2.54 180)
-					(length 2.54)
-					(name "VO"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "6"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_out line
-					(at 12.7 0 180)
-					(length 2.54)
-					(name "VO_Sense"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at 12.7 -2.54 180)
-					(length 2.54)
-					(name "VO_Adj"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "Converter_DCDC:PTN78060W_EUW-7"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "U"
-				(at -6.35 6.35 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "PTN78060W_EUW-7"
-				(at 3.81 6.35 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" "Module:Texas_EUW_R-PDSS-T7_THT"
-				(at -2.54 -10.16 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "https://www.ti.com/lit/ds/symlink/ptn78060w.pdf"
-				(at -0.635 1.27 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "3A non-isolated switching regulator power module, 7-36V input voltage, 2.5-12.6V output voltage, EUW-7"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "texas dc-dc converter step down buck"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "Texas*EUW*R?PDSS?T7*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "PTN78060W_EUW-7_0_1"
-				(rectangle
-					(start -10.16 5.08)
-					(end 10.16 -5.08)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-			)
-			(symbol "PTN78060W_EUW-7_1_1"
-				(pin power_in line
-					(at -12.7 2.54 0)
-					(length 2.54)
-					(name "VI"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -12.7 0 0)
-					(length 2.54)
-					(name "~{Inhibit}"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at 0 -7.62 90)
-					(length 2.54)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -7.62 90)
-					(length 2.54)
-					(hide yes)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "7"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_out line
-					(at 12.7 2.54 180)
-					(length 2.54)
-					(name "VO"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "6"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_out line
-					(at 12.7 0 180)
-					(length 2.54)
-					(name "VO_Sense"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at 12.7 -2.54 180)
-					(length 2.54)
-					(name "VO_Adj"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "CustomSymbols:+5-15V"
 			(power)
 			(exclude_from_sim no)
@@ -3213,16 +2623,6 @@
 		)
 		(uuid "0d2d1ae5-8bf3-48ae-be46-32041189cca1")
 	)
-	(text "50V rating"
-		(exclude_from_sim no)
-		(at 118.618 145.542 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "11809b85-634e-4d92-a0e5-2550b733b636")
-	)
 	(text "1%"
 		(exclude_from_sim no)
 		(at 82.042 50.546 0)
@@ -3233,6 +2633,16 @@
 		)
 		(uuid "20db1eb7-0d30-4532-a73d-664074848d7c")
 	)
+	(text "10V rating"
+		(exclude_from_sim no)
+		(at 107.188 45.212 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "254cc2c7-abe8-4c7d-8d11-ff1ce30f415d")
+	)
 	(text "50V rating"
 		(exclude_from_sim no)
 		(at 25.146 137.16 0)
@@ -3242,26 +2652,6 @@
 			)
 		)
 		(uuid "2cfddeaa-35e1-48bf-a45c-4d529e07bdf6")
-	)
-	(text "50V rating"
-		(exclude_from_sim no)
-		(at 222.25 154.94 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "3500c18b-fa91-4a42-ae56-ad750b18c5f9")
-	)
-	(text "50V rating"
-		(exclude_from_sim no)
-		(at 95.25 54.102 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "39d55363-4e09-4423-8108-c316b602c528")
 	)
 	(text "10V rating"
 		(exclude_from_sim no)
@@ -3283,16 +2673,6 @@
 		)
 		(uuid "424b061b-48cb-4057-a943-28212583cf8b")
 	)
-	(text "50V rating"
-		(exclude_from_sim no)
-		(at 223.52 52.578 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "4e199caf-89f2-4221-9686-3c31cb02304f")
-	)
 	(text "16V rating"
 		(exclude_from_sim no)
 		(at 69.088 28.702 0)
@@ -3312,26 +2692,6 @@
 			)
 		)
 		(uuid "54e50a55-c083-4ec4-b235-d5f3b2950266")
-	)
-	(text "50V rating"
-		(exclude_from_sim no)
-		(at 222.25 103.124 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "581f9f1a-7bf1-4fba-a19a-6c0d882d1eb4")
-	)
-	(text "1%"
-		(exclude_from_sim no)
-		(at 210.566 54.61 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "60c488de-ee88-4b7d-a325-fabe93ddba70")
 	)
 	(text "Topiary Trimbot - Power\n"
 		(exclude_from_sim no)
@@ -3363,7 +2723,7 @@
 		)
 		(uuid "a958d174-73a0-4f89-b4d1-994d44873937")
 	)
-	(text "50V rating"
+	(text "25V rating"
 		(exclude_from_sim no)
 		(at 118.872 93.472 0)
 		(effects
@@ -3372,16 +2732,6 @@
 			)
 		)
 		(uuid "a9810f32-5ec6-43cb-bc4b-8148e67c555a")
-	)
-	(text "1%"
-		(exclude_from_sim no)
-		(at 209.804 103.886 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "adea3964-c8bd-427a-9b6c-8627043491d6")
 	)
 	(text "5A Saturation Current,\n3A Current Rating"
 		(exclude_from_sim no)
@@ -3392,16 +2742,6 @@
 			)
 		)
 		(uuid "b2d76035-a52d-4899-bca9-6cc6d7350cf1")
-	)
-	(text "1%"
-		(exclude_from_sim no)
-		(at 208.28 156.972 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "c3a7e04d-d447-4b3b-870c-a5ff73a35959")
 	)
 	(text "50V rating"
 		(exclude_from_sim no)
@@ -3443,26 +2783,6 @@
 		)
 		(uuid "ddbce616-105b-4467-8d86-01d982c92cf8")
 	)
-	(text "50V rating"
-		(exclude_from_sim no)
-		(at 172.212 103.124 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "e15f76a6-6634-4571-a251-06deb8fb0f41")
-	)
-	(text "50V rating"
-		(exclude_from_sim no)
-		(at 170.942 54.61 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "e922ddd0-388e-4b3f-b8ba-0c9c28714434")
-	)
 	(text "1%"
 		(exclude_from_sim no)
 		(at 86.868 155.194 0)
@@ -3473,15 +2793,15 @@
 		)
 		(uuid "ec2c24e5-827e-429d-afb8-6c773badbf5a")
 	)
-	(text "50V rating"
+	(text "25V rating"
 		(exclude_from_sim no)
-		(at 168.91 155.194 0)
+		(at 118.872 145.796 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 		)
-		(uuid "f0aa2a42-2b7a-4ec6-b26e-492f0974492d")
+		(uuid "f94d40f0-3011-46a7-bc60-2c7350c2b438")
 	)
 	(text "1%"
 		(exclude_from_sim no)
@@ -3492,12 +2812,6 @@
 			)
 		)
 		(uuid "ff33f414-91cc-48ec-8bb7-fe8781567ba8")
-	)
-	(junction
-		(at 205.74 158.75)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "141e13ed-efd4-4362-ad78-76c6770c09da")
 	)
 	(junction
 		(at 77.47 43.18)
@@ -3516,18 +2830,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "23017eeb-35b5-4919-9466-3e8d7a432d7e")
-	)
-	(junction
-		(at 207.01 105.41)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "2619b0ed-e9be-4124-8e9f-adcb4b85572c")
-	)
-	(junction
-		(at 215.9 146.05)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "2be5abe3-7a5b-4c37-b344-299943ddcb8a")
 	)
 	(junction
 		(at 62.23 151.13)
@@ -3560,12 +2862,6 @@
 		(uuid "35b5b64c-13df-409b-a2a1-c17283aa6a3c")
 	)
 	(junction
-		(at 175.26 146.05)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "375aa0d7-c4d3-47aa-bcc2-a5dbe845084c")
-	)
-	(junction
 		(at 111.76 91.44)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3596,22 +2892,10 @@
 		(uuid "6049e816-f13d-4c19-abad-7463464b5174")
 	)
 	(junction
-		(at 177.8 92.71)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "652d18ac-ce18-4451-8443-48a1e2b2484c")
-	)
-	(junction
 		(at 90.17 83.82)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "687dbfb0-6427-45e9-90c0-91c9585fd9ff")
-	)
-	(junction
-		(at 209.55 92.71)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "696d2c13-2043-423f-a21e-56cdec24648c")
 	)
 	(junction
 		(at 246.38 100.33)
@@ -3626,16 +2910,16 @@
 		(uuid "7a04b80b-f73f-41fb-919a-4a6bc2c2dfed")
 	)
 	(junction
+		(at 107.95 35.56)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "7f9e4b78-8ddb-46ff-9355-b802b9a5801e")
+	)
+	(junction
 		(at 100.33 83.82)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "81db7781-ad52-4275-a80b-a79d226445dc")
-	)
-	(junction
-		(at 193.04 158.75)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "875dad3f-afc8-4b8b-bac5-051d1fdd28cc")
 	)
 	(junction
 		(at 22.86 27.94)
@@ -3656,10 +2940,10 @@
 		(uuid "8de138ca-92ac-4b40-96b2-eee7795658ed")
 	)
 	(junction
-		(at 177.8 44.45)
+		(at 90.17 35.56)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "906f8b31-2429-4cc1-b4ac-dd8ff368a557")
+		(uuid "9627efad-f2bf-4812-bd57-4c27b1ea65f4")
 	)
 	(junction
 		(at 115.57 143.51)
@@ -3692,6 +2976,12 @@
 		(uuid "a667a4cd-816c-43e1-962d-d2a964c19c07")
 	)
 	(junction
+		(at 99.06 43.18)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ab647c58-2c18-45fb-9d3b-c89b0ba00ad3")
+	)
+	(junction
 		(at 52.07 165.1)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3708,18 +2998,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "adee38e9-0318-4cc2-8777-1b358850418e")
-	)
-	(junction
-		(at 208.28 146.05)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "af233b5a-379b-4691-ab26-dc1696b0408d")
-	)
-	(junction
-		(at 215.9 92.71)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "afd264d6-b859-4778-b143-d59e68209c10")
 	)
 	(junction
 		(at 31.75 76.2)
@@ -3752,12 +3030,6 @@
 		(uuid "bbf70fb4-8bd1-4b48-8dbf-23a777399a13")
 	)
 	(junction
-		(at 215.9 44.45)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "bdf203b7-49d0-4a18-8d29-ab0aa9f92c14")
-	)
-	(junction
 		(at 147.32 30.48)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3776,28 +3048,16 @@
 		(uuid "bfc75d05-d8c7-438d-a21f-0cf5eab3f6f1")
 	)
 	(junction
-		(at 196.85 54.61)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "c113901e-bed0-40cd-bec9-c7a93f680572")
-	)
-	(junction
 		(at 246.38 92.71)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "c125b0fa-ce65-4d20-b2f6-746e210f95d2")
 	)
 	(junction
-		(at 194.31 105.41)
+		(at 99.06 35.56)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "c3122576-b825-44ef-8d49-9abb289aa1a6")
-	)
-	(junction
-		(at 90.17 35.56)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "c94cde32-fab1-414b-bc6a-d20dae6fe021")
+		(uuid "c5fb534f-df81-47a6-a3ae-d3fbf7f921e1")
 	)
 	(junction
 		(at 30.48 27.94)
@@ -3872,10 +3132,6 @@
 		(uuid "fed5f79f-2854-4f48-8797-734d3b31f2c3")
 	)
 	(no_connect
-		(at 181.61 95.25)
-		(uuid "29e4d0f9-5c4e-45ad-9655-46a68ddec92a")
-	)
-	(no_connect
 		(at 90.17 151.13)
 		(uuid "45dcdb25-d54f-4353-a377-a40b69646115")
 	)
@@ -3884,20 +3140,12 @@
 		(uuid "4a3f52f3-1760-4c51-a06e-6847f5f27176")
 	)
 	(no_connect
-		(at 186.69 46.99)
-		(uuid "5a923171-1f9a-4414-b218-4d7f06161c8c")
-	)
-	(no_connect
 		(at 44.45 40.64)
 		(uuid "77a6f6b5-72e2-4980-8e04-5b9ab97699d2")
 	)
 	(no_connect
 		(at 44.45 135.89)
 		(uuid "c9e23808-88da-40ab-a019-d85a43cb2752")
-	)
-	(no_connect
-		(at 180.34 148.59)
-		(uuid "e255e9e8-b5bb-46b7-be77-eda017829bbb")
 	)
 	(no_connect
 		(at 44.45 83.82)
@@ -3912,16 +3160,6 @@
 			(type default)
 		)
 		(uuid "002adac5-f629-4edb-97da-e417ce55e6bc")
-	)
-	(wire
-		(pts
-			(xy 193.04 160.02) (xy 193.04 158.75)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "008d9ba4-778c-43fa-896e-285b09c62d21")
 	)
 	(wire
 		(pts
@@ -3945,16 +3183,6 @@
 	)
 	(wire
 		(pts
-			(xy 193.04 158.75) (xy 193.04 156.21)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "09af64ac-151f-44ec-9202-e6011eb5aeaf")
-	)
-	(wire
-		(pts
 			(xy 246.38 100.33) (xy 246.38 101.6)
 		)
 		(stroke
@@ -3972,26 +3200,6 @@
 			(type default)
 		)
 		(uuid "0accfa02-dea8-4738-8c35-bd4a2dd79c61")
-	)
-	(wire
-		(pts
-			(xy 177.8 91.44) (xy 177.8 92.71)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0c396622-0a67-496d-b795-749f0647affc")
-	)
-	(wire
-		(pts
-			(xy 215.9 92.71) (xy 215.9 95.25)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0c82108b-4c41-4455-8dca-6f99775d4a5d")
 	)
 	(wire
 		(pts
@@ -4025,16 +3233,6 @@
 	)
 	(wire
 		(pts
-			(xy 193.04 158.75) (xy 205.74 158.75)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "129ea8f1-7b42-464d-98da-9b3deb927d77")
-	)
-	(wire
-		(pts
 			(xy 36.83 106.68) (xy 36.83 113.03)
 		)
 		(stroke
@@ -4042,16 +3240,6 @@
 			(type default)
 		)
 		(uuid "12e36522-8f03-4658-bb46-35a46b2dad47")
-	)
-	(wire
-		(pts
-			(xy 177.8 102.87) (xy 177.8 105.41)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "133a96b9-20c8-46c0-a015-c3f39ecf10b2")
 	)
 	(wire
 		(pts
@@ -4105,16 +3293,6 @@
 	)
 	(wire
 		(pts
-			(xy 209.55 92.71) (xy 215.9 92.71)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1e6c4ce7-2656-4281-b685-cfadf132a571")
-	)
-	(wire
-		(pts
 			(xy 31.75 128.27) (xy 40.64 128.27)
 		)
 		(stroke
@@ -4155,26 +3333,6 @@
 	)
 	(wire
 		(pts
-			(xy 90.17 58.42) (xy 90.17 54.61)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2a5a728a-5020-4ae1-984b-ad4b6841dd7b")
-	)
-	(wire
-		(pts
-			(xy 177.8 44.45) (xy 186.69 44.45)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2a5da5db-7042-42c6-94cc-2fff2c4b2f4f")
-	)
-	(wire
-		(pts
 			(xy 59.69 43.18) (xy 77.47 43.18)
 		)
 		(stroke
@@ -4212,16 +3370,6 @@
 			(type default)
 		)
 		(uuid "2c2aa4e2-7328-48b6-a29a-b79d3bf2cbf7")
-	)
-	(wire
-		(pts
-			(xy 215.9 135.89) (xy 215.9 146.05)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2c37cc12-0417-4001-88fd-c1ec4c48e7b2")
 	)
 	(wire
 		(pts
@@ -4275,6 +3423,26 @@
 	)
 	(wire
 		(pts
+			(xy 99.06 43.18) (xy 107.95 43.18)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "33e9ce17-2277-4391-a8cc-f4cb09c9e36d")
+	)
+	(wire
+		(pts
+			(xy 99.06 44.45) (xy 99.06 43.18)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "353ef8bd-93b6-45b5-8d49-bfa1d26a7559")
+	)
+	(wire
+		(pts
 			(xy 246.38 71.12) (xy 250.19 71.12)
 		)
 		(stroke
@@ -4302,16 +3470,6 @@
 			(type default)
 		)
 		(uuid "372a7426-8254-4eaa-8cdb-c06e033c6638")
-	)
-	(wire
-		(pts
-			(xy 175.26 153.67) (xy 175.26 158.75)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "39396074-b845-4cfd-96ca-6696564d5d38")
 	)
 	(wire
 		(pts
@@ -4375,26 +3533,6 @@
 	)
 	(wire
 		(pts
-			(xy 175.26 146.05) (xy 180.34 146.05)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4166d13a-e10f-47df-8c95-c1af2be97168")
-	)
-	(wire
-		(pts
-			(xy 194.31 106.68) (xy 194.31 105.41)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "472aa991-ae6c-4a5f-80f7-be67c3ce61fe")
-	)
-	(wire
-		(pts
 			(xy 36.83 151.13) (xy 36.83 140.97)
 		)
 		(stroke
@@ -4442,16 +3580,6 @@
 			(type default)
 		)
 		(uuid "500452e9-52eb-4b14-8347-e064fe3c2089")
-	)
-	(wire
-		(pts
-			(xy 215.9 105.41) (xy 207.01 105.41)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "50e88138-6ace-439d-a9f7-bcc1c7dcc3dd")
 	)
 	(wire
 		(pts
@@ -4505,26 +3633,6 @@
 	)
 	(wire
 		(pts
-			(xy 207.01 44.45) (xy 215.9 44.45)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5c302f62-9174-434b-a5b6-1ac502568560")
-	)
-	(wire
-		(pts
-			(xy 177.8 105.41) (xy 194.31 105.41)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5cb1bdf7-8822-4bdb-942e-4dba189b542c")
-	)
-	(wire
-		(pts
 			(xy 246.38 97.79) (xy 250.19 97.79)
 		)
 		(stroke
@@ -4552,6 +3660,16 @@
 			(type default)
 		)
 		(uuid "60fbdae2-e40b-4e19-9a94-abf122f02852")
+	)
+	(wire
+		(pts
+			(xy 99.06 35.56) (xy 107.95 35.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6106a10e-24d9-47d5-8097-c307cd1491bc")
 	)
 	(wire
 		(pts
@@ -4635,16 +3753,6 @@
 	)
 	(wire
 		(pts
-			(xy 177.8 92.71) (xy 181.61 92.71)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6cafc644-193f-4730-8f31-a62b6330ae9f")
-	)
-	(wire
-		(pts
 			(xy 71.12 83.82) (xy 71.12 88.9)
 		)
 		(stroke
@@ -4685,23 +3793,13 @@
 	)
 	(wire
 		(pts
-			(xy 196.85 54.61) (xy 207.01 54.61)
+			(xy 90.17 43.18) (xy 99.06 43.18)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "7597293d-557c-423a-98a5-0d9ac38b8f8d")
-	)
-	(wire
-		(pts
-			(xy 205.74 148.59) (xy 208.28 148.59)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "76d73388-c043-4440-ba3c-65257bdb0138")
+		(uuid "73df63bf-4a12-448a-8ef5-c4ac5ff94b4f")
 	)
 	(wire
 		(pts
@@ -4712,16 +3810,6 @@
 			(type default)
 		)
 		(uuid "770339fb-34f3-40bb-953d-fb654abeaa8d")
-	)
-	(wire
-		(pts
-			(xy 209.55 95.25) (xy 209.55 92.71)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7a0cc8b9-6d40-4b1e-8d05-a74b7fadf9a9")
 	)
 	(wire
 		(pts
@@ -4755,6 +3843,16 @@
 	)
 	(wire
 		(pts
+			(xy 107.95 35.56) (xy 142.24 35.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7ec27b5e-6d73-4b5a-a926-279e74e4a9fe")
+	)
+	(wire
+		(pts
 			(xy 36.83 88.9) (xy 44.45 88.9)
 		)
 		(stroke
@@ -4782,16 +3880,6 @@
 			(type default)
 		)
 		(uuid "847e0bdb-f585-4d8d-9851-d174a46d76b1")
-	)
-	(wire
-		(pts
-			(xy 175.26 158.75) (xy 193.04 158.75)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8548ebd8-c111-40ae-b819-0957ccf12fa5")
 	)
 	(wire
 		(pts
@@ -4875,16 +3963,6 @@
 	)
 	(wire
 		(pts
-			(xy 205.74 146.05) (xy 208.28 146.05)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8ea1f19c-4419-42bc-9e27-c4e0bf04c2aa")
-	)
-	(wire
-		(pts
 			(xy 36.83 158.75) (xy 36.83 165.1)
 		)
 		(stroke
@@ -4892,16 +3970,6 @@
 			(type default)
 		)
 		(uuid "8fb36f17-5075-4ced-869f-672af474b92c")
-	)
-	(wire
-		(pts
-			(xy 194.31 105.41) (xy 207.01 105.41)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8fd1aca5-91e9-40ce-b4b7-d4c5e502402d")
 	)
 	(wire
 		(pts
@@ -4922,16 +3990,6 @@
 			(type default)
 		)
 		(uuid "9782563c-866f-4317-b0eb-b429001f65d7")
-	)
-	(wire
-		(pts
-			(xy 215.9 35.56) (xy 215.9 44.45)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "97cf5b87-a940-411b-a771-13d771ce0eec")
 	)
 	(wire
 		(pts
@@ -5035,16 +4093,6 @@
 	)
 	(wire
 		(pts
-			(xy 215.9 102.87) (xy 215.9 105.41)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a5cc1578-e14b-4fa0-a6df-9364eba01d9f")
-	)
-	(wire
-		(pts
 			(xy 36.83 113.03) (xy 52.07 113.03)
 		)
 		(stroke
@@ -5135,16 +4183,6 @@
 	)
 	(wire
 		(pts
-			(xy 215.9 153.67) (xy 215.9 158.75)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b1781bb2-ba40-4cc1-83f5-191f8f38aeb2")
-	)
-	(wire
-		(pts
 			(xy 147.32 130.81) (xy 147.32 132.08)
 		)
 		(stroke
@@ -5172,16 +4210,6 @@
 			(type default)
 		)
 		(uuid "b4d74eb1-44a3-43fc-bb55-9b5a12158ec9")
-	)
-	(wire
-		(pts
-			(xy 175.26 144.78) (xy 175.26 146.05)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b6206ed5-f4d1-4e4d-a6e0-81b5cb0d4eb7")
 	)
 	(wire
 		(pts
@@ -5235,16 +4263,6 @@
 	)
 	(wire
 		(pts
-			(xy 215.9 158.75) (xy 205.74 158.75)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "bd51eaff-e976-4f06-b8f3-4eec19098535")
-	)
-	(wire
-		(pts
 			(xy 246.38 100.33) (xy 250.19 100.33)
 		)
 		(stroke
@@ -5295,16 +4313,6 @@
 	)
 	(wire
 		(pts
-			(xy 208.28 148.59) (xy 208.28 146.05)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c377c5d3-4779-4dde-822e-fc8139598024")
-	)
-	(wire
-		(pts
 			(xy 22.86 135.89) (xy 31.75 135.89)
 		)
 		(stroke
@@ -5322,26 +4330,6 @@
 			(type default)
 		)
 		(uuid "c64e06a5-626e-46d7-b4e6-48bfd6b9d6b5")
-	)
-	(wire
-		(pts
-			(xy 194.31 105.41) (xy 194.31 102.87)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c6a9515e-04a0-4c88-a98f-73b3a37e764f")
-	)
-	(wire
-		(pts
-			(xy 90.17 35.56) (xy 142.24 35.56)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c6f81921-b2be-49bf-becb-7f0e1ff10910")
 	)
 	(wire
 		(pts
@@ -5395,16 +4383,6 @@
 	)
 	(wire
 		(pts
-			(xy 90.17 35.56) (xy 90.17 46.99)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "caa4a957-af27-4d00-8bac-0c974c5960ec")
-	)
-	(wire
-		(pts
 			(xy 62.23 165.1) (xy 76.2 165.1)
 		)
 		(stroke
@@ -5412,16 +4390,6 @@
 			(type default)
 		)
 		(uuid "cae56a6a-1222-458b-addd-05d1f4e7d9b7")
-	)
-	(wire
-		(pts
-			(xy 177.8 44.45) (xy 177.8 43.18)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "cbe8151d-9a66-40b0-91eb-a9b987c8bbad")
 	)
 	(wire
 		(pts
@@ -5435,16 +4403,6 @@
 	)
 	(wire
 		(pts
-			(xy 177.8 45.72) (xy 177.8 44.45)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "cecf969a-8669-48e0-82fe-bc3e2b8e5c77")
-	)
-	(wire
-		(pts
 			(xy 26.67 35.56) (xy 26.67 36.83)
 		)
 		(stroke
@@ -5452,16 +4410,6 @@
 			(type default)
 		)
 		(uuid "cef60b2d-fa39-4117-9839-38f92144c1fb")
-	)
-	(wire
-		(pts
-			(xy 177.8 95.25) (xy 177.8 92.71)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d1bf2ab7-fe31-4156-8be5-92a944baec2f")
 	)
 	(wire
 		(pts
@@ -5482,16 +4430,6 @@
 			(type default)
 		)
 		(uuid "d428718a-1930-4466-9afa-42c35d140ce5")
-	)
-	(wire
-		(pts
-			(xy 208.28 146.05) (xy 215.9 146.05)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d4600ddb-8e75-4d4e-ab85-7b71c7e1a5a1")
 	)
 	(wire
 		(pts
@@ -5565,16 +4503,6 @@
 	)
 	(wire
 		(pts
-			(xy 196.85 55.88) (xy 196.85 54.61)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "de63c80d-64af-4301-8a29-85c6173be22e")
-	)
-	(wire
-		(pts
 			(xy 62.23 151.13) (xy 63.5 151.13)
 		)
 		(stroke
@@ -5582,36 +4510,6 @@
 			(type default)
 		)
 		(uuid "e08cfc76-c644-41bb-b2d0-0b9859a86e68")
-	)
-	(wire
-		(pts
-			(xy 177.8 54.61) (xy 177.8 53.34)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e1f68975-90ae-4e8f-b295-972032e95fe6")
-	)
-	(wire
-		(pts
-			(xy 207.01 92.71) (xy 209.55 92.71)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e2cf47d9-9aff-40fe-8c86-e27ce94b8450")
-	)
-	(wire
-		(pts
-			(xy 177.8 54.61) (xy 196.85 54.61)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e51c5b27-f982-464f-9efd-d34a8aecb72f")
 	)
 	(wire
 		(pts
@@ -5705,16 +4603,6 @@
 	)
 	(wire
 		(pts
-			(xy 207.01 95.25) (xy 209.55 95.25)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f921c693-bc20-46e9-98f5-3ce1ddf22676")
-	)
-	(wire
-		(pts
 			(xy 80.01 151.13) (xy 78.74 151.13)
 		)
 		(stroke
@@ -5725,16 +4613,6 @@
 	)
 	(wire
 		(pts
-			(xy 215.9 83.82) (xy 215.9 92.71)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "fd4ad6d4-4a86-4dad-b8d9-062dd7698f0f")
-	)
-	(wire
-		(pts
 			(xy 111.76 146.05) (xy 111.76 143.51)
 		)
 		(stroke
@@ -5742,6 +4620,16 @@
 			(type default)
 		)
 		(uuid "fda2c790-31bc-44fb-87c2-b8e2a801ec3d")
+	)
+	(wire
+		(pts
+			(xy 90.17 35.56) (xy 99.06 35.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ffaecc18-5252-45dc-980c-e124c9f3bcc8")
 	)
 	(label "PG_PI"
 		(at 64.77 113.03 0)
@@ -5911,7 +4799,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 37.7952 106.68 0)
 			(effects
 				(font
@@ -6185,78 +5073,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+24V")
-		(at 177.8 91.44 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "0b8ab558-7b66-4291-88b8-afc539ccd4ef")
-		(property "Reference" "#PWR?"
-			(at 177.8 95.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+24V"
-			(at 177.8 86.36 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 177.8 91.44 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 177.8 91.44 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+24V\""
-			(at 177.8 91.44 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "de7fdd35-be28-49f9-8f24-a36b419f8f1a")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/b9dd42db-ce69-476f-af46-2e9dff9090cd"
-					(reference "#PWR?")
-					(unit 1)
-				)
-			)
-			(project "power"
-				(path "/288cd01c-b1d5-44ca-91a2-b9192151afef"
-					(reference "#PWR016")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C")
 		(at 40.64 80.01 180)
 		(unit 1)
@@ -6281,7 +5097,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 39.6748 76.2 0)
 			(effects
 				(font
@@ -6290,7 +5106,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "~https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM21BR61H106KE43-01A.pdf"
 			(at 40.64 80.01 0)
 			(effects
 				(font
@@ -6300,6 +5116,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 40.64 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata Electronics"
+			(at 40.64 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GRM21BR61H106KE43L"
 			(at 40.64 80.01 0)
 			(effects
 				(font
@@ -6324,77 +5158,6 @@
 			(project "power"
 				(path "/288cd01c-b1d5-44ca-91a2-b9192151afef"
 					(reference "C?")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 194.31 106.68 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "0c41f6e7-c015-479e-a55c-d211949c58c5")
-		(property "Reference" "#PWR?"
-			(at 194.31 113.03 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 194.31 110.744 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 194.31 106.68 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 194.31 106.68 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 194.31 106.68 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "ef9aad13-398e-44be-9928-a417b430028c")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/b9dd42db-ce69-476f-af46-2e9dff9090cd"
-					(reference "#PWR?")
-					(unit 1)
-				)
-			)
-			(project "power"
-				(path "/288cd01c-b1d5-44ca-91a2-b9192151afef"
-					(reference "#PWR017")
 					(unit 1)
 				)
 			)
@@ -6582,7 +5345,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 37.7952 158.75 0)
 			(effects
 				(font
@@ -6730,7 +5493,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 116.5352 143.51 0)
 			(effects
 				(font
@@ -6739,7 +5502,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM21BR61E226ME44-01.pdf"
 			(at 115.57 139.7 0)
 			(effects
 				(font
@@ -6749,6 +5512,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 115.57 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata Electronics"
+			(at 115.57 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GRM21BR61E226ME44L"
 			(at 115.57 139.7 0)
 			(effects
 				(font
@@ -6877,7 +5658,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 63.5 141.9352 0)
 			(effects
 				(font
@@ -6886,7 +5667,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://yageogroup.com/content/datasheet/asset/file/KEM_C1002_X7R_SMD"
 			(at 67.31 140.97 0)
 			(effects
 				(font
@@ -6897,6 +5678,24 @@
 		)
 		(property "Description" "Unpolarized capacitor"
 			(at 67.31 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "KEMET"
+			(at 67.31 140.97 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "C0805C104K5RACTU"
+			(at 67.31 140.97 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6952,7 +5751,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 29.5148 27.94 0)
 			(effects
 				(font
@@ -6961,7 +5760,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "~https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM21BR61H106KE43-01A.pdf"
 			(at 30.48 31.75 0)
 			(effects
 				(font
@@ -6971,6 +5770,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 30.48 31.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata Electronics"
+			(at 30.48 31.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GRM21BR61H106KE43L"
 			(at 30.48 31.75 0)
 			(effects
 				(font
@@ -7002,7 +5819,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 90.17 58.42 0)
+		(at 99.06 44.45 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7010,7 +5827,7 @@
 		(dnp no)
 		(uuid "21e6bf6b-d605-4528-aa49-b1b48c243189")
 		(property "Reference" "#PWR?"
-			(at 90.17 64.77 0)
+			(at 99.06 50.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7019,7 +5836,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 90.17 63.5 0)
+			(at 99.06 49.53 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7027,7 +5844,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 90.17 58.42 0)
+			(at 99.06 44.45 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7036,7 +5853,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 90.17 58.42 0)
+			(at 99.06 44.45 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7045,7 +5862,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 90.17 58.42 0)
+			(at 99.06 44.45 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7098,7 +5915,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 116.5352 91.44 0)
 			(effects
 				(font
@@ -7107,7 +5924,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM21BR61E226ME44-01.pdf"
 			(at 115.57 87.63 0)
 			(effects
 				(font
@@ -7117,6 +5934,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 115.57 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata Electronics"
+			(at 115.57 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GRM21BR61E226ME44L"
 			(at 115.57 87.63 0)
 			(effects
 				(font
@@ -7468,7 +6303,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 44.45 37.1348 0)
 			(effects
 				(font
@@ -7583,81 +6418,6 @@
 			(project "power"
 				(path "/288cd01c-b1d5-44ca-91a2-b9192151afef"
 					(reference "#PWR08")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 177.8 99.06 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "37631b80-c148-4ca7-a7a8-2f2227f07e27")
-		(property "Reference" "C?"
-			(at 171.958 98.298 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "2.2u"
-			(at 170.688 100.584 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 178.7652 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 177.8 99.06 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 177.8 99.06 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "bf4e7bb6-6b4e-4f25-9cb3-9c6f0fc0ecce")
-		)
-		(pin "1"
-			(uuid "33f4411f-38fe-4889-8779-6536581c4a38")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/b9dd42db-ce69-476f-af46-2e9dff9090cd"
-					(reference "C?")
-					(unit 1)
-				)
-			)
-			(project "power"
-				(path "/288cd01c-b1d5-44ca-91a2-b9192151afef"
-					(reference "C?")
 					(unit 1)
 				)
 			)
@@ -7890,255 +6650,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Converter_DCDC:PTN78020W_EUK-7")
-		(at 194.31 95.25 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "3c828bf6-cc82-430c-91e0-50d589b820d2")
-		(property "Reference" "U?"
-			(at 194.31 85.09 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "PTN78020W_EUK-7"
-			(at 194.31 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Module:Texas_EUK_R-PDSS-T7_THT"
-			(at 191.77 105.41 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/ptn78020w.pdf"
-			(at 193.675 93.98 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "6A non-isolated switching regulator power module, 7-36V input voltage, 2.5-12.6V output voltage, EUK-7"
-			(at 194.31 95.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MANUFACTURER" "Texas Instruments"
-			(at 194.31 95.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "7"
-			(uuid "85d91305-4749-467f-8c4d-9cc7b67cddff")
-		)
-		(pin "2"
-			(uuid "6ac8e1b2-3ba5-4df2-89bb-5b0c26f8741a")
-		)
-		(pin "3"
-			(uuid "088acd5f-1c71-43ce-bf42-ac45ee2ea95a")
-		)
-		(pin "1"
-			(uuid "9098b220-eeb5-498f-9919-dcf00f6a488f")
-		)
-		(pin "5"
-			(uuid "2fd41e89-8ded-45f6-bf5f-5c5c6be3f63e")
-		)
-		(pin "6"
-			(uuid "384f4544-4ce0-4bb7-a3e2-14c6e6e3082f")
-		)
-		(pin "4"
-			(uuid "10b0ceaa-8288-4e50-a8b8-aa171d4b3e07")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/b9dd42db-ce69-476f-af46-2e9dff9090cd"
-					(reference "U?")
-					(unit 1)
-				)
-			)
-			(project ""
-				(path "/288cd01c-b1d5-44ca-91a2-b9192151afef"
-					(reference "U?")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 215.9 48.26 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "40879c4d-6a16-45b0-9068-3f258504c1fd")
-		(property "Reference" "C?"
-			(at 219.71 46.9899 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "100u"
-			(at 219.71 49.5299 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 216.8652 52.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 215.9 48.26 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 215.9 48.26 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "d3ac06ab-4317-4cb3-b746-086f80ac3cc3")
-		)
-		(pin "1"
-			(uuid "d3272280-ddca-40f1-9f71-12520f530413")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/b9dd42db-ce69-476f-af46-2e9dff9090cd"
-					(reference "C?")
-					(unit 1)
-				)
-			)
-			(project ""
-				(path "/288cd01c-b1d5-44ca-91a2-b9192151afef"
-					(reference "C?")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 175.26 149.86 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "43be3e99-d070-4e6c-a610-fdfc8db1c829")
-		(property "Reference" "C?"
-			(at 169.418 149.098 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "2.2u"
-			(at 168.148 151.384 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 176.2252 153.67 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 175.26 149.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 175.26 149.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "b4c6c6e4-b212-4a73-b6c8-dd38be4135fc")
-		)
-		(pin "1"
-			(uuid "7f78e451-bee6-4362-b8c1-441e5eb06f5b")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/b9dd42db-ce69-476f-af46-2e9dff9090cd"
-					(reference "C?")
-					(unit 1)
-				)
-			)
-			(project "power"
-				(path "/288cd01c-b1d5-44ca-91a2-b9192151afef"
-					(reference "C?")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C")
 		(at 100.33 139.7 0)
 		(unit 1)
@@ -8165,7 +6676,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 101.2952 143.51 0)
 			(effects
 				(font
@@ -8174,7 +6685,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM21BR61E226ME44-01.pdf"
 			(at 100.33 139.7 0)
 			(effects
 				(font
@@ -8184,6 +6695,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 100.33 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata Electronics"
+			(at 100.33 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GRM21BR61E226ME44L"
 			(at 100.33 139.7 0)
 			(effects
 				(font
@@ -8396,7 +6925,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.bourns.com/docs/product-datasheets/srp3220a.pdf?sfvrsn=68202ef6_7"
 			(at 71.12 35.56 0)
 			(effects
 				(font
@@ -8407,6 +6936,24 @@
 		)
 		(property "Description" "Inductor"
 			(at 71.12 35.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Bourns"
+			(at 71.12 35.56 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "SRP3220A-4R7M"
+			(at 71.12 35.56 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8430,77 +6977,6 @@
 			(project ""
 				(path "/288cd01c-b1d5-44ca-91a2-b9192151afef"
 					(reference "L?")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 193.04 160.02 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "547195d7-146f-4c5b-9192-1b19fe7a0ae6")
-		(property "Reference" "#PWR?"
-			(at 193.04 166.37 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 193.04 163.83 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 193.04 160.02 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 193.04 160.02 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 193.04 160.02 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "b3ddc9a1-0c73-41e8-8848-56c3d557ad63")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/b9dd42db-ce69-476f-af46-2e9dff9090cd"
-					(reference "#PWR?")
-					(unit 1)
-				)
-			)
-			(project "power"
-				(path "/288cd01c-b1d5-44ca-91a2-b9192151afef"
-					(reference "#PWR022")
 					(unit 1)
 				)
 			)
@@ -8978,7 +7454,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 30.7848 128.27 0)
 			(effects
 				(font
@@ -8987,7 +7463,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "~https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM21BR61H106KE43-01A.pdf"
 			(at 31.75 132.08 0)
 			(effects
 				(font
@@ -8997,6 +7473,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 31.75 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata Electronics"
+			(at 31.75 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GRM21BR61H106KE43L"
 			(at 31.75 132.08 0)
 			(effects
 				(font
@@ -9137,17 +7631,34 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+24V")
-		(at 175.26 144.78 0)
+		(lib_id "Device:C")
+		(at 99.06 39.37 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "66186d2c-ab57-4893-84e0-4962ec198c12")
-		(property "Reference" "#PWR?"
-			(at 175.26 148.59 0)
+		(uuid "658a8b1c-e8ff-4dc0-bd26-75df778052f0")
+		(property "Reference" "C?"
+			(at 101.092 37.592 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "22u"
+			(at 101.346 40.894 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 100.0252 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9155,16 +7666,8 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+24V"
-			(at 175.26 139.7 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 175.26 144.78 0)
+		(property "Datasheet" "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM21BZ71A226ME15-01.pdf"
+			(at 99.06 39.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9172,8 +7675,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
-			(at 175.26 144.78 0)
+		(property "Description" "Unpolarized capacitor"
+			(at 99.06 39.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9181,8 +7684,17 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+24V\""
-			(at 175.26 144.78 0)
+		(property "MANUFACTURER" "Murata Electronics"
+			(at 99.06 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GRM21BZ71A226ME15L"
+			(at 99.06 39.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9191,18 +7703,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "73929a9d-266a-42d0-9f09-1d7c9550cffa")
+			(uuid "92152c1f-6210-4b42-8294-155fff9ea59f")
+		)
+		(pin "2"
+			(uuid "43228379-846c-47b0-add2-c2b888e9a622")
 		)
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/b9dd42db-ce69-476f-af46-2e9dff9090cd"
-					(reference "#PWR?")
-					(unit 1)
-				)
-			)
-			(project "power"
-				(path "/288cd01c-b1d5-44ca-91a2-b9192151afef"
-					(reference "#PWR021")
+					(reference "C?")
 					(unit 1)
 				)
 			)
@@ -9471,154 +7980,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 215.9 52.07 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "6ee0385a-ba7e-4df1-86fc-de1cb8758332")
-		(property "Reference" "#PWR?"
-			(at 215.9 58.42 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 215.9 57.15 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 215.9 52.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 215.9 52.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 215.9 52.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "d4cdeffe-01e1-45d4-8b14-79c3f31b5f1f")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/b9dd42db-ce69-476f-af46-2e9dff9090cd"
-					(reference "#PWR?")
-					(unit 1)
-				)
-			)
-			(project "power"
-				(path "/288cd01c-b1d5-44ca-91a2-b9192151afef"
-					(reference "#PWR023")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 215.9 99.06 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "71531b4e-00fe-48d6-8fc3-13d042b3a152")
-		(property "Reference" "C?"
-			(at 219.71 97.7899 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "330u"
-			(at 219.71 100.3299 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 216.8652 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 215.9 99.06 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 215.9 99.06 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "4588b127-76e0-4fa6-aa3d-94d99c265bfa")
-		)
-		(pin "1"
-			(uuid "a9607392-19f9-4d0d-9507-0abe2baecd1f")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/b9dd42db-ce69-476f-af46-2e9dff9090cd"
-					(reference "C?")
-					(unit 1)
-				)
-			)
-			(project "power"
-				(path "/288cd01c-b1d5-44ca-91a2-b9192151afef"
-					(reference "C?")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:+24V")
 		(at 246.38 91.44 0)
 		(unit 1)
@@ -9863,7 +8224,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 124.1552 91.44 0)
 			(effects
 				(font
@@ -9872,7 +8233,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM21BR61E226ME44-01.pdf"
 			(at 123.19 87.63 0)
 			(effects
 				(font
@@ -9882,6 +8243,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 123.19 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata Electronics"
+			(at 123.19 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GRM21BR61E226ME44L"
 			(at 123.19 87.63 0)
 			(effects
 				(font
@@ -10108,7 +8487,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.eaton.com/content/dam/eaton/products/electronic-components/resources/data-sheet/eaton-hcp0704-high-current-power-inductors-data-sheet.pdf"
 			(at 77.47 83.82 0)
 			(effects
 				(font
@@ -10119,6 +8498,24 @@
 		)
 		(property "Description" "Inductor"
 			(at 77.47 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Eaton"
+			(at 77.47 83.82 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "HCP0704-4R7-R"
+			(at 77.47 83.82 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10172,7 +8569,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 30.7848 76.2 0)
 			(effects
 				(font
@@ -10181,7 +8578,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "~https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM21BR61H106KE43-01A.pdf"
 			(at 31.75 80.01 0)
 			(effects
 				(font
@@ -10191,6 +8588,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 31.75 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata Electronics"
+			(at 31.75 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GRM21BR61H106KE43L"
 			(at 31.75 80.01 0)
 			(effects
 				(font
@@ -10538,7 +8953,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 21.8948 128.27 0)
 			(effects
 				(font
@@ -10547,7 +8962,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://yageogroup.com/content/datasheet/asset/file/KEM_C1002_X7R_SMD"
 			(at 22.86 132.08 0)
 			(effects
 				(font
@@ -10557,6 +8972,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 22.86 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "KEMET"
+			(at 22.86 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "C0805C104K5RACTU"
 			(at 22.86 132.08 0)
 			(effects
 				(font
@@ -10613,7 +9046,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 84.7852 92.71 0)
 			(effects
 				(font
@@ -10662,81 +9095,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_US")
-		(at 207.01 101.6 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "9ed44466-a639-4142-a2ea-513fd12f698f")
-		(property "Reference" "R?"
-			(at 208.788 99.822 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "21k"
-			(at 208.026 101.6 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
-			(at 208.026 101.854 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 207.01 101.6 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, US symbol"
-			(at 207.01 101.6 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "15c04955-b44b-4604-a89c-2beef7590c17")
-		)
-		(pin "1"
-			(uuid "fa9f2669-a403-49a3-b048-6b75c857e365")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/b9dd42db-ce69-476f-af46-2e9dff9090cd"
-					(reference "R?")
-					(unit 1)
-				)
-			)
-			(project "power"
-				(path "/288cd01c-b1d5-44ca-91a2-b9192151afef"
-					(reference "R?")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C")
 		(at 100.33 87.63 0)
 		(unit 1)
@@ -10763,7 +9121,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 101.2952 91.44 0)
 			(effects
 				(font
@@ -10772,7 +9130,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM21BR61E226ME44-01.pdf"
 			(at 100.33 87.63 0)
 			(effects
 				(font
@@ -10782,6 +9140,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 100.33 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata Electronics"
+			(at 100.33 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GRM21BR61E226ME44L"
 			(at 100.33 87.63 0)
 			(effects
 				(font
@@ -10838,7 +9214,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 124.1552 143.51 0)
 			(effects
 				(font
@@ -10847,7 +9223,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM21BR61E226ME44-01.pdf"
 			(at 123.19 139.7 0)
 			(effects
 				(font
@@ -10857,6 +9233,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 123.19 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata Electronics"
+			(at 123.19 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GRM21BR61E226ME44L"
 			(at 123.19 139.7 0)
 			(effects
 				(font
@@ -10964,81 +9358,6 @@
 	)
 	(symbol
 		(lib_id "Device:C")
-		(at 90.17 50.8 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "a36dc06e-05ba-4042-b181-baee38966790")
-		(property "Reference" "C?"
-			(at 92.964 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "47u"
-			(at 93.218 52.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 91.1352 54.61 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 90.17 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 90.17 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "f2d5c344-c2f2-4c9b-832f-065f1d6114c9")
-		)
-		(pin "2"
-			(uuid "3d0396b3-426d-4385-a332-9a83d0e371b9")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/b9dd42db-ce69-476f-af46-2e9dff9090cd"
-					(reference "C?")
-					(unit 1)
-				)
-			)
-			(project "power"
-				(path "/288cd01c-b1d5-44ca-91a2-b9192151afef"
-					(reference "C?")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
 		(at 67.31 88.9 270)
 		(unit 1)
 		(exclude_from_sim no)
@@ -11064,7 +9383,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 63.5 89.8652 0)
 			(effects
 				(font
@@ -11073,7 +9392,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://yageogroup.com/content/datasheet/asset/file/KEM_C1002_X7R_SMD"
 			(at 67.31 88.9 0)
 			(effects
 				(font
@@ -11084,6 +9403,24 @@
 		)
 		(property "Description" "Unpolarized capacitor"
 			(at 67.31 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "KEMET"
+			(at 67.31 88.9 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "C0805C104K5RACTU"
+			(at 67.31 88.9 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11139,7 +9476,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 84.7852 144.78 0)
 			(effects
 				(font
@@ -11221,7 +9558,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.bourns.com/docs/Product-Datasheets/SRP5020CC.pdf"
 			(at 77.47 135.89 0)
 			(effects
 				(font
@@ -11232,6 +9569,24 @@
 		)
 		(property "Description" "Inductor"
 			(at 77.47 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Bourns"
+			(at 77.47 135.89 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "SRP5020CC-4R7M"
+			(at 77.47 135.89 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11287,7 +9642,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 108.9152 91.44 0)
 			(effects
 				(font
@@ -11296,7 +9651,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM21BR61E226ME44-01.pdf"
 			(at 107.95 87.63 0)
 			(effects
 				(font
@@ -11306,6 +9661,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 107.95 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata Electronics"
+			(at 107.95 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GRM21BR61E226ME44L"
 			(at 107.95 87.63 0)
 			(effects
 				(font
@@ -11920,98 +10293,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Converter_DCDC:PTN78000W_EUS-5")
-		(at 196.85 46.99 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "b6f1ffc1-7aae-4c4f-8797-0be44d6cdaf6")
-		(property "Reference" "U?"
-			(at 196.85 36.83 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "PTN78000W_EUS-5"
-			(at 196.85 39.37 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Module:Texas_EUS_R-PDSS-T5_THT"
-			(at 194.31 57.15 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/ptn78000w.pdf"
-			(at 196.215 45.72 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "1.5A non-isolated switching regulator power module, 7-36V input voltage, 2.5-12.6V output voltage, EUS-5"
-			(at 196.85 46.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MANUFACTURER" "Texas Instruments"
-			(at 196.85 46.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "ea00d4a9-9921-44de-815d-9942a292eb17")
-		)
-		(pin "2"
-			(uuid "466c2f7c-cd11-4331-b451-7c8e58d3d3d3")
-		)
-		(pin "3"
-			(uuid "fe1dff01-3a27-4551-95f1-7682a2117a86")
-		)
-		(pin "5"
-			(uuid "cfcec0b6-372d-4595-8058-b15f784bdab4")
-		)
-		(pin "4"
-			(uuid "e907b319-2bd3-4371-8ad0-0832e9bc87ca")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/b9dd42db-ce69-476f-af46-2e9dff9090cd"
-					(reference "U?")
-					(unit 1)
-				)
-			)
-			(project ""
-				(path "/288cd01c-b1d5-44ca-91a2-b9192151afef"
-					(reference "U?")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 26.67 36.83 0)
 		(unit 1)
@@ -12110,7 +10391,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 64.4652 35.56 0)
 			(effects
 				(font
@@ -12231,179 +10512,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Converter_DCDC:PTN78060W_EUW-7")
-		(at 193.04 148.59 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "bd2b0a4a-e109-4f6a-aebc-24d3979d5846")
-		(property "Reference" "U?"
-			(at 193.04 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "PTN78060W_EUW-7"
-			(at 193.04 140.97 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Module:Texas_EUW_R-PDSS-T7_THT"
-			(at 190.5 158.75 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/ptn78060w.pdf"
-			(at 192.405 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "3A non-isolated switching regulator power module, 7-36V input voltage, 2.5-12.6V output voltage, EUW-7"
-			(at 193.04 148.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MANUFACTURER" "Texas Instruments"
-			(at 193.04 148.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "6"
-			(uuid "4cc65d9e-6d9b-4719-996c-783a589754f4")
-		)
-		(pin "7"
-			(uuid "6a35bac8-0cba-401a-9662-23f332f3cb3a")
-		)
-		(pin "4"
-			(uuid "144270a2-71a8-4b8b-993e-b1ffbdb35d30")
-		)
-		(pin "3"
-			(uuid "67a17899-059e-458c-a571-bddb8ce5d58d")
-		)
-		(pin "5"
-			(uuid "a9a3fb45-e0c0-4337-8346-4797de38c516")
-		)
-		(pin "2"
-			(uuid "63adec85-94f8-41af-a224-0ac491e5664e")
-		)
-		(pin "1"
-			(uuid "a76ea5e4-3811-4c2a-9eb7-340c06ee10ff")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/b9dd42db-ce69-476f-af46-2e9dff9090cd"
-					(reference "U?")
-					(unit 1)
-				)
-			)
-			(project ""
-				(path "/288cd01c-b1d5-44ca-91a2-b9192151afef"
-					(reference "U?")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_US")
-		(at 205.74 154.94 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "c56d83e6-a2f2-4655-8160-a25b35a5c2d1")
-		(property "Reference" "R?"
-			(at 206.756 152.908 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "8.16k"
-			(at 206.756 154.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
-			(at 206.756 155.194 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 205.74 154.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, US symbol"
-			(at 205.74 154.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "6963735a-86f5-4c51-b6e4-51b6bc27f86b")
-		)
-		(pin "1"
-			(uuid "2d978fd2-485f-47e8-a9c5-56644c8f97c2")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/b9dd42db-ce69-476f-af46-2e9dff9090cd"
-					(reference "R?")
-					(unit 1)
-				)
-			)
-			(project "power"
-				(path "/288cd01c-b1d5-44ca-91a2-b9192151afef"
-					(reference "R?")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C")
 		(at 40.64 132.08 180)
 		(unit 1)
@@ -12428,7 +10536,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 39.6748 128.27 0)
 			(effects
 				(font
@@ -12437,7 +10545,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "~https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM21BR61H106KE43-01A.pdf"
 			(at 40.64 132.08 0)
 			(effects
 				(font
@@ -12447,6 +10555,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 40.64 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata Electronics"
+			(at 40.64 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GRM21BR61H106KE43L"
 			(at 40.64 132.08 0)
 			(effects
 				(font
@@ -12583,7 +10709,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 21.8948 76.2 0)
 			(effects
 				(font
@@ -12592,7 +10718,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://yageogroup.com/content/datasheet/asset/file/KEM_C1002_X7R_SMD"
 			(at 22.86 80.01 0)
 			(effects
 				(font
@@ -12602,6 +10728,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 22.86 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "KEMET"
+			(at 22.86 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "C0805C104K5RACTU"
 			(at 22.86 80.01 0)
 			(effects
 				(font
@@ -12656,7 +10800,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 21.8948 27.94 0)
 			(effects
 				(font
@@ -12665,7 +10809,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://yageogroup.com/content/datasheet/asset/file/KEM_C1002_X7R_SMD"
 			(at 22.86 31.75 0)
 			(effects
 				(font
@@ -12675,6 +10819,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 22.86 31.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "KEMET"
+			(at 22.86 31.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "C0805C104K5RACTU"
 			(at 22.86 31.75 0)
 			(effects
 				(font
@@ -12877,7 +11039,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 108.9152 143.51 0)
 			(effects
 				(font
@@ -12886,7 +11048,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM21BR61E226ME44-01.pdf"
 			(at 107.95 139.7 0)
 			(effects
 				(font
@@ -12896,6 +11058,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 107.95 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata Electronics"
+			(at 107.95 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GRM21BR61E226ME44L"
 			(at 107.95 139.7 0)
 			(effects
 				(font
@@ -13044,16 +11224,34 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+24V")
-		(at 177.8 43.18 0)
+		(lib_id "Device:C")
+		(at 90.17 39.37 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "e2adb2ac-7a64-42b1-81a4-3ad4429a8890")
-		(property "Reference" "#PWR?"
-			(at 177.8 46.99 0)
+		(uuid "e9e673ee-a999-4e63-a273-d225073b3c0d")
+		(property "Reference" "C?"
+			(at 92.202 37.592 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "22u"
+			(at 92.456 40.894 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 91.1352 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13061,16 +11259,8 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+24V"
-			(at 173.99 41.656 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 177.8 43.18 0)
+		(property "Datasheet" "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM21BZ71A226ME15-01.pdf"
+			(at 90.17 39.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13078,8 +11268,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
-			(at 177.8 43.18 0)
+		(property "Description" "Unpolarized capacitor"
+			(at 90.17 39.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13087,8 +11277,17 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+24V\""
-			(at 177.8 43.18 0)
+		(property "MANUFACTURER" "Murata Electronics"
+			(at 90.17 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GRM21BZ71A226ME15L"
+			(at 90.17 39.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13097,165 +11296,102 @@
 			)
 		)
 		(pin "1"
-			(uuid "2e352216-22e6-482d-b217-2c528a22db4b")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/b9dd42db-ce69-476f-af46-2e9dff9090cd"
-					(reference "#PWR?")
-					(unit 1)
-				)
-			)
-			(project "power"
-				(path "/288cd01c-b1d5-44ca-91a2-b9192151afef"
-					(reference "#PWR020")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 196.85 55.88 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "ec8cb0c2-284c-4270-a5ea-1320f8e7c975")
-		(property "Reference" "#PWR?"
-			(at 196.85 62.23 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 196.85 60.96 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 196.85 55.88 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 196.85 55.88 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 196.85 55.88 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "1753b744-0baf-438d-9075-304d271bcc57")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/b9dd42db-ce69-476f-af46-2e9dff9090cd"
-					(reference "#PWR?")
-					(unit 1)
-				)
-			)
-			(project "power"
-				(path "/288cd01c-b1d5-44ca-91a2-b9192151afef"
-					(reference "#PWR019")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_US")
-		(at 207.01 50.8 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "f0c6f3ed-59cd-42ac-a545-6baf0d477648")
-		(property "Reference" "R?"
-			(at 207.772 49.784 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "78.7k"
-			(at 208.026 52.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
-			(at 208.026 51.054 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 207.01 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, US symbol"
-			(at 207.01 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
+			(uuid "ca90d2fa-e58d-41db-a6a7-527bb0fb68d3")
 		)
 		(pin "2"
-			(uuid "ffa263d3-7fb7-43b6-9f99-158bf313c17d")
-		)
-		(pin "1"
-			(uuid "56833cca-a381-4825-a434-13b8d882e287")
+			(uuid "3eb2055b-941e-4b04-9aee-77df255b9c78")
 		)
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/b9dd42db-ce69-476f-af46-2e9dff9090cd"
-					(reference "R?")
+					(reference "C?")
 					(unit 1)
 				)
 			)
-			(project ""
-				(path "/288cd01c-b1d5-44ca-91a2-b9192151afef"
-					(reference "R?")
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 107.95 39.37 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "f632ccf6-d141-406f-bfe0-ecc39bebbb29")
+		(property "Reference" "C?"
+			(at 109.982 37.592 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "22u"
+			(at 110.236 40.894 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 108.9152 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM21BZ71A226ME15-01.pdf"
+			(at 107.95 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 107.95 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata Electronics"
+			(at 107.95 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GRM21BZ71A226ME15L"
+			(at 107.95 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "2c02aeb9-cb27-4401-84be-7c7e08e6b26d")
+		)
+		(pin "2"
+			(uuid "6dafc52f-65de-466c-9723-f8e1de95898f")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/b9dd42db-ce69-476f-af46-2e9dff9090cd"
+					(reference "C?")
 					(unit 1)
 				)
 			)
@@ -13331,156 +11467,6 @@
 			(project "power"
 				(path "/288cd01c-b1d5-44ca-91a2-b9192151afef"
 					(reference "R?")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 177.8 49.53 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "f9c0a007-ad84-4b53-be73-b666dc52802d")
-		(property "Reference" "C?"
-			(at 171.958 48.768 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "2.2u"
-			(at 170.688 51.054 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 178.7652 53.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 177.8 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 177.8 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "03ff43c1-d021-48fa-9072-e7080d8d092c")
-		)
-		(pin "1"
-			(uuid "3157cd07-d5a4-4f75-9944-2740a3233aa7")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/b9dd42db-ce69-476f-af46-2e9dff9090cd"
-					(reference "C?")
-					(unit 1)
-				)
-			)
-			(project "power"
-				(path "/288cd01c-b1d5-44ca-91a2-b9192151afef"
-					(reference "C?")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 215.9 149.86 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "f9f46920-fca4-4aa2-817c-3e9896e4c4ec")
-		(property "Reference" "C?"
-			(at 219.202 148.336 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "100u"
-			(at 218.948 151.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 216.8652 153.67 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 215.9 149.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 215.9 149.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "881abd2f-d4d5-4872-93b7-2174f3e765bd")
-		)
-		(pin "1"
-			(uuid "ec0dddca-5fa6-4efc-b8d0-8719cec481e5")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/b9dd42db-ce69-476f-af46-2e9dff9090cd"
-					(reference "C?")
-					(unit 1)
-				)
-			)
-			(project "power"
-				(path "/288cd01c-b1d5-44ca-91a2-b9192151afef"
-					(reference "C?")
 					(unit 1)
 				)
 			)
