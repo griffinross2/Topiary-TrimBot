@@ -782,6 +782,140 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "CustomSymbols:XL4015_Regulator_Module"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "U"
+				(at 0 8.636 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "XL4015 Regulator Module"
+				(at 0.254 6.604 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "CustomFootprints:XL4015_Regulator_Module"
+				(at -0.254 -12.192 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://a.co/d/00UwGxx2"
+				(at -0.508 -14.732 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "XL4015 Buck Regulator Module 5A 4-38V to 1.25-36V"
+				(at 0 -17.272 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "XL4015_Regulator_Module_1_1"
+				(rectangle
+					(start -6.35 5.08)
+					(end 6.35 -5.08)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin power_in line
+					(at -8.89 2.54 0)
+					(length 2.54)
+					(name "IN+"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at -8.89 -2.54 0)
+					(length 2.54)
+					(name "IN-"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_out line
+					(at 8.89 2.54 180)
+					(length 2.54)
+					(name "OUT+"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_out line
+					(at 8.89 -2.54 180)
+					(length 2.54)
+					(name "OUT-"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Device:C"
 			(pin_numbers
 				(hide yes)
@@ -2898,7 +3032,7 @@
 		(uuid "687dbfb0-6427-45e9-90c0-91c9585fd9ff")
 	)
 	(junction
-		(at 246.38 100.33)
+		(at 241.3 96.52)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "6ecc49d8-4e16-4c7b-92dc-4f774af53e4c")
@@ -3048,7 +3182,7 @@
 		(uuid "bfc75d05-d8c7-438d-a21f-0cf5eab3f6f1")
 	)
 	(junction
-		(at 246.38 92.71)
+		(at 241.3 88.9)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "c125b0fa-ce65-4d20-b2f6-746e210f95d2")
@@ -3183,7 +3317,7 @@
 	)
 	(wire
 		(pts
-			(xy 246.38 100.33) (xy 246.38 101.6)
+			(xy 241.3 96.52) (xy 241.3 97.79)
 		)
 		(stroke
 			(width 0)
@@ -3200,6 +3334,16 @@
 			(type default)
 		)
 		(uuid "0accfa02-dea8-4738-8c35-bd4a2dd79c61")
+	)
+	(wire
+		(pts
+			(xy 186.69 140.97) (xy 186.69 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0adf990b-d683-4f9f-869d-f586dfc63a87")
 	)
 	(wire
 		(pts
@@ -3263,6 +3407,16 @@
 	)
 	(wire
 		(pts
+			(xy 186.69 40.64) (xy 186.69 41.91)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "175917df-3363-4f63-b727-717ff46fc3b8")
+	)
+	(wire
+		(pts
 			(xy 77.47 35.56) (xy 90.17 35.56)
 		)
 		(stroke
@@ -3273,7 +3427,17 @@
 	)
 	(wire
 		(pts
-			(xy 246.38 71.12) (xy 246.38 73.66)
+			(xy 207.01 88.9) (xy 207.01 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "180bd04d-c4fc-447e-bdcd-ae3a39c1bee7")
+	)
+	(wire
+		(pts
+			(xy 241.3 67.31) (xy 241.3 69.85)
 		)
 		(stroke
 			(width 0)
@@ -3383,6 +3547,16 @@
 	)
 	(wire
 		(pts
+			(xy 205.74 40.64) (xy 207.01 40.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2dbd8588-7ec2-4155-a42a-a4ba0aa2c313")
+	)
+	(wire
+		(pts
 			(xy 19.05 24.13) (xy 19.05 27.94)
 		)
 		(stroke
@@ -3413,7 +3587,7 @@
 	)
 	(wire
 		(pts
-			(xy 152.4 135.89) (xy 215.9 135.89)
+			(xy 152.4 135.89) (xy 187.96 135.89)
 		)
 		(stroke
 			(width 0)
@@ -3443,13 +3617,23 @@
 	)
 	(wire
 		(pts
-			(xy 246.38 71.12) (xy 250.19 71.12)
+			(xy 241.3 67.31) (xy 245.11 67.31)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "35438adc-af97-4f72-9b42-b30bbfed96d5")
+	)
+	(wire
+		(pts
+			(xy 186.69 88.9) (xy 186.69 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "36909a87-ca2c-4fbb-8ac1-f47031b346a3")
 	)
 	(wire
 		(pts
@@ -3483,7 +3667,17 @@
 	)
 	(wire
 		(pts
-			(xy 152.4 83.82) (xy 215.9 83.82)
+			(xy 187.96 88.9) (xy 186.69 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3a6c9185-4153-44d0-ada9-a803680f3137")
+	)
+	(wire
+		(pts
+			(xy 152.4 83.82) (xy 187.96 83.82)
 		)
 		(stroke
 			(width 0)
@@ -3530,6 +3724,16 @@
 			(type default)
 		)
 		(uuid "40ac94ab-2822-4c09-ac2c-115aa0d2c12e")
+	)
+	(wire
+		(pts
+			(xy 187.96 40.64) (xy 186.69 40.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "430e6ab9-7303-4fe0-a2c1-b5c564daf43f")
 	)
 	(wire
 		(pts
@@ -3583,7 +3787,7 @@
 	)
 	(wire
 		(pts
-			(xy 246.38 68.58) (xy 250.19 68.58)
+			(xy 241.3 64.77) (xy 245.11 64.77)
 		)
 		(stroke
 			(width 0)
@@ -3633,13 +3837,23 @@
 	)
 	(wire
 		(pts
-			(xy 246.38 97.79) (xy 250.19 97.79)
+			(xy 241.3 93.98) (xy 245.11 93.98)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "5e178eec-5d60-47e9-809a-424b31b1dd19")
+	)
+	(wire
+		(pts
+			(xy 207.01 40.64) (xy 207.01 41.91)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5f1311ba-f9d9-4f7b-8490-f1e0ac4e40b4")
 	)
 	(wire
 		(pts
@@ -3680,6 +3894,16 @@
 			(type default)
 		)
 		(uuid "62369d96-a618-440b-9824-91c018db6f87")
+	)
+	(wire
+		(pts
+			(xy 187.96 140.97) (xy 186.69 140.97)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "62676fb6-7968-447f-9e03-97b564b303fa")
 	)
 	(wire
 		(pts
@@ -3753,6 +3977,16 @@
 	)
 	(wire
 		(pts
+			(xy 212.09 35.56) (xy 205.74 35.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "69c509e7-6a78-4d7f-8d50-e57db696eb27")
+	)
+	(wire
+		(pts
 			(xy 71.12 83.82) (xy 71.12 88.9)
 		)
 		(stroke
@@ -3773,7 +4007,7 @@
 	)
 	(wire
 		(pts
-			(xy 246.38 92.71) (xy 246.38 95.25)
+			(xy 241.3 88.9) (xy 241.3 91.44)
 		)
 		(stroke
 			(width 0)
@@ -3863,7 +4097,7 @@
 	)
 	(wire
 		(pts
-			(xy 152.4 35.56) (xy 215.9 35.56)
+			(xy 152.4 35.56) (xy 187.96 35.56)
 		)
 		(stroke
 			(width 0)
@@ -3963,6 +4197,16 @@
 	)
 	(wire
 		(pts
+			(xy 212.09 83.82) (xy 205.74 83.82)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8f58139d-ccd4-4c04-82a7-5a20ab410ed9")
+	)
+	(wire
+		(pts
 			(xy 36.83 158.75) (xy 36.83 165.1)
 		)
 		(stroke
@@ -3970,6 +4214,16 @@
 			(type default)
 		)
 		(uuid "8fb36f17-5075-4ced-869f-672af474b92c")
+	)
+	(wire
+		(pts
+			(xy 212.09 80.01) (xy 212.09 83.82)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "928c5c7c-332e-4805-a348-8c04eef077c3")
 	)
 	(wire
 		(pts
@@ -4043,7 +4297,17 @@
 	)
 	(wire
 		(pts
-			(xy 246.38 95.25) (xy 250.19 95.25)
+			(xy 212.09 135.89) (xy 205.74 135.89)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a2f1d973-473a-4f63-abab-60ade996062a")
+	)
+	(wire
+		(pts
+			(xy 241.3 91.44) (xy 245.11 91.44)
 		)
 		(stroke
 			(width 0)
@@ -4103,7 +4367,7 @@
 	)
 	(wire
 		(pts
-			(xy 246.38 92.71) (xy 250.19 92.71)
+			(xy 241.3 88.9) (xy 245.11 88.9)
 		)
 		(stroke
 			(width 0)
@@ -4263,7 +4527,17 @@
 	)
 	(wire
 		(pts
-			(xy 246.38 100.33) (xy 250.19 100.33)
+			(xy 212.09 132.08) (xy 212.09 135.89)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "be0848db-579e-41f4-8520-2ee1047c7a01")
+	)
+	(wire
+		(pts
+			(xy 241.3 96.52) (xy 245.11 96.52)
 		)
 		(stroke
 			(width 0)
@@ -4303,7 +4577,7 @@
 	)
 	(wire
 		(pts
-			(xy 246.38 97.79) (xy 246.38 100.33)
+			(xy 241.3 93.98) (xy 241.3 96.52)
 		)
 		(stroke
 			(width 0)
@@ -4383,6 +4657,16 @@
 	)
 	(wire
 		(pts
+			(xy 207.01 140.97) (xy 207.01 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c9c8c9e9-b6fe-485d-9ffd-aad214c5a442")
+	)
+	(wire
+		(pts
 			(xy 62.23 165.1) (xy 76.2 165.1)
 		)
 		(stroke
@@ -4390,6 +4674,16 @@
 			(type default)
 		)
 		(uuid "cae56a6a-1222-458b-addd-05d1f4e7d9b7")
+	)
+	(wire
+		(pts
+			(xy 212.09 31.75) (xy 212.09 35.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ccdcc55a-e31f-406c-a4bb-5f1e9ac5a58b")
 	)
 	(wire
 		(pts
@@ -4453,7 +4747,7 @@
 	)
 	(wire
 		(pts
-			(xy 246.38 91.44) (xy 246.38 92.71)
+			(xy 241.3 87.63) (xy 241.3 88.9)
 		)
 		(stroke
 			(width 0)
@@ -4463,7 +4757,7 @@
 	)
 	(wire
 		(pts
-			(xy 246.38 68.58) (xy 246.38 66.04)
+			(xy 241.3 64.77) (xy 241.3 62.23)
 		)
 		(stroke
 			(width 0)
@@ -4493,6 +4787,16 @@
 	)
 	(wire
 		(pts
+			(xy 205.74 88.9) (xy 207.01 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "da7ee185-0b1b-4cf2-8935-5ca77fb7f278")
+	)
+	(wire
+		(pts
 			(xy 83.82 135.89) (xy 83.82 137.16)
 		)
 		(stroke
@@ -4510,6 +4814,16 @@
 			(type default)
 		)
 		(uuid "e08cfc76-c644-41bb-b2d0-0b9859a86e68")
+	)
+	(wire
+		(pts
+			(xy 205.74 140.97) (xy 207.01 140.97)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e5754424-1e18-4072-8a36-243ec3fc2c66")
 	)
 	(wire
 		(pts
@@ -4696,6 +5010,80 @@
 		)
 	)
 	(symbol
+		(lib_id "CustomSymbols:XL4015_Regulator_Module")
+		(at 196.85 38.1 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "00d45468-6056-4a3e-a816-a61fac99ef6e")
+		(property "Reference" "U7"
+			(at 196.85 27.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "XL4015 Regulator Module"
+			(at 196.85 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "CustomFootprints:XL4015_Regulator_Module"
+			(at 197.104 50.292 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://a.co/d/00UwGxx2"
+			(at 197.358 52.832 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "XL4015 Buck Regulator Module 5A 4-38V to 1.25-36V"
+			(at 196.85 55.372 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "dca3f1e1-3ff7-4113-b07a-72e0f03e62b0")
+		)
+		(pin "4"
+			(uuid "b280756a-a7f0-49f4-baec-52d25d55612b")
+		)
+		(pin "3"
+			(uuid "f6b0a1b7-6e50-414a-941a-69417ea1f432")
+		)
+		(pin "2"
+			(uuid "c4b5e3cf-0f9b-4085-89f2-81bbd6f7efd3")
+		)
+		(instances
+			(project ""
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/b9dd42db-ce69-476f-af46-2e9dff9090cd"
+					(reference "U7")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Jumper:SolderJumper_3_Open")
 		(at 147.32 135.89 180)
 		(unit 1)
@@ -4767,6 +5155,72 @@
 			(project "power"
 				(path "/288cd01c-b1d5-44ca-91a2-b9192151afef"
 					(reference "JP?")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 186.69 142.24 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "02c58567-11ca-4166-9b9b-fe5f2fa101ca")
+		(property "Reference" "#PWR082"
+			(at 186.69 148.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 186.69 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 186.69 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 186.69 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 186.69 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a7567e50-b3d1-4a18-ba3b-8429845ac279")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/b9dd42db-ce69-476f-af46-2e9dff9090cd"
+					(reference "#PWR082")
 					(unit 1)
 				)
 			)
@@ -4914,6 +5368,71 @@
 			(project "power"
 				(path "/288cd01c-b1d5-44ca-91a2-b9192151afef"
 					(reference "#PWR028")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+24V")
+		(at 212.09 132.08 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "07c81e45-771d-4020-abbd-0e64df2beec8")
+		(property "Reference" "#PWR084"
+			(at 212.09 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+24V"
+			(at 211.836 128.016 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 212.09 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 212.09 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+24V\""
+			(at 212.09 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "1cf57271-2fed-4065-828f-056c1f6c2f3d")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/b9dd42db-ce69-476f-af46-2e9dff9090cd"
+					(reference "#PWR084")
 					(unit 1)
 				)
 			)
@@ -6208,7 +6727,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 246.38 101.6 0)
+		(at 241.3 97.79 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6217,7 +6736,7 @@
 		(fields_autoplaced yes)
 		(uuid "34beeb5d-1108-4ea1-b74c-d3db72b72840")
 		(property "Reference" "#PWR?"
-			(at 246.38 107.95 0)
+			(at 241.3 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6226,7 +6745,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 246.38 106.68 0)
+			(at 241.3 102.87 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6234,7 +6753,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 246.38 101.6 0)
+			(at 241.3 97.79 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6243,7 +6762,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 246.38 101.6 0)
+			(at 241.3 97.79 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6252,7 +6771,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 246.38 101.6 0)
+			(at 241.3 97.79 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6496,6 +7015,80 @@
 		)
 	)
 	(symbol
+		(lib_id "CustomSymbols:XL4015_Regulator_Module")
+		(at 196.85 86.36 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "383a539a-9870-4abd-b6b8-8d5a97b17259")
+		(property "Reference" "U8"
+			(at 196.85 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "XL4015 Regulator Module"
+			(at 196.85 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "CustomFootprints:XL4015_Regulator_Module"
+			(at 197.104 98.552 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://a.co/d/00UwGxx2"
+			(at 197.358 101.092 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "XL4015 Buck Regulator Module 5A 4-38V to 1.25-36V"
+			(at 196.85 103.632 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "39dcf3a4-9fdd-4ad8-9998-6b0739d31c4d")
+		)
+		(pin "4"
+			(uuid "4021bdf7-2880-4ca9-8657-c16d4f0a8768")
+		)
+		(pin "3"
+			(uuid "38dc8b76-7cf0-4462-b268-2834d4e9826b")
+		)
+		(pin "2"
+			(uuid "96c89e31-aa5b-4d52-ac15-8a2193f3f0f4")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/b9dd42db-ce69-476f-af46-2e9dff9090cd"
+					(reference "U8")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 31.75 85.09 0)
 		(unit 1)
@@ -6644,6 +7237,72 @@
 			(project "power"
 				(path "/288cd01c-b1d5-44ca-91a2-b9192151afef"
 					(reference "D?")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 186.69 41.91 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "3dc84817-ce08-42b9-bbd8-c5cdad3b20d1")
+		(property "Reference" "#PWR022"
+			(at 186.69 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 186.69 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 186.69 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 186.69 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 186.69 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "166e8cee-88ff-433b-ab14-948fb66ab79a")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/b9dd42db-ce69-476f-af46-2e9dff9090cd"
+					(reference "#PWR022")
 					(unit 1)
 				)
 			)
@@ -7719,7 +8378,7 @@
 	)
 	(symbol
 		(lib_id "power:+24V")
-		(at 246.38 66.04 0)
+		(at 241.3 62.23 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7727,7 +8386,7 @@
 		(dnp no)
 		(uuid "66899e17-a00c-4649-864f-aee3bb5e9b16")
 		(property "Reference" "#PWR080"
-			(at 246.38 69.85 0)
+			(at 241.3 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7736,7 +8395,7 @@
 			)
 		)
 		(property "Value" "+24V"
-			(at 246.126 61.976 0)
+			(at 241.046 58.166 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7744,7 +8403,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 246.38 66.04 0)
+			(at 241.3 62.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7753,7 +8412,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 246.38 66.04 0)
+			(at 241.3 62.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7762,7 +8421,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+24V\""
-			(at 246.38 66.04 0)
+			(at 241.3 62.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7981,15 +8640,15 @@
 	)
 	(symbol
 		(lib_id "power:+24V")
-		(at 246.38 91.44 0)
+		(at 212.09 80.01 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "7203ae1e-a0f5-467e-8098-1404872c1aef")
-		(property "Reference" "#PWR?"
-			(at 246.38 95.25 0)
+		(uuid "6a3b7858-9b4a-44a7-ae72-c6802630e7fd")
+		(property "Reference" "#PWR027"
+			(at 212.09 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7998,7 +8657,7 @@
 			)
 		)
 		(property "Value" "+24V"
-			(at 246.126 87.376 0)
+			(at 211.836 75.946 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8006,7 +8665,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 246.38 91.44 0)
+			(at 212.09 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8015,7 +8674,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 246.38 91.44 0)
+			(at 212.09 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8024,7 +8683,72 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+24V\""
-			(at 246.38 91.44 0)
+			(at 212.09 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "4780d54a-e558-43ec-ad7c-7b5093820cee")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/b9dd42db-ce69-476f-af46-2e9dff9090cd"
+					(reference "#PWR027")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+24V")
+		(at 241.3 87.63 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "7203ae1e-a0f5-467e-8098-1404872c1aef")
+		(property "Reference" "#PWR?"
+			(at 241.3 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+24V"
+			(at 241.046 83.566 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 241.3 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 241.3 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+24V\""
+			(at 241.3 87.63 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8854,7 +9578,7 @@
 	)
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x02")
-		(at 255.27 68.58 0)
+		(at 250.19 64.77 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8863,7 +9587,7 @@
 		(fields_autoplaced yes)
 		(uuid "96dbd18c-dfe9-497a-8edb-df549c47a199")
 		(property "Reference" "J?"
-			(at 257.81 68.5799 0)
+			(at 252.73 64.7699 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8872,7 +9596,7 @@
 			)
 		)
 		(property "Value" "24V FAN XYJ24B4010M"
-			(at 257.81 71.1199 0)
+			(at 252.73 67.3099 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8881,7 +9605,7 @@
 			)
 		)
 		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
-			(at 255.27 68.58 0)
+			(at 250.19 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8890,7 +9614,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 255.27 68.58 0)
+			(at 250.19 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8899,7 +9623,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 255.27 68.58 0)
+			(at 250.19 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9450,6 +10174,72 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 207.01 142.24 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "a77896a7-d3bf-49e4-a714-51def6a09040")
+		(property "Reference" "#PWR083"
+			(at 207.01 148.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 207.01 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 207.01 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 207.01 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 207.01 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "bce2a5d9-bf5c-48b4-9229-88bb33e0160b")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/b9dd42db-ce69-476f-af46-2e9dff9090cd"
+					(reference "#PWR083")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 83.82 140.97 0)
 		(unit 1)
@@ -9616,6 +10406,71 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+24V")
+		(at 212.09 31.75 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "a9a1697c-1102-4f9b-9c99-1a546ef42b7f")
+		(property "Reference" "#PWR023"
+			(at 212.09 35.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+24V"
+			(at 211.836 27.686 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 212.09 31.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 212.09 31.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+24V\""
+			(at 212.09 31.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "1e016616-cd32-486b-9a24-7786f04177b5")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/b9dd42db-ce69-476f-af46-2e9dff9090cd"
+					(reference "#PWR023")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 107.95 87.63 0)
 		(unit 1)
@@ -9774,6 +10629,72 @@
 			(project "power"
 				(path "/288cd01c-b1d5-44ca-91a2-b9192151afef"
 					(reference "#PWR07")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 207.01 90.17 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ade8db06-40db-4ac3-854d-f83d8dc81750")
+		(property "Reference" "#PWR026"
+			(at 207.01 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 207.01 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 207.01 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 207.01 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 207.01 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "34b82a57-5b5f-4764-8850-8e9e109a6bc2")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/b9dd42db-ce69-476f-af46-2e9dff9090cd"
+					(reference "#PWR026")
 					(unit 1)
 				)
 			)
@@ -10002,7 +10923,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 246.38 73.66 0)
+		(at 241.3 69.85 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -10011,7 +10932,7 @@
 		(fields_autoplaced yes)
 		(uuid "b0dbdadc-92d5-448f-b13e-3b07f806dad9")
 		(property "Reference" "#PWR081"
-			(at 246.38 80.01 0)
+			(at 241.3 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10020,7 +10941,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 246.38 78.74 0)
+			(at 241.3 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10028,7 +10949,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 246.38 73.66 0)
+			(at 241.3 69.85 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10037,7 +10958,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 246.38 73.66 0)
+			(at 241.3 69.85 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10046,7 +10967,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 246.38 73.66 0)
+			(at 241.3 69.85 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10287,6 +11208,80 @@
 			(project "power"
 				(path "/288cd01c-b1d5-44ca-91a2-b9192151afef"
 					(reference "R?")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "CustomSymbols:XL4015_Regulator_Module")
+		(at 196.85 138.43 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "b663b137-0560-4d06-9f20-ac00921e745d")
+		(property "Reference" "U9"
+			(at 196.85 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "XL4015 Regulator Module"
+			(at 196.85 130.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "CustomFootprints:XL4015_Regulator_Module"
+			(at 197.104 150.622 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://a.co/d/00UwGxx2"
+			(at 197.358 153.162 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "XL4015 Buck Regulator Module 5A 4-38V to 1.25-36V"
+			(at 196.85 155.702 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "21e13ab8-e057-4c62-a7ca-3fc54caac504")
+		)
+		(pin "4"
+			(uuid "17995f86-88dd-4d4a-a7a1-d162092dae16")
+		)
+		(pin "3"
+			(uuid "73bc4951-87bd-44b1-a99f-bdee53a47558")
+		)
+		(pin "2"
+			(uuid "8c733d93-2718-4889-962e-9057ed652775")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/b9dd42db-ce69-476f-af46-2e9dff9090cd"
+					(reference "U9")
 					(unit 1)
 				)
 			)
@@ -10604,7 +11599,7 @@
 	)
 	(symbol
 		(lib_id "Connector:Screw_Terminal_01x04")
-		(at 255.27 95.25 0)
+		(at 250.19 91.44 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -10613,7 +11608,7 @@
 		(fields_autoplaced yes)
 		(uuid "c7d6ad34-7075-4594-96fc-b47da57caa8f")
 		(property "Reference" "J?"
-			(at 257.81 95.2499 0)
+			(at 252.73 91.4399 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10622,7 +11617,7 @@
 			)
 		)
 		(property "Value" "Screw_Terminal_01x04"
-			(at 257.81 97.7899 0)
+			(at 252.73 93.9799 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10631,7 +11626,7 @@
 			)
 		)
 		(property "Footprint" "CustomFootprints:6DBL-04-006"
-			(at 255.27 95.25 0)
+			(at 250.19 91.44 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10640,7 +11635,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 255.27 95.25 0)
+			(at 250.19 91.44 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10649,7 +11644,7 @@
 			)
 		)
 		(property "Description" "Generic screw terminal, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 255.27 95.25 0)
+			(at 250.19 91.44 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11106,6 +12101,72 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 207.01 41.91 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e178b3e4-5796-4e91-a68d-00cad19dfc03")
+		(property "Reference" "#PWR024"
+			(at 207.01 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 207.01 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 207.01 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 207.01 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 207.01 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "92c8a690-79dd-42f0-9ac0-ef4b15219b53")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/b9dd42db-ce69-476f-af46-2e9dff9090cd"
+					(reference "#PWR024")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "CustomSymbols:TPS56837Hx")
 		(at 53.34 156.21 0)
 		(unit 1)
@@ -11218,6 +12279,72 @@
 			(project "power"
 				(path "/288cd01c-b1d5-44ca-91a2-b9192151afef"
 					(reference "U?")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 186.69 90.17 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e47611a5-782c-4369-805f-6d0ab709f903")
+		(property "Reference" "#PWR025"
+			(at 186.69 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 186.69 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 186.69 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 186.69 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 186.69 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b6879a2b-71f7-4c6d-b13d-372da9bebd4a")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/b9dd42db-ce69-476f-af46-2e9dff9090cd"
+					(reference "#PWR025")
 					(unit 1)
 				)
 			)
