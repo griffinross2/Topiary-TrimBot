@@ -5222,7 +5222,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c29f1f5e-6538-4b6e-bae2-d5c327b9c846")
-		(property "Reference" "#PWR0139"
+		(property "Reference" "#PWR0140"
 			(at 93.98 80.01 0)
 			(effects
 				(font
@@ -5272,7 +5272,7 @@
 		(instances
 			(project ""
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/c95f1fc4-1ba1-4ddd-af2e-ed3477b5512d"
-					(reference "#PWR0139")
+					(reference "#PWR0140")
 					(unit 1)
 				)
 			)
@@ -5288,7 +5288,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d247a5ee-ddba-4708-8741-c5a7cd41e968")
-		(property "Reference" "#PWR0140"
+		(property "Reference" "#PWR0141"
 			(at 93.98 133.35 0)
 			(effects
 				(font
@@ -5338,7 +5338,7 @@
 		(instances
 			(project ""
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/c95f1fc4-1ba1-4ddd-af2e-ed3477b5512d"
-					(reference "#PWR0140")
+					(reference "#PWR0141")
 					(unit 1)
 				)
 			)
@@ -5354,7 +5354,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d7e6bb00-a69b-4ab7-86f8-7f9f1148fb50")
-		(property "Reference" "#PWR0141"
+		(property "Reference" "#PWR0142"
 			(at 111.76 97.79 0)
 			(effects
 				(font
@@ -5404,7 +5404,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/c95f1fc4-1ba1-4ddd-af2e-ed3477b5512d"
-					(reference "#PWR0141")
+					(reference "#PWR0142")
 					(unit 1)
 				)
 			)
@@ -5420,7 +5420,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "db442f00-3291-4161-b30f-7ee952d15fd1")
-		(property "Reference" "#PWR0138"
+		(property "Reference" "#PWR0139"
 			(at 55.88 133.35 0)
 			(effects
 				(font
@@ -5470,7 +5470,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/c95f1fc4-1ba1-4ddd-af2e-ed3477b5512d"
-					(reference "#PWR0138")
+					(reference "#PWR0139")
 					(unit 1)
 				)
 			)

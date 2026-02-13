@@ -914,7 +914,7 @@
 					)
 				)
 			)
-			(property "Footprint" "Package_SO:HVSSOP-8-1EP_3x3mm_P0.65mm_EP1.57x1.89mm"
+			(property "Footprint" "CustomFootprints:TPS923650_VSSOP8"
 				(at -0.254 -24.892 0)
 				(effects
 					(font
@@ -990,6 +990,24 @@
 					)
 				)
 				(pin power_in line
+					(at -1.27 -11.43 90)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
 					(at 0 11.43 270)
 					(length 2.54)
 					(name "VIN"
@@ -1007,17 +1025,17 @@
 						)
 					)
 				)
-				(pin power_in line
-					(at 0 -11.43 90)
+				(pin passive line
+					(at 1.27 -11.43 90)
 					(length 2.54)
-					(name "GND"
+					(name "EP"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "1"
+					(number "9"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1368,6 +1386,24 @@
 						)
 					)
 					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 5.08 35.56 90)
+					(length 2.54)
+					(name "EP"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "17"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2806,7 +2842,7 @@
 		)
 		(uuid "68395afd-6f48-46c9-8ae0-4e1274beb580")
 	)
-	(text "May be replaced\nwith resistor for\ndual-touch"
+	(text "May be replaced\nwith 47R for\ndual-touch"
 		(exclude_from_sim no)
 		(at 118.618 180.34 0)
 		(effects
@@ -2865,6 +2901,12 @@
 			)
 		)
 		(uuid "fd8e967b-e6a6-42f9-a058-e8ce3a569fc9")
+	)
+	(junction
+		(at 66.04 81.28)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "0c31d1ff-98fb-4355-819b-4597e302fa4f")
 	)
 	(junction
 		(at 148.59 66.04)
@@ -2933,6 +2975,12 @@
 		(uuid "3a1ab244-0927-4ac9-835e-d9771ca1b769")
 	)
 	(junction
+		(at 127 175.26)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "3a636158-51b0-44d4-bb2b-f7e7f3b4bb8c")
+	)
+	(junction
 		(at 148.59 55.88)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2943,6 +2991,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "402e2b9a-4fc2-49d2-b2f5-b1a7f265ae4b")
+	)
+	(junction
+		(at 127 167.64)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "4589a777-beaf-4e24-82e0-9838a0b6cd86")
 	)
 	(junction
 		(at 161.29 55.88)
@@ -2973,12 +3027,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "6f595d9c-1cc9-4a23-8bbf-7d166b3a98ea")
-	)
-	(junction
-		(at 125.73 175.26)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "757e7967-a679-4963-84ec-1d38350dfc1d")
 	)
 	(junction
 		(at 90.17 160.02)
@@ -3057,6 +3105,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "c6e215bf-4e71-40d5-a3e3-c09a552ab00a")
+	)
+	(junction
+		(at 124.46 167.64)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d00aec27-024e-4102-960c-fe0dc81d863d")
 	)
 	(junction
 		(at 82.55 154.94)
@@ -3434,7 +3488,7 @@
 	)
 	(wire
 		(pts
-			(xy 125.73 167.64) (xy 125.73 175.26)
+			(xy 127 167.64) (xy 127 175.26)
 		)
 		(stroke
 			(width 0)
@@ -4024,26 +4078,6 @@
 	)
 	(wire
 		(pts
-			(xy 124.46 165.1) (xy 134.62 165.1)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "42e67d91-5b37-4df8-ab45-4515ce2bb8fb")
-	)
-	(wire
-		(pts
-			(xy 134.62 165.1) (xy 134.62 177.8)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "435434b8-88d0-44d8-bbab-f7a76b3f77f5")
-	)
-	(wire
-		(pts
 			(xy 77.47 99.06) (xy 83.82 99.06)
 		)
 		(stroke
@@ -4051,6 +4085,16 @@
 			(type default)
 		)
 		(uuid "458b2c93-3fad-448f-a45a-093ae9d6cb4e")
+	)
+	(wire
+		(pts
+			(xy 127 165.1) (xy 127 167.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "46501398-374b-4cc6-a206-5641dba1a321")
 	)
 	(wire
 		(pts
@@ -4091,6 +4135,16 @@
 			(type default)
 		)
 		(uuid "4913a0f7-d15c-47d4-b627-7a65f46ca42a")
+	)
+	(wire
+		(pts
+			(xy 124.46 165.1) (xy 124.46 167.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4a49b044-9570-4305-828c-bd145abbf0f5")
 	)
 	(wire
 		(pts
@@ -4391,6 +4445,16 @@
 			(type default)
 		)
 		(uuid "6c803e73-adb2-4c32-8310-bedcdd95e922")
+	)
+	(wire
+		(pts
+			(xy 124.46 167.64) (xy 127 167.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6c8cab72-184c-4526-a739-988c1e863057")
 	)
 	(wire
 		(pts
@@ -4774,7 +4838,17 @@
 	)
 	(wire
 		(pts
-			(xy 124.46 175.26) (xy 125.73 175.26)
+			(xy 64.77 81.28) (xy 66.04 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9ae48eff-af84-43a8-9930-d1ea7bf1fb1b")
+	)
+	(wire
+		(pts
+			(xy 124.46 175.26) (xy 127 175.26)
 		)
 		(stroke
 			(width 0)
@@ -4984,7 +5058,7 @@
 	)
 	(wire
 		(pts
-			(xy 66.04 78.74) (xy 66.04 81.28)
+			(xy 64.77 78.74) (xy 64.77 81.28)
 		)
 		(stroke
 			(width 0)
@@ -5234,7 +5308,7 @@
 	)
 	(wire
 		(pts
-			(xy 129.54 175.26) (xy 125.73 175.26)
+			(xy 129.54 175.26) (xy 127 175.26)
 		)
 		(stroke
 			(width 0)
@@ -5314,6 +5388,16 @@
 	)
 	(wire
 		(pts
+			(xy 67.31 78.74) (xy 67.31 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dbe781fd-ea85-4ec8-9091-82d2a34af711")
+	)
+	(wire
+		(pts
 			(xy 170.18 45.72) (xy 170.18 55.88)
 		)
 		(stroke
@@ -5334,13 +5418,23 @@
 	)
 	(wire
 		(pts
-			(xy 121.92 167.64) (xy 125.73 167.64)
+			(xy 121.92 167.64) (xy 124.46 167.64)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "de4b6673-6048-4120-9b2e-7e6e94ba4d5b")
+	)
+	(wire
+		(pts
+			(xy 66.04 81.28) (xy 67.31 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "defd82a7-d5dd-4619-a8be-2e6a4f3ce931")
 	)
 	(wire
 		(pts
@@ -6776,7 +6870,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "0a946be7-4a1e-45de-b598-4694bee24502")
-		(property "Reference" "#PWR0152"
+		(property "Reference" "#PWR0153"
 			(at 29.21 62.23 0)
 			(effects
 				(font
@@ -6826,7 +6920,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
-					(reference "#PWR0152")
+					(reference "#PWR0153")
 					(unit 1)
 				)
 			)
@@ -6839,7 +6933,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0b369ed7-4991-4575-be42-64fd4ad7db97")
 		(property "Reference" "R46"
@@ -6850,7 +6944,7 @@
 				)
 			)
 		)
-		(property "Value" "47"
+		(property "Value" "0"
 			(at 120.65 172.6508 90)
 			(effects
 				(font
@@ -6919,7 +7013,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0d42bbfd-78ca-4f0e-97f5-d5cb8eadf692")
-		(property "Reference" "#PWR0156"
+		(property "Reference" "#PWR0157"
 			(at 74.93 133.35 0)
 			(effects
 				(font
@@ -6969,7 +7063,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
-					(reference "#PWR0156")
+					(reference "#PWR0157")
 					(unit 1)
 				)
 			)
@@ -7280,71 +7374,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 134.62 177.8 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "241f1675-0277-46fd-aee9-7cb7c623cdb8")
-		(property "Reference" "#PWR0165"
-			(at 134.62 184.15 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 134.62 181.9331 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 134.62 177.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 134.62 177.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 134.62 177.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "f4c852b1-5e4f-46b1-994e-f80c6d77bf4f")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
-					(reference "#PWR0165")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C")
 		(at 138.43 49.53 0)
 		(unit 1)
@@ -7589,7 +7618,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "38fa681b-abae-4796-ade1-a7b13b796a24")
-		(property "Reference" "#PWR0159"
+		(property "Reference" "#PWR0160"
 			(at 90.17 133.35 0)
 			(effects
 				(font
@@ -7639,7 +7668,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
-					(reference "#PWR0159")
+					(reference "#PWR0160")
 					(unit 1)
 				)
 			)
@@ -7734,7 +7763,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3eebab1f-c4dc-475b-bddc-5d18dc2853d3")
-		(property "Reference" "#PWR0155"
+		(property "Reference" "#PWR0156"
 			(at 67.31 133.35 0)
 			(effects
 				(font
@@ -7784,7 +7813,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
-					(reference "#PWR0155")
+					(reference "#PWR0156")
 					(unit 1)
 				)
 			)
@@ -7955,7 +7984,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "4dd4581a-44cf-42c1-a790-9790cd1b551e")
-		(property "Reference" "#PWR0160"
+		(property "Reference" "#PWR0161"
 			(at 97.79 151.13 0)
 			(effects
 				(font
@@ -8005,7 +8034,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
-					(reference "#PWR0160")
+					(reference "#PWR0161")
 					(unit 1)
 				)
 			)
@@ -8096,7 +8125,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "5019a7f1-d0f0-4065-b84c-34b63bf8d226")
-		(property "Reference" "#PWR0154"
+		(property "Reference" "#PWR0155"
 			(at 66.04 87.63 0)
 			(effects
 				(font
@@ -8146,7 +8175,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
-					(reference "#PWR0154")
+					(reference "#PWR0155")
 					(unit 1)
 				)
 			)
@@ -8238,7 +8267,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "56096ef3-48f8-407a-abec-f1879ab96d88")
-		(property "Reference" "#PWR0163"
+		(property "Reference" "#PWR0164"
 			(at 119.38 124.46 0)
 			(effects
 				(font
@@ -8288,7 +8317,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
-					(reference "#PWR0163")
+					(reference "#PWR0164")
 					(unit 1)
 				)
 			)
@@ -8379,7 +8408,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "5a1e957e-865a-449b-8eae-d58d4ec0e70e")
-		(property "Reference" "#PWR0164"
+		(property "Reference" "#PWR0165"
 			(at 129.54 184.15 0)
 			(effects
 				(font
@@ -8429,7 +8458,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
-					(reference "#PWR0164")
+					(reference "#PWR0165")
 					(unit 1)
 				)
 			)
@@ -8445,7 +8474,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5e1faaef-8dd4-4bc3-8002-90b5ec468a29")
-		(property "Reference" "#PWR0151"
+		(property "Reference" "#PWR0152"
 			(at 29.21 46.99 0)
 			(effects
 				(font
@@ -8495,7 +8524,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
-					(reference "#PWR0151")
+					(reference "#PWR0152")
 					(unit 1)
 				)
 			)
@@ -8613,6 +8642,9 @@
 		(pin "14"
 			(uuid "019bee63-5c75-4161-9aa7-c3c9a9ab4fd9")
 		)
+		(pin "17"
+			(uuid "982e7f4c-02ce-4fea-9915-06bd67635cc6")
+		)
 		(instances
 			(project ""
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
@@ -8707,7 +8739,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "5fe65a0b-7eb2-4a11-a224-a1e683a544be")
-		(property "Reference" "#PWR0161"
+		(property "Reference" "#PWR0162"
 			(at 101.6 137.16 0)
 			(effects
 				(font
@@ -8757,7 +8789,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
-					(reference "#PWR0161")
+					(reference "#PWR0162")
 					(unit 1)
 				)
 			)
@@ -8943,7 +8975,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_SO:HVSSOP-8-1EP_3x3mm_P0.65mm_EP1.57x1.89mm"
+		(property "Footprint" "CustomFootprints:TPS923650_VSSOP8"
 			(at 65.278 94.742 0)
 			(effects
 				(font
@@ -9003,6 +9035,9 @@
 		(pin "7"
 			(uuid "77d69c2e-8b2a-4817-81ec-5f516958a227")
 		)
+		(pin "9"
+			(uuid "581a6d59-cc75-481c-907c-f54c222580d9")
+		)
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
@@ -9021,7 +9056,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "6d6044c8-de63-48dc-8b8c-1efa013b3cde")
-		(property "Reference" "#PWR0153"
+		(property "Reference" "#PWR0154"
 			(at 29.21 77.47 0)
 			(effects
 				(font
@@ -9071,7 +9106,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
-					(reference "#PWR0153")
+					(reference "#PWR0154")
 					(unit 1)
 				)
 			)
@@ -9315,7 +9350,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "7297be86-b13d-404c-b9a3-67a225981686")
-		(property "Reference" "#PWR0162"
+		(property "Reference" "#PWR0163"
 			(at 110.49 137.16 0)
 			(effects
 				(font
@@ -9365,7 +9400,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
-					(reference "#PWR0162")
+					(reference "#PWR0163")
 					(unit 1)
 				)
 			)
@@ -9750,7 +9785,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "83ce0868-8abf-4324-a134-e67c5a90328b")
-		(property "Reference" "#PWR0157"
+		(property "Reference" "#PWR0158"
 			(at 82.55 133.35 0)
 			(effects
 				(font
@@ -9800,7 +9835,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
-					(reference "#PWR0157")
+					(reference "#PWR0158")
 					(unit 1)
 				)
 			)
@@ -10119,7 +10154,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "8b94c2e1-0275-413a-bc5a-8cb76c4bcbd2")
-		(property "Reference" "#PWR0158"
+		(property "Reference" "#PWR0159"
 			(at 83.82 105.41 0)
 			(effects
 				(font
@@ -10169,7 +10204,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/e982bc10-c57a-42ac-b92d-a536dd69a0fd"
-					(reference "#PWR0158")
+					(reference "#PWR0159")
 					(unit 1)
 				)
 			)

@@ -2778,7 +2778,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_SO:HVSSOP-8-1EP_3x3mm_P0.65mm_EP1.57x1.89mm"
+		(property "Footprint" "CustomFootprints:TPS923650_VSSOP8"
 			(at -0.254 -24.892 0)
 			(effects
 				(font
@@ -2854,6 +2854,24 @@
 				)
 			)
 			(pin power_in line
+				(at -1.27 -11.43 90)
+				(length 2.54)
+				(name "GND"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin power_in line
 				(at 0 11.43 270)
 				(length 2.54)
 				(name "VIN"
@@ -2871,17 +2889,17 @@
 					)
 				)
 			)
-			(pin power_in line
-				(at 0 -11.43 90)
+			(pin passive line
+				(at 1.27 -11.43 90)
 				(length 2.54)
-				(name "GND"
+				(name "EP"
 					(effects
 						(font
 							(size 1.27 1.27)
 						)
 					)
 				)
-				(number "1"
+				(number "9"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -3232,6 +3250,24 @@
 					)
 				)
 				(number "6"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 5.08 35.56 90)
+				(length 2.54)
+				(name "EP"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "17"
 					(effects
 						(font
 							(size 1.27 1.27)
