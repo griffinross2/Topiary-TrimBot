@@ -7701,7 +7701,7 @@
 	)
 	(rectangle
 		(start 325.12 101.6)
-		(end 361.95 120.65)
+		(end 361.95 137.16)
 		(stroke
 			(width 0)
 			(type dash)
@@ -7879,7 +7879,7 @@
 	)
 	(text "Spare I2C"
 		(exclude_from_sim no)
-		(at 330.454 75.946 0)
+		(at 329.946 99.822 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7889,7 +7889,7 @@
 	)
 	(text "Debugging UART"
 		(exclude_from_sim no)
-		(at 333.248 100.076 0)
+		(at 332.994 75.946 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -8080,6 +8080,12 @@
 		(uuid "129e80e0-52b8-4300-af0f-f1a9a0d3a356")
 	)
 	(junction
+		(at 304.8 99.06)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "13a35125-aaf7-4162-98bd-2bb7e248c259")
+	)
+	(junction
 		(at 353.06 187.96)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -8104,12 +8110,6 @@
 		(uuid "2129862d-5414-4aec-bcde-3dc118a99e2c")
 	)
 	(junction
-		(at 304.8 144.78)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "24baea6e-a335-4c1d-a0a1-8b694630f621")
-	)
-	(junction
 		(at 36.83 182.88)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -8132,6 +8132,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "32060822-410e-42c2-b30f-9ade9a9362aa")
+	)
+	(junction
+		(at 304.8 121.92)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "344077a3-4c2b-433c-adb3-fd5cd6dcc04c")
 	)
 	(junction
 		(at 198.12 252.73)
@@ -8182,12 +8188,6 @@
 		(uuid "4b0c529c-a472-4ce8-a925-a2b2d092e4db")
 	)
 	(junction
-		(at 139.7 33.02)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "4cdd6bb6-3e39-4de7-bbd3-23c2eb05f9e1")
-	)
-	(junction
 		(at 195.58 34.29)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -8218,16 +8218,28 @@
 		(uuid "5889cf42-5aa0-4117-8007-f44098255816")
 	)
 	(junction
-		(at 304.8 76.2)
+		(at 304.8 30.48)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "5c4fbb3f-4dd4-4103-ae79-1ea132de82de")
+		(uuid "5b4b5564-bef8-45ec-8750-fd8898a695dc")
+	)
+	(junction
+		(at 304.8 53.34)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "5f68fc67-91f6-49a5-9715-e9bb4b6f1b65")
 	)
 	(junction
 		(at 208.28 34.29)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "606c9fb2-aae5-423e-93fe-cf1438eab415")
+	)
+	(junction
+		(at 274.32 69.85)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "61feecf8-99bc-4bd7-af8e-9479cf82aec1")
 	)
 	(junction
 		(at 38.1 83.82)
@@ -8240,12 +8252,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "6304a39b-86f9-4787-9d86-1e6cfca75668")
-	)
-	(junction
-		(at 304.8 53.34)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "6319a593-77d9-447a-9549-a2d1983d6f7c")
 	)
 	(junction
 		(at 82.55 33.02)
@@ -8266,10 +8272,10 @@
 		(uuid "67dfbc65-2681-40c0-b0e6-a4fbc0d502b4")
 	)
 	(junction
-		(at 139.7 25.4)
+		(at 304.8 144.78)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "77c65fa8-c850-45d1-917f-f63b4b4a3fc3")
+		(uuid "6a158967-c54b-407d-b536-b553ea4b289e")
 	)
 	(junction
 		(at 50.8 25.4)
@@ -8290,10 +8296,10 @@
 		(uuid "83d24e15-8b84-4c61-b760-d16dd0f80a6a")
 	)
 	(junction
-		(at 269.24 69.85)
+		(at 347.98 127)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "9582f331-9b28-4d68-b0e1-f5ec7646f0d6")
+		(uuid "95adde66-a3c6-4d6b-9320-ee877688d9e5")
 	)
 	(junction
 		(at 172.72 34.29)
@@ -8312,12 +8318,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "9c8722c4-9f53-42fc-8a71-1d65f669e1f0")
-	)
-	(junction
-		(at 304.8 121.92)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "9fc064c5-aba5-4c0f-80dd-5d8b1342aaf8")
 	)
 	(junction
 		(at 203.2 34.29)
@@ -8416,6 +8416,12 @@
 		(uuid "c7d87c11-c085-46af-9d6f-191d8c833fe4")
 	)
 	(junction
+		(at 342.9 124.46)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "cc0f6cc5-94f9-462a-802e-c964e93d0e19")
+	)
+	(junction
 		(at 175.26 34.29)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -8458,16 +8464,16 @@
 		(uuid "d3b5ec98-111b-4181-95e2-ba545557cb33")
 	)
 	(junction
+		(at 304.8 76.2)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d8ab2bfd-58d4-4c49-9bfe-adbba1fe6a05")
+	)
+	(junction
 		(at 114.3 33.02)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "da3019d1-6022-45fe-b254-5363523a32b6")
-	)
-	(junction
-		(at 304.8 99.06)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "dc185bf1-023b-41df-b595-debcfabb7774")
 	)
 	(junction
 		(at 69.85 33.02)
@@ -8558,12 +8564,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "f8ed6912-5029-4f2f-98f1-e67ddb517c2f")
-	)
-	(junction
-		(at 304.8 30.48)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "fc3431c2-0671-4363-bfd2-689c7bf53c2f")
 	)
 	(junction
 		(at 87.63 83.82)
@@ -8716,16 +8716,8 @@
 		(uuid "cfb65538-cba1-4128-9e74-5050bf4f938d")
 	)
 	(no_connect
-		(at 246.38 80.01)
-		(uuid "d3dab657-b3b1-4306-a31d-4dccad215246")
-	)
-	(no_connect
 		(at 149.86 92.71)
 		(uuid "d4956990-dcb6-4cea-b625-9a3c8226963a")
-	)
-	(no_connect
-		(at 246.38 82.55)
-		(uuid "d8a793a4-aaab-4bc4-a5fc-0f092b593b54")
 	)
 	(no_connect
 		(at 149.86 57.15)
@@ -9083,6 +9075,16 @@
 	)
 	(wire
 		(pts
+			(xy 342.9 124.46) (xy 349.25 124.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0894da32-e80b-459f-8d4f-d6ae5058d6b2")
+	)
+	(wire
+		(pts
 			(xy 69.85 25.4) (xy 76.2 25.4)
 		)
 		(stroke
@@ -9181,6 +9183,16 @@
 		)
 		(uuid "11262e8b-12e5-40ee-9be6-e9b19cab0026")
 	)
+	(wire
+		(pts
+			(xy 246.38 82.55) (xy 261.62 82.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "11506991-cf63-4021-a65a-344947615c07")
+	)
 	(bus
 		(pts
 			(xy 391.16 71.12) (xy 391.16 73.66)
@@ -9190,16 +9202,6 @@
 			(type default)
 		)
 		(uuid "115c2b30-88d2-4205-a644-4e5797ccfac1")
-	)
-	(wire
-		(pts
-			(xy 139.7 33.02) (xy 152.4 33.02)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "11e8d6dd-fbf6-4daa-8f58-3638fadcb368")
 	)
 	(wire
 		(pts
@@ -9293,7 +9295,7 @@
 	)
 	(wire
 		(pts
-			(xy 133.35 25.4) (xy 139.7 25.4)
+			(xy 133.35 25.4) (xy 152.4 25.4)
 		)
 		(stroke
 			(width 0)
@@ -9360,16 +9362,6 @@
 			(type default)
 		)
 		(uuid "1d539909-e373-48b0-84b2-3e776639231e")
-	)
-	(wire
-		(pts
-			(xy 377.19 203.2) (xy 367.03 203.2)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1e0ca924-7b2c-40fa-aaf7-6cabeb3cba7f")
 	)
 	(wire
 		(pts
@@ -9543,7 +9535,7 @@
 	)
 	(wire
 		(pts
-			(xy 330.2 109.22) (xy 340.36 109.22)
+			(xy 330.2 127) (xy 347.98 127)
 		)
 		(stroke
 			(width 0)
@@ -9823,6 +9815,16 @@
 	)
 	(wire
 		(pts
+			(xy 246.38 69.85) (xy 264.16 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "39f3c2c4-ab38-4b89-8c8d-89d159893008")
+	)
+	(wire
+		(pts
 			(xy 246.38 110.49) (xy 261.62 110.49)
 		)
 		(stroke
@@ -9973,16 +9975,6 @@
 	)
 	(wire
 		(pts
-			(xy 359.41 180.34) (xy 354.33 180.34)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4180baf2-c366-4d9b-b0d7-586e32bb6818")
-	)
-	(wire
-		(pts
 			(xy 134.62 207.01) (xy 149.86 207.01)
 		)
 		(stroke
@@ -10030,6 +10022,16 @@
 			(type default)
 		)
 		(uuid "43b5a552-8ae9-4639-a2ce-7cdbd2dd1501")
+	)
+	(wire
+		(pts
+			(xy 347.98 127) (xy 349.25 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "43cb1be3-11cc-4a72-aaa4-466f742fbddd")
 	)
 	(wire
 		(pts
@@ -10213,16 +10215,6 @@
 	)
 	(wire
 		(pts
-			(xy 397.51 193.04) (xy 407.67 193.04)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "512dbf5b-5e96-42e3-b81f-1e6a78b1b994")
-	)
-	(wire
-		(pts
 			(xy 330.2 87.63) (xy 340.36 87.63)
 		)
 		(stroke
@@ -10233,7 +10225,7 @@
 	)
 	(wire
 		(pts
-			(xy 346.71 180.34) (xy 340.36 180.34)
+			(xy 340.36 180.34) (xy 359.41 180.34)
 		)
 		(stroke
 			(width 0)
@@ -10390,6 +10382,16 @@
 			(type default)
 		)
 		(uuid "5cbf4fcf-b705-4dbb-a003-8d7f9a4a169f")
+	)
+	(wire
+		(pts
+			(xy 397.51 203.2) (xy 407.67 203.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5d05c58d-af6c-4824-b837-2d2e7b49119e")
 	)
 	(wire
 		(pts
@@ -10700,6 +10702,16 @@
 			(type default)
 		)
 		(uuid "72ac7d56-da8f-4064-b849-b714e722d37c")
+	)
+	(wire
+		(pts
+			(xy 347.98 119.38) (xy 347.98 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7301e628-afcd-4c8a-8580-282b24fd02dc")
 	)
 	(wire
 		(pts
@@ -11053,16 +11065,6 @@
 	)
 	(wire
 		(pts
-			(xy 246.38 69.85) (xy 269.24 69.85)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "920ac562-1a62-4edb-9d2d-8d45ef915172")
-	)
-	(wire
-		(pts
 			(xy 82.55 25.4) (xy 88.9 25.4)
 		)
 		(stroke
@@ -11213,16 +11215,6 @@
 	)
 	(wire
 		(pts
-			(xy 139.7 25.4) (xy 152.4 25.4)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9ceeb6be-463d-4e72-ac1f-b5f09f0ff691")
-	)
-	(wire
-		(pts
 			(xy 44.45 147.32) (xy 44.45 149.86)
 		)
 		(stroke
@@ -11240,6 +11232,16 @@
 			(type default)
 		)
 		(uuid "9de571e1-3c59-456e-a783-df96dd429e76")
+	)
+	(wire
+		(pts
+			(xy 342.9 119.38) (xy 342.9 124.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9e0996cf-529e-4fdb-a578-68ff1fce014e")
 	)
 	(wire
 		(pts
@@ -11290,6 +11292,16 @@
 			(type default)
 		)
 		(uuid "a04fdb5b-ce21-4d04-92dd-9d668eac355b")
+	)
+	(wire
+		(pts
+			(xy 274.32 69.85) (xy 271.78 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a06a519a-7f98-4d43-8f39-88ffcf38d9ea")
 	)
 	(wire
 		(pts
@@ -11383,6 +11395,16 @@
 	)
 	(wire
 		(pts
+			(xy 377.19 193.04) (xy 367.03 193.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a567b31e-acd3-42ff-907e-68cdb8123c3c")
+	)
+	(wire
+		(pts
 			(xy 25.4 58.42) (xy 38.1 58.42)
 		)
 		(stroke
@@ -11420,6 +11442,16 @@
 			(type default)
 		)
 		(uuid "a89aa360-9f24-46c1-8b3b-aabbd727c26b")
+	)
+	(wire
+		(pts
+			(xy 377.19 203.2) (xy 367.03 203.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a9e6a385-112a-4949-8117-f7e490ee626e")
 	)
 	(wire
 		(pts
@@ -11613,16 +11645,6 @@
 	)
 	(wire
 		(pts
-			(xy 397.51 203.2) (xy 407.67 203.2)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b97bc510-73fc-4acf-b788-f0330e82b06e")
-	)
-	(wire
-		(pts
 			(xy 116.84 142.24) (xy 116.84 147.32)
 		)
 		(stroke
@@ -11680,16 +11702,6 @@
 			(type default)
 		)
 		(uuid "be06dc03-3422-4ef7-82b6-380a3543179e")
-	)
-	(wire
-		(pts
-			(xy 377.19 193.04) (xy 367.03 193.04)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "be1b2621-870d-493f-9a57-0cd3f4846c6f")
 	)
 	(wire
 		(pts
@@ -11763,13 +11775,23 @@
 	)
 	(wire
 		(pts
-			(xy 330.2 106.68) (xy 340.36 106.68)
+			(xy 330.2 124.46) (xy 342.9 124.46)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "c3b6df97-b39c-46a1-9cbe-982914fcfae2")
+	)
+	(wire
+		(pts
+			(xy 397.51 193.04) (xy 407.67 193.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c3ffd4a2-6df6-4f1d-ae81-1e360a96b277")
 	)
 	(wire
 		(pts
@@ -12093,6 +12115,16 @@
 	)
 	(wire
 		(pts
+			(xy 246.38 80.01) (xy 261.62 80.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d7f2ad8c-1bdd-41f7-820e-05bfb691e2c1")
+	)
+	(wire
+		(pts
 			(xy 340.36 185.42) (xy 345.44 185.42)
 		)
 		(stroke
@@ -12143,7 +12175,7 @@
 	)
 	(wire
 		(pts
-			(xy 133.35 33.02) (xy 139.7 33.02)
+			(xy 133.35 33.02) (xy 152.4 33.02)
 		)
 		(stroke
 			(width 0)
@@ -12413,7 +12445,7 @@
 	)
 	(wire
 		(pts
-			(xy 330.2 111.76) (xy 340.36 111.76)
+			(xy 330.2 129.54) (xy 349.25 129.54)
 		)
 		(stroke
 			(width 0)
@@ -12771,16 +12803,6 @@
 		)
 		(uuid "0d9e0201-6d2a-4136-9477-d04a9c5365f9")
 	)
-	(label "USB_DP"
-		(at 367.03 203.2 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "0e1508e9-8f57-4b4e-9c8b-b5c1ebab4453")
-	)
 	(label "VSS"
 		(at 195.58 252.73 90)
 		(effects
@@ -12790,16 +12812,6 @@
 			(justify left bottom)
 		)
 		(uuid "0e3d3241-d2c8-439d-a3e0-87ffeac3accc")
-	)
-	(label "AUX_SDA"
-		(at 330.2 85.09 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "106d73d0-0dae-4b2d-9abf-6d19c0c2fe3f")
 	)
 	(label "OSC_IN"
 		(at 134.62 85.09 0)
@@ -12851,15 +12863,15 @@
 		)
 		(uuid "14c31709-cfd5-4c25-92bb-2b180b24238a")
 	)
-	(label "USB_DP"
-		(at 407.67 203.2 180)
+	(label "AUX_SDA"
+		(at 330.2 127 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify left bottom)
 		)
-		(uuid "15b361ed-270c-4249-b19a-9fbaf7731bf4")
+		(uuid "17072925-c9d8-4cd4-9390-c96eb98196c2")
 	)
 	(label "LCD_HSYNC"
 		(at 375.92 91.44 0)
@@ -12921,16 +12933,6 @@
 		)
 		(uuid "267812e7-ec09-443c-bf2a-b270caf79cb8")
 	)
-	(label "UART6_TX"
-		(at 330.2 106.68 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "275ac1a0-159e-4433-976d-c97a47c82a55")
-	)
 	(label "VSS"
 		(at 57.15 58.42 0)
 		(effects
@@ -12980,6 +12982,16 @@
 			(justify left bottom)
 		)
 		(uuid "2b517efa-27a9-4799-b0dd-e67469d53092")
+	)
+	(label "USB_DM"
+		(at 407.67 203.2 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "2dc7a16b-3468-4f35-9773-55387f5a44ce")
 	)
 	(label "NOR_D3"
 		(at 375.92 161.29 0)
@@ -13191,6 +13203,16 @@
 		)
 		(uuid "4454ceb5-729a-422b-a92e-2104b691a962")
 	)
+	(label "UART6_RX"
+		(at 330.2 85.09 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "4465281e-1029-4e94-a89d-159e9e4b3af1")
+	)
 	(label "REVOLUTE_STEP"
 		(at 327.66 53.34 0)
 		(effects
@@ -13220,6 +13242,16 @@
 			(justify left bottom)
 		)
 		(uuid "497f05a7-0a9a-4861-856e-74d97db4f3ad")
+	)
+	(label "SWCLK"
+		(at 261.62 82.55 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "4a58de08-2db7-44f8-8e0b-d5399f75da2f")
 	)
 	(label "REVOLUTE_DIR"
 		(at 327.66 55.88 0)
@@ -13260,6 +13292,16 @@
 			(justify right bottom)
 		)
 		(uuid "53c575d1-43d4-4d5c-882d-180da12c820f")
+	)
+	(label "UART6_TX"
+		(at 330.2 82.55 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "53d0e305-f004-426e-8f7a-0fc9ca66f2c8")
 	)
 	(label "GANTRY_DIR"
 		(at 327.66 45.72 0)
@@ -13430,16 +13472,6 @@
 			(justify left bottom)
 		)
 		(uuid "6b01377d-6925-48b6-8df1-ba41c44a347e")
-	)
-	(label "UART6_RX"
-		(at 330.2 109.22 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "6b0bf863-48c8-43bf-a024-200456656efe")
 	)
 	(label "LCD_B6"
 		(at 261.62 110.49 180)
@@ -13971,6 +14003,16 @@
 		)
 		(uuid "aa65d7a5-1553-446c-ad93-876b50965024")
 	)
+	(label "USB_DM"
+		(at 367.03 203.2 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "aa794e9e-3149-459a-8fe9-59459dfc6653")
+	)
 	(label "SD_CLK"
 		(at 375.92 127 0)
 		(effects
@@ -14020,6 +14062,16 @@
 			(justify left bottom)
 		)
 		(uuid "b3e076b1-b804-4265-a449-1958b1d5edc8")
+	)
+	(label "SWDIO"
+		(at 261.62 80.01 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "b5aac005-9138-4ffc-9760-acd410f6d8b7")
 	)
 	(label "OSC32_IN"
 		(at 63.5 137.16 180)
@@ -14121,6 +14173,16 @@
 		)
 		(uuid "c0c91f73-1631-49f3-8fb6-993e964ae872")
 	)
+	(label "USB_DP"
+		(at 367.03 193.04 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c2b7a31c-5eb6-401c-92c2-29895375c493")
+	)
 	(label "SWCLK"
 		(at 55.88 261.62 180)
 		(effects
@@ -14201,16 +14263,6 @@
 		)
 		(uuid "cadd6efc-9e4f-4267-b3f0-81045b17ad1c")
 	)
-	(label "USB_DM"
-		(at 367.03 193.04 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "cc50a668-1be7-4fe6-b813-30257afc84a7")
-	)
 	(label "LCD_R7"
 		(at 375.92 40.64 0)
 		(effects
@@ -14231,6 +14283,16 @@
 		)
 		(uuid "cdda4d76-ef21-4cc6-9b5f-183f699fe877")
 	)
+	(label "AUX_SCL"
+		(at 330.2 124.46 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "d2a0742c-238a-4d61-8fb1-35f41cd713b0")
+	)
 	(label "UART6_RX"
 		(at 134.62 115.57 0)
 		(effects
@@ -14241,16 +14303,6 @@
 		)
 		(uuid "d2a5eafe-9e9b-434d-9e97-17c9f02ac592")
 	)
-	(label "USB_DM"
-		(at 407.67 193.04 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "d2cea118-0394-4e51-bd27-bb47cb04f982")
-	)
 	(label "LCD_R3"
 		(at 261.62 90.17 180)
 		(effects
@@ -14260,6 +14312,16 @@
 			(justify right bottom)
 		)
 		(uuid "d3d5b65d-8213-4af4-913b-564afc62fbcc")
+	)
+	(label "USB_DP"
+		(at 407.67 193.04 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "d4c5d544-f975-4227-a72a-d3873ab581fe")
 	)
 	(label "LCD_G5"
 		(at 375.92 55.88 0)
@@ -14530,16 +14592,6 @@
 			(justify right bottom)
 		)
 		(uuid "f65bb337-57f8-4a05-a9f6-36efe6582475")
-	)
-	(label "AUX_SCL"
-		(at 330.2 82.55 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "f743da18-8fbf-41c7-9b45-c392e7fd69bb")
 	)
 	(label "DOOR_SW"
 		(at 290.83 121.92 0)
@@ -15493,7 +15545,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0009db55-4dc8-4fe6-8f68-3b4878cee44d")
-		(property "Reference" "#PWR049"
+		(property "Reference" "#PWR079"
 			(at 304.8 44.45 0)
 			(effects
 				(font
@@ -15543,7 +15595,77 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR049")
+					(reference "#PWR079")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 304.8 148.59 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "02b85a00-735d-4d8b-803a-4a818ce4d4b6")
+		(property "Reference" "C63"
+			(at 300.99 147.3199 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1u"
+			(at 300.99 149.8599 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 303.8348 152.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 304.8 148.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 304.8 148.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "620deb48-5633-4dd3-ab50-1781707f4a0d")
+		)
+		(pin "1"
+			(uuid "e03034a4-9273-4072-b6a5-f38271752c87")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
+					(reference "C63")
 					(unit 1)
 				)
 			)
@@ -15643,6 +15765,76 @@
 	)
 	(symbol
 		(lib_id "Device:C")
+		(at 304.8 34.29 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "067fc7ae-6e56-461e-9376-d71cf8a6922a")
+		(property "Reference" "C58"
+			(at 300.99 33.0199 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1u"
+			(at 300.99 35.5599 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 303.8348 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 304.8 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 304.8 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "2caa9922-c540-4cfd-aec7-054cb48b382f")
+		)
+		(pin "1"
+			(uuid "7f25bc21-2c1e-4895-b548-4a44ea05fb6c")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
+					(reference "C58")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
 		(at 127 29.21 0)
 		(mirror y)
 		(unit 1)
@@ -15651,7 +15843,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "06889eb5-f1e0-4250-8d6d-f0f0f18fd734")
-		(property "Reference" "C42"
+		(property "Reference" "C54"
 			(at 124.46 20.828 0)
 			(effects
 				(font
@@ -15705,7 +15897,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "C42")
+					(reference "C54")
 					(unit 1)
 				)
 			)
@@ -15721,7 +15913,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "086b7130-0b2f-45f0-a280-a8c7fce25336")
-		(property "Reference" "#PWR075"
+		(property "Reference" "#PWR052"
 			(at 101.6 161.29 0)
 			(effects
 				(font
@@ -15771,7 +15963,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR075")
+					(reference "#PWR052")
 					(unit 1)
 				)
 			)
@@ -15787,7 +15979,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0af6cbde-85b8-4491-9650-75f5191a3830")
-		(property "Reference" "#PWR056"
+		(property "Reference" "#PWR070"
 			(at 287.02 74.93 0)
 			(effects
 				(font
@@ -15837,7 +16029,77 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR056")
+					(reference "#PWR070")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 304.8 57.15 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "0c5051a4-72ab-4d08-b6d9-654cc7391d67")
+		(property "Reference" "C59"
+			(at 300.99 55.8799 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1u"
+			(at 300.99 58.4199 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 303.8348 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 304.8 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 304.8 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "4d4541f0-6168-4956-a339-0702288647d1")
+		)
+		(pin "1"
+			(uuid "3fa655c4-e907-4a5c-ba80-13d5d110b6a7")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
+					(reference "C59")
 					(unit 1)
 				)
 			)
@@ -15853,7 +16115,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0cede5ec-79ba-4ca7-b5e0-37b5d85cb577")
-		(property "Reference" "#PWR059"
+		(property "Reference" "#PWR081"
 			(at 304.8 90.17 0)
 			(effects
 				(font
@@ -15903,7 +16165,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR059")
+					(reference "#PWR081")
 					(unit 1)
 				)
 			)
@@ -15911,8 +16173,8 @@
 	)
 	(symbol
 		(lib_id "Device:D")
-		(at 350.52 180.34 0)
-		(mirror y)
+		(at 267.97 69.85 0)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -15920,7 +16182,7 @@
 		(dnp no)
 		(uuid "0e25df92-6497-4a76-a207-ecc0029c4f96")
 		(property "Reference" "D11"
-			(at 350.52 173.99 0)
+			(at 267.97 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15928,7 +16190,7 @@
 			)
 		)
 		(property "Value" "D"
-			(at 350.52 176.53 0)
+			(at 267.97 73.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15936,7 +16198,7 @@
 			)
 		)
 		(property "Footprint" "Diode_SMD:D_SOD-323"
-			(at 350.52 180.34 0)
+			(at 267.97 69.85 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15945,7 +16207,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 350.52 180.34 0)
+			(at 267.97 69.85 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15954,7 +16216,7 @@
 			)
 		)
 		(property "Description" "Diode"
-			(at 350.52 180.34 0)
+			(at 267.97 69.85 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15963,7 +16225,7 @@
 			)
 		)
 		(property "Sim.Device" "D"
-			(at 350.52 180.34 0)
+			(at 267.97 69.85 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15972,7 +16234,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
-			(at 350.52 180.34 0)
+			(at 267.97 69.85 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15987,7 +16249,7 @@
 			(uuid "65eb42ae-253c-4a3e-ade1-3223dfad7e98")
 		)
 		(instances
-			(project ""
+			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
 					(reference "D11")
 					(unit 1)
@@ -16004,7 +16266,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "0e581b65-46eb-4e59-865f-c858b7243643")
-		(property "Reference" "J5"
+		(property "Reference" "J6"
 			(at 308.61 57.15 0)
 			(effects
 				(font
@@ -16079,7 +16341,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "J5")
+					(reference "J6")
 					(unit 1)
 				)
 			)
@@ -16174,7 +16436,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "14814b8d-4b8e-443b-b640-fcc607fca6e5")
-		(property "Reference" "#PWR047"
+		(property "Reference" "#PWR067"
 			(at 287.02 34.29 0)
 			(effects
 				(font
@@ -16224,7 +16486,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR047")
+					(reference "#PWR067")
 					(unit 1)
 				)
 			)
@@ -16240,7 +16502,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "15c9cec8-4575-47d2-ab5d-a571c752493d")
-		(property "Reference" "C28"
+		(property "Reference" "C30"
 			(at 35.56 20.828 0)
 			(effects
 				(font
@@ -16294,7 +16556,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "C28")
+					(reference "C30")
 					(unit 1)
 				)
 			)
@@ -16310,7 +16572,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "15d20d83-c0a1-4ffc-a6a0-c920aebc4bb0")
-		(property "Reference" "#PWR074"
+		(property "Reference" "#PWR051"
 			(at 93.98 161.29 0)
 			(effects
 				(font
@@ -16360,7 +16622,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR074")
+					(reference "#PWR051")
 					(unit 1)
 				)
 			)
@@ -16376,7 +16638,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "16bdc5e5-db31-42b0-ba0f-090d3ef2487a")
-		(property "Reference" "#PWR082"
+		(property "Reference" "#PWR047"
 			(at 41.91 196.85 0)
 			(effects
 				(font
@@ -16426,7 +16688,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR082")
+					(reference "#PWR047")
 					(unit 1)
 				)
 			)
@@ -16448,7 +16710,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1b09657d-3428-4224-aa32-c53b48a18b98")
-		(property "Reference" "#PWR045"
+		(property "Reference" "#PWR061"
 			(at 228.6 27.94 0)
 			(effects
 				(font
@@ -16498,7 +16760,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR045")
+					(reference "#PWR061")
 					(unit 1)
 				)
 			)
@@ -16514,7 +16776,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "1b7c63ee-4ee4-49b3-8d3d-cdd6cbaace44")
-		(property "Reference" "C34"
+		(property "Reference" "C43"
 			(at 73.66 20.828 0)
 			(effects
 				(font
@@ -16568,7 +16830,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "C34")
+					(reference "C43")
 					(unit 1)
 				)
 			)
@@ -16584,7 +16846,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "1c75e9eb-6b26-4f56-a7ff-e20182f8d5c7")
-		(property "Reference" "#PWR090"
+		(property "Reference" "#PWR063"
 			(at 261.62 255.27 0)
 			(effects
 				(font
@@ -16634,7 +16896,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR090")
+					(reference "#PWR063")
 					(unit 1)
 				)
 			)
@@ -16650,7 +16912,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1f170265-5e08-430f-8e71-d6b08d048ad2")
-		(property "Reference" "J7"
+		(property "Reference" "J12"
 			(at 347.98 83.8199 0)
 			(effects
 				(font
@@ -16707,7 +16969,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "J7")
+					(reference "J12")
 					(unit 1)
 				)
 			)
@@ -16723,7 +16985,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1f20e24c-6737-4061-ad5b-ed3cacd5107b")
-		(property "Reference" "R27"
+		(property "Reference" "R15"
 			(at 39.37 177.7999 0)
 			(effects
 				(font
@@ -16777,7 +17039,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "R27")
+					(reference "R15")
 					(unit 1)
 				)
 			)
@@ -17410,7 +17672,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "23b6d129-890e-4791-8a13-d5af88102e23")
-		(property "Reference" "#PWR084"
+		(property "Reference" "#PWR094"
 			(at 411.48 201.93 0)
 			(effects
 				(font
@@ -17460,7 +17722,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR084")
+					(reference "#PWR094")
 					(unit 1)
 				)
 			)
@@ -17476,7 +17738,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "250aba9a-31cf-4f20-9b28-c1db3434cf1a")
-		(property "Reference" "#PWR066"
+		(property "Reference" "#PWR074"
 			(at 287.02 120.65 0)
 			(effects
 				(font
@@ -17526,7 +17788,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR066")
+					(reference "#PWR074")
 					(unit 1)
 				)
 			)
@@ -17542,7 +17804,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "29aed378-8156-4d73-982a-f79a137e1c15")
-		(property "Reference" "#PWR077"
+		(property "Reference" "#PWR054"
 			(at 116.84 161.29 0)
 			(effects
 				(font
@@ -17592,7 +17854,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR077")
+					(reference "#PWR054")
 					(unit 1)
 				)
 			)
@@ -17607,7 +17869,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "2d1e17c1-72b3-43c4-af73-b2e3b64d8e2c")
-		(property "Reference" "#PWR070"
+		(property "Reference" "#PWR076"
 			(at 287.02 143.51 0)
 			(effects
 				(font
@@ -17657,7 +17919,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR070")
+					(reference "#PWR076")
 					(unit 1)
 				)
 			)
@@ -17673,7 +17935,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "2e4ac30d-244d-461b-8663-379dd7b70e22")
-		(property "Reference" "C30"
+		(property "Reference" "C37"
 			(at 48.26 20.828 0)
 			(effects
 				(font
@@ -17727,7 +17989,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "C30")
+					(reference "C37")
 					(unit 1)
 				)
 			)
@@ -17810,7 +18072,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "386727b0-31ae-4d53-8e1a-f83335756df8")
-		(property "Reference" "C36"
+		(property "Reference" "C46"
 			(at 86.36 20.828 0)
 			(effects
 				(font
@@ -17864,7 +18126,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "C36")
+					(reference "C46")
 					(unit 1)
 				)
 			)
@@ -17880,7 +18142,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "390f0812-48d9-446a-8e9b-f3f9c1f4b6f9")
-		(property "Reference" "#PWR081"
+		(property "Reference" "#PWR092"
 			(at 359.41 194.31 0)
 			(effects
 				(font
@@ -17930,7 +18192,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR081")
+					(reference "#PWR092")
 					(unit 1)
 				)
 			)
@@ -17945,7 +18207,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "3921249c-7b93-4f65-9977-4bcc0b0197cb")
-		(property "Reference" "C47"
+		(property "Reference" "C36"
 			(at 43.688 46.228 0)
 			(effects
 				(font
@@ -17999,7 +18261,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "C47")
+					(reference "C36")
 					(unit 1)
 				)
 			)
@@ -18014,7 +18276,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "3958cee3-f0dd-469d-8227-7bd5271ee505")
-		(property "Reference" "C46"
+		(property "Reference" "C31"
 			(at 36.068 46.228 0)
 			(effects
 				(font
@@ -18068,7 +18330,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "C46")
+					(reference "C31")
 					(unit 1)
 				)
 			)
@@ -18084,7 +18346,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3a0db46b-9e51-4676-9f40-723f56fc8705")
-		(property "Reference" "#PWR086"
+		(property "Reference" "#PWR044"
 			(at 36.83 222.25 0)
 			(effects
 				(font
@@ -18134,7 +18396,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR086")
+					(reference "#PWR044")
 					(unit 1)
 				)
 			)
@@ -18155,7 +18417,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "3a2533ae-9ff9-4025-af75-e16d065f0f5d")
-		(property "Reference" "C52"
+		(property "Reference" "C45"
 			(at 85.852 71.882 0)
 			(effects
 				(font
@@ -18209,7 +18471,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "C52")
+					(reference "C45")
 					(unit 1)
 				)
 			)
@@ -18224,7 +18486,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "3a39ed64-b468-4ae0-b76a-60985dde9e12")
-		(property "Reference" "J4"
+		(property "Reference" "J5"
 			(at 309.118 33.528 0)
 			(effects
 				(font
@@ -18299,7 +18561,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "J4")
+					(reference "J5")
 					(unit 1)
 				)
 			)
@@ -18314,7 +18576,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "3ad10902-b6f1-4165-b6d9-0008c3ccb318")
-		(property "Reference" "J11"
+		(property "Reference" "J10"
 			(at 308.864 148.59 0)
 			(effects
 				(font
@@ -18389,7 +18651,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "J11")
+					(reference "J10")
 					(unit 1)
 				)
 			)
@@ -18464,7 +18726,7 @@
 	)
 	(symbol
 		(lib_id "Device:R_US")
-		(at 269.24 73.66 0)
+		(at 274.32 73.66 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -18472,8 +18734,8 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3e10a91e-fab4-48f2-8664-00b0fa3ea6b4")
-		(property "Reference" "R18"
-			(at 271.78 72.3899 0)
+		(property "Reference" "R22"
+			(at 276.86 72.3899 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18482,7 +18744,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 271.78 74.9299 0)
+			(at 276.86 74.9299 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18491,7 +18753,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
-			(at 270.256 73.914 90)
+			(at 275.336 73.914 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18500,7 +18762,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 269.24 73.66 0)
+			(at 274.32 73.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18509,7 +18771,7 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
-			(at 269.24 73.66 0)
+			(at 274.32 73.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18526,7 +18788,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "R18")
+					(reference "R22")
 					(unit 1)
 				)
 			)
@@ -18542,7 +18804,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "416a9050-392d-4652-9848-998fe716a65c")
-		(property "Reference" "#PWR044"
+		(property "Reference" "#PWR060"
 			(at 220.98 27.94 0)
 			(effects
 				(font
@@ -18592,7 +18854,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR044")
+					(reference "#PWR060")
 					(unit 1)
 				)
 			)
@@ -18699,7 +18961,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "44a45882-663b-432c-9f43-238e02bfe53c")
-		(property "Reference" "#PWR071"
+		(property "Reference" "#PWR077"
 			(at 287.02 148.59 0)
 			(effects
 				(font
@@ -18749,7 +19011,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR071")
+					(reference "#PWR077")
 					(unit 1)
 				)
 			)
@@ -18765,7 +19027,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "44db9e36-be26-499c-a0e3-5701bb1e8438")
-		(property "Reference" "C37"
+		(property "Reference" "C47"
 			(at 92.71 20.828 0)
 			(effects
 				(font
@@ -18819,7 +19081,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "C37")
+					(reference "C47")
 					(unit 1)
 				)
 			)
@@ -18835,7 +19097,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "456adda5-c277-4086-b535-1c95d10e96a2")
-		(property "Reference" "#PWR051"
+		(property "Reference" "#PWR069"
 			(at 287.02 57.15 0)
 			(effects
 				(font
@@ -18885,7 +19147,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR051")
+					(reference "#PWR069")
 					(unit 1)
 				)
 			)
@@ -18960,6 +19222,76 @@
 	)
 	(symbol
 		(lib_id "Device:C")
+		(at 304.8 80.01 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "4809955c-d712-41e3-90b9-70b7ecc1651a")
+		(property "Reference" "C60"
+			(at 300.99 78.7399 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1u"
+			(at 300.99 81.2799 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 303.8348 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 304.8 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 304.8 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "bbe5f43d-91d4-4fb5-a09c-8d7e84a2d996")
+		)
+		(pin "1"
+			(uuid "0cf89d35-0d04-4936-80ed-afc43e3bd8ee")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
+					(reference "C60")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
 		(at 101.6 29.21 0)
 		(mirror y)
 		(unit 1)
@@ -18968,7 +19300,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "4911502a-5788-419a-91d9-e3ba09c1001c")
-		(property "Reference" "C38"
+		(property "Reference" "C50"
 			(at 99.06 20.828 0)
 			(effects
 				(font
@@ -19022,7 +19354,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "C38")
+					(reference "C50")
 					(unit 1)
 				)
 			)
@@ -19037,7 +19369,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "4aca6ad2-ce9d-4900-ac15-a1505cf5513e")
-		(property "Reference" "R29"
+		(property "Reference" "R27"
 			(at 344.678 189.738 90)
 			(effects
 				(font
@@ -19089,7 +19421,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "R29")
+					(reference "R27")
 					(unit 1)
 				)
 			)
@@ -19105,7 +19437,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "4e77d2ed-d64c-486e-be5a-887c0d5d8fa3")
-		(property "Reference" "R26"
+		(property "Reference" "R20"
 			(at 119.38 152.4001 0)
 			(effects
 				(font
@@ -19159,7 +19491,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "R26")
+					(reference "R20")
 					(unit 1)
 				)
 			)
@@ -19175,7 +19507,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5556b3b8-ebac-4df0-8813-ff4854397870")
-		(property "Reference" "#PWR078"
+		(property "Reference" "#PWR043"
 			(at 36.83 179.07 0)
 			(effects
 				(font
@@ -19225,7 +19557,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR078")
+					(reference "#PWR043")
 					(unit 1)
 				)
 			)
@@ -19247,7 +19579,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5664b093-3b58-4c7a-9c4b-2241364518f8")
-		(property "Reference" "#PWR048"
+		(property "Reference" "#PWR062"
 			(at 234.95 40.64 0)
 			(effects
 				(font
@@ -19297,7 +19629,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR048")
+					(reference "#PWR062")
 					(unit 1)
 				)
 			)
@@ -19313,7 +19645,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "59b0d9eb-56d3-42de-9d81-fa1ff7a844a3")
-		(property "Reference" "C48"
+		(property "Reference" "C42"
 			(at 77.47 52.832 0)
 			(effects
 				(font
@@ -19367,7 +19699,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "C48")
+					(reference "C42")
 					(unit 1)
 				)
 			)
@@ -19383,7 +19715,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5e4604e2-8899-4c85-b8b6-db3607502ff0")
-		(property "Reference" "#PWR042"
+		(property "Reference" "#PWR057"
 			(at 167.64 27.94 0)
 			(effects
 				(font
@@ -19433,77 +19765,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR042")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_US")
-		(at 304.8 125.73 0)
-		(mirror y)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "5e9ee5c9-b427-47f5-8a7a-6b6a8cad656d")
-		(property "Reference" "R21"
-			(at 302.26 124.4599 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "10k"
-			(at 302.26 126.9999 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
-			(at 303.784 125.984 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 304.8 125.73 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, US symbol"
-			(at 304.8 125.73 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "d45633fe-ef56-4373-aa4b-003fb5b0529f")
-		)
-		(pin "2"
-			(uuid "32379575-cae7-4693-a615-248714e2b6d4")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "R21")
+					(reference "#PWR057")
 					(unit 1)
 				)
 			)
@@ -19519,7 +19781,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "606f6c21-5801-4019-84ca-ba2063d51a3d")
-		(property "Reference" "#PWR055"
+		(property "Reference" "#PWR056"
 			(at 129.54 73.66 0)
 			(effects
 				(font
@@ -19569,7 +19831,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR055")
+					(reference "#PWR056")
 					(unit 1)
 				)
 			)
@@ -19654,6 +19916,71 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+3.3V")
+		(at 342.9 111.76 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "62779ec0-742b-4a3b-a22a-0318f4cb92af")
+		(property "Reference" "#PWR089"
+			(at 342.9 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 341.884 106.68 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 342.9 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 342.9 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 342.9 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "41c09dec-a0bd-42d2-9315-a3641d4a9256")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
+					(reference "#PWR089")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 69.85 29.21 0)
 		(mirror y)
@@ -19663,7 +19990,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "63f48275-22aa-4d6b-b50e-0183039c1b80")
-		(property "Reference" "C33"
+		(property "Reference" "C41"
 			(at 67.31 20.828 0)
 			(effects
 				(font
@@ -19717,77 +20044,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "C33")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_US")
-		(at 304.8 34.29 0)
-		(mirror y)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "65192968-fd1f-4e77-aa07-35cbc2d40c32")
-		(property "Reference" "R15"
-			(at 302.26 33.0199 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "10k"
-			(at 302.26 35.5599 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
-			(at 303.784 34.544 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 304.8 34.29 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, US symbol"
-			(at 304.8 34.29 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "ce5e6308-bb36-4e61-bf67-9832f2991aa5")
-		)
-		(pin "2"
-			(uuid "998d014b-cde7-4254-9439-0ff9d0e76bc2")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "R15")
+					(reference "C41")
 					(unit 1)
 				)
 			)
@@ -19803,7 +20060,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "65cdd04f-5aae-4572-b122-dd49f1ee2d0a")
-		(property "Reference" "C41"
+		(property "Reference" "C53"
 			(at 118.11 20.828 0)
 			(effects
 				(font
@@ -19857,7 +20114,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "C41")
+					(reference "C53")
 					(unit 1)
 				)
 			)
@@ -19940,7 +20197,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "695a8921-4394-4433-a73a-af650f6c7b39")
-		(property "Reference" "#PWR046"
+		(property "Reference" "#PWR066"
 			(at 287.02 29.21 0)
 			(effects
 				(font
@@ -19990,7 +20247,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR046")
+					(reference "#PWR066")
 					(unit 1)
 				)
 			)
@@ -20005,7 +20262,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "69908d25-758d-4931-b054-018c3782ced9")
-		(property "Reference" "R31"
+		(property "Reference" "R23"
 			(at 314.96 223.5201 0)
 			(effects
 				(font
@@ -20059,7 +20316,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "R31")
+					(reference "R23")
 					(unit 1)
 				)
 			)
@@ -20075,7 +20332,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6b19d218-fc5e-4d99-8883-ca5eeefde61a")
-		(property "Reference" "J13"
+		(property "Reference" "J4"
 			(at 278.13 240.03 0)
 			(effects
 				(font
@@ -20169,7 +20426,7 @@
 		(instances
 			(project ""
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "J13")
+					(reference "J4")
 					(unit 1)
 				)
 			)
@@ -20184,7 +20441,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "6ed0c91d-d3b1-4c98-b23b-3fb05ebd4a5f")
-		(property "Reference" "R28"
+		(property "Reference" "R26"
 			(at 344.678 182.118 90)
 			(effects
 				(font
@@ -20236,7 +20493,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "R28")
+					(reference "R26")
 					(unit 1)
 				)
 			)
@@ -20252,7 +20509,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "70dd3c6d-af55-4ff1-85c1-a3a093c791f1")
-		(property "Reference" "C56"
+		(property "Reference" "C33"
 			(at 45.72 185.4199 0)
 			(effects
 				(font
@@ -20306,7 +20563,7 @@
 		(instances
 			(project ""
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "C56")
+					(reference "C33")
 					(unit 1)
 				)
 			)
@@ -20328,7 +20585,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "74ab0e36-93b8-4c07-af56-d85e066ec8fd")
-		(property "Reference" "#PWR043"
+		(property "Reference" "#PWR059"
 			(at 208.28 27.94 0)
 			(effects
 				(font
@@ -20378,7 +20635,7 @@
 		(instances
 			(project ""
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR043")
+					(reference "#PWR059")
 					(unit 1)
 				)
 			)
@@ -20386,7 +20643,7 @@
 	)
 	(symbol
 		(lib_id "power:VBUS")
-		(at 269.24 62.23 0)
+		(at 274.32 62.23 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -20394,8 +20651,8 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7600ff66-bbe4-4df6-9b0d-f60a07eaf5b8")
-		(property "Reference" "#PWR053"
-			(at 269.24 66.04 0)
+		(property "Reference" "#PWR064"
+			(at 274.32 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20404,7 +20661,7 @@
 			)
 		)
 		(property "Value" "VBUS"
-			(at 269.24 57.15 0)
+			(at 274.32 57.15 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20412,7 +20669,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 269.24 62.23 0)
+			(at 274.32 62.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20421,7 +20678,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 269.24 62.23 0)
+			(at 274.32 62.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20430,7 +20687,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"VBUS\""
-			(at 269.24 62.23 0)
+			(at 274.32 62.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20444,7 +20701,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR053")
+					(reference "#PWR064")
 					(unit 1)
 				)
 			)
@@ -20460,7 +20717,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7957245e-1b41-41a0-8b98-439af1fca8b4")
-		(property "Reference" "#PWR062"
+		(property "Reference" "#PWR073"
 			(at 287.02 102.87 0)
 			(effects
 				(font
@@ -20510,7 +20767,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR062")
+					(reference "#PWR073")
 					(unit 1)
 				)
 			)
@@ -20518,7 +20775,7 @@
 	)
 	(symbol
 		(lib_id "Device:R_US")
-		(at 269.24 66.04 0)
+		(at 274.32 66.04 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -20526,8 +20783,8 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7bfa0978-943c-4b87-a89a-52c80ff3946c")
-		(property "Reference" "R17"
-			(at 271.78 64.7699 0)
+		(property "Reference" "R21"
+			(at 276.86 64.7699 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20536,7 +20793,7 @@
 			)
 		)
 		(property "Value" "4.7k"
-			(at 271.78 67.3099 0)
+			(at 276.86 67.3099 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20545,7 +20802,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
-			(at 270.256 66.294 90)
+			(at 275.336 66.294 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20554,7 +20811,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 269.24 66.04 0)
+			(at 274.32 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20563,7 +20820,7 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
-			(at 269.24 66.04 0)
+			(at 274.32 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20580,77 +20837,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "R17")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 139.7 29.21 0)
-		(mirror y)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "7d66cc56-4801-42f3-99fe-3a2ecf9c48a7")
-		(property "Reference" "C44"
-			(at 137.16 20.828 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "100n"
-			(at 137.16 23.368 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
-			(at 138.7348 33.02 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 139.7 29.21 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 139.7 29.21 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "70f963d0-62af-45f3-8215-7025275ab839")
-		)
-		(pin "1"
-			(uuid "4a165427-81e6-4ae7-a8cb-30ee98234d0c")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "C44")
+					(reference "R21")
 					(unit 1)
 				)
 			)
@@ -20666,7 +20853,7 @@
 		(on_board yes)
 		(dnp yes)
 		(uuid "7e33f130-6c5d-4975-8d15-7c4131a22c51")
-		(property "Reference" "C54"
+		(property "Reference" "C28"
 			(at 37.338 133.096 90)
 			(effects
 				(font
@@ -20720,77 +20907,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "C54")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_US")
-		(at 304.8 57.15 0)
-		(mirror y)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "7f3ca2d4-86a0-486d-b9ab-67dd8cbe7e23")
-		(property "Reference" "R16"
-			(at 302.26 55.8799 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "10k"
-			(at 302.26 58.4199 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
-			(at 303.784 57.404 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 304.8 57.15 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, US symbol"
-			(at 304.8 57.15 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "3e775f3a-341e-467e-8ac6-88fb338191c9")
-		)
-		(pin "2"
-			(uuid "eeaf342c-aca5-4ca8-afe4-f7874c966df7")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "R16")
+					(reference "C28")
 					(unit 1)
 				)
 			)
@@ -20806,7 +20923,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7f8d78b9-4a76-446c-b595-aaa4b20335f9")
-		(property "Reference" "C57"
+		(property "Reference" "C34"
 			(at 45.72 210.8199 0)
 			(effects
 				(font
@@ -20860,7 +20977,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "C57")
+					(reference "C34")
 					(unit 1)
 				)
 			)
@@ -20882,7 +20999,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7f937bb4-a60b-441c-a729-ea28849761c0")
-		(property "Reference" "#PWR063"
+		(property "Reference" "#PWR045"
 			(at 39.37 107.95 0)
 			(effects
 				(font
@@ -20932,7 +21049,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR063")
+					(reference "#PWR045")
 					(unit 1)
 				)
 			)
@@ -20948,7 +21065,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "822ef607-0f49-428c-a717-dfbf8f2fee23")
-		(property "Reference" "R30"
+		(property "Reference" "R16"
 			(at 34.29 210.8199 0)
 			(effects
 				(font
@@ -21002,7 +21119,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "R30")
+					(reference "R16")
 					(unit 1)
 				)
 			)
@@ -21195,7 +21312,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "87806329-6458-4bc3-b525-14d6d0d4ac4d")
-		(property "Reference" "#PWR067"
+		(property "Reference" "#PWR046"
 			(at 39.37 125.73 0)
 			(effects
 				(font
@@ -21245,7 +21362,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR067")
+					(reference "#PWR046")
 					(unit 1)
 				)
 			)
@@ -21261,7 +21378,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "88a7c048-b854-4bf9-b171-2259c2d15079")
-		(property "Reference" "#PWR057"
+		(property "Reference" "#PWR071"
 			(at 287.02 80.01 0)
 			(effects
 				(font
@@ -21311,7 +21428,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR057")
+					(reference "#PWR071")
 					(unit 1)
 				)
 			)
@@ -21327,7 +21444,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "88cb613e-32c3-4834-a827-2bceb08f7305")
-		(property "Reference" "C40"
+		(property "Reference" "C52"
 			(at 111.76 20.828 0)
 			(effects
 				(font
@@ -21381,7 +21498,142 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "C40")
+					(reference "C52")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 347.98 111.76 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "8b63b547-31c6-4b68-a6b6-c928283959aa")
+		(property "Reference" "#PWR090"
+			(at 347.98 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 348.488 106.68 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 347.98 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 347.98 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 347.98 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f280143f-4df0-4edf-8246-689ba39926a5")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
+					(reference "#PWR090")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 152.4 29.21 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "8c22a999-5857-44d1-a272-b7b8c86e7f6b")
+		(property "Reference" "C57"
+			(at 149.86 20.828 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "4.7u"
+			(at 149.86 23.368 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 151.4348 33.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 152.4 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 152.4 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "ee11e7b1-02eb-41b3-833e-85e606fd761b")
+		)
+		(pin "1"
+			(uuid "8986b94c-47bb-4b36-b0ed-0eb98eec3d89")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
+					(reference "C57")
 					(unit 1)
 				)
 			)
@@ -21397,7 +21649,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8f87cc60-2cfb-4cc2-83f2-51968fa757e2")
-		(property "Reference" "J12"
+		(property "Reference" "J11"
 			(at 325.12 172.72 0)
 			(effects
 				(font
@@ -21512,7 +21764,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "J12")
+					(reference "J11")
 					(unit 1)
 				)
 			)
@@ -21528,7 +21780,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "9077fac3-3f16-42c0-a1e7-3e65f3361a00")
-		(property "Reference" "C31"
+		(property "Reference" "C39"
 			(at 54.61 20.828 0)
 			(effects
 				(font
@@ -21582,7 +21834,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "C31")
+					(reference "C39")
 					(unit 1)
 				)
 			)
@@ -21598,7 +21850,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9104243d-7a58-4d42-a1c5-c2da9ff07bd5")
-		(property "Reference" "#PWR092"
+		(property "Reference" "#PWR058"
 			(at 195.58 260.35 0)
 			(effects
 				(font
@@ -21648,77 +21900,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR092")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_US")
-		(at 304.8 148.59 0)
-		(mirror y)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "921cddc6-d464-4094-ac7d-300da0a7e7aa")
-		(property "Reference" "R22"
-			(at 302.26 147.3199 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "10k"
-			(at 302.26 149.8599 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
-			(at 303.784 148.844 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 304.8 148.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, US symbol"
-			(at 304.8 148.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "53b8431f-7f74-4d48-9fcf-7be79e66a6ec")
-		)
-		(pin "2"
-			(uuid "aa20691c-df72-4a60-bf20-e8432eb68616")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "R22")
+					(reference "#PWR058")
 					(unit 1)
 				)
 			)
@@ -21804,7 +21986,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9839486a-f24f-4546-a839-53896ee634f9")
-		(property "Reference" "#PWR061"
+		(property "Reference" "#PWR072"
 			(at 287.02 97.79 0)
 			(effects
 				(font
@@ -21854,7 +22036,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR061")
+					(reference "#PWR072")
 					(unit 1)
 				)
 			)
@@ -21870,7 +22052,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "9a0df5f3-58ef-4b72-82d8-62b02f225c1a")
-		(property "Reference" "C32"
+		(property "Reference" "C40"
 			(at 60.96 20.828 0)
 			(effects
 				(font
@@ -21924,7 +22106,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "C32")
+					(reference "C40")
 					(unit 1)
 				)
 			)
@@ -21940,7 +22122,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "9b543cd7-efcc-4707-a460-860a1e4dccb0")
-		(property "Reference" "C35"
+		(property "Reference" "C44"
 			(at 80.01 20.828 0)
 			(effects
 				(font
@@ -21994,7 +22176,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "C35")
+					(reference "C44")
 					(unit 1)
 				)
 			)
@@ -22010,7 +22192,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9bd63991-aef1-441c-98ce-1d050fec463b")
-		(property "Reference" "#PWR073"
+		(property "Reference" "#PWR084"
 			(at 304.8 158.75 0)
 			(effects
 				(font
@@ -22060,7 +22242,77 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR073")
+					(reference "#PWR084")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 304.8 102.87 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "9c7f1ad7-0047-4072-9144-0b7b4c700fa0")
+		(property "Reference" "C61"
+			(at 300.99 101.5999 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1u"
+			(at 300.99 104.1399 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 303.8348 106.68 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 304.8 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 304.8 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "8cdb1ad2-00fb-4551-a9b3-c688ea988a14")
+		)
+		(pin "1"
+			(uuid "85b0afb6-bd5e-4f9f-bc94-e7bbec6bd2a3")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
+					(reference "C61")
 					(unit 1)
 				)
 			)
@@ -22076,7 +22328,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "a6053625-f7b2-4862-b0e3-3ed979834abd")
-		(property "Reference" "C29"
+		(property "Reference" "C35"
 			(at 41.91 20.828 0)
 			(effects
 				(font
@@ -22130,7 +22382,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "C29")
+					(reference "C35")
 					(unit 1)
 				)
 			)
@@ -22146,7 +22398,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "a77dfa42-9b2c-4840-ad1f-7bbff7e833fd")
-		(property "Reference" "R23"
+		(property "Reference" "R17"
 			(at 96.52 152.4001 0)
 			(effects
 				(font
@@ -22200,7 +22452,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "R23")
+					(reference "R17")
 					(unit 1)
 				)
 			)
@@ -22216,7 +22468,7 @@
 		(on_board yes)
 		(dnp yes)
 		(uuid "a90ef805-7ca2-475f-bd82-a70d7eb5b65b")
-		(property "Reference" "C55"
+		(property "Reference" "C29"
 			(at 33.782 153.924 90)
 			(effects
 				(font
@@ -22270,7 +22522,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "C55")
+					(reference "C29")
 					(unit 1)
 				)
 			)
@@ -22285,7 +22537,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "ada8fdeb-f462-4987-a446-f9796632fdb6")
-		(property "Reference" "J10"
+		(property "Reference" "J9"
 			(at 308.864 125.222 0)
 			(effects
 				(font
@@ -22360,7 +22612,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "J10")
+					(reference "J9")
 					(unit 1)
 				)
 			)
@@ -22376,7 +22628,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b466a31a-1d63-48aa-90fb-eaebd6cad5bf")
-		(property "Reference" "#PWR076"
+		(property "Reference" "#PWR053"
 			(at 109.22 161.29 0)
 			(effects
 				(font
@@ -22426,7 +22678,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR076")
+					(reference "#PWR053")
 					(unit 1)
 				)
 			)
@@ -22442,7 +22694,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b47589b5-4826-4e10-a0e6-6f85522e02d7")
-		(property "Reference" "#PWR060"
+		(property "Reference" "#PWR087"
 			(at 330.2 93.98 0)
 			(effects
 				(font
@@ -22492,7 +22744,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR060")
+					(reference "#PWR087")
 					(unit 1)
 				)
 			)
@@ -22508,7 +22760,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b4c14ddb-d1af-4bc0-ade1-818ada833c6f")
-		(property "Reference" "C50"
+		(property "Reference" "C32"
 			(at 45.466 78.74 0)
 			(effects
 				(font
@@ -22562,7 +22814,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "C50")
+					(reference "C32")
 					(unit 1)
 				)
 			)
@@ -22578,7 +22830,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b55635e4-f742-49b4-84b6-7979980d4516")
-		(property "Reference" "C43"
+		(property "Reference" "C55"
 			(at 130.81 20.828 0)
 			(effects
 				(font
@@ -22632,77 +22884,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "C43")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_US")
-		(at 304.8 80.01 0)
-		(mirror y)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "b693b7cf-1ef9-41af-bb74-919305b69c5e")
-		(property "Reference" "R19"
-			(at 302.26 78.7399 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "10k"
-			(at 302.26 81.2799 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
-			(at 303.784 80.264 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 304.8 80.01 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, US symbol"
-			(at 304.8 80.01 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "08c74567-e15b-4de7-af62-39e00afa1b15")
-		)
-		(pin "2"
-			(uuid "655cca77-6dd9-40ba-ace4-b752955b7a0b")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "R19")
+					(reference "C55")
 					(unit 1)
 				)
 			)
@@ -22718,7 +22900,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "bbfe1090-bc9d-481c-96a9-832c3179cb37")
-		(property "Reference" "#PWR080"
+		(property "Reference" "#PWR049"
 			(at 55.88 189.23 0)
 			(effects
 				(font
@@ -22768,83 +22950,13 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR080")
+					(reference "#PWR049")
 					(unit 1)
 				)
 			)
 			(project "mcu"
 				(path "/83289ed5-9428-4591-89db-7518367b3016"
 					(reference "#PWR?")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_US")
-		(at 304.8 102.87 0)
-		(mirror y)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "be24e85c-a77b-4810-8530-13c3533e8116")
-		(property "Reference" "R20"
-			(at 302.26 101.5999 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "10k"
-			(at 302.26 104.1399 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
-			(at 303.784 103.124 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 304.8 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, US symbol"
-			(at 304.8 102.87 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "87b38e0c-66f2-4ac3-bb2a-66fdb63a2e75")
-		)
-		(pin "2"
-			(uuid "4ab02581-d26d-40ef-ae60-f63571469060")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "R20")
 					(unit 1)
 				)
 			)
@@ -22860,7 +22972,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c2aced4a-180d-4ce1-9d5f-67f2c2475ca8")
-		(property "Reference" "C53"
+		(property "Reference" "C48"
 			(at 96.012 71.628 0)
 			(effects
 				(font
@@ -22914,7 +23026,7 @@
 		(instances
 			(project ""
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "C53")
+					(reference "C48")
 					(unit 1)
 				)
 			)
@@ -22930,7 +23042,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c425623a-c88e-47a2-b191-4d36d41aed7f")
-		(property "Reference" "#PWR089"
+		(property "Reference" "#PWR085"
 			(at 317.5 232.41 0)
 			(effects
 				(font
@@ -22980,7 +23092,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR089")
+					(reference "#PWR085")
 					(unit 1)
 				)
 			)
@@ -22996,7 +23108,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c64ce50f-e572-46ff-9adb-67e983e8d44a")
-		(property "Reference" "#PWR064"
+		(property "Reference" "#PWR082"
 			(at 304.8 113.03 0)
 			(effects
 				(font
@@ -23046,7 +23158,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR064")
+					(reference "#PWR082")
 					(unit 1)
 				)
 			)
@@ -23062,7 +23174,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c72fb411-c795-4a97-a9d3-904c3abdf1d5")
-		(property "Reference" "#PWR072"
+		(property "Reference" "#PWR042"
 			(at 26.67 154.94 0)
 			(effects
 				(font
@@ -23112,7 +23224,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR072")
+					(reference "#PWR042")
 					(unit 1)
 				)
 			)
@@ -23220,7 +23332,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "cba99cce-b4b4-4dd0-85cb-56a6e7ff83c7")
-		(property "Reference" "#PWR085"
+		(property "Reference" "#PWR050"
 			(at 55.88 212.09 0)
 			(effects
 				(font
@@ -23270,7 +23382,7 @@
 		(instances
 			(project ""
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR085")
+					(reference "#PWR050")
 					(unit 1)
 				)
 			)
@@ -23374,7 +23486,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 269.24 77.47 0)
+		(at 274.32 77.47 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -23382,8 +23494,8 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "d03326a1-72d9-430a-ad27-c877f99c000a")
-		(property "Reference" "#PWR058"
-			(at 269.24 83.82 0)
+		(property "Reference" "#PWR065"
+			(at 274.32 83.82 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23392,7 +23504,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 269.24 82.55 0)
+			(at 274.32 82.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23400,7 +23512,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 269.24 77.47 0)
+			(at 274.32 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23409,7 +23521,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 269.24 77.47 0)
+			(at 274.32 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23418,7 +23530,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 269.24 77.47 0)
+			(at 274.32 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23432,7 +23544,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR058")
+					(reference "#PWR065")
 					(unit 1)
 				)
 			)
@@ -23448,7 +23560,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "d129b2dc-147e-406b-aef1-8875a4a82ded")
-		(property "Reference" "R25"
+		(property "Reference" "R19"
 			(at 111.76 152.4001 0)
 			(effects
 				(font
@@ -23502,7 +23614,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "R25")
+					(reference "R19")
 					(unit 1)
 				)
 			)
@@ -23517,7 +23629,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "d22935a2-bc51-4805-95f7-3f1f4a47081f")
-		(property "Reference" "C51"
+		(property "Reference" "C38"
 			(at 53.848 78.74 0)
 			(effects
 				(font
@@ -23571,7 +23683,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "C51")
+					(reference "C38")
 					(unit 1)
 				)
 			)
@@ -23675,7 +23787,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "d9f8f54a-97c3-41c8-bef8-f66edd660d74")
-		(property "Reference" "C39"
+		(property "Reference" "C51"
 			(at 105.41 20.828 0)
 			(effects
 				(font
@@ -23729,7 +23841,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "C39")
+					(reference "C51")
 					(unit 1)
 				)
 			)
@@ -23745,7 +23857,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "dd100f13-af5c-4418-b0fe-51d7a37acaf6")
-		(property "Reference" "#PWR054"
+		(property "Reference" "#PWR055"
 			(at 129.54 68.58 0)
 			(effects
 				(font
@@ -23795,76 +23907,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR054")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 152.4 29.21 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "de2229e8-159e-443e-8e34-58ca4bce3c35")
-		(property "Reference" "C45"
-			(at 150.368 20.828 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "4.7u"
-			(at 150.368 23.368 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
-			(at 153.3652 33.02 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 152.4 29.21 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 152.4 29.21 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "63441a89-c8ff-42ef-bab7-4fcd803e6ff3")
-		)
-		(pin "1"
-			(uuid "8070c734-f61e-47f5-ba55-d8830608ea99")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "C45")
+					(reference "#PWR055")
 					(unit 1)
 				)
 			)
@@ -23880,7 +23923,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "e1c9e1ef-030d-46d1-9d10-3c6aa77053fb")
-		(property "Reference" "#PWR091"
+		(property "Reference" "#PWR078"
 			(at 299.72 255.27 0)
 			(effects
 				(font
@@ -23930,7 +23973,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR091")
+					(reference "#PWR078")
 					(unit 1)
 				)
 			)
@@ -23946,7 +23989,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e4eb69e1-3f94-48b5-9950-93b71f92aaf5")
-		(property "Reference" "#PWR052"
+		(property "Reference" "#PWR080"
 			(at 304.8 67.31 0)
 			(effects
 				(font
@@ -23996,7 +24039,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR052")
+					(reference "#PWR080")
 					(unit 1)
 				)
 			)
@@ -24012,7 +24055,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "e6d9c103-90cf-4623-9d47-9815fbcc1f3a")
-		(property "Reference" "#PWR088"
+		(property "Reference" "#PWR086"
 			(at 325.12 224.79 0)
 			(effects
 				(font
@@ -24062,7 +24105,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR088")
+					(reference "#PWR086")
 					(unit 1)
 				)
 			)
@@ -24078,7 +24121,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ea2d7811-de54-4275-93da-d82b3dbf11e0")
-		(property "Reference" "#PWR050"
+		(property "Reference" "#PWR068"
 			(at 287.02 52.07 0)
 			(effects
 				(font
@@ -24128,7 +24171,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR050")
+					(reference "#PWR068")
 					(unit 1)
 				)
 			)
@@ -24136,16 +24179,15 @@
 	)
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x03")
-		(at 345.44 109.22 0)
+		(at 354.33 127 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "eb79c663-10ce-4363-b6b7-f27347da4327")
-		(property "Reference" "J9"
-			(at 347.98 107.9499 0)
+		(property "Reference" "J13"
+			(at 352.552 121.412 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24154,7 +24196,7 @@
 			)
 		)
 		(property "Value" "Conn_01x03"
-			(at 347.98 110.4899 0)
+			(at 348.742 132.842 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24163,7 +24205,7 @@
 			)
 		)
 		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical"
-			(at 345.44 109.22 0)
+			(at 354.33 127 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24172,7 +24214,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 345.44 109.22 0)
+			(at 354.33 127 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24181,7 +24223,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x03, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 345.44 109.22 0)
+			(at 354.33 127 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24201,7 +24243,147 @@
 		(instances
 			(project ""
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "J9")
+					(reference "J13")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 347.98 115.57 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ec4f8971-16fe-4256-929c-a8f86f962f19")
+		(property "Reference" "R25"
+			(at 350.52 114.2999 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "4.7k"
+			(at 350.52 116.8399 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+			(at 348.996 115.824 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 347.98 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 347.98 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "4c9cf0f0-cb69-4054-9773-ff9493d15209")
+		)
+		(pin "2"
+			(uuid "e6f8cd85-d551-4ebe-8851-f3764183fe07")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
+					(reference "R25")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_US")
+		(at 342.9 115.57 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "eed3445f-2559-47bf-82cc-9bcd20e68e4b")
+		(property "Reference" "R24"
+			(at 340.36 114.2999 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "4.7k"
+			(at 340.36 116.8399 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+			(at 341.884 115.824 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 342.9 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, US symbol"
+			(at 342.9 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "9a8d1272-2dd7-42b9-9535-eee026bf043c")
+		)
+		(pin "2"
+			(uuid "c3634da2-11e8-40ee-9264-4d6b25c60936")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
+					(reference "R24")
 					(unit 1)
 				)
 			)
@@ -24217,7 +24399,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f0a42b20-90ef-4b28-87ed-931dcbbe0f68")
-		(property "Reference" "#PWR069"
+		(property "Reference" "#PWR083"
 			(at 304.8 135.89 0)
 			(effects
 				(font
@@ -24267,7 +24449,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR069")
+					(reference "#PWR083")
 					(unit 1)
 				)
 			)
@@ -24282,7 +24464,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "f1139ce9-be22-4241-a55c-e40920179aba")
-		(property "Reference" "J6"
+		(property "Reference" "J7"
 			(at 309.626 80.518 0)
 			(effects
 				(font
@@ -24357,7 +24539,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "J6")
+					(reference "J7")
 					(unit 1)
 				)
 			)
@@ -24365,7 +24547,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 330.2 111.76 0)
+		(at 330.2 129.54 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -24373,8 +24555,8 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f2b00fd5-670f-4153-b5b5-2f4796414e9a")
-		(property "Reference" "#PWR065"
-			(at 330.2 118.11 0)
+		(property "Reference" "#PWR088"
+			(at 330.2 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24383,7 +24565,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 330.2 116.84 0)
+			(at 330.2 134.62 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24391,7 +24573,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 330.2 111.76 0)
+			(at 330.2 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24400,7 +24582,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 330.2 111.76 0)
+			(at 330.2 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24409,7 +24591,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 330.2 111.76 0)
+			(at 330.2 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24423,7 +24605,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR065")
+					(reference "#PWR088")
 					(unit 1)
 				)
 			)
@@ -24506,7 +24688,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f5137294-2f3b-4063-b8e2-5c26ed82defb")
-		(property "Reference" "#PWR087"
+		(property "Reference" "#PWR048"
 			(at 41.91 222.25 0)
 			(effects
 				(font
@@ -24556,7 +24738,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR087")
+					(reference "#PWR048")
 					(unit 1)
 				)
 			)
@@ -24578,7 +24760,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f5bfc856-c442-4d7f-bda2-b672f8d7d0c0")
-		(property "Reference" "#PWR068"
+		(property "Reference" "#PWR075"
 			(at 287.02 125.73 0)
 			(effects
 				(font
@@ -24628,7 +24810,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR068")
+					(reference "#PWR075")
 					(unit 1)
 				)
 			)
@@ -24644,7 +24826,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f8e840aa-3313-400c-aac6-12abaa4cc5a5")
-		(property "Reference" "#PWR079"
+		(property "Reference" "#PWR091"
 			(at 359.41 184.15 0)
 			(effects
 				(font
@@ -24694,7 +24876,7 @@
 		(instances
 			(project ""
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR079")
+					(reference "#PWR091")
 					(unit 1)
 				)
 			)
@@ -24780,6 +24962,76 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:C")
+		(at 304.8 125.73 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "fa9852cf-3686-4f37-bbf6-9dc715ae6511")
+		(property "Reference" "C62"
+			(at 300.99 124.4599 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1u"
+			(at 300.99 126.9999 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 303.8348 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 304.8 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 304.8 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "ef19f44d-2a66-4942-b9af-36afdad6cd9f")
+		)
+		(pin "1"
+			(uuid "5e90af70-3085-4687-a944-b39e3b3c425c")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
+					(reference "C62")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 361.95 198.12 0)
 		(unit 1)
@@ -24788,7 +25040,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "fd9dff68-74c6-44b4-90fe-e6920622e37c")
-		(property "Reference" "#PWR083"
+		(property "Reference" "#PWR093"
 			(at 361.95 204.47 0)
 			(effects
 				(font
@@ -24838,7 +25090,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "#PWR083")
+					(reference "#PWR093")
 					(unit 1)
 				)
 			)
@@ -24854,7 +25106,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "fded95c2-9861-4c5d-911e-10d79929b1e0")
-		(property "Reference" "R24"
+		(property "Reference" "R18"
 			(at 104.14 152.4001 0)
 			(effects
 				(font
@@ -24908,7 +25160,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "R24")
+					(reference "R18")
 					(unit 1)
 				)
 			)

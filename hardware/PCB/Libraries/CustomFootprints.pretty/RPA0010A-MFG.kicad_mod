@@ -5,7 +5,7 @@
 	(layer "F.Cu")
 	(tags "TPS56837HRPAR ")
 	(property "Reference" "REF**"
-		(at 0 0 0)
+		(at 0.5 3 0)
 		(unlocked yes)
 		(layer "F.SilkS")
 		(uuid "4fccb450-06f1-40be-8c60-ace1ae3a2085")
@@ -17,7 +17,7 @@
 		)
 	)
 	(property "Value" "RPA0010A-MFG"
-		(at 0 0 0)
+		(at 0 6.5 0)
 		(unlocked yes)
 		(layer "F.Fab")
 		(uuid "36733602-aac4-44d5-a009-314b1aeba34f")
@@ -287,20 +287,8 @@
 		(layer "F.Fab")
 		(uuid "e6bf4dab-1811-40ec-9274-299ccf9ed52a")
 	)
-	(fp_text user "Designator123"
-		(at -2.2352 -3.0734 0)
-		(unlocked yes)
-		(layer "F.SilkS")
-		(uuid "4cda35fb-6257-4855-b155-3252c55dd777")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
 	(fp_text user "${REFERENCE}"
-		(at 0 0 0)
+		(at 0 4.5 0)
 		(unlocked yes)
 		(layer "F.Fab")
 		(uuid "d9055a51-d806-46f8-a5ee-2baf631bcd30")

@@ -1913,8 +1913,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
-			(at 0 0 0)
+		(property "Datasheet" "https://gct.co/files/specs/mem2052-spec.pdf"
+			(at 1.778 -54.864 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1922,8 +1922,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
-			(at 0 0 0)
+		(property "Description" "Micro SD Memory Card Connector. Push-Pull SMT, 1.95mm Profile"
+			(at 1.27 -58.166 0)
 			(effects
 				(font
 					(size 1.27 1.27)

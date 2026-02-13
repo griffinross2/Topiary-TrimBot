@@ -4,19 +4,19 @@
 	(generator_version "9.0")
 	(layer "F.Cu")
 	(property "Reference" "REF**"
-		(at 0 17.32 0)
+		(at 0 2.5 0)
 		(unlocked yes)
 		(layer "F.SilkS")
 		(uuid "32d9b630-6745-4041-bec8-cd429d275da8")
 		(effects
 			(font
 				(size 1 1)
-				(thickness 0.1)
+				(thickness 0.15)
 			)
 		)
 	)
 	(property "Value" "EMIF06-MSD02N16"
-		(at 0 18.82 0)
+		(at 0 4 0)
 		(unlocked yes)
 		(layer "F.Fab")
 		(uuid "92439782-3f21-4c0e-8061-b7ea54e4bbfc")
@@ -137,7 +137,7 @@
 		(uuid "928d1f0b-2a0b-47b5-90ea-3537bd854b59")
 	)
 	(fp_text user "${REFERENCE}"
-		(at 0 20.32 0)
+		(at 0 5.5 0)
 		(unlocked yes)
 		(layer "F.Fab")
 		(uuid "788766fc-6ca1-40bc-beea-da59d347e956")
