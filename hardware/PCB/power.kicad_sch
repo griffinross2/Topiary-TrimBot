@@ -4972,6 +4972,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Elecrow"
+			(at 196.85 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "XL4015"
+			(at 196.85 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "dca3f1e1-3ff7-4113-b07a-72e0f03e62b0")
 		)
@@ -5105,6 +5123,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 27.94 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata"
+			(at 27.94 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GRM21B5C1H223JA01L"
 			(at 27.94 102.87 0)
 			(effects
 				(font
@@ -5403,6 +5439,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Wurth"
+			(at 67.31 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "150080RS75000"
+			(at 67.31 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "9569014a-62a8-4c5a-b57f-3bfe49774d1c")
 		)
@@ -5567,6 +5621,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Yageo"
+			(at 154.94 73.66 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "RC0805FR-07300RL"
+			(at 154.94 73.66 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "566d1a88-a0e2-43e0-939f-fd66f0e3e1e1")
 		)
@@ -5640,6 +5712,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Yageo"
+			(at 241.3 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "RC0805FR-072K2L"
+			(at 241.3 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "c26f8e49-a702-4ead-babc-d21f7f1983d7")
 		)
@@ -5672,7 +5762,7 @@
 				)
 			)
 		)
-		(property "Value" "GREEN"
+		(property "Value" "GRN"
 			(at 162.814 22.098 0)
 			(effects
 				(font
@@ -5708,6 +5798,24 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
+			(at 162.56 25.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 162.56 25.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "150080GS75000"
 			(at 162.56 25.4 0)
 			(effects
 				(font
@@ -5791,6 +5899,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Murata"
+			(at 29.21 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GRM21B5C1H223JA01L"
+			(at 29.21 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "592c2732-6cc1-467b-b2bd-bd225fd7fdb6")
 		)
@@ -5857,6 +5983,24 @@
 		)
 		(property "Description" "Resistor, US symbol"
 			(at 74.93 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 74.93 99.06 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "RC0805JR-07130RL"
+			(at 74.93 99.06 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6574,7 +6718,7 @@
 				)
 			)
 		)
-		(property "Value" "GREEN"
+		(property "Value" "GRN"
 			(at 164.084 123.698 0)
 			(effects
 				(font
@@ -6610,6 +6754,24 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
+			(at 163.83 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 163.83 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "150080GS75000"
 			(at 163.83 127 0)
 			(effects
 				(font
@@ -6827,6 +6989,24 @@
 		)
 		(property "Description" "Unpolarized capacitor"
 			(at 40.64 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata"
+			(at 40.64 38.1 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GCM219R72A333KA37D"
+			(at 40.64 38.1 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7052,6 +7232,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Elecrow"
+			(at 196.85 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "XL4015"
+			(at 196.85 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "39dcf3a4-9fdd-4ad8-9998-6b0739d31c4d")
 		)
@@ -7198,6 +7396,24 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
+			(at 67.31 152.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 67.31 152.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "150080RS75000"
 			(at 67.31 152.4 0)
 			(effects
 				(font
@@ -7507,6 +7723,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Molex"
+			(at 250.19 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "1718560102"
+			(at 250.19 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "9b826ae0-94d7-4603-8685-145a81e240b8")
 		)
@@ -7702,7 +7936,7 @@
 				)
 			)
 		)
-		(property "Value" "GREEN"
+		(property "Value" "GRN"
 			(at 162.814 70.358 0)
 			(effects
 				(font
@@ -7738,6 +7972,24 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
+			(at 162.56 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 162.56 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "150080GS75000"
 			(at 162.56 73.66 0)
 			(effects
 				(font
@@ -7821,6 +8073,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Yageo"
+			(at 83.82 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "RC0805JR-0710KL"
+			(at 83.82 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "8a8e4227-9c50-4e2a-9c5c-75af0c71a09f")
 		)
@@ -7888,6 +8158,24 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 38.1 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 38.1 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "RC0805JR-0710KL"
 			(at 38.1 104.14 0)
 			(effects
 				(font
@@ -8006,7 +8294,7 @@
 				)
 			)
 		)
-		(property "Value" "GREEN"
+		(property "Value" "GRN"
 			(at 246.888 119.634 90)
 			(effects
 				(font
@@ -8043,6 +8331,24 @@
 		)
 		(property "Sim.Pins" "1=K 2=A"
 			(at 241.3 118.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 241.3 118.11 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "150080GS75000"
+			(at 241.3 118.11 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8619,6 +8925,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Yageo"
+			(at 156.21 127 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "RC0805FR-071KL"
+			(at 156.21 127 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "4be4670e-9c35-48f4-864f-fb3ee2b66b5d")
 		)
@@ -9012,6 +9336,24 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 90.17 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 90.17 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "RC0805JR-0710KL"
 			(at 90.17 99.06 0)
 			(effects
 				(font
@@ -9616,6 +9958,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Yageo"
+			(at 154.94 25.4 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "RC0805JR-07130RL"
+			(at 154.94 25.4 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "69be62f6-a03f-4fca-9bf9-e6d75bffc98b")
 		)
@@ -9682,6 +10042,24 @@
 		)
 		(property "Description" "Resistor, US symbol"
 			(at 74.93 152.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 74.93 152.4 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "RC0805JR-07130RL"
+			(at 74.93 152.4 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9828,6 +10206,24 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 250.19 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 250.19 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "61300211121"
 			(at 250.19 64.77 0)
 			(effects
 				(font
@@ -9994,6 +10390,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 83.82 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata"
+			(at 83.82 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GRM2165C1H151JA01D"
 			(at 83.82 88.9 0)
 			(effects
 				(font
@@ -10500,6 +10914,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Yageo"
+			(at 90.17 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "RT0805BRD0773K2L"
+			(at 90.17 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "6a87a2f3-d03c-45c3-917e-ba3024bd799b")
 		)
@@ -10726,6 +11158,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 83.82 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata"
+			(at 83.82 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GRM2165C1H151JA01D"
 			(at 83.82 142.24 0)
 			(effects
 				(font
@@ -11556,6 +12006,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Yageo"
+			(at 77.47 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "RT0805BRD0718KL"
+			(at 77.47 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "13053392-10d5-4022-a9ea-3e0c2219c1c6")
 		)
@@ -11623,6 +12091,24 @@
 		)
 		(property "Description" "XL4015 Buck Regulator Module 5A 4-38V to 1.25-36V"
 			(at 196.85 156.972 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Elecrow"
+			(at 196.85 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "XL4015"
+			(at 196.85 139.7 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11769,6 +12255,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 63.5 31.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata"
+			(at 63.5 31.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GCM21BR72A104KA37L"
 			(at 63.5 31.75 0)
 			(effects
 				(font
@@ -12008,6 +12512,24 @@
 			)
 		)
 		(property "Description" "Generic screw terminal, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 250.19 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "TE Connectivity AMP Connectors"
+			(at 250.19 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "6DBL-04-006"
 			(at 250.19 91.44 0)
 			(effects
 				(font
@@ -12407,6 +12929,24 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 90.17 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 90.17 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "RT0805BRD0773K2L"
 			(at 90.17 140.97 0)
 			(effects
 				(font
@@ -13242,6 +13782,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Yageo"
+			(at 40.64 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "RC0805JR-0710KL"
+			(at 40.64 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "4c8ecbb9-dd94-41ad-a295-5c982a26016a")
 		)
@@ -13310,6 +13868,24 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 77.47 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 77.47 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "RT0805BRD0756K2L"
 			(at 77.47 39.37 0)
 			(effects
 				(font

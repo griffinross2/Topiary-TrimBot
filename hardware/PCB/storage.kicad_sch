@@ -2880,7 +2880,7 @@
 		(at 254 60.96 270)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
@@ -2923,6 +2923,24 @@
 		)
 		(property "Description" "test point"
 			(at 254 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "~"
+			(at 254 60.96 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "~"
+			(at 254 60.96 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3127,6 +3145,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Murata"
+			(at 170.18 48.26 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GCJ188R71H104KA12D"
+			(at 170.18 48.26 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "8a12c029-9f49-427f-ad87-af227c952b28")
 		)
@@ -3147,7 +3183,7 @@
 		(at 254 93.98 270)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
@@ -3190,6 +3226,24 @@
 		)
 		(property "Description" "test point"
 			(at 254 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "~"
+			(at 254 93.98 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "~"
+			(at 254 93.98 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3410,7 +3464,7 @@
 		(at 254 81.28 270)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
@@ -3453,6 +3507,24 @@
 		)
 		(property "Description" "test point"
 			(at 254 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "~"
+			(at 254 81.28 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "~"
+			(at 254 81.28 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3835,6 +3907,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Yageo"
+			(at 142.24 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "RC0805JR-0710KL"
+			(at 142.24 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "990e1e80-8a5f-4861-b8c8-f1320844fb72")
 		)
@@ -3896,6 +3986,24 @@
 		)
 		(property "Description" "Unpolarized capacitor"
 			(at 166.37 106.68 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata"
+			(at 166.37 106.68 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GCJ188R71H104KA12D"
+			(at 166.37 106.68 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4055,7 +4163,7 @@
 		(at 254 114.3 270)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
@@ -4105,6 +4213,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "~"
+			(at 254 114.3 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "~"
+			(at 254 114.3 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "fc9bb719-7060-441d-a5f8-48d38fbcefd9")
 		)
@@ -4122,7 +4248,7 @@
 		(at 254 71.12 270)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
@@ -4172,6 +4298,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "~"
+			(at 254 71.12 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "~"
+			(at 254 71.12 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "a7befe9b-a9f3-49bf-be6d-b2ece37cfa1d")
 		)
@@ -4189,7 +4333,7 @@
 		(at 254 99.06 270)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
@@ -4239,6 +4383,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "~"
+			(at 254 99.06 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "~"
+			(at 254 99.06 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "530c9eed-a6b9-41b6-9764-44eb2c12a9b0")
 		)
@@ -4256,7 +4418,7 @@
 		(at 254 104.14 270)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
@@ -4306,6 +4468,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "~"
+			(at 254 104.14 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "~"
+			(at 254 104.14 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "acdcbb2c-4c4c-4221-9544-3ed1762dd70a")
 		)
@@ -4323,7 +4503,7 @@
 		(at 254 109.22 270)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
@@ -4373,6 +4553,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "~"
+			(at 254 109.22 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "~"
+			(at 254 109.22 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "e7e3e8c3-87aa-44e5-818a-bd779abc3b5a")
 		)
@@ -4390,7 +4588,7 @@
 		(at 254 55.88 270)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
@@ -4440,6 +4638,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "~"
+			(at 254 55.88 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "~"
+			(at 254 55.88 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "702d72a5-98f4-49e4-996c-cff7c362a613")
 		)
@@ -4457,7 +4673,7 @@
 		(at 254 76.2 270)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
@@ -4500,6 +4716,24 @@
 		)
 		(property "Description" "test point"
 			(at 254 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "~"
+			(at 254 76.2 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "~"
+			(at 254 76.2 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4583,6 +4817,15 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Micron Technology Inc."
+			(at 160.02 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "5"
 			(uuid "659caf37-b525-4a5f-bc89-f5e289d644b7")
 		)
@@ -4621,7 +4864,7 @@
 		(at 254 50.8 270)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
@@ -4671,6 +4914,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "~"
+			(at 254 50.8 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "~"
+			(at 254 50.8 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "fd72db9d-02a2-4ea3-ad7f-7c87e53a4b50")
 		)
@@ -4688,7 +4949,7 @@
 		(at 254 88.9 270)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
@@ -4731,6 +4992,24 @@
 		)
 		(property "Description" "test point"
 			(at 254 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "~"
+			(at 254 88.9 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "~"
+			(at 254 88.9 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4803,6 +5082,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "STMicroelectronics"
+			(at 119.38 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "EMIF06-MSD02N16"
+			(at 119.38 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "ca36306f-a51f-4bb3-b120-5bf95c301aa1")
 		)
@@ -4868,7 +5165,7 @@
 		(at 254 66.04 270)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
@@ -4911,6 +5208,24 @@
 		)
 		(property "Description" "test point"
 			(at 254 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "~"
+			(at 254 66.04 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "~"
+			(at 254 66.04 90)
 			(effects
 				(font
 					(size 1.27 1.27)

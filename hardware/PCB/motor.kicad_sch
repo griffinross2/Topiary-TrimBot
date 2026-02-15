@@ -5404,7 +5404,16 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0805JR-0710KL"
+			(at 190.5 260.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
 			(at 190.5 260.35 0)
 			(effects
 				(font
@@ -5560,8 +5569,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "61300211121"
 			(at 160.02 144.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 160.02 144.78 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5653,8 +5671,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "150080RS75000"
 			(at 279.4 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 279.4 50.8 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5880,8 +5907,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "61300211121"
 			(at 160.02 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 160.02 50.8 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6037,8 +6073,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "61300211121"
 			(at 160.02 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 160.02 165.1 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6121,8 +6166,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "61300211121"
 			(at 81.28 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 81.28 158.75 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6286,8 +6340,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "150080RS75000"
 			(at 88.9 161.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 88.9 161.29 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6448,6 +6511,15 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Nichicon"
+			(at 288.29 163.83 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "ca1e82de-a19b-4613-a526-69bf239e202a")
 		)
@@ -6524,8 +6596,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "61300211121"
 			(at 347.98 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 347.98 111.76 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6608,7 +6689,16 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0805JR-07130RL"
+			(at 88.9 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
 			(at 88.9 153.67 0)
 			(effects
 				(font
@@ -6693,8 +6783,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "61300211121"
 			(at 347.98 144.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 347.98 144.78 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6921,8 +7020,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "61300211121"
 			(at 160.02 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 160.02 71.12 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7155,7 +7263,7 @@
 		(at 266.7 114.3 90)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
@@ -7196,6 +7304,24 @@
 		)
 		(property "Description" "test point"
 			(at 266.7 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "~"
+			(at 266.7 114.3 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "~"
+			(at 266.7 114.3 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7541,7 +7667,16 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0805JR-0710KL"
+			(at 160.02 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
 			(at 160.02 120.65 0)
 			(effects
 				(font
@@ -7704,6 +7839,15 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Nichicon"
+			(at 97.79 163.83 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "4c97cdda-895e-4c8e-add9-ca01d34cc10d")
 		)
@@ -7780,8 +7924,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "61300211121"
 			(at 347.98 205.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 347.98 205.74 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7886,7 +8039,7 @@
 		(at 266.7 101.6 90)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
@@ -7927,6 +8080,24 @@
 		)
 		(property "Description" "test point"
 			(at 266.7 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "~"
+			(at 266.7 101.6 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "~"
+			(at 266.7 101.6 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8073,8 +8244,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "61300211121"
 			(at 160.02 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 160.02 91.44 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8158,8 +8338,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "61300211121"
 			(at 347.98 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 347.98 50.8 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8243,8 +8432,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "61300211121"
 			(at 160.02 205.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 160.02 205.74 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8327,7 +8525,16 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0805JR-07130RL"
+			(at 88.9 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
 			(at 88.9 43.18 0)
 			(effects
 				(font
@@ -8664,6 +8871,15 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "TE Connectivity AMP Connectors"
+			(at 208.28 241.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "4fd80006-b42e-4d32-a838-5d5867b32028")
 		)
@@ -8748,8 +8964,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "150080RS75000"
 			(at 279.4 161.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 279.4 161.29 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8832,7 +9057,16 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0805JR-07130RL"
+			(at 279.4 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
 			(at 279.4 153.67 0)
 			(effects
 				(font
@@ -8989,7 +9223,16 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0805JR-0710KL"
+			(at 347.98 214.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
 			(at 347.98 214.63 0)
 			(effects
 				(font
@@ -9024,7 +9267,7 @@
 		(at 266.7 215.9 90)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
@@ -9072,6 +9315,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "~"
+			(at 266.7 215.9 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "~"
+			(at 266.7 215.9 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "d824add8-0346-4d19-bd1a-c6fc88d2b669")
 		)
@@ -9089,7 +9350,7 @@
 		(at 63.5 215.9 90)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
@@ -9130,6 +9391,24 @@
 		)
 		(property "Description" "test point"
 			(at 63.5 215.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "~"
+			(at 63.5 215.9 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "~"
+			(at 63.5 215.9 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9204,8 +9483,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "61300211121"
 			(at 347.98 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 347.98 71.12 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9431,7 +9719,16 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0805JR-07130RL"
+			(at 279.4 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
 			(at 279.4 43.18 0)
 			(effects
 				(font
@@ -9586,8 +9883,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "61300211121"
 			(at 271.78 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 271.78 48.26 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9812,8 +10118,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0805JR-07100RL"
 			(at 181.61 254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 181.61 254 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10039,8 +10354,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "61300211121"
 			(at 160.02 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 160.02 111.76 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10123,6 +10447,15 @@
 		)
 		(property "Manufacturer_Part_Number" "UVR1H101MPD1TD"
 			(at 97.79 53.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Nichicon"
+			(at 97.79 53.34 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10369,7 +10702,7 @@
 		(at 63.5 101.6 90)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
@@ -10410,6 +10743,24 @@
 		)
 		(property "Description" "test point"
 			(at 63.5 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "~"
+			(at 63.5 101.6 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "~"
+			(at 63.5 101.6 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10617,6 +10968,15 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Nichicon"
+			(at 288.29 53.34 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "a6fdb979-f544-4d78-978c-273d07fd960e")
 		)
@@ -10714,7 +11074,7 @@
 		(at 266.7 228.6 90)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
@@ -10762,6 +11122,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "~"
+			(at 266.7 228.6 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "~"
+			(at 266.7 228.6 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "3f35e4f9-55f2-4404-b589-7b9a9890d5be")
 		)
@@ -10779,7 +11157,7 @@
 		(at 63.5 228.6 90)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
@@ -10820,6 +11198,24 @@
 		)
 		(property "Description" "test point"
 			(at 63.5 228.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "~"
+			(at 63.5 228.6 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "~"
+			(at 63.5 228.6 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11206,8 +11602,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "61300211121"
 			(at 347.98 185.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 347.98 185.42 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11513,6 +11918,15 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Infineon"
+			(at 203.2 254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "acb79301-566b-4075-8a8b-19d7560fd4f0")
 		)
@@ -11697,8 +12111,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "61300211121"
 			(at 271.78 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 271.78 158.75 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11732,7 +12155,7 @@
 		(at 63.5 114.3 90)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
@@ -11773,6 +12196,24 @@
 		)
 		(property "Description" "test point"
 			(at 63.5 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "~"
+			(at 63.5 114.3 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "~"
+			(at 63.5 114.3 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11919,7 +12360,16 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0805JR-0710KL"
+			(at 347.98 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
 			(at 347.98 120.65 0)
 			(effects
 				(font
@@ -12004,8 +12454,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "61300211121"
 			(at 160.02 185.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 160.02 185.42 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12302,8 +12761,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "61300211121"
 			(at 347.98 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 347.98 165.1 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12537,8 +13005,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "150080RS75000"
 			(at 88.9 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 88.9 50.8 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12792,8 +13269,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "61300211121"
 			(at 81.28 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 81.28 48.26 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12877,8 +13363,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "61300211121"
 			(at 347.98 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 347.98 91.44 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12962,7 +13457,16 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0805JR-0710KL"
+			(at 160.02 214.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
 			(at 160.02 214.63 0)
 			(effects
 				(font

@@ -5921,7 +5921,16 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0805JR-0710KL"
+			(at 82.55 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
 			(at 82.55 133.35 0)
 			(effects
 				(font
@@ -6000,7 +6009,16 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "GCM21BR71E105KA56L"
+			(at 101.6 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata"
 			(at 101.6 127 0)
 			(effects
 				(font
@@ -6029,7 +6047,7 @@
 		(at 266.7 93.98 270)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
@@ -6079,8 +6097,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "~"
 			(at 266.7 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "~"
+			(at 266.7 93.98 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6152,8 +6179,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0603FR-0730RL"
 			(at 220.98 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 220.98 86.36 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6229,8 +6265,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0805JR-070RL"
 			(at 120.65 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 120.65 175.26 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6371,8 +6416,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0603FR-0730RL"
 			(at 220.98 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 220.98 104.14 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6447,8 +6501,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0603FR-0730RL"
 			(at 220.98 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 220.98 129.54 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6523,8 +6586,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0603FR-0730RL"
 			(at 220.98 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 220.98 121.92 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6599,8 +6671,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0603FR-0730RL"
 			(at 220.98 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 220.98 127 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6670,6 +6751,24 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 60.96 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 60.96 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "RC0805JR-0710KL"
 			(at 60.96 60.96 0)
 			(effects
 				(font
@@ -6831,8 +6930,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0603FR-0730RL"
 			(at 220.98 106.68 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 220.98 106.68 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7039,6 +7147,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Yageo"
+			(at 123.19 78.74 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "RC0805FR-071R3L"
+			(at 123.19 78.74 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "0f64f0fa-ad8b-4ba3-be33-34349899450f")
 		)
@@ -7190,7 +7316,7 @@
 		(at 266.7 68.58 270)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
@@ -7240,8 +7366,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "~"
 			(at 266.7 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "~"
+			(at 266.7 68.58 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7313,8 +7448,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0603FR-0730RL"
 			(at 220.98 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 220.98 114.3 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7455,8 +7599,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0603FR-0730RL"
 			(at 220.98 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 220.98 73.66 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7850,8 +8003,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0603FR-0730RL"
 			(at 220.98 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 220.98 96.52 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7944,7 +8106,7 @@
 		(at 266.7 99.06 270)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
@@ -7994,8 +8156,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "~"
 			(at 266.7 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "~"
+			(at 266.7 99.06 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8132,8 +8303,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0603FR-0730RL"
 			(at 220.98 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 220.98 93.98 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8211,6 +8391,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Yageo"
+			(at 68.58 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "RC0805JR-0710KL"
+			(at 68.58 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "4444542c-600d-421e-be27-d4a78581e12d")
 		)
@@ -8278,8 +8476,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0603FR-0730RL"
 			(at 220.98 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 220.98 91.44 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8354,8 +8561,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0603FR-0730RL"
 			(at 220.98 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 220.98 83.82 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8498,7 +8714,16 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0805JR-0710KL"
+			(at 67.31 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
 			(at 67.31 133.35 0)
 			(effects
 				(font
@@ -8644,7 +8869,16 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "GRM21BR71H474KA88L"
+			(at 116.84 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata"
 			(at 116.84 52.07 0)
 			(effects
 				(font
@@ -8720,8 +8954,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "61300311121"
 			(at 193.04 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 193.04 38.1 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8930,8 +9173,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0603FR-0730RL"
 			(at 220.98 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 220.98 119.38 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9006,8 +9258,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0603FR-0730RL"
 			(at 220.98 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 220.98 134.62 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9082,8 +9343,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0603FR-0730RL"
 			(at 220.98 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 220.98 71.12 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9158,8 +9428,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0603FR-0730RL"
 			(at 220.98 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 220.98 116.84 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9299,8 +9578,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0603FR-0730RL"
 			(at 220.98 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 220.98 137.16 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9375,8 +9663,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0603FR-0730RL"
 			(at 220.98 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 220.98 63.5 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9454,7 +9751,16 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0805JR-0710KL"
+			(at 74.93 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
 			(at 74.93 133.35 0)
 			(effects
 				(font
@@ -9483,7 +9789,7 @@
 		(at 266.7 63.5 270)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
@@ -9533,8 +9839,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "~"
 			(at 266.7 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "~"
+			(at 266.7 63.5 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9606,8 +9921,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0603FR-0730RL"
 			(at 220.98 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 220.98 132.08 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9747,8 +10071,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0603FR-0730RL"
 			(at 220.98 109.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 220.98 109.22 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9823,8 +10156,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0603FR-0730RL"
 			(at 220.98 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 220.98 78.74 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9902,6 +10244,15 @@
 			)
 		)
 		(property "Manufacturer_Part_Number" "FH12-40S-0.5SH(55)"
+			(at 228.6 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Adafruit"
 			(at 228.6 104.14 0)
 			(effects
 				(font
@@ -10091,8 +10442,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0603FR-0730RL"
 			(at 220.98 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 220.98 99.06 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10167,8 +10527,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0603FR-0730RL"
 			(at 220.98 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 220.98 111.76 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10244,7 +10613,16 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "61300211121"
+			(at 132.08 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
 			(at 132.08 78.74 0)
 			(effects
 				(font
@@ -10273,7 +10651,7 @@
 		(at 266.7 88.9 270)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
@@ -10323,8 +10701,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "~"
 			(at 266.7 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "~"
+			(at 266.7 88.9 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10349,7 +10736,7 @@
 		(at 266.7 83.82 270)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
@@ -10399,8 +10786,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "~"
 			(at 266.7 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "~"
+			(at 266.7 83.82 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10472,8 +10868,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0603FR-0730RL"
 			(at 220.98 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 220.98 76.2 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10613,8 +11018,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0603FR-0730RL"
 			(at 220.98 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 220.98 66.04 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10689,8 +11103,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0603FR-0730RL"
 			(at 220.98 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 220.98 81.28 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10834,7 +11257,16 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "GCJ188R71H104KA12D"
+			(at 71.12 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata"
 			(at 71.12 52.07 0)
 			(effects
 				(font
@@ -10913,7 +11345,16 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "GCJ188R71H104KA12D"
+			(at 106.68 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata"
 			(at 106.68 82.55 0)
 			(effects
 				(font
@@ -10992,7 +11433,16 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0805JR-0710KL"
+			(at 90.17 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
 			(at 90.17 133.35 0)
 			(effects
 				(font
@@ -11248,8 +11698,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0603FR-0730RL"
 			(at 220.98 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 220.98 101.6 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11324,8 +11783,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0603FR-0730RL"
 			(at 220.98 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 220.98 68.58 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11418,7 +11886,7 @@
 		(at 266.7 73.66 270)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
@@ -11468,8 +11936,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "~"
 			(at 266.7 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "~"
+			(at 266.7 73.66 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11536,6 +12013,24 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 60.96 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 60.96 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "RC0805JR-0710KL"
 			(at 60.96 82.55 0)
 			(effects
 				(font
@@ -11750,6 +12245,15 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Vishay"
+			(at 203.2 29.21 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "e54fcd2a-badc-414d-86fa-e26e60d9d618")
 		)
@@ -11817,8 +12321,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "RC0603FR-0730RL"
 			(at 220.98 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 220.98 88.9 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11894,6 +12407,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Yageo"
+			(at 63.5 45.72 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "RC0805JR-07100RL"
+			(at 63.5 45.72 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "8a0e44a8-1ea4-493b-a1ea-de99a9fbdb45")
 		)
@@ -11955,6 +12486,24 @@
 		)
 		(property "Description" "Resistor, US symbol"
 			(at 123.19 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 123.19 68.58 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "RC0805FR-075R6L"
+			(at 123.19 68.58 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12032,7 +12581,16 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "GCJ188R71H104KA12D"
+			(at 110.49 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata"
 			(at 110.49 127 0)
 			(effects
 				(font
@@ -12061,7 +12619,7 @@
 		(at 266.7 78.74 270)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
@@ -12111,8 +12669,17 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" ""
+		(property "Manufacturer_Part_Number" "~"
 			(at 266.7 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "~"
+			(at 266.7 78.74 90)
 			(effects
 				(font
 					(size 1.27 1.27)

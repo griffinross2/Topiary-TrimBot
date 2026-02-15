@@ -236,6 +236,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "~"
+			(at 139.7 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "~"
+			(at 139.7 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3"
@@ -292,6 +310,24 @@
 			)
 		)
 		(property "Description" "Mounting Hole without connection"
+			(at 114.3 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "~"
+			(at 114.3 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "~"
 			(at 114.3 165.1 0)
 			(effects
 				(font
@@ -364,6 +400,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "~"
+			(at 63.5 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "~"
+			(at 63.5 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3"
@@ -420,6 +474,24 @@
 			)
 		)
 		(property "Description" "Mounting Hole without connection"
+			(at 88.9 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "~"
+			(at 88.9 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "~"
 			(at 88.9 165.1 0)
 			(effects
 				(font

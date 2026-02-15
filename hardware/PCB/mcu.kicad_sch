@@ -15806,6 +15806,91 @@
 		)
 	)
 	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 43.18 236.22 90)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(uuid "004f8b66-ecef-4832-84c1-ef689256e6cc")
+		(property "Reference" "TP1"
+			(at 36.83 237.236 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "TestPoint"
+			(at 36.83 234.696 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "TestPoint:TestPoint_Pad_D1.5mm"
+			(at 43.18 241.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 43.18 241.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 43.18 236.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "~"
+			(at 43.18 236.22 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "~"
+			(at 43.18 236.22 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d69b9869-3de0-48f5-8958-be0098d2cfbf")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
+					(reference "TP1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 304.8 148.59 0)
 		(mirror y)
@@ -15852,6 +15937,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 304.8 148.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata"
+			(at 304.8 148.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GCM21BR71E105KA56L"
 			(at 304.8 148.59 0)
 			(effects
 				(font
@@ -16022,6 +16125,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Murata"
+			(at 304.8 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GCM21BR71E105KA56L"
+			(at 304.8 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "2caa9922-c540-4cfd-aec7-054cb48b382f")
 		)
@@ -16084,6 +16205,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 127 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata"
+			(at 127 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GCJ188R71H104KA12D"
 			(at 127 29.21 0)
 			(effects
 				(font
@@ -16295,6 +16434,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Murata"
+			(at 304.8 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GCM21BR71E105KA56L"
+			(at 304.8 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "4d4541f0-6168-4956-a339-0702288647d1")
 		)
@@ -16439,6 +16596,24 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
+			(at 267.97 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Diodes Incorporated"
+			(at 267.97 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "DESD5V0U1BA-7"
 			(at 267.97 69.85 0)
 			(effects
 				(font
@@ -16617,6 +16792,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Wurth"
+			(at 292.1 229.87 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "150080YS75000"
+			(at 292.1 229.87 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "fc7a2d4b-2d67-4d35-ba57-ac100325672a")
 		)
@@ -16745,6 +16938,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 38.1 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata"
+			(at 38.1 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GCJ188R71H104KA12D"
 			(at 38.1 29.21 0)
 			(effects
 				(font
@@ -17028,6 +17239,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Murata"
+			(at 76.2 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GCJ188R71H104KA12D"
+			(at 76.2 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "8f4d1920-44ee-4afa-9611-1c2d06a33a57")
 		)
@@ -17110,79 +17339,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector_Generic:Conn_01x03")
-		(at 345.44 85.09 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "1f170265-5e08-430f-8e71-d6b08d048ad2")
-		(property "Reference" "J12"
-			(at 347.98 83.8199 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "Conn_01x03"
-			(at 347.98 86.3599 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical"
-			(at 345.44 85.09 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 345.44 85.09 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Generic connector, single row, 01x03, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 345.44 85.09 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "3"
-			(uuid "a9090087-5d35-4e01-80be-6ab2432af385")
-		)
-		(pin "2"
-			(uuid "b9330910-4720-4a2a-8f05-ff16dbd79f50")
-		)
-		(pin "1"
-			(uuid "3beaa82f-0660-4ca7-895a-1a06448fd034")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "J12")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R_US")
 		(at 36.83 179.07 0)
 		(unit 1)
@@ -17229,6 +17385,24 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 36.83 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 36.83 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "RC0805JR-0710KL"
 			(at 36.83 179.07 0)
 			(effects
 				(font
@@ -17924,6 +18098,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Murata"
+			(at 49.53 101.6 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GCJ188R71H104KA12D"
+			(at 49.53 101.6 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "246f2c5c-b48e-4aed-a1e4-df89f0377d39")
 		)
@@ -18258,6 +18450,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Murata"
+			(at 50.8 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GCJ188R71H104KA12D"
+			(at 50.8 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "16328a7f-8825-4940-88cb-c57eb76ae9ff")
 		)
@@ -18279,7 +18489,7 @@
 		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(uuid "34c53b7b-b7c9-4444-ad01-bdf12261b89a")
@@ -18321,6 +18531,24 @@
 		)
 		(property "Description" "test point"
 			(at 43.18 248.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "~"
+			(at 43.18 248.92 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "~"
+			(at 43.18 248.92 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18387,6 +18615,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 88.9 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata"
+			(at 88.9 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GCJ188R71H104KA12D"
 			(at 88.9 29.21 0)
 			(effects
 				(font
@@ -18530,6 +18776,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Murata"
+			(at 45.72 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GRM21BR71E225KE11L"
+			(at 45.72 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "1ced4ac7-6ebe-45f4-bd63-d8586ca26580")
 		)
@@ -18591,6 +18855,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 38.1 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata"
+			(at 38.1 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GRM21BR71E225KE11L"
 			(at 38.1 54.61 0)
 			(effects
 				(font
@@ -18732,6 +19014,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 87.63 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata"
+			(at 87.63 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GCJ188R71H104KA12D"
 			(at 87.63 80.01 0)
 			(effects
 				(font
@@ -18941,7 +19241,7 @@
 		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(uuid "3b9c8143-6f94-486d-9296-9b4ca41589a4")
@@ -18983,6 +19283,24 @@
 		)
 		(property "Description" "test point"
 			(at 43.18 261.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "~"
+			(at 43.18 261.62 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "~"
+			(at 43.18 261.62 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19049,6 +19367,24 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 274.32 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 274.32 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "RC0805JR-0710KL"
 			(at 274.32 73.66 0)
 			(effects
 				(font
@@ -19350,6 +19686,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Murata"
+			(at 95.25 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GCJ188R71H104KA12D"
+			(at 95.25 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "5f3b5338-37b7-4c91-b2f2-e9c896be523c")
 		)
@@ -19437,7 +19791,7 @@
 		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(uuid "458a7d69-2184-4722-b489-7a41a26e6f10")
@@ -19479,6 +19833,24 @@
 		)
 		(property "Description" "test point"
 			(at 43.18 242.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "~"
+			(at 43.18 242.57 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "~"
+			(at 43.18 242.57 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19545,6 +19917,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 304.8 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata"
+			(at 304.8 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GCM21BR71E105KA56L"
 			(at 304.8 80.01 0)
 			(effects
 				(font
@@ -19623,6 +20013,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Murata"
+			(at 101.6 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GCJ188R71H104KA12D"
+			(at 101.6 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "d37ab229-1a1c-4d4b-8206-6a3d56acb3af")
 		)
@@ -19683,6 +20091,24 @@
 		)
 		(property "Description" "Resistor, US symbol"
 			(at 349.25 187.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 349.25 187.96 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "RC0805JR-075K1L"
+			(at 349.25 187.96 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19751,6 +20177,24 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 276.86 242.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 276.86 242.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "RC0805FR-0733RL"
 			(at 276.86 242.57 0)
 			(effects
 				(font
@@ -19959,6 +20403,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 69.85 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata"
+			(at 69.85 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GRM219R61E475MA73D"
 			(at 69.85 54.61 0)
 			(effects
 				(font
@@ -20178,6 +20640,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Wurth"
+			(at 276.86 229.87 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "150080BS75000"
+			(at 276.86 229.87 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "5ff26cf8-d7f5-4ac5-a0df-a869500c0b9f")
 		)
@@ -20313,6 +20793,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Murata"
+			(at 69.85 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GCJ188R71H104KA12D"
+			(at 69.85 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "761de60d-521f-479b-97bf-1e73349bcbc6")
 		)
@@ -20383,6 +20881,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Murata"
+			(at 120.65 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GCJ188R71H104KA12D"
+			(at 120.65 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "85d9b209-13a1-4ae8-bc76-7802016eb0f8")
 		)
@@ -20404,7 +20920,7 @@
 		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(uuid "66d98bc9-e0e2-4913-8d18-4f60573be5bf")
@@ -20446,6 +20962,24 @@
 		)
 		(property "Description" "test point"
 			(at 43.18 255.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "~"
+			(at 43.18 255.27 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "~"
+			(at 43.18 255.27 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20577,6 +21111,24 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 317.5 222.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 317.5 222.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "RC0805FR-071ML"
 			(at 317.5 222.25 0)
 			(effects
 				(font
@@ -20762,6 +21314,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Yageo"
+			(at 349.25 185.42 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "RC0805JR-075K1L"
+			(at 349.25 185.42 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "2ed2597a-449f-42de-8575-ae01aef0c125")
 		)
@@ -20824,6 +21394,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 41.91 186.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata"
+			(at 41.91 186.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GCM21BR71E105KA56L"
 			(at 41.91 186.69 0)
 			(effects
 				(font
@@ -21106,6 +21694,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Yageo"
+			(at 274.32 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "RC0805FR-074K7L"
+			(at 274.32 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "80bc0dbf-68e6-491f-874d-5e03d0c6fb35")
 		)
@@ -21176,6 +21782,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Murata"
+			(at 35.56 137.16 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GRM1885C1H150JA01J"
+			(at 35.56 137.16 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "68cd2593-d91d-4c7a-ad3b-f1e90c767878")
 		)
@@ -21238,6 +21862,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 41.91 212.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata"
+			(at 41.91 212.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GCM21BR71E105KA56L"
 			(at 41.91 212.09 0)
 			(effects
 				(font
@@ -21379,6 +22021,24 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 36.83 212.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 36.83 212.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "RC0805JR-0710KL"
 			(at 36.83 212.09 0)
 			(effects
 				(font
@@ -21558,6 +22218,24 @@
 		)
 		(property "Sim.Pins" "1=K 2=A"
 			(at 284.48 229.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 284.48 229.87 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "150080GS75000"
+			(at 284.48 229.87 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -21767,6 +22445,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Murata"
+			(at 114.3 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GCJ188R71H104KA12D"
+			(at 114.3 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "94d27f54-487e-441e-b2eb-b0385af20ca6")
 		)
@@ -21894,6 +22590,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 152.4 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata"
+			(at 152.4 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GRM219R61E475MA73D"
 			(at 152.4 29.21 0)
 			(effects
 				(font
@@ -22103,6 +22817,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Murata"
+			(at 57.15 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GCJ188R71H104KA12D"
+			(at 57.15 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "29e21659-2f3e-4dea-ba2d-c30f437a75be")
 		)
@@ -22231,6 +22963,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 100.33 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata"
+			(at 100.33 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GCJ188R71H104KA12D"
 			(at 100.33 54.61 0)
 			(effects
 				(font
@@ -22375,6 +23125,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Murata"
+			(at 63.5 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GCJ188R71H104KA12D"
+			(at 63.5 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "6a9eb3e6-d1fe-4277-b09d-0121b738f3bd")
 		)
@@ -22437,6 +23205,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 82.55 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata"
+			(at 82.55 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GCJ188R71H104KA12D"
 			(at 82.55 29.21 0)
 			(effects
 				(font
@@ -22581,6 +23367,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Murata"
+			(at 304.8 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GCM21BR71E105KA56L"
+			(at 304.8 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "8cdb1ad2-00fb-4551-a9b3-c688ea988a14")
 		)
@@ -22643,6 +23447,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 44.45 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata"
+			(at 44.45 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GCJ188R71H104KA12D"
 			(at 44.45 29.21 0)
 			(effects
 				(font
@@ -22720,6 +23542,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Yageo"
+			(at 299.72 242.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "RC0805JR-07100RL"
+			(at 299.72 242.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "b93c5c4c-8986-4714-b844-fd4e0d1e13ae")
 		)
@@ -22783,6 +23623,24 @@
 		)
 		(property "Description" "Unpolarized capacitor"
 			(at 35.56 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata"
+			(at 35.56 149.86 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GRM1885C1H150JA01J"
+			(at 35.56 149.86 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -23083,6 +23941,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Murata"
+			(at 38.1 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GCJ188R71H104KA12D"
+			(at 38.1 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "89cbbf08-f344-4614-8c5c-f11222fffa20")
 		)
@@ -23145,6 +24021,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 133.35 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata"
+			(at 133.35 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GCJ188R71H104KA12D"
 			(at 133.35 29.21 0)
 			(effects
 				(font
@@ -23287,6 +24181,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 95.25 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata"
+			(at 95.25 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GCM21BR71E105KA56L"
 			(at 95.25 80.01 0)
 			(effects
 				(font
@@ -23601,6 +24513,96 @@
 		)
 	)
 	(symbol
+		(lib_id "Connector_Generic:Conn_01x03")
+		(at 354.33 127 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "ca69fbbd-0572-436b-bad3-23805a7afa3e")
+		(property "Reference" "J13"
+			(at 353.314 132.842 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Conn_01x03"
+			(at 349.25 135.382 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Connector_Molex:Molex_KK-254_AE-6410-03A_1x03_P2.54mm_Vertical"
+			(at 354.33 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 354.33 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x03, script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 354.33 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Molex"
+			(at 354.33 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "0022232031"
+			(at 354.33 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "9426a57d-94cf-4069-8255-e929ba77eec3")
+		)
+		(pin "1"
+			(uuid "7ddff655-1f22-460b-9580-9aa464d60a43")
+		)
+		(pin "2"
+			(uuid "22040475-fbe6-406e-bbdb-f4ca0c243c40")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
+					(reference "J13")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+3.3V")
 		(at 55.88 208.28 0)
 		(unit 1)
@@ -23882,6 +24884,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Yageo"
+			(at 284.48 242.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "RC0805JR-07100RL"
+			(at 284.48 242.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "b54fab64-5871-497f-bbaa-5a726d8d5268")
 		)
@@ -23943,6 +24963,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 50.8 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata"
+			(at 50.8 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GCM21BR71E105KA56L"
 			(at 50.8 80.01 0)
 			(effects
 				(font
@@ -24055,6 +25093,96 @@
 		)
 	)
 	(symbol
+		(lib_id "Connector_Generic:Conn_01x03")
+		(at 345.44 85.09 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "d4b10e3e-f541-4d52-9b04-f7c840813d7e")
+		(property "Reference" "J12"
+			(at 344.424 90.932 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Conn_01x03"
+			(at 344.424 93.472 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Connector_Molex:Molex_KK-254_AE-6410-03A_1x03_P2.54mm_Vertical"
+			(at 345.44 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 345.44 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x03, script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 345.44 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Molex"
+			(at 345.44 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "0022232031"
+			(at 345.44 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "2b18359e-8f7c-49cc-94b1-ffc35a16eacb")
+		)
+		(pin "1"
+			(uuid "c16402d8-6785-495a-8f57-699f5292cdef")
+		)
+		(pin "2"
+			(uuid "91058993-cce0-4517-8a9d-b2cf55a75248")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
+					(reference "J12")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 107.95 29.21 0)
 		(mirror y)
@@ -24101,6 +25229,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 107.95 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata"
+			(at 107.95 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GCJ188R71H104KA12D"
 			(at 107.95 29.21 0)
 			(effects
 				(font
@@ -24521,78 +25667,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector_Generic:Conn_01x03")
-		(at 354.33 127 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "eb79c663-10ce-4363-b6b7-f27347da4327")
-		(property "Reference" "J13"
-			(at 352.552 121.412 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "Conn_01x03"
-			(at 348.742 132.842 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical"
-			(at 354.33 127 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 354.33 127 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Generic connector, single row, 01x03, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 354.33 127 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "3"
-			(uuid "95af8601-3441-4985-bb87-92ae49dd8dfa")
-		)
-		(pin "2"
-			(uuid "9b2ce11d-99a9-45a8-a99b-fe2459f074d5")
-		)
-		(pin "1"
-			(uuid "93ea6b5f-952d-4bcd-b3b9-39b427966b98")
-		)
-		(instances
-			(project ""
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "J13")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R_US")
 		(at 347.98 115.57 0)
 		(unit 1)
@@ -24639,6 +25713,24 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 347.98 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 347.98 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "RC0805FR-074K7L"
 			(at 347.98 115.57 0)
 			(effects
 				(font
@@ -24709,6 +25801,24 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 342.9 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 342.9 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "RC0805FR-074K7L"
 			(at 342.9 115.57 0)
 			(effects
 				(font
@@ -25009,6 +26119,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Murata"
+			(at 90.17 106.68 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GRM21BR71E225KE11L"
+			(at 90.17 106.68 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "1c88afdb-9431-4aa9-9fea-e8fcee80a050")
 		)
@@ -25019,73 +26147,6 @@
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
 					(reference "C48")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 43.18 236.22 90)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "f4e15ae5-4d9c-4656-8f9f-a1443b2717ab")
-		(property "Reference" "TP1"
-			(at 36.83 237.236 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "TestPoint"
-			(at 36.83 234.696 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "TestPoint:TestPoint_Loop_D2.54mm_Drill1.5mm_Beaded"
-			(at 43.18 241.3 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 43.18 241.3 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "test point"
-			(at 43.18 236.22 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "4bb8ba06-fe12-4a38-9030-a22864ca1932")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
-					(reference "TP1")
 					(unit 1)
 				)
 			)
@@ -25360,6 +26421,24 @@
 				(hide yes)
 			)
 		)
+		(property "MANUFACTURER" "Wurth"
+			(at 299.72 229.87 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "150080RS75000"
+			(at 299.72 229.87 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "b1aefc73-8f81-4600-98b8-119ac7b10aed")
 		)
@@ -25422,6 +26501,24 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 304.8 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Murata"
+			(at 304.8 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "GCM21BR71E105KA56L"
 			(at 304.8 125.73 0)
 			(effects
 				(font
@@ -25556,6 +26653,24 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
+			(at 292.1 242.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Yageo"
+			(at 292.1 242.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "RC0805JR-07100RL"
 			(at 292.1 242.57 0)
 			(effects
 				(font
