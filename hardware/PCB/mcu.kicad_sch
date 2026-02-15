@@ -8069,9 +8069,9 @@
 		)
 		(uuid "f6e43bce-8ad3-4caf-929d-25bc50842e1f")
 	)
-	(text "Timer 12 Channel 1"
+	(text "TIM12CH1"
 		(exclude_from_sim no)
-		(at 271.78 125.222 0)
+		(at 267.462 124.968 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -8678,10 +8678,6 @@
 		(uuid "77f22678-ec35-421c-8321-4848501c2417")
 	)
 	(no_connect
-		(at 246.38 140.97)
-		(uuid "823ae5a8-20e5-46e4-96f4-3d48f3975a37")
-	)
-	(no_connect
 		(at 149.86 168.91)
 		(uuid "86feb85a-4fbf-4261-a7d9-f6a8c58c8a11")
 	)
@@ -8724,10 +8720,6 @@
 	(no_connect
 		(at 340.36 210.82)
 		(uuid "c909b6e0-5d61-4204-a7ea-9b4e830a1c3c")
-	)
-	(no_connect
-		(at 246.38 138.43)
-		(uuid "cb536fa4-b0ef-4086-b760-3932bb62f2d5")
 	)
 	(no_connect
 		(at 149.86 87.63)
@@ -9272,6 +9264,16 @@
 			(type default)
 		)
 		(uuid "1270cb96-64eb-4d2d-9c73-42930a52ee47")
+	)
+	(wire
+		(pts
+			(xy 246.38 138.43) (xy 261.62 138.43)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "128255ae-a936-4320-be0f-65a79d13b2cc")
 	)
 	(wire
 		(pts
@@ -11145,7 +11147,7 @@
 	)
 	(wire
 		(pts
-			(xy 340.36 161.29) (xy 354.33 161.29)
+			(xy 337.82 160.02) (xy 351.79 160.02)
 		)
 		(stroke
 			(width 0)
@@ -12105,6 +12107,16 @@
 	)
 	(wire
 		(pts
+			(xy 246.38 140.97) (xy 261.62 140.97)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d4e64e76-5abc-491f-98a0-8f6cf2d9c6ad")
+	)
+	(wire
+		(pts
 			(xy 246.38 54.61) (xy 261.62 54.61)
 		)
 		(stroke
@@ -12715,7 +12727,7 @@
 	)
 	(wire
 		(pts
-			(xy 340.36 158.75) (xy 354.33 158.75)
+			(xy 337.82 157.48) (xy 351.79 157.48)
 		)
 		(stroke
 			(width 0)
@@ -13093,8 +13105,8 @@
 		)
 		(uuid "2a78d1d9-92fc-434d-84c5-851c1da3a745")
 	)
-	(label "PG_PI"
-		(at 340.36 158.75 0)
+	(label "PG_5V"
+		(at 337.82 157.48 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -13294,7 +13306,7 @@
 		(uuid "42226c34-2eea-4169-a0b7-d9831058c07b")
 	)
 	(label "PG_ADJ"
-		(at 340.36 161.29 0)
+		(at 337.82 160.02 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -14303,6 +14315,16 @@
 		)
 		(uuid "bd428b86-c824-480c-81d0-cf4045d9f9f6")
 	)
+	(label "PG_ADJ"
+		(at 261.62 138.43 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "bdaa29db-2160-4e1d-ac6e-8e662e09f41a")
+	)
 	(label "LCD_B7"
 		(at 375.92 81.28 0)
 		(effects
@@ -14332,6 +14354,16 @@
 			(justify left bottom)
 		)
 		(uuid "c01990e4-77fe-4457-b017-7b21483eed1a")
+	)
+	(label "PG_5V"
+		(at 261.62 140.97 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "c0b928f1-9a42-4865-bc8f-644713e1dee8")
 	)
 	(label "USB_DP"
 		(at 367.03 193.04 0)
@@ -14881,9 +14913,9 @@
 			)
 		)
 	)
-	(global_label "PG_PI"
+	(global_label "PG_5V"
 		(shape input)
-		(at 354.33 158.75 0)
+		(at 351.79 157.48 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -14893,7 +14925,7 @@
 		)
 		(uuid "38759770-df7e-48b5-b18b-8fc1ae044166")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 362.6976 158.75 0)
+			(at 360.5809 157.48 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15587,7 +15619,7 @@
 	)
 	(global_label "PG_ADJ"
 		(shape input)
-		(at 354.33 161.29 0)
+		(at 351.79 160.02 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -15597,7 +15629,7 @@
 		)
 		(uuid "d5ac44e9-b16c-4433-8394-cb09eea9faf8")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 364.149 161.29 0)
+			(at 361.609 160.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)

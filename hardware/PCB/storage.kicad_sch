@@ -2400,7 +2400,7 @@
 		(uuid "2c82f155-79dd-4e12-8665-4b355f8ba2d6")
 	)
 	(label "SD_CD"
-		(at 81.28 50.8 0)
+		(at 82.55 50.8 0)
 		(effects
 			(font
 				(size 1.27 1.27)

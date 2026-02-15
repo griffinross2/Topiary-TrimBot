@@ -38,8 +38,8 @@
         "other_text_upright": false,
         "pads": {
           "drill": 0.0,
-          "height": 4.41,
-          "width": 4.55
+          "height": 0.3,
+          "width": 0.67
         },
         "silk_line_width": 0.1,
         "silk_text_italic": false,
@@ -519,7 +519,7 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "plot": "",
+      "plot": "Output/",
       "pos_files": "",
       "specctra_dsn": "",
       "step": "TopiaryTrimbot.step",

@@ -2601,7 +2601,7 @@
 	)
 	(text "1%"
 		(exclude_from_sim no)
-		(at 95.504 92.71 0)
+		(at 93.98 92.71 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4855,7 +4855,7 @@
 		)
 		(uuid "ffaecc18-5252-45dc-980c-e124c9f3bcc8")
 	)
-	(label "PG_PI"
+	(label "PG_5V"
 		(at 64.77 113.03 0)
 		(effects
 			(font
@@ -4897,7 +4897,7 @@
 			)
 		)
 	)
-	(global_label "PG_PI"
+	(global_label "PG_5V"
 		(shape output)
 		(at 76.2 113.03 0)
 		(fields_autoplaced yes)
@@ -4909,7 +4909,7 @@
 		)
 		(uuid "2de81723-dc5d-4322-b984-d17449a5d0f1")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 84.5676 113.03 0)
+			(at 84.9909 113.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6289,7 +6289,7 @@
 		(dnp no)
 		(uuid "19dbb8ac-fbcd-4dbb-9dc9-da23982642e3")
 		(property "Reference" "C14"
-			(at 68.58 143.256 90)
+			(at 72.39 140.716 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6298,7 +6298,7 @@
 			)
 		)
 		(property "Value" "0.1u"
-			(at 68.58 144.78 90)
+			(at 72.136 143.002 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10870,7 +10870,7 @@
 		(fields_autoplaced yes)
 		(uuid "a199ed8e-3c07-4478-847f-79f1041b9dbd")
 		(property "Reference" "R8"
-			(at 92.71 87.6299 0)
+			(at 91.821 87.6878 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10878,8 +10878,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "73.2k"
-			(at 92.71 90.1699 0)
+		(property "Value" "75k"
+			(at 91.821 90.1121 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10923,7 +10923,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" "RT0805BRD0773K2L"
+		(property "Manufacturer_Part_Number" "RT0805DRD0775KL"
 			(at 90.17 88.9 0)
 			(effects
 				(font
@@ -11122,7 +11122,7 @@
 		(dnp no)
 		(uuid "a8aca4d9-efa1-4754-b8be-a0a6033f3297")
 		(property "Reference" "C16"
-			(at 78.74 141.732 0)
+			(at 77.47 141.478 0)
 			(effects
 				(font
 					(size 1.27 1.27)
