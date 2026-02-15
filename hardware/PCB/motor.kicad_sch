@@ -2766,16 +2766,6 @@
 	)
 	(wire
 		(pts
-			(xy 203.2 241.3) (xy 203.2 248.92)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1f8a0f01-8e99-4b3c-8fbf-26dc7510f03f")
-	)
-	(wire
-		(pts
 			(xy 292.1 95.25) (xy 292.1 93.98)
 		)
 		(stroke
@@ -2953,6 +2943,16 @@
 			(type default)
 		)
 		(uuid "3e23b632-a589-4196-8f4a-7b9a09e98f45")
+	)
+	(wire
+		(pts
+			(xy 203.2 241.3) (xy 203.2 248.92)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4048f958-481d-4725-b7d3-8e19dd158d7c")
 	)
 	(wire
 		(pts
@@ -3566,16 +3566,6 @@
 	)
 	(wire
 		(pts
-			(xy 203.2 231.14) (xy 203.2 238.76)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9a6b13e4-5772-4603-81de-eaabde6c3e0e")
-	)
-	(wire
-		(pts
 			(xy 71.12 60.96) (xy 85.09 60.96)
 		)
 		(stroke
@@ -3613,6 +3603,16 @@
 			(type default)
 		)
 		(uuid "9d8b27f2-a60e-4eae-8fbb-3b61cec21bc6")
+	)
+	(wire
+		(pts
+			(xy 203.2 231.14) (xy 203.2 238.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9da43ea2-6906-42db-82a0-19ae37818b20")
 	)
 	(wire
 		(pts
@@ -5359,7 +5359,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "066bc97c-e2c3-4861-8fec-46efb430412e")
-		(property "Reference" "R33"
+		(property "Reference" "R39"
 			(at 192.151 259.1378 0)
 			(effects
 				(font
@@ -5422,7 +5422,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "R33")
+					(reference "R39")
 					(unit 1)
 				)
 			)
@@ -5515,7 +5515,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0888f62f-f1eb-497d-8d51-87bcf8c7588b")
-		(property "Reference" "JP10"
+		(property "Reference" "JP7"
 			(at 161.29 143.5099 90)
 			(effects
 				(font
@@ -5578,7 +5578,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "JP10")
+					(reference "JP7")
 					(unit 1)
 				)
 			)
@@ -5835,7 +5835,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "11975fa8-6dfb-4ff6-9fea-b493116b9127")
-		(property "Reference" "JP6"
+		(property "Reference" "JP3"
 			(at 161.29 49.5299 90)
 			(effects
 				(font
@@ -5898,7 +5898,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "JP6")
+					(reference "JP3")
 					(unit 1)
 				)
 			)
@@ -5992,7 +5992,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1b5fee94-1120-438b-93db-3f07c07deff1")
-		(property "Reference" "JP11"
+		(property "Reference" "JP8"
 			(at 161.29 163.8299 90)
 			(effects
 				(font
@@ -6055,7 +6055,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "JP11")
+					(reference "JP8")
 					(unit 1)
 				)
 			)
@@ -6076,7 +6076,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "1c99ff8e-dd27-4396-9413-41b32bf6f2a1")
-		(property "Reference" "JP5"
+		(property "Reference" "JP2"
 			(at 74.676 157.226 90)
 			(effects
 				(font
@@ -6139,7 +6139,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "JP5")
+					(reference "JP2")
 					(unit 1)
 				)
 			)
@@ -6479,7 +6479,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "27de6074-e926-4511-8601-42a1e0c35b2c")
-		(property "Reference" "JP19"
+		(property "Reference" "JP16"
 			(at 349.25 110.4899 90)
 			(effects
 				(font
@@ -6542,7 +6542,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "JP19")
+					(reference "JP16")
 					(unit 1)
 				)
 			)
@@ -6563,7 +6563,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "28b39f40-1806-4ce7-a462-a0d2b31d9662")
-		(property "Reference" "R29"
+		(property "Reference" "R35"
 			(at 83.82 152.4 0)
 			(effects
 				(font
@@ -6626,7 +6626,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "R29")
+					(reference "R35")
 					(unit 1)
 				)
 			)
@@ -6648,7 +6648,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2b1dd285-c1f7-4a55-85ae-1a6970f3d05e")
-		(property "Reference" "JP20"
+		(property "Reference" "JP17"
 			(at 349.25 143.5099 90)
 			(effects
 				(font
@@ -6711,7 +6711,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "JP20")
+					(reference "JP17")
 					(unit 1)
 				)
 			)
@@ -6876,7 +6876,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "31a39687-2b83-4591-8823-869272937f0f")
-		(property "Reference" "JP7"
+		(property "Reference" "JP4"
 			(at 161.29 69.8499 90)
 			(effects
 				(font
@@ -6939,7 +6939,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "JP7")
+					(reference "JP4")
 					(unit 1)
 				)
 			)
@@ -7496,7 +7496,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3ea10017-92d2-4230-88e5-eb938981ee90")
-		(property "Reference" "R30"
+		(property "Reference" "R36"
 			(at 161.671 119.4378 0)
 			(effects
 				(font
@@ -7559,7 +7559,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "R30")
+					(reference "R36")
 					(unit 1)
 				)
 			)
@@ -7735,7 +7735,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "505b23ed-dbdc-4e6f-a5dd-75b86ec31baa")
-		(property "Reference" "JP23"
+		(property "Reference" "JP20"
 			(at 349.25 204.4699 90)
 			(effects
 				(font
@@ -7798,7 +7798,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "JP23")
+					(reference "JP20")
 					(unit 1)
 				)
 			)
@@ -8028,7 +8028,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "64b0781d-2894-492f-9b07-936a80ca05f1")
-		(property "Reference" "JP8"
+		(property "Reference" "JP5"
 			(at 161.29 90.1699 90)
 			(effects
 				(font
@@ -8091,7 +8091,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "JP8")
+					(reference "JP5")
 					(unit 1)
 				)
 			)
@@ -8113,7 +8113,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "69b735bf-2b7a-42ea-b7d5-4e19a4eb9ec7")
-		(property "Reference" "JP16"
+		(property "Reference" "JP13"
 			(at 349.25 49.5299 90)
 			(effects
 				(font
@@ -8176,7 +8176,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "JP16")
+					(reference "JP13")
 					(unit 1)
 				)
 			)
@@ -8198,7 +8198,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6a747404-ac3b-4d2c-a12d-95efe5243d9d")
-		(property "Reference" "JP13"
+		(property "Reference" "JP10"
 			(at 161.29 204.4699 90)
 			(effects
 				(font
@@ -8261,7 +8261,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "JP13")
+					(reference "JP10")
 					(unit 1)
 				)
 			)
@@ -8282,7 +8282,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "6f35cf97-b3f4-433f-a1f5-82d75b0afc93")
-		(property "Reference" "R28"
+		(property "Reference" "R34"
 			(at 84.836 42.672 0)
 			(effects
 				(font
@@ -8345,7 +8345,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "R28")
+					(reference "R34")
 					(unit 1)
 				)
 			)
@@ -8602,16 +8602,16 @@
 	)
 	(symbol
 		(lib_id "Connector:Screw_Terminal_01x02")
-		(at 208.28 238.76 0)
+		(at 208.28 241.3 0)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "72c26d92-9be8-4c28-a6b0-86a316676748")
 		(property "Reference" "J16"
-			(at 210.312 238.8178 0)
+			(at 210.312 241.2422 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8620,7 +8620,7 @@
 			)
 		)
 		(property "Value" "Cutting Tool"
-			(at 210.312 241.2421 0)
+			(at 210.312 238.8179 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8629,7 +8629,7 @@
 			)
 		)
 		(property "Footprint" "CustomFootprints:6DBL-02-006"
-			(at 208.28 238.76 0)
+			(at 208.28 241.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8638,7 +8638,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 208.28 238.76 0)
+			(at 208.28 241.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8647,7 +8647,7 @@
 			)
 		)
 		(property "Description" "Generic screw terminal, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 208.28 238.76 0)
+			(at 208.28 241.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8656,7 +8656,7 @@
 			)
 		)
 		(property "Manufacturer_Part_Number" "6DBL-02-006-ND"
-			(at 208.28 238.76 0)
+			(at 208.28 241.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8787,7 +8787,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "750dc953-aa57-4bdd-a21d-7f2e076cfd64")
-		(property "Reference" "R35"
+		(property "Reference" "R41"
 			(at 274.32 152.4 0)
 			(effects
 				(font
@@ -8850,7 +8850,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "R35")
+					(reference "R41")
 					(unit 1)
 				)
 			)
@@ -8944,7 +8944,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7eb21e79-ec81-4208-a525-1beb7f77e7ba")
-		(property "Reference" "R37"
+		(property "Reference" "R43"
 			(at 349.631 213.4178 0)
 			(effects
 				(font
@@ -9007,7 +9007,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "R37")
+					(reference "R43")
 					(unit 1)
 				)
 			)
@@ -9159,7 +9159,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8387a136-01ab-420a-ac80-c630d51055ff")
-		(property "Reference" "JP17"
+		(property "Reference" "JP14"
 			(at 349.25 69.8499 90)
 			(effects
 				(font
@@ -9222,7 +9222,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "JP17")
+					(reference "JP14")
 					(unit 1)
 				)
 			)
@@ -9386,7 +9386,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "8a85c01b-47ca-4e97-92be-a680ff4de8e9")
-		(property "Reference" "R34"
+		(property "Reference" "R40"
 			(at 274.32 41.91 0)
 			(effects
 				(font
@@ -9449,7 +9449,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "R34")
+					(reference "R40")
 					(unit 1)
 				)
 			)
@@ -9541,7 +9541,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "9114ae64-6207-4855-95ba-b5ce8f68c6b1")
-		(property "Reference" "JP14"
+		(property "Reference" "JP11"
 			(at 265.176 46.736 90)
 			(effects
 				(font
@@ -9604,7 +9604,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "JP14")
+					(reference "JP11")
 					(unit 1)
 				)
 			)
@@ -9769,7 +9769,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "957c98db-71b4-4004-8e6d-183578f49d67")
-		(property "Reference" "R32"
+		(property "Reference" "R38"
 			(at 181.61 248.9665 90)
 			(effects
 				(font
@@ -9830,7 +9830,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "R32")
+					(reference "R38")
 					(unit 1)
 				)
 			)
@@ -9994,7 +9994,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "99865853-f5af-4348-84e6-9353722476c2")
-		(property "Reference" "JP9"
+		(property "Reference" "JP6"
 			(at 161.29 110.4899 90)
 			(effects
 				(font
@@ -10057,7 +10057,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "JP9")
+					(reference "JP6")
 					(unit 1)
 				)
 			)
@@ -11161,7 +11161,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "bf1e2ab2-6c05-4286-a8ae-1dce2b82ab15")
-		(property "Reference" "JP22"
+		(property "Reference" "JP19"
 			(at 349.25 184.1499 90)
 			(effects
 				(font
@@ -11224,7 +11224,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "JP22")
+					(reference "JP19")
 					(unit 1)
 				)
 			)
@@ -11652,7 +11652,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "d27e2f8c-c0bd-4a82-b779-96fd8ab61c0c")
-		(property "Reference" "JP15"
+		(property "Reference" "JP12"
 			(at 265.176 157.226 90)
 			(effects
 				(font
@@ -11715,7 +11715,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "JP15")
+					(reference "JP12")
 					(unit 1)
 				)
 			)
@@ -11874,7 +11874,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d961ac7b-f89a-4597-8642-390a249fdd37")
-		(property "Reference" "R36"
+		(property "Reference" "R42"
 			(at 349.631 119.4378 0)
 			(effects
 				(font
@@ -11937,7 +11937,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "R36")
+					(reference "R42")
 					(unit 1)
 				)
 			)
@@ -11959,7 +11959,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ddda3268-6730-48f0-afb8-73996b34ff7b")
-		(property "Reference" "JP12"
+		(property "Reference" "JP9"
 			(at 161.29 184.1499 90)
 			(effects
 				(font
@@ -12022,7 +12022,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "JP12")
+					(reference "JP9")
 					(unit 1)
 				)
 			)
@@ -12257,7 +12257,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e347b765-3347-4eae-ba3f-c3b7065f6aa3")
-		(property "Reference" "JP21"
+		(property "Reference" "JP18"
 			(at 349.25 163.8299 90)
 			(effects
 				(font
@@ -12320,7 +12320,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "JP21")
+					(reference "JP18")
 					(unit 1)
 				)
 			)
@@ -12747,7 +12747,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "fb2d8be6-8ce9-4fa5-a8fe-4c40ad543500")
-		(property "Reference" "JP4"
+		(property "Reference" "JP1"
 			(at 74.676 46.736 90)
 			(effects
 				(font
@@ -12810,7 +12810,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "JP4")
+					(reference "JP1")
 					(unit 1)
 				)
 			)
@@ -12832,7 +12832,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "fc51f832-dc55-433d-a5d4-08eea12fb742")
-		(property "Reference" "JP18"
+		(property "Reference" "JP15"
 			(at 349.25 90.1699 90)
 			(effects
 				(font
@@ -12895,7 +12895,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "JP18")
+					(reference "JP15")
 					(unit 1)
 				)
 			)
@@ -12917,7 +12917,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "fd595bb5-e951-4d5b-a61c-bf25483f0d7c")
-		(property "Reference" "R31"
+		(property "Reference" "R37"
 			(at 161.671 213.4178 0)
 			(effects
 				(font
@@ -12980,7 +12980,7 @@
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "R31")
+					(reference "R37")
 					(unit 1)
 				)
 			)

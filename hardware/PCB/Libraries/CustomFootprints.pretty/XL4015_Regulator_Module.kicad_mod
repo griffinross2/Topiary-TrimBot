@@ -115,19 +115,8 @@
 		(uuid "91ea045a-c7b6-40e9-9cbc-21b22a671304")
 	)
 	(fp_rect
-		(start -27.5 -12)
-		(end -23.5 -8)
-		(stroke
-			(width 0.15)
-			(type solid)
-		)
-		(fill no)
-		(layer "F.SilkS")
-		(uuid "7f925cfa-3e4d-411f-89fa-98f99a8d0f33")
-	)
-	(fp_rect
-		(start -27.5 -12)
-		(end 27.5 12)
+		(start -27.5 -12.5)
+		(end 27.5 12.5)
 		(stroke
 			(width 0.15)
 			(type solid)
@@ -135,39 +124,6 @@
 		(fill no)
 		(layer "F.SilkS")
 		(uuid "db395fa0-67cc-42fe-b8d3-a57fe91432b6")
-	)
-	(fp_rect
-		(start -27.5 8)
-		(end -23.5 12)
-		(stroke
-			(width 0.15)
-			(type solid)
-		)
-		(fill no)
-		(layer "F.SilkS")
-		(uuid "06ea2e31-b3e7-49de-83e2-b9985770266a")
-	)
-	(fp_rect
-		(start 23.5 -12)
-		(end 27.5 -8)
-		(stroke
-			(width 0.15)
-			(type solid)
-		)
-		(fill no)
-		(layer "F.SilkS")
-		(uuid "6d25b7c6-a0a4-497e-86d3-78fd2f14e246")
-	)
-	(fp_rect
-		(start 23.5 8)
-		(end 27.5 12)
-		(stroke
-			(width 0.15)
-			(type solid)
-		)
-		(fill no)
-		(layer "F.SilkS")
-		(uuid "66b419a4-b102-44dd-8ecb-56659a29c45a")
 	)
 	(fp_text user "+"
 		(at -26.75 -5 0)
@@ -259,32 +215,32 @@
 			)
 		)
 	)
-	(pad "1" thru_hole circle
-		(at -25.45 -10)
+	(pad "1" thru_hole rect
+		(at -25.4 -10.16)
 		(size 1.7 1.7)
 		(drill 1)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
 		(uuid "a798dec5-7641-411c-9b1a-c858c0a7b3c5")
 	)
-	(pad "2" thru_hole circle
-		(at -25.45 10)
+	(pad "2" thru_hole rect
+		(at -25.4 10.16)
 		(size 1.7 1.7)
 		(drill 1)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
 		(uuid "e232b436-6e14-4513-af3a-a2dbc37a8651")
 	)
-	(pad "3" thru_hole circle
-		(at 25.45 -10)
+	(pad "3" thru_hole rect
+		(at 25.4 -10.16)
 		(size 1.7 1.7)
 		(drill 1)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
 		(uuid "4067ba31-4fbb-4cd0-9f93-fdfd68b9b000")
 	)
-	(pad "4" thru_hole circle
-		(at 25.45 10)
+	(pad "4" thru_hole rect
+		(at 25.4 10.16)
 		(size 1.7 1.7)
 		(drill 1)
 		(layers "*.Cu" "*.Mask")
@@ -294,7 +250,7 @@
 	(embedded_fonts no)
 	(model "${KICAD9_3DMODEL_DIR}/Connector_PinSocket_2.54mm.3dshapes/PinSocket_1x01_P2.54mm_Vertical.wrl"
 		(offset
-			(xyz 25.5 10 0)
+			(xyz 25.4 10.16 0)
 		)
 		(scale
 			(xyz 1 1 1)
@@ -305,7 +261,7 @@
 	)
 	(model "${KICAD9_3DMODEL_DIR}/Connector_PinSocket_2.54mm.3dshapes/PinSocket_1x01_P2.54mm_Vertical.wrl"
 		(offset
-			(xyz 25.5 -10 0)
+			(xyz 25.4 -10.16 0)
 		)
 		(scale
 			(xyz 1 1 1)
@@ -316,7 +272,7 @@
 	)
 	(model "${KICAD9_3DMODEL_DIR}/Connector_PinSocket_2.54mm.3dshapes/PinSocket_1x01_P2.54mm_Vertical.wrl"
 		(offset
-			(xyz -25.5 10 0)
+			(xyz -25.4 10.16 0)
 		)
 		(scale
 			(xyz 1 1 1)
@@ -327,7 +283,7 @@
 	)
 	(model "${KICAD9_3DMODEL_DIR}/Connector_PinSocket_2.54mm.3dshapes/PinSocket_1x01_P2.54mm_Vertical.wrl"
 		(offset
-			(xyz -25.5 -10 0)
+			(xyz -25.4 -10.16 0)
 		)
 		(scale
 			(xyz 1 1 1)
