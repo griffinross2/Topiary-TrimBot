@@ -327,4 +327,15 @@
 		(uuid "4c86160c-0428-497f-8e02-ccc1a0009917")
 	)
 	(embedded_fonts no)
+	(model "C:/Users/griff/Downloads/TPS56837HRPAR--3DModel-STEP-56544.STEP"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 -0 -0)
+		)
+	)
 )
