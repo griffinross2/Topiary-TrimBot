@@ -174,6 +174,7 @@ plotter.camera.position = (100, 0, 0)
 #     sphere_pt = pv.Sphere(radius=0.2, center=p)
 #     plotter.add_mesh(sphere_pt, color='red', show_edges=False)
 point_cloud = pv.PolyData(np.array(points_3d))
+point_cloud.save('point_cloud.vtk')
 reconstructed_mesh = point_cloud.reconstruct_surface()
 plotter.add_mesh(reconstructed_mesh, color='red', show_edges=False)
 
