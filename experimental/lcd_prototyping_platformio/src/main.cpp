@@ -6,6 +6,7 @@
 #include "ram.h"
 #include "flash.h"
 #include "gui.h"
+#include "usb.h"
 
 // #include "images/test.h"
 // #include "images/squares.h"
@@ -26,6 +27,7 @@ int main(void) {
     ret |= ram_init() << 2;
     ret |= flash_init() << 3;
     ret |= lcd_init() << 4;
+    ret |= usb_init() << 5;
 
     if (ret == 0) {
         printf("System initialized successfully.\n");
@@ -82,6 +84,8 @@ int main(void) {
         }
 
         gui_render();
+
+        usb_task();
     }
 
     return 0;

@@ -30,13 +30,9 @@
 extern "C" {
 #endif
 
-#include "lwipopts.h"
-
 //--------------------------------------------------------------------+
 // Board Specific Configuration
 //--------------------------------------------------------------------+
-
-#define CFG_TUSB_MCU OPT_MCU_STM32F4
 
 // RHPort number used for device can be defined by board.mk, default to port 0
 #ifndef BOARD_TUD_RHPORT
@@ -45,14 +41,15 @@ extern "C" {
 
 // RHPort max operational speed can defined by board.mk
 #ifndef BOARD_TUD_MAX_SPEED
-#define BOARD_TUD_MAX_SPEED OPT_MODE_DEFAULT_SPEED
+#define BOARD_TUD_MAX_SPEED OPT_MODE_FULL_SPEED
 #endif
 
 //--------------------------------------------------------------------
-// Common Configuration
+// COMMON CONFIGURATION
 //--------------------------------------------------------------------
 
-// defined by compiler flags for flexibility
+#define CFG_TUSB_MCU OPT_MCU_STM32F4
+
 #ifndef CFG_TUSB_MCU
 #error CFG_TUSB_MCU must be defined
 #endif
@@ -85,47 +82,6 @@ extern "C" {
 #define CFG_TUSB_MEM_ALIGN __attribute__((aligned(4)))
 #endif
 
-// Use different configurations to test all net devices (also due to resource
-// limitations)
-#ifndef USE_ECM
-#if TU_CHECK_MCU(OPT_MCU_LPC15XX, OPT_MCU_LPC40XX, OPT_MCU_LPC51UXX, \
-                 OPT_MCU_LPC54)
-#define USE_ECM 1
-#elif TU_CHECK_MCU(OPT_MCU_SAMD21, OPT_MCU_SAML2X)
-#define USE_ECM 1
-#elif TU_CHECK_MCU(OPT_MCU_STM32F0, OPT_MCU_STM32F1)
-#define USE_ECM 1
-#elif TU_CHECK_MCU(OPT_MCU_MAX32690, OPT_MCU_MAX32650, OPT_MCU_MAX32666, \
-                   OPT_MCU_MAX78002)
-#define USE_ECM 1
-#else
-#define USE_ECM 0
-#define INCLUDE_IPERF
-#endif
-#endif
-
-//--------------------------------------------------------------------
-// NCM CLASS CONFIGURATION, SEE "ncm.h" FOR PERFORMANCE TUNING
-//--------------------------------------------------------------------
-
-// Must be >> MTU
-// Can be set to 2048 without impact
-#define CFG_TUD_NCM_IN_NTB_MAX_SIZE (2 * TCP_MSS + 100)
-
-// Must be >> MTU
-// Can be set to smaller values if wNtbOutMaxDatagrams==1
-#define CFG_TUD_NCM_OUT_NTB_MAX_SIZE (2 * TCP_MSS + 100)
-
-// Number of NCM transfer blocks for reception side
-#ifndef CFG_TUD_NCM_OUT_NTB_N
-#define CFG_TUD_NCM_OUT_NTB_N 1
-#endif
-
-// Number of NCM transfer blocks for transmission side
-#ifndef CFG_TUD_NCM_IN_NTB_N
-#define CFG_TUD_NCM_IN_NTB_N 1
-#endif
-
 //--------------------------------------------------------------------
 // DEVICE CONFIGURATION
 //--------------------------------------------------------------------
@@ -135,11 +91,23 @@ extern "C" {
 #endif
 
 //------------- CLASS -------------//
+#define CFG_TUD_CDC 1
+#define CFG_TUD_MSC 0
+#define CFG_TUD_HID 0
+#define CFG_TUD_MIDI 0
+#define CFG_TUD_VENDOR 0
 
-// Network class has 2 drivers: ECM/RNDIS and NCM.
-// Only one of the drivers can be enabled
-#define CFG_TUD_ECM_RNDIS USE_ECM
-#define CFG_TUD_NCM (1 - CFG_TUD_ECM_RNDIS)
+#define CFG_TUD_CDC_NOTIFY 1  // Enable use of notification endpoint
+
+// CDC FIFO size of TX and RX
+#define CFG_TUD_CDC_RX_BUFSIZE (TUD_OPT_HIGH_SPEED ? 512 : 64)
+// #define CFG_TUD_CDC_TX_BUFSIZE (TUD_OPT_HIGH_SPEED ? 512 : 64)
+#define CFG_TUD_CDC_TX_BUFSIZE 512
+
+// CDC Endpoint transfer buffer size, more is faster
+// Leave it as default size (512 for HS, 64 for FS) unless your host application
+// is able to send ZLP (Zero Length Packet) to terminate transfer !
+#define CFG_TUD_CDC_EP_BUFSIZE (TUD_OPT_HIGH_SPEED ? 512 : 64)
 
 #ifdef __cplusplus
 }
