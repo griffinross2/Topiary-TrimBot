@@ -61,7 +61,13 @@ Status usb_init(void) {
     // init device stack on configured roothub port
     tusb_rhport_init_t dev_init = {.role = TUSB_ROLE_DEVICE,
                                    .speed = TUSB_SPEED_FULL};
-    tusb_init(BOARD_TUD_RHPORT, &dev_init);
+
+    if (tusb_init(BOARD_TUD_RHPORT, &dev_init) != true) {
+        TRACE_PRINTF("Failed to initialize USB\n");
+        return STATUS_ERROR;
+    }
+
+    TRACE_PRINTF("USB initialized\n");
 
     return STATUS_OK;
 }

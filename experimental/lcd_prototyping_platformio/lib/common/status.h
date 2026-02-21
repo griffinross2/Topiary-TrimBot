@@ -1,6 +1,8 @@
 #ifndef STATUS_H
 #define STATUS_H
 
+#include <stdio.h>
+
 typedef enum {
     STATUS_OK = 0,
     STATUS_ERROR = 1,
@@ -8,6 +10,7 @@ typedef enum {
     STATUS_TIMEOUT = 3,
 } Status;
 
+// Macro abuse :)
 #define TRACE_PRINTF(...)                      \
     do {                                       \
         printf("%s:%d: ", __FILE__, __LINE__); \
