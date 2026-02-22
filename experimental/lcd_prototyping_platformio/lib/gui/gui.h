@@ -79,6 +79,7 @@ public:
     void set_text(std::string text);
     void set_color(ColorRGB888 color);
     void set_font(const Font* font);
+    void set_right_aligned(bool right_align) { m_right_align = right_align; }
 
     void redraw() override;
     void handle_press(int x, int y) override {}
@@ -91,6 +92,8 @@ private:
     int m_size = 24;
     ColorRGB565 m_color = 0;
     const Font* m_font = &ARIAL;
+    int m_text_width = 0;
+    bool m_right_align = false;
 };
 
 class Button : public SceneObject {

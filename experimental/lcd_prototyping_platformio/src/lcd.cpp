@@ -212,6 +212,28 @@ void lcd_wait_for_vsync() {
     }
 }
 
+unsigned int lcd_get_text_width(const Font* font, const char* str,
+                                unsigned pt_size) {
+    unsigned int width = 0;
+    while (*str != '\0') {
+        char ch = *str;
+        str++;
+
+        if (ch < 0) {
+            continue;
+        }
+
+        const Glyph* glyph = font->glyphs[(uint8_t)ch];
+        if (glyph->data == NULL) {
+            continue;
+        }
+
+        width += glyph->advance * pt_size / font->width;
+    }
+
+    return width;
+}
+
 void lcd_draw_char(const Font* font, char ch, unsigned start_x,
                    unsigned start_y, unsigned pt_size, ColorRGB565 color,
                    unsigned int* advance) {

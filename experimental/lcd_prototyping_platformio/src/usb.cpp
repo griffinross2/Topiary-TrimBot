@@ -27,6 +27,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <algorithm>
 
 #include "tusb.h"
 #include "status.h"
@@ -77,15 +78,6 @@ void usb_task(void) {
     cdc_task();
 }
 
-// echo to either Serial0 or Serial1
-// with Serial0 as all lower case, Serial1 as all upper case
-static void echo_serial_port(uint8_t buf[], uint32_t count) {
-    for (uint32_t i = 0; i < count; i++) {
-        tud_cdc_n_write_char(0, buf[i]);
-    }
-    tud_cdc_n_write_flush(0);
-}
-
 // Invoked when device is mounted
 void tud_mount_cb(void) {
     TRACE_PRINTF("USB mounted\n");
@@ -96,23 +88,46 @@ void tud_umount_cb(void) {
     TRACE_PRINTF("USB unmounted\n");
 }
 
-//--------------------------------------------------------------------+
-// USB CDC
-//--------------------------------------------------------------------+
 static void cdc_task(void) {
-    if (tud_cdc_n_available(0)) {
-        uint8_t buf[64];
-        uint32_t count = tud_cdc_n_read(0, buf, sizeof(buf));
-
-        // echo back to both serial ports
-        echo_serial_port(buf, count);
-    }
+    tud_cdc_write_flush();
 }
 
 // Invoked when cdc when line state changed e.g connected/disconnected
 // Use to reset to DFU when disconnect with 1200 bps
 void tud_cdc_line_state_cb(uint8_t instance, bool dtr, bool rts) {
     TRACE_PRINTF("New line state: dtr: %d rts: %d\n", dtr, rts);
+}
+
+int usb_available_write() {
+    return tud_cdc_write_available();
+}
+
+int usb_send(const char* data, int len) {
+    if (!data || len > tud_cdc_write_available()) {
+        return -1;
+    }
+
+    tud_cdc_write(data, len);
+
+    return 0;
+}
+
+int usb_available() {
+    return tud_cdc_available();
+}
+
+int usb_receive(char* buf, int len) {
+    if (!buf) {
+        return -1;
+    }
+
+    // Receive at most len bytes
+    int to_receive = std::min(len, usb_available());
+    if (to_receive > 0) {
+        tud_cdc_read(buf, to_receive);
+    }
+
+    return to_receive;
 }
 
 void OTG_FS_IRQHandler(void) {

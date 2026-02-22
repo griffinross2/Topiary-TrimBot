@@ -85,14 +85,19 @@ Label::Label(Scene* parent, int x, int y)
     : SceneObject(parent), m_x(x), m_y(y), m_text("") {}
 
 Label::Label(Scene* parent, int x, int y, std::string text)
-    : SceneObject(parent), m_x(x), m_y(y), m_text(text) {}
+    : SceneObject(parent), m_x(x), m_y(y), m_text(text) {
+    m_text_width = lcd_get_text_width(m_font, m_text.c_str(), m_size);
+}
 
 Label::Label(Scene* parent, int x, int y, std::string text, int size)
-    : SceneObject(parent), m_x(x), m_y(y), m_text(text), m_size(size) {}
+    : SceneObject(parent), m_x(x), m_y(y), m_text(text), m_size(size) {
+    m_text_width = lcd_get_text_width(m_font, m_text.c_str(), m_size);
+}
 
 Label::Label(Scene* parent, int x, int y, std::string text, int size,
              ColorRGB888 color)
     : SceneObject(parent), m_x(x), m_y(y), m_text(text), m_size(size) {
+    m_text_width = lcd_get_text_width(m_font, m_text.c_str(), m_size);
     m_color = rgb888_to_rgb565(color);
 }
 
@@ -100,6 +105,7 @@ Label::Label(Scene* parent, int x, int y, std::string text, int size,
              ColorRGB888 color, const Font* font)
     : SceneObject(parent), m_x(x), m_y(y), m_text(text), m_size(size),
       m_font(font) {
+    m_text_width = lcd_get_text_width(m_font, m_text.c_str(), m_size);
     m_color = rgb888_to_rgb565(color);
 }
 
@@ -110,6 +116,7 @@ void Label::set_position(int x, int y) {
 
 void Label::set_text(std::string text) {
     m_text = text;
+    m_text_width = lcd_get_text_width(m_font, m_text.c_str(), m_size);
 }
 
 void Label::set_color(ColorRGB888 color) {
@@ -118,11 +125,17 @@ void Label::set_color(ColorRGB888 color) {
 
 void Label::set_font(const Font* font) {
     m_font = font;
+    m_text_width = lcd_get_text_width(m_font, m_text.c_str(), m_size);
 }
 
 void Label::redraw() {
     if (m_visible) {
-        lcd_draw_text(m_font, m_text.c_str(), m_x, m_y, m_size, m_color);
+        if (m_right_align) {
+            lcd_draw_text(m_font, m_text.c_str(), m_x - m_text_width, m_y,
+                          m_size, m_color);
+        } else {
+            lcd_draw_text(m_font, m_text.c_str(), m_x, m_y, m_size, m_color);
+        }
     }
 }
 

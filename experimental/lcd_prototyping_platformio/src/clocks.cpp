@@ -42,12 +42,13 @@ Status clocks_init() {
 
     RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};
     PeriphClkInitStruct.PeriphClockSelection =
-        RCC_PERIPHCLK_LTDC | RCC_PERIPHCLK_CLK48;
+        RCC_PERIPHCLK_LTDC | RCC_PERIPHCLK_CLK48 | RCC_PERIPHCLK_SDIO;
     PeriphClkInitStruct.PLLSAI.PLLSAIP = RCC_PLLSAIP_DIV6;
     PeriphClkInitStruct.PLLSAI.PLLSAIN = 144;
     PeriphClkInitStruct.PLLSAI.PLLSAIR = 2;
     PeriphClkInitStruct.PLLSAIDivR = RCC_PLLSAIDIVR_8;
     PeriphClkInitStruct.Clk48ClockSelection = RCC_CLK48CLKSOURCE_PLLSAIP;
+    PeriphClkInitStruct.SdioClockSelection = RCC_SDIOCLKSOURCE_CLK48;
     if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK) {
         return STATUS_ERROR;
     }

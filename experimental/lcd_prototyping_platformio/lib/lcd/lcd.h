@@ -11,8 +11,8 @@
 #define LCD_WIDTH 800
 #define LCD_HEIGHT 480
 
-#define WINDOW_WIDTH 480
-#define WINDOW_HEIGHT 272
+#define WINDOW_WIDTH 800
+#define WINDOW_HEIGHT 480
 
 typedef uint32_t ColorRGB888;
 typedef uint16_t ColorRGB565;
@@ -45,6 +45,8 @@ void lcd_set_foreground_visibility(bool visible);
 
 void lcd_wait_for_vsync();
 
+unsigned int lcd_get_text_width(const Font* font, const char* str,
+                                unsigned pt_size);
 void lcd_draw_char(const Font* font, char ch, unsigned start_x,
                    unsigned start_y, unsigned pt_size, ColorRGB565 color,
                    unsigned int* advance);

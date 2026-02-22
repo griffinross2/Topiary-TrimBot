@@ -3,6 +3,7 @@
 #include "packet_engine.h"
 #include "cobs.h"
 #include "usb.h"
+#include "file_receiver.h"
 
 #include <csignal>
 #include <random>
@@ -50,13 +51,7 @@ int main()
     {
         usb_task();
         packet_engine_task();
-
-        if (std::chrono::steady_clock::now() - start > std::chrono::seconds(1))
-        {
-            start = std::chrono::steady_clock::now();
-
-            packet_send((const uint8_t *)"Hello, world!", 13, PACKET_TYPE_FILE_CHUNK);
-        }
+        file_receiver_task();
 
         if (should_quit)
         {

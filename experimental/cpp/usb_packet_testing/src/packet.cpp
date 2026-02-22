@@ -37,7 +37,8 @@ int packet_check(const uint8_t *buf, int total_length)
     if (total_length != PACKET_SIZE(header->length))
     {
         // Total length does not match expected packet size
-        return -1;
+        TRACE_PRINTF("Total length %d does not match expected packet size %d\n", total_length, PACKET_SIZE(header->length));
+        return -2;
     }
 
     // Calculate CRC
@@ -52,7 +53,7 @@ int packet_check(const uint8_t *buf, int total_length)
         // CRC mismatch
         TRACE_PRINTF("CRC mismatch! Calculated: %04X, Received: %04X\n", calculated_crc, received_crc);
 
-        return -1;
+        return -3;
     }
 
     return 0;
@@ -84,6 +85,8 @@ int packet_send(const uint8_t *data, int data_length, PacketID id)
 
     // Add delimiter
     encoded_buf[res.out_len] = 0x0;
+
+    TRACE_PRINTF("Sending packet type: %d, len: %d\n", id.type, data_length);
 
     // Send over USB
     return usb_send((char *)encoded_buf, res.out_len + 1);

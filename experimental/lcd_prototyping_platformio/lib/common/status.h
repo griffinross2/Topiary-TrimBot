@@ -1,6 +1,9 @@
 #ifndef STATUS_H
 #define STATUS_H
 
+// Adapted from Purdue Space Program High Altitude, Originally written by
+// Griffin Ross
+
 #include <stdio.h>
 
 typedef enum {

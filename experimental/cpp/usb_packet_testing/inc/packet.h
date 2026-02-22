@@ -4,15 +4,15 @@
 
 typedef struct
 {
-    uint8_t type : 7;
+    uint8_t type : 6;
     uint8_t ack_req : 1;
+    uint8_t ack : 1;
 } PacketID;
 
-#define PACKET_TYPE_ACK {0x00, 0}
-#define PACKET_TYPE_FILE_START {0x00, 1}
-#define PACKET_TYPE_FILE_CHUNK {0x01, 1}
-#define PACKET_TYPE_FILE_RESEND {0x02, 1}
-#define PACKET_TYPE_FILE_END {0x03, 1}
+#define PACKET_TYPE_FILE_START PacketID{0x00, 1, 0}
+#define PACKET_TYPE_FILE_CHUNK PacketID{0x01, 0, 0}
+#define PACKET_TYPE_FILE_RESEND PacketID{0x02, 0, 0}
+#define PACKET_TYPE_FILE_END PacketID{0x03, 1, 0}
 
 static_assert(sizeof(PacketID) == 1, "PacketType should be 1 byte");
 
