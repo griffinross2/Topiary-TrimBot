@@ -480,7 +480,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "CustomSymbols:MEM2052-00-195-00-A_REVA"
+		(symbol "CustomSymbols:MEM2090"
 			(pin_names
 				(offset 1.016)
 			)
@@ -496,7 +496,7 @@
 					(justify left bottom)
 				)
 			)
-			(property "Value" "MEM2052-00-195-00-A"
+			(property "Value" "MEM2090-00-145-00-A"
 				(at -17.78 -17.78 0)
 				(effects
 					(font
@@ -505,7 +505,7 @@
 					(justify left bottom)
 				)
 			)
-			(property "Footprint" "CustomFootprints:GCT_MEM2052-00-195-00-A"
+			(property "Footprint" "CustomFootprints:GCT_MEM2090-00-145-00-A_REVA"
 				(at -0.508 -21.336 0)
 				(effects
 					(font
@@ -515,7 +515,7 @@
 					(hide yes)
 				)
 			)
-			(property "Datasheet" "https://gct.co/files/specs/mem2052-spec.pdf"
+			(property "Datasheet" "https://gct.co/connector/mem2090"
 				(at 1.778 -54.864 0)
 				(effects
 					(font
@@ -524,7 +524,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "Micro SD Memory Card Connector. Push-Pull SMT, 1.95mm Profile"
+			(property "Description" "Micro SD Connector, Push-Push, 1.45mm height"
 				(at 1.27 -58.166 0)
 				(effects
 					(font
@@ -543,7 +543,7 @@
 					(hide yes)
 				)
 			)
-			(property "MAXIMUM_PACKAGE_HEIGHT" "1.95 mm"
+			(property "MAXIMUM_PACKAGE_HEIGHT" "1.45"
 				(at 1.016 -37.846 0)
 				(effects
 					(font
@@ -613,7 +613,7 @@
 					(hide yes)
 				)
 			)
-			(property "MP" "MEM2052-00-195-00-A"
+			(property "MP" "MEM2090-00-145-00-A"
 				(at 1.524 -35.052 0)
 				(effects
 					(font
@@ -623,7 +623,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description_1" "MicroSD Push push Memory Card Connector"
+			(property "Description_1" "Micro SD Connector, Push-Push, 1.45mm height"
 				(at 2.032 -40.132 0)
 				(effects
 					(font
@@ -653,7 +653,7 @@
 					(hide yes)
 				)
 			)
-			(property "SNAPEDA_PN" "MEM2052-00-195-00-A"
+			(property "SNAPEDA_PN" "MEM2090-00-145-00-A"
 				(at 1.778 -50.292 0)
 				(effects
 					(font
@@ -663,7 +663,7 @@
 					(hide yes)
 				)
 			)
-			(symbol "MEM2052-00-195-00-A_REVA_1_1"
+			(symbol "MEM2090_1_1"
 				(rectangle
 					(start -11.43 22.86)
 					(end 11.43 0)
@@ -793,7 +793,7 @@
 							)
 						)
 					)
-					(number "P9"
+					(number "SW"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -802,7 +802,7 @@
 					)
 				)
 				(pin power_in line
-					(at -5.08 -2.54 90)
+					(at -1.27 -2.54 90)
 					(length 2.54)
 					(name "GND"
 						(effects
@@ -811,25 +811,7 @@
 							)
 						)
 					)
-					(number "G1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at -2.54 -2.54 90)
-					(length 2.54)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "G2"
+					(number "G"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -856,43 +838,7 @@
 					)
 				)
 				(pin power_in line
-					(at 0 -2.54 90)
-					(length 2.54)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "G3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at 2.54 -2.54 90)
-					(length 2.54)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "G4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at 5.08 -2.54 90)
+					(at 1.27 -2.54 90)
 					(length 2.54)
 					(name "VSS"
 						(effects
@@ -1698,22 +1644,10 @@
 		(uuid "c6479e51-82d5-4115-bbd2-6d167a9e9cca")
 	)
 	(junction
-		(at 160.02 81.28)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "1ed808b4-63b6-448b-9a5c-4241cd085fa9")
-	)
-	(junction
 		(at 160.02 106.68)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "207c1c07-f995-4fc7-924f-a62221dd172f")
-	)
-	(junction
-		(at 165.1 81.28)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "27c8337e-3583-4018-b762-f4e797700fe3")
 	)
 	(junction
 		(at 137.16 50.8)
@@ -1728,16 +1662,10 @@
 		(uuid "7d4de06b-ba6a-4900-b4bb-a0a98bf34b70")
 	)
 	(junction
-		(at 157.48 81.28)
+		(at 161.29 81.28)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "81167c6f-ab48-4737-95d5-02c071a8deb8")
-	)
-	(junction
-		(at 162.56 81.28)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "c4ea74f3-f1ba-484b-936d-2ea0b3664a65")
 	)
 	(junction
 		(at 162.56 48.26)
@@ -1831,16 +1759,6 @@
 	)
 	(wire
 		(pts
-			(xy 162.56 78.74) (xy 162.56 81.28)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "208c88f2-2bcc-40c5-a672-9885ccdffb1e")
-	)
-	(wire
-		(pts
 			(xy 241.3 99.06) (xy 254 99.06)
 		)
 		(stroke
@@ -1858,16 +1776,6 @@
 			(type default)
 		)
 		(uuid "2380c59f-ff71-45c6-a568-afadf2bf3824")
-	)
-	(wire
-		(pts
-			(xy 162.56 81.28) (xy 165.1 81.28)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2839719f-3d93-49c2-a526-10d63762ca1b")
 	)
 	(wire
 		(pts
@@ -1911,7 +1819,7 @@
 	)
 	(wire
 		(pts
-			(xy 157.48 78.74) (xy 157.48 81.28)
+			(xy 161.29 78.74) (xy 161.29 81.28)
 		)
 		(stroke
 			(width 0)
@@ -1928,16 +1836,6 @@
 			(type default)
 		)
 		(uuid "41d8861b-22ac-4ba3-8120-e0d70c60c17d")
-	)
-	(wire
-		(pts
-			(xy 165.1 81.28) (xy 167.64 81.28)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "460b4e72-3786-433d-9b6c-cd7b6fbe3a63")
 	)
 	(wire
 		(pts
@@ -2031,7 +1929,7 @@
 	)
 	(wire
 		(pts
-			(xy 157.48 81.28) (xy 160.02 81.28)
+			(xy 161.29 81.28) (xy 163.83 81.28)
 		)
 		(stroke
 			(width 0)
@@ -2108,16 +2006,6 @@
 			(type default)
 		)
 		(uuid "8ef8cf16-0995-4a06-8aa1-8b83914ebede")
-	)
-	(wire
-		(pts
-			(xy 165.1 78.74) (xy 165.1 81.28)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "905e7a47-b9f5-472f-9d3f-029d8488c273")
 	)
 	(wire
 		(pts
@@ -2201,17 +2089,7 @@
 	)
 	(wire
 		(pts
-			(xy 160.02 81.28) (xy 162.56 81.28)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b868154a-fb17-4be7-a25b-e4034840eb19")
-	)
-	(wire
-		(pts
-			(xy 160.02 78.74) (xy 160.02 81.28)
+			(xy 163.83 78.74) (xy 163.83 81.28)
 		)
 		(stroke
 			(width 0)
@@ -2308,16 +2186,6 @@
 			(type default)
 		)
 		(uuid "f91d440e-b323-451c-864c-d90cf0a4c530")
-	)
-	(wire
-		(pts
-			(xy 167.64 81.28) (xy 167.64 78.74)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f9e889cc-1258-42d5-9e88-eaa3c223f3ad")
 	)
 	(label "SD_D3"
 		(at 241.3 76.2 0)
@@ -3330,7 +3198,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 157.48 81.28 0)
+		(at 161.29 81.28 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3338,7 +3206,7 @@
 		(dnp no)
 		(uuid "41f10439-84ef-484d-9c42-85cc2738255d")
 		(property "Reference" "#PWR0146"
-			(at 157.48 87.63 0)
+			(at 161.29 87.63 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3347,7 +3215,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 156.21 85.4131 0)
+			(at 160.02 85.4131 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3355,7 +3223,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 157.48 81.28 0)
+			(at 161.29 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3364,7 +3232,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 157.48 81.28 0)
+			(at 161.29 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3373,7 +3241,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 157.48 81.28 0)
+			(at 161.29 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3388,6 +3256,231 @@
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/5e1a5ae0-b63d-4e63-8db3-55a7cc5df283"
 					(reference "#PWR0146")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "CustomSymbols:MEM2090")
+		(at 162.56 76.2 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "48b4e599-0f19-451e-9fe7-c8e0eef42025")
+		(property "Reference" "J21"
+			(at 175.26 63.4999 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "MEM2090-00-145-00-A"
+			(at 175.26 66.0399 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "CustomFootprints:GCT_MEM2090-00-145-00-A_REVA"
+			(at 162.052 97.536 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://gct.co/connector/mem2090"
+			(at 164.338 131.064 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Micro SD Connector, Push-Push, 1.45mm height"
+			(at 163.83 134.366 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MF" "Global Connector Technology"
+			(at 163.576 102.616 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MAXIMUM_PACKAGE_HEIGHT" "1.45"
+			(at 163.576 114.046 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Package" "None"
+			(at 163.576 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Price" "None"
+			(at 164.084 108.966 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Check_prices" "https://www.snapeda.com/parts/MEM2052-00-195-00-A/Global+Connector+Technology/view-part/?ref=eda"
+			(at 160.528 104.902 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "STANDARD" "Manufacturer Recommendations"
+			(at 163.576 100.076 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "PARTREV" "A"
+			(at 163.83 106.934 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "SnapEDA_Link" "https://www.snapeda.com/parts/MEM2052-00-195-00-A/Global+Connector+Technology/view-part/?ref=snap"
+			(at 163.068 121.158 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MP" "MEM2090-00-145-00-A"
+			(at 164.084 111.252 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Description_1" "Micro SD Connector, Push-Push, 1.45mm height"
+			(at 164.592 116.332 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Global Connector Technology"
+			(at 163.068 118.618 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Availability" "In Stock"
+			(at 163.576 129.032 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "SNAPEDA_PN" "MEM2090-00-145-00-A"
+			(at 164.338 126.492 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(pin "SW"
+			(uuid "d329dcae-4e01-488e-9038-d8b2d3b72058")
+		)
+		(pin "P6"
+			(uuid "5196310e-18f9-4e86-9c03-3c7d7df51a58")
+		)
+		(pin "P8"
+			(uuid "4cb63053-6464-4787-801a-d3a482548e3a")
+		)
+		(pin "P3"
+			(uuid "618ea8d0-52c9-445e-bd91-16f4a7dede35")
+		)
+		(pin "P5"
+			(uuid "f7aa3eb9-9cfe-4cf3-9f0a-dc4d3a640afc")
+		)
+		(pin "P2"
+			(uuid "99e90a0a-9a54-4491-b5d9-16866b62b555")
+		)
+		(pin "G"
+			(uuid "df86485f-ce00-47f8-96f8-01ad0972cf71")
+		)
+		(pin "P1"
+			(uuid "01a969cd-64e9-4a2b-88ad-52de02db549a")
+		)
+		(pin "P7"
+			(uuid "d9e79224-181f-4840-97cd-f880b504e0d6")
+		)
+		(pin "P4"
+			(uuid "8cd5f3f8-193d-46aa-851f-9dc2a86672e1")
+		)
+		(instances
+			(project ""
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/5e1a5ae0-b63d-4e63-8db3-55a7cc5df283"
+					(reference "J21")
 					(unit 1)
 				)
 			)
@@ -3539,249 +3632,6 @@
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/5e1a5ae0-b63d-4e63-8db3-55a7cc5df283"
 					(reference "TP20")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "CustomSymbols:MEM2052-00-195-00-A_REVA")
-		(at 162.56 76.2 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "694558d0-9965-4460-9dae-1d69ba2d68fd")
-		(property "Reference" "J21"
-			(at 174.625 63.5578 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "MEM2052-00-195-00-A"
-			(at 174.625 65.9821 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "CustomFootprints:GCT_MEM2052-00-195-00-A"
-			(at 162.56 106.172 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://gct.co/files/specs/mem2052-spec.pdf"
-			(at 162.56 76.2 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Micro SD Memory Card Connector. Push-Pull SMT, 1.95mm Profile"
-			(at 162.56 76.2 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MF" "Global Connector Technology"
-			(at 163.83 106.934 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "MAXIMUM_PACKAGE_HEIGHT" "1.95 mm"
-			(at 163.576 106.68 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Package" "None"
-			(at 164.592 106.426 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Price" "None"
-			(at 163.83 106.934 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Check_prices" "https://www.snapeda.com/parts/MEM2052-00-195-00-A/Global+Connector+Technology/view-part/?ref=eda"
-			(at 160.528 106.934 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "STANDARD" "Manufacturer Recommendations"
-			(at 163.83 106.426 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "PARTREV" "A"
-			(at 163.83 106.934 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "SnapEDA_Link" "https://www.snapeda.com/parts/MEM2052-00-195-00-A/Global+Connector+Technology/view-part/?ref=snap"
-			(at 162.052 107.442 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "MP" "MEM2052-00-195-00-A"
-			(at 163.83 106.934 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Description_1" "MicroSD Push push Memory Card Connector"
-			(at 164.592 106.68 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "MANUFACTURER" "Global Connector Technology"
-			(at 163.83 106.426 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Availability" "In Stock"
-			(at 163.83 106.934 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "SNAPEDA_PN" "MEM2052-00-195-00-A"
-			(at 164.592 106.68 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" "MEM2052-00-195-00-A"
-			(at 162.56 76.2 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "P8"
-			(uuid "fc87edaa-ac2f-4ee9-b846-3ce53dedd18a")
-		)
-		(pin "P2"
-			(uuid "2a7edaeb-9fb4-4a44-9391-6c4702a9bf0a")
-		)
-		(pin "P5"
-			(uuid "98b181a8-78da-4173-8214-0ad2d5261e08")
-		)
-		(pin "P3"
-			(uuid "86ef5b53-4ec5-4998-bd4e-69b26db05784")
-		)
-		(pin "P7"
-			(uuid "9a892879-4f56-40cc-aa55-89a9fd7ff915")
-		)
-		(pin "P1"
-			(uuid "1df68dbf-fd40-4687-adde-6961c2698d18")
-		)
-		(pin "P4"
-			(uuid "a23d3a8a-2cc8-468b-9fb8-32574d70a78a")
-		)
-		(pin "G2"
-			(uuid "56cf450a-17f1-4bce-9453-276419082aa7")
-		)
-		(pin "P6"
-			(uuid "9235e327-65a1-4e7a-aa02-37b691c3aef6")
-		)
-		(pin "G4"
-			(uuid "19515536-5761-4c0c-bb4d-481241c77f6a")
-		)
-		(pin "G3"
-			(uuid "913ec419-03e2-4e72-a193-310fbb2a26f8")
-		)
-		(pin "P9"
-			(uuid "dcff1e5f-c6b3-4e52-b0de-94c6d26b5e7f")
-		)
-		(pin "G1"
-			(uuid "c1e83ecf-ee6c-459d-a635-7c70d724f1bf")
-		)
-		(instances
-			(project ""
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/5e1a5ae0-b63d-4e63-8db3-55a7cc5df283"
-					(reference "J21")
 					(unit 1)
 				)
 			)

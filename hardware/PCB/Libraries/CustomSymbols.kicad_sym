@@ -1878,7 +1878,7 @@
 		)
 		(embedded_fonts no)
 	)
-	(symbol "MEM2052-00-195-00-A_REVA"
+	(symbol "MEM2090"
 		(pin_names
 			(offset 1.016)
 		)
@@ -1894,7 +1894,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "MEM2052-00-195-00-A"
+		(property "Value" "MEM2090-00-145-00-A"
 			(at -17.78 -17.78 0)
 			(effects
 				(font
@@ -1903,7 +1903,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "CustomFootprints:GCT_MEM2052-00-195-00-A"
+		(property "Footprint" "CustomFootprints:GCT_MEM2090-00-145-00-A_REVA"
 			(at -0.508 -21.336 0)
 			(effects
 				(font
@@ -1913,7 +1913,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://gct.co/files/specs/mem2052-spec.pdf"
+		(property "Datasheet" "https://gct.co/connector/mem2090"
 			(at 1.778 -54.864 0)
 			(effects
 				(font
@@ -1922,7 +1922,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Micro SD Memory Card Connector. Push-Pull SMT, 1.95mm Profile"
+		(property "Description" "Micro SD Connector, Push-Push, 1.45mm height"
 			(at 1.27 -58.166 0)
 			(effects
 				(font
@@ -1941,7 +1941,7 @@
 				(hide yes)
 			)
 		)
-		(property "MAXIMUM_PACKAGE_HEIGHT" "1.95 mm"
+		(property "MAXIMUM_PACKAGE_HEIGHT" "1.45"
 			(at 1.016 -37.846 0)
 			(effects
 				(font
@@ -2011,7 +2011,7 @@
 				(hide yes)
 			)
 		)
-		(property "MP" "MEM2052-00-195-00-A"
+		(property "MP" "MEM2090-00-145-00-A"
 			(at 1.524 -35.052 0)
 			(effects
 				(font
@@ -2021,7 +2021,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description_1" "MicroSD Push push Memory Card Connector"
+		(property "Description_1" "Micro SD Connector, Push-Push, 1.45mm height"
 			(at 2.032 -40.132 0)
 			(effects
 				(font
@@ -2051,7 +2051,7 @@
 				(hide yes)
 			)
 		)
-		(property "SNAPEDA_PN" "MEM2052-00-195-00-A"
+		(property "SNAPEDA_PN" "MEM2090-00-145-00-A"
 			(at 1.778 -50.292 0)
 			(effects
 				(font
@@ -2061,7 +2061,7 @@
 				(hide yes)
 			)
 		)
-		(symbol "MEM2052-00-195-00-A_REVA_1_1"
+		(symbol "MEM2090_1_1"
 			(rectangle
 				(start -11.43 22.86)
 				(end 11.43 0)
@@ -2191,7 +2191,7 @@
 						)
 					)
 				)
-				(number "P9"
+				(number "SW"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -2200,7 +2200,7 @@
 				)
 			)
 			(pin power_in line
-				(at -5.08 -2.54 90)
+				(at -1.27 -2.54 90)
 				(length 2.54)
 				(name "GND"
 					(effects
@@ -2209,25 +2209,7 @@
 						)
 					)
 				)
-				(number "G1"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin power_in line
-				(at -2.54 -2.54 90)
-				(length 2.54)
-				(name "GND"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "G2"
+				(number "G"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -2254,43 +2236,7 @@
 				)
 			)
 			(pin power_in line
-				(at 0 -2.54 90)
-				(length 2.54)
-				(name "GND"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "G3"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin power_in line
-				(at 2.54 -2.54 90)
-				(length 2.54)
-				(name "GND"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "G4"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin power_in line
-				(at 5.08 -2.54 90)
+				(at 1.27 -2.54 90)
 				(length 2.54)
 				(name "VSS"
 					(effects
