@@ -9037,7 +9037,7 @@
 	)
 	(wire
 		(pts
-			(xy 43.18 236.22) (xy 55.88 236.22)
+			(xy 43.18 236.22) (xy 49.53 236.22)
 		)
 		(stroke
 			(width 0)
@@ -13435,16 +13435,6 @@
 		)
 		(uuid "54488be0-263b-47b8-b6ec-1c9e257f54aa")
 	)
-	(label "VSS"
-		(at 55.88 236.22 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "546a6ed2-5888-4e12-beb2-7024eb7f53a1")
-	)
 	(label "SWDIO"
 		(at 55.88 255.27 180)
 		(effects
@@ -15865,7 +15855,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_D1.5mm"
+		(property "Footprint" "TestPoint:TestPoint_Loop_D3.80mm_Drill2.0mm"
 			(at 43.18 241.3 0)
 			(effects
 				(font
@@ -25429,6 +25419,73 @@
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
 					(reference "#PWR049")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 49.53 236.22 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ddd36316-6308-4452-920d-ca41fc698a26")
+		(property "Reference" "#PWR0175"
+			(at 55.88 236.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 52.705 236.22 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 49.53 236.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 49.53 236.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 49.53 236.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "9e16447d-1c61-448f-89f8-da5562262d08")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/85803a25-8176-4fac-b186-52d9676cab71"
+					(reference "#PWR0175")
 					(unit 1)
 				)
 			)

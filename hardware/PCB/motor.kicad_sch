@@ -1049,189 +1049,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Device:LED"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 1.016)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "D"
-				(at 0 2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "LED"
-				(at 0 -2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Light emitting diode"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Sim.Pins" "1=K 2=A"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "LED diode"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "LED* LED_SMD:* LED_THT:*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "LED_0_1"
-				(polyline
-					(pts
-						(xy -3.048 -0.762) (xy -4.572 -2.286) (xy -3.81 -2.286) (xy -4.572 -2.286) (xy -4.572 -1.524)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.778 -0.762) (xy -3.302 -2.286) (xy -2.54 -2.286) (xy -3.302 -2.286) (xy -3.302 -1.524)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.27 0) (xy 1.27 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.27 -1.27) (xy -1.27 1.27)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 -1.27) (xy 1.27 1.27) (xy -1.27 0) (xy 1.27 -1.27)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "LED_1_1"
-				(pin passive line
-					(at -3.81 0 0)
-					(length 2.54)
-					(name "K"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 3.81 0 180)
-					(length 2.54)
-					(name "A"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Device:R_US"
 			(pin_numbers
 				(hide yes)
@@ -2309,34 +2126,16 @@
 		(uuid "12581fe8-f223-4548-b566-90027e64cd62")
 	)
 	(junction
-		(at 88.9 38.1)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "1790ed9c-9900-4d1c-8bda-ba857ea45158")
-	)
-	(junction
 		(at 292.1 53.34)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "22b9d614-3b2a-4fa9-9627-7b75bb09e0f6")
 	)
 	(junction
-		(at 82.55 176.53)
+		(at 266.7 66.04)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "25ea8b98-e70b-440a-85b3-72494ccaf4b1")
-	)
-	(junction
-		(at 88.9 167.64)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "27463695-ea52-4acd-8570-c04632693edc")
-	)
-	(junction
-		(at 279.4 148.59)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "494f1d80-b807-430a-b0d5-c23434e8d576")
+		(uuid "29b9165b-bf1d-4664-b5a1-2da29b7ea1a6")
 	)
 	(junction
 		(at 160.02 116.84)
@@ -2351,12 +2150,6 @@
 		(uuid "656be3ac-d095-4025-8289-c476a0345256")
 	)
 	(junction
-		(at 88.9 148.59)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "67416a77-9cbf-4c6d-926d-a4c3be366d50")
-	)
-	(junction
 		(at 88.9 63.5)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2367,24 +2160,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "75275993-f404-46ed-98f0-2dc791334de9")
-	)
-	(junction
-		(at 82.55 66.04)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "8233683e-1003-43b3-8aa3-1595334669ea")
-	)
-	(junction
-		(at 279.4 57.15)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "87bf8ed6-72c2-4243-9830-84d4d65caac4")
-	)
-	(junction
-		(at 279.4 38.1)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "8a82ba3d-824f-4239-a99e-2972d0840a40")
 	)
 	(junction
 		(at 101.6 93.98)
@@ -2399,22 +2174,16 @@
 		(uuid "91ab76fa-8198-47ed-98c7-25abf66eb87f")
 	)
 	(junction
+		(at 265.43 176.53)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "938b9028-8230-435b-b104-862cd27d5430")
+	)
+	(junction
 		(at 292.1 204.47)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "9771110b-c737-451f-9a21-febfb8add692")
-	)
-	(junction
-		(at 273.05 176.53)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "990adc62-e37b-49aa-a8fc-20170cbbccbd")
-	)
-	(junction
-		(at 273.05 66.04)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "9bf696f6-b9fa-448b-9703-60775d1402df")
 	)
 	(junction
 		(at 292.1 93.98)
@@ -2441,6 +2210,12 @@
 		(uuid "dbbad36b-926c-47b7-8122-7f1674ad85f6")
 	)
 	(junction
+		(at 74.93 176.53)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "df483184-8be0-4b52-9917-5910acf5236f")
+	)
+	(junction
 		(at 279.4 173.99)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2453,26 +2228,20 @@
 		(uuid "ebd62d43-5a1c-4ad7-8073-b7ec4f6f6d98")
 	)
 	(junction
-		(at 88.9 57.15)
+		(at 73.66 66.04)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "f72e480f-da5c-4d35-8cf8-bd91fbd776fb")
-	)
-	(junction
-		(at 279.4 167.64)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "f92faa99-3746-4791-8f73-94b8a5b9d63e")
+		(uuid "fef690b7-cf5d-46a4-b69e-86681c4d1649")
 	)
 	(wire
 		(pts
-			(xy 273.05 66.04) (xy 273.05 68.58)
+			(xy 265.43 179.07) (xy 281.94 179.07)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "01124f90-c615-4976-8ff9-f5715575cfa0")
+		(uuid "017c5178-e835-431d-b9d4-e87059c494e2")
 	)
 	(wire
 		(pts
@@ -2486,43 +2255,13 @@
 	)
 	(wire
 		(pts
-			(xy 114.3 74.93) (xy 114.3 71.12)
+			(xy 114.3 76.2) (xy 114.3 71.12)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "02a4dc52-e655-4901-a223-57250090acdb")
-	)
-	(wire
-		(pts
-			(xy 279.4 147.32) (xy 279.4 148.59)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "036fce54-6fc5-41a4-aa20-1dd5741a3934")
-	)
-	(wire
-		(pts
-			(xy 81.28 163.83) (xy 81.28 167.64)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "03f73475-e92c-4bf8-afb1-25e642d25c3a")
-	)
-	(wire
-		(pts
-			(xy 82.55 68.58) (xy 91.44 68.58)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "04a47e3c-71a4-44b0-8d3d-dcc5743c2290")
 	)
 	(wire
 		(pts
@@ -2536,43 +2275,13 @@
 	)
 	(wire
 		(pts
-			(xy 118.11 81.28) (xy 118.11 80.01)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "073b8c6a-aa8b-4fa4-83e9-ae165d13bfed")
-	)
-	(wire
-		(pts
-			(xy 304.8 74.93) (xy 304.8 71.12)
+			(xy 304.8 76.2) (xy 304.8 71.12)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "07cca9bf-1892-4cdd-aff9-1c7b832e3357")
-	)
-	(wire
-		(pts
-			(xy 82.55 66.04) (xy 91.44 66.04)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "08382b80-ef1e-494a-bb53-b8a6925ad4a4")
-	)
-	(wire
-		(pts
-			(xy 82.55 66.04) (xy 82.55 68.58)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "08539121-45d3-4e36-9f8b-89e0b59e5370")
 	)
 	(wire
 		(pts
@@ -2586,13 +2295,23 @@
 	)
 	(wire
 		(pts
-			(xy 308.61 73.66) (xy 308.61 72.39)
+			(xy 73.66 64.77) (xy 73.66 66.04)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "0c2861a6-7058-4615-90c2-67e98aa77de2")
+		(uuid "09cd2877-6bd3-4116-b4d0-d9855322ca31")
+	)
+	(wire
+		(pts
+			(xy 73.66 68.58) (xy 73.66 66.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0c46d1a9-2110-4bda-a154-52f2f81f8542")
 	)
 	(wire
 		(pts
@@ -2606,23 +2325,13 @@
 	)
 	(wire
 		(pts
-			(xy 82.55 64.77) (xy 82.55 66.04)
+			(xy 74.93 176.53) (xy 74.93 179.07)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "0d48582d-c7e1-471d-ac4d-f3875177fc33")
-	)
-	(wire
-		(pts
-			(xy 118.11 73.66) (xy 118.11 72.39)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0fd345d5-2fd8-44c0-9df5-8b72fac99837")
+		(uuid "0d151909-f381-4a50-bc9e-ce5500c44130")
 	)
 	(wire
 		(pts
@@ -2686,56 +2395,6 @@
 	)
 	(wire
 		(pts
-			(xy 271.78 163.83) (xy 271.78 167.64)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "14b83b95-5d90-4663-b209-4b296040a3b8")
-	)
-	(wire
-		(pts
-			(xy 82.55 176.53) (xy 91.44 176.53)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "14bf49b7-c16c-4e8e-8d3f-fcbcbc1af61c")
-	)
-	(wire
-		(pts
-			(xy 82.55 176.53) (xy 82.55 179.07)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "15e7eb15-d218-4d21-bb6e-4f51cd703975")
-	)
-	(wire
-		(pts
-			(xy 88.9 57.15) (xy 88.9 63.5)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "17d97ea1-fe69-4cc7-b833-1c3fc02bdb45")
-	)
-	(wire
-		(pts
-			(xy 279.4 148.59) (xy 279.4 149.86)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "186618ee-de6d-491e-81fc-d8b1c88bab98")
-	)
-	(wire
-		(pts
 			(xy 101.6 160.02) (xy 101.6 163.83)
 		)
 		(stroke
@@ -2743,16 +2402,6 @@
 			(type default)
 		)
 		(uuid "1905549d-fd65-4dbe-a544-9a8972543bf8")
-	)
-	(wire
-		(pts
-			(xy 279.4 39.37) (xy 279.4 38.1)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1c1cafb0-18f9-454c-bd30-ce48e7c41cbf")
 	)
 	(wire
 		(pts
@@ -2836,16 +2485,6 @@
 	)
 	(wire
 		(pts
-			(xy 273.05 175.26) (xy 273.05 176.53)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "30a4db79-8381-411c-bb3d-2ad5cecd0c5f")
-	)
-	(wire
-		(pts
 			(xy 73.66 73.66) (xy 91.44 73.66)
 		)
 		(stroke
@@ -2856,23 +2495,13 @@
 	)
 	(wire
 		(pts
-			(xy 308.61 81.28) (xy 308.61 80.01)
+			(xy 266.7 64.77) (xy 266.7 66.04)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "3202c601-8373-45e9-9163-50943000dbcd")
-	)
-	(wire
-		(pts
-			(xy 82.55 175.26) (xy 82.55 176.53)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "33c56100-d940-4797-813e-0401fbd04a42")
+		(uuid "33ee2ae1-c827-4676-bff2-9f7a687a585e")
 	)
 	(wire
 		(pts
@@ -2946,6 +2575,16 @@
 	)
 	(wire
 		(pts
+			(xy 265.43 175.26) (xy 265.43 176.53)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3f912ca2-baa9-41db-a2b3-d32d469dcbca")
+	)
+	(wire
+		(pts
 			(xy 203.2 241.3) (xy 203.2 248.92)
 		)
 		(stroke
@@ -2956,26 +2595,6 @@
 	)
 	(wire
 		(pts
-			(xy 81.28 148.59) (xy 88.9 148.59)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "42dde525-72b5-45b9-8dd2-ff3020ee71e2")
-	)
-	(wire
-		(pts
-			(xy 308.61 191.77) (xy 308.61 190.5)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "43bc4a00-ea5c-4b52-b0c1-42406226cace")
-	)
-	(wire
-		(pts
 			(xy 165.1 254) (xy 177.8 254)
 		)
 		(stroke
@@ -2983,6 +2602,16 @@
 			(type default)
 		)
 		(uuid "4419aeeb-9c0a-414d-9e0e-29be340447bd")
+	)
+	(wire
+		(pts
+			(xy 83.82 66.04) (xy 91.44 66.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "46ccdcbf-01d5-4e30-8952-4e360454322d")
 	)
 	(wire
 		(pts
@@ -3046,6 +2675,16 @@
 	)
 	(wire
 		(pts
+			(xy 265.43 176.53) (xy 265.43 179.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "55161030-bea7-46e0-bd5e-b171aa225c90")
+	)
+	(wire
+		(pts
 			(xy 292.1 53.34) (xy 292.1 58.42)
 		)
 		(stroke
@@ -3086,6 +2725,16 @@
 	)
 	(wire
 		(pts
+			(xy 91.44 68.58) (xy 73.66 68.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5d585854-15ca-42d0-8faa-57ec5fd8ef8c")
+	)
+	(wire
+		(pts
 			(xy 160.02 78.74) (xy 160.02 76.2)
 		)
 		(stroke
@@ -3096,7 +2745,7 @@
 	)
 	(wire
 		(pts
-			(xy 81.28 53.34) (xy 81.28 57.15)
+			(xy 88.9 58.42) (xy 88.9 63.5)
 		)
 		(stroke
 			(width 0)
@@ -3136,23 +2785,13 @@
 	)
 	(wire
 		(pts
-			(xy 273.05 176.53) (xy 281.94 176.53)
+			(xy 74.93 175.26) (xy 74.93 176.53)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "67ec0ac4-77ad-4bf3-9856-f71dd915f010")
-	)
-	(wire
-		(pts
-			(xy 118.11 189.23) (xy 118.11 187.96)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "69a340af-f0eb-4843-93c7-afece0bfb5d1")
+		(uuid "66d6a4a5-ba34-408e-a0a3-5fd1a8882008")
 	)
 	(wire
 		(pts
@@ -3173,26 +2812,6 @@
 			(type default)
 		)
 		(uuid "6af368e4-11e2-4243-8b65-266a924d6dbe")
-	)
-	(wire
-		(pts
-			(xy 273.05 176.53) (xy 273.05 179.07)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6c17f4ee-727d-4d9f-8cb1-a9a6db41aa7b")
-	)
-	(wire
-		(pts
-			(xy 271.78 148.59) (xy 279.4 148.59)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6d74df25-a895-45da-9b3c-0c4b63aff9a0")
 	)
 	(wire
 		(pts
@@ -3226,7 +2845,7 @@
 	)
 	(wire
 		(pts
-			(xy 114.3 181.61) (xy 114.3 185.42)
+			(xy 114.3 181.61) (xy 114.3 186.69)
 		)
 		(stroke
 			(width 0)
@@ -3266,26 +2885,6 @@
 	)
 	(wire
 		(pts
-			(xy 81.28 57.15) (xy 88.9 57.15)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "74d93889-a176-4dc5-bab2-6fbe154c5c45")
-	)
-	(wire
-		(pts
-			(xy 88.9 149.86) (xy 88.9 148.59)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "760318ca-1530-4fce-ac06-0f7e2e7a5972")
-	)
-	(wire
-		(pts
 			(xy 302.26 184.15) (xy 308.61 184.15)
 		)
 		(stroke
@@ -3296,7 +2895,7 @@
 	)
 	(wire
 		(pts
-			(xy 118.11 74.93) (xy 114.3 74.93)
+			(xy 118.11 76.2) (xy 114.3 76.2)
 		)
 		(stroke
 			(width 0)
@@ -3323,16 +2922,6 @@
 			(type default)
 		)
 		(uuid "7a1ce3c8-e2ef-45fb-8e36-9c1f260524e0")
-	)
-	(wire
-		(pts
-			(xy 81.28 38.1) (xy 88.9 38.1)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7a2be1b7-621d-4ab1-a968-f713b5fa8ffd")
 	)
 	(wire
 		(pts
@@ -3386,7 +2975,7 @@
 	)
 	(wire
 		(pts
-			(xy 114.3 185.42) (xy 118.11 185.42)
+			(xy 114.3 186.69) (xy 118.11 186.69)
 		)
 		(stroke
 			(width 0)
@@ -3396,7 +2985,17 @@
 	)
 	(wire
 		(pts
-			(xy 308.61 74.93) (xy 304.8 74.93)
+			(xy 74.93 179.07) (xy 91.44 179.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7f8220b0-e0fa-4a4f-83d7-89573ce58613")
+	)
+	(wire
+		(pts
+			(xy 308.61 76.2) (xy 304.8 76.2)
 		)
 		(stroke
 			(width 0)
@@ -3446,33 +3045,13 @@
 	)
 	(wire
 		(pts
-			(xy 82.55 179.07) (xy 91.44 179.07)
+			(xy 266.7 66.04) (xy 266.7 68.58)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "860c5b98-f5cb-4d96-9fcd-84053d245592")
-	)
-	(wire
-		(pts
-			(xy 273.05 66.04) (xy 281.94 66.04)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "892f5732-93de-466f-bb41-255f95b39843")
-	)
-	(wire
-		(pts
-			(xy 271.78 43.18) (xy 271.78 38.1)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8d7d1ffc-c6de-4f92-9478-a7c7dafd6215")
+		(uuid "8e1d0da7-2dcf-44ee-86eb-13646e6734b2")
 	)
 	(wire
 		(pts
@@ -3496,7 +3075,7 @@
 	)
 	(wire
 		(pts
-			(xy 88.9 36.83) (xy 88.9 38.1)
+			(xy 88.9 45.72) (xy 88.9 48.26)
 		)
 		(stroke
 			(width 0)
@@ -3536,13 +3115,13 @@
 	)
 	(wire
 		(pts
-			(xy 271.78 57.15) (xy 279.4 57.15)
+			(xy 85.09 176.53) (xy 91.44 176.53)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "98a13cb0-fb3d-4499-8d80-41ccaa4f1406")
+		(uuid "98506df4-2939-4a73-85d3-cc608f95a2c6")
 	)
 	(wire
 		(pts
@@ -3573,16 +3152,6 @@
 			(type default)
 		)
 		(uuid "9b401196-b53d-4d3a-94ee-6bd135354a5b")
-	)
-	(wire
-		(pts
-			(xy 88.9 38.1) (xy 88.9 39.37)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9c55df4d-0a1e-44d6-b250-7e126ed557a2")
 	)
 	(wire
 		(pts
@@ -3626,13 +3195,13 @@
 	)
 	(wire
 		(pts
-			(xy 88.9 54.61) (xy 88.9 57.15)
+			(xy 266.7 68.58) (xy 281.94 68.58)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "a215e1f3-627e-431c-ac3a-b070a489c834")
+		(uuid "9fcb1ca2-206d-430a-bdb3-a13e786d3673")
 	)
 	(wire
 		(pts
@@ -3676,16 +3245,6 @@
 	)
 	(wire
 		(pts
-			(xy 118.11 78.74) (xy 118.11 77.47)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a5849900-3a36-46df-b4d1-c6d745b00acc")
-	)
-	(wire
-		(pts
 			(xy 160.02 193.04) (xy 160.02 190.5)
 		)
 		(stroke
@@ -3693,16 +3252,6 @@
 			(type default)
 		)
 		(uuid "a6b60a99-182e-43d9-804e-d7daafd5e27e")
-	)
-	(wire
-		(pts
-			(xy 118.11 184.15) (xy 118.11 182.88)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a9c41f51-8593-4f84-a479-72634287ab7d")
 	)
 	(wire
 		(pts
@@ -3736,13 +3285,13 @@
 	)
 	(wire
 		(pts
-			(xy 88.9 148.59) (xy 88.9 147.32)
+			(xy 275.59 176.53) (xy 281.94 176.53)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "ae0c1e3d-43e2-4e22-9051-4bd3e4eca8a8")
+		(uuid "ada6cd6c-380a-4ec5-891f-0ceef867e1cb")
 	)
 	(wire
 		(pts
@@ -3786,7 +3335,7 @@
 	)
 	(wire
 		(pts
-			(xy 81.28 153.67) (xy 81.28 148.59)
+			(xy 88.9 154.94) (xy 88.9 157.48)
 		)
 		(stroke
 			(width 0)
@@ -3816,7 +3365,7 @@
 	)
 	(wire
 		(pts
-			(xy 304.8 181.61) (xy 304.8 185.42)
+			(xy 304.8 181.61) (xy 304.8 186.69)
 		)
 		(stroke
 			(width 0)
@@ -3836,17 +3385,7 @@
 	)
 	(wire
 		(pts
-			(xy 271.78 38.1) (xy 279.4 38.1)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c1a58a5b-8939-4ce5-8d95-307e306860f7")
-	)
-	(wire
-		(pts
-			(xy 271.78 153.67) (xy 271.78 148.59)
+			(xy 279.4 154.94) (xy 279.4 157.48)
 		)
 		(stroke
 			(width 0)
@@ -3863,26 +3402,6 @@
 			(type default)
 		)
 		(uuid "c336b62e-18be-4706-9041-8cc727603919")
-	)
-	(wire
-		(pts
-			(xy 273.05 68.58) (xy 281.94 68.58)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c34ce8df-a1ae-4133-b2f5-ae21088b58c7")
-	)
-	(wire
-		(pts
-			(xy 81.28 43.18) (xy 81.28 38.1)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c495d34c-8cab-4bfe-8ba4-b74b4ff94b66")
 	)
 	(wire
 		(pts
@@ -3906,7 +3425,7 @@
 	)
 	(wire
 		(pts
-			(xy 279.4 57.15) (xy 279.4 63.5)
+			(xy 279.4 58.42) (xy 279.4 63.5)
 		)
 		(stroke
 			(width 0)
@@ -3976,16 +3495,6 @@
 	)
 	(wire
 		(pts
-			(xy 118.11 191.77) (xy 118.11 190.5)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ceba008c-fdc5-4fe9-a1af-e87b887e3a86")
-	)
-	(wire
-		(pts
 			(xy 304.8 71.12) (xy 302.26 71.12)
 		)
 		(stroke
@@ -4013,6 +3522,16 @@
 			(type default)
 		)
 		(uuid "d2135e89-00ed-459a-8f2d-49212c461b31")
+	)
+	(wire
+		(pts
+			(xy 276.86 66.04) (xy 281.94 66.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d2824fea-6913-41c0-bf04-206cab5c3914")
 	)
 	(wire
 		(pts
@@ -4046,26 +3565,6 @@
 	)
 	(wire
 		(pts
-			(xy 279.4 165.1) (xy 279.4 167.64)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d6cbe950-b3cd-45c3-a9bd-47fb05cd37ee")
-	)
-	(wire
-		(pts
-			(xy 81.28 167.64) (xy 88.9 167.64)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d7f835de-df80-46ef-9974-523aff455374")
-	)
-	(wire
-		(pts
 			(xy 73.66 83.82) (xy 91.44 83.82)
 		)
 		(stroke
@@ -4086,16 +3585,6 @@
 	)
 	(wire
 		(pts
-			(xy 308.61 189.23) (xy 308.61 187.96)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "dc70dcfe-5b20-468e-8d74-fd3a23952cc4")
-	)
-	(wire
-		(pts
 			(xy 283.21 228.6) (xy 266.7 228.6)
 		)
 		(stroke
@@ -4103,16 +3592,6 @@
 			(type default)
 		)
 		(uuid "df79d723-b1db-481c-8f90-f036a8c45c10")
-	)
-	(wire
-		(pts
-			(xy 273.05 64.77) (xy 273.05 66.04)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "dfab1132-736a-4607-ba91-efeb05a78217")
 	)
 	(wire
 		(pts
@@ -4186,53 +3665,13 @@
 	)
 	(wire
 		(pts
-			(xy 273.05 179.07) (xy 281.94 179.07)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "eed378d6-50de-43fc-ad7e-eb28a2239624")
-	)
-	(wire
-		(pts
-			(xy 271.78 53.34) (xy 271.78 57.15)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "eede1720-a672-4a3c-a1a7-ea81376f7b39")
-	)
-	(wire
-		(pts
-			(xy 308.61 184.15) (xy 308.61 182.88)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f087aa6d-e530-427a-b6a5-5435bc39ffaf")
-	)
-	(wire
-		(pts
-			(xy 304.8 185.42) (xy 308.61 185.42)
+			(xy 304.8 186.69) (xy 308.61 186.69)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "f2733528-7fc4-401d-974d-49d76ff8d4aa")
-	)
-	(wire
-		(pts
-			(xy 271.78 167.64) (xy 279.4 167.64)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f3158f1c-d74a-4d6e-abdd-4357062ee2fb")
 	)
 	(wire
 		(pts
@@ -4276,26 +3715,6 @@
 	)
 	(wire
 		(pts
-			(xy 279.4 54.61) (xy 279.4 57.15)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f8176b12-7b90-46fa-92a9-c0403b37bf85")
-	)
-	(wire
-		(pts
-			(xy 308.61 78.74) (xy 308.61 77.47)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f8f72dbe-2938-445b-8fb3-3dcdf16f667a")
-	)
-	(wire
-		(pts
 			(xy 347.98 172.72) (xy 364.49 172.72)
 		)
 		(stroke
@@ -4306,7 +3725,7 @@
 	)
 	(wire
 		(pts
-			(xy 279.4 38.1) (xy 279.4 36.83)
+			(xy 279.4 45.72) (xy 279.4 48.26)
 		)
 		(stroke
 			(width 0)
@@ -4323,16 +3742,6 @@
 			(type default)
 		)
 		(uuid "fe8b19e7-379f-4f3e-9089-0ae4e9a34f01")
-	)
-	(wire
-		(pts
-			(xy 88.9 165.1) (xy 88.9 167.64)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ffb44062-c8cf-4f3c-8f66-b52069c97aa1")
 	)
 	(label "GANTRY_STEP"
 		(at 266.7 76.2 0)
@@ -5279,77 +4688,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+3.3V")
-		(at 273.05 64.77 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "045cdddd-dff0-4c13-ab2a-051eac104660")
-		(property "Reference" "#PWR0119"
-			(at 273.05 68.58 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3.3V"
-			(at 269.24 63.754 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 273.05 64.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 273.05 64.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 273.05 64.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "29cb1d62-1f46-40c2-a299-756a99d95a14")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "#PWR0119")
-					(unit 1)
-				)
-			)
-			(project "motor"
-				(path "/7fa06b88-5970-4757-bb4a-058dc331a5d2"
-					(reference "#PWR?")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R_US")
 		(at 190.5 260.35 180)
 		(unit 1)
@@ -5603,108 +4941,6 @@
 			(project "motor"
 				(path "/7fa06b88-5970-4757-bb4a-058dc331a5d2"
 					(reference "JP?")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:LED")
-		(at 279.4 50.8 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "08df86cc-11ab-4e79-90c1-cc7ff0d7472e")
-		(property "Reference" "D14"
-			(at 275.59 48.26 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "RED"
-			(at 274.574 50.546 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "LED_SMD:LED_0805_2012Metric"
-			(at 279.4 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 279.4 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Light emitting diode"
-			(at 279.4 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Pins" "1=K 2=A"
-			(at 279.4 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" "150080RS75000"
-			(at 279.4 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MANUFACTURER" "Wurth"
-			(at 279.4 50.8 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "f2131b31-0858-4555-9ea0-a13a251f6e11")
-		)
-		(pin "1"
-			(uuid "46e57bf8-c19c-4c19-bc9b-50fec0cd10dd")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "D14")
-					(unit 1)
-				)
-			)
-			(project "motor"
-				(path "/7fa06b88-5970-4757-bb4a-058dc331a5d2"
-					(reference "D?")
 					(unit 1)
 				)
 			)
@@ -6114,7 +5350,7 @@
 	)
 	(symbol
 		(lib_id "Jumper:Jumper_2_Open")
-		(at 81.28 158.75 90)
+		(at 88.9 162.56 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6122,7 +5358,7 @@
 		(dnp no)
 		(uuid "1c99ff8e-dd27-4396-9413-41b32bf6f2a1")
 		(property "Reference" "JP2"
-			(at 74.676 157.226 90)
+			(at 82.296 161.036 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6131,7 +5367,7 @@
 			)
 		)
 		(property "Value" "Jumper_2_Open"
-			(at 63.754 159.512 90)
+			(at 71.374 163.322 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6140,7 +5376,7 @@
 			)
 		)
 		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
-			(at 81.28 158.75 0)
+			(at 88.9 162.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6149,7 +5385,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 81.28 158.75 0)
+			(at 88.9 162.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6158,7 +5394,7 @@
 			)
 		)
 		(property "Description" "Jumper, 2-pole, open"
-			(at 81.28 158.75 0)
+			(at 88.9 162.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6167,7 +5403,7 @@
 			)
 		)
 		(property "Manufacturer_Part_Number" "61300211121"
-			(at 81.28 158.75 0)
+			(at 88.9 162.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6176,7 +5412,7 @@
 			)
 		)
 		(property "MANUFACTURER" "Wurth"
-			(at 81.28 158.75 90)
+			(at 88.9 162.56 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6272,108 +5508,6 @@
 			(project "motor"
 				(path "/7fa06b88-5970-4757-bb4a-058dc331a5d2"
 					(reference "#PWR?")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:LED")
-		(at 88.9 161.29 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "2293c6b8-c7f5-4eba-81b0-3b1e4e380b4b")
-		(property "Reference" "D13"
-			(at 85.09 158.75 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "RED"
-			(at 84.074 161.036 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "LED_SMD:LED_0805_2012Metric"
-			(at 88.9 161.29 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 88.9 161.29 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Light emitting diode"
-			(at 88.9 161.29 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Pins" "1=K 2=A"
-			(at 88.9 161.29 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" "150080RS75000"
-			(at 88.9 161.29 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MANUFACTURER" "Wurth"
-			(at 88.9 161.29 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "4fa3de35-435a-40a0-9f2a-1737bc20a576")
-		)
-		(pin "1"
-			(uuid "4dec3486-1f59-4bfa-a6c9-1418c42ddc31")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "D13")
-					(unit 1)
-				)
-			)
-			(project "motor"
-				(path "/7fa06b88-5970-4757-bb4a-058dc331a5d2"
-					(reference "D?")
 					(unit 1)
 				)
 			)
@@ -6636,99 +5770,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_US")
-		(at 88.9 153.67 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "28b39f40-1806-4ce7-a462-a0d2b31d9662")
-		(property "Reference" "R35"
-			(at 83.82 152.4 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "130"
-			(at 83.566 154.686 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
-			(at 87.884 153.416 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 88.9 153.67 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, US symbol"
-			(at 88.9 153.67 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" "RC0805JR-07130RL"
-			(at 88.9 153.67 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MANUFACTURER" "Yageo"
-			(at 88.9 153.67 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "65966add-d1af-4863-a1dc-8896cae698fd")
-		)
-		(pin "1"
-			(uuid "e7454181-11cc-41eb-bb6f-ed61dd30a0e1")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "R35")
-					(unit 1)
-				)
-			)
-			(project "motor"
-				(path "/7fa06b88-5970-4757-bb4a-058dc331a5d2"
-					(reference "R?")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Jumper:Jumper_2_Open")
 		(at 347.98 144.78 90)
 		(unit 1)
@@ -6889,6 +5930,94 @@
 			(project "motor"
 				(path "/7fa06b88-5970-4757-bb4a-058dc331a5d2"
 					(reference "#PWR?")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Jumper:Jumper_2_Open")
+		(at 80.01 176.53 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "2bfdc276-a04b-4558-b14a-3b50380b1e5d")
+		(property "Reference" "JP25"
+			(at 69.088 178.562 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "Jumper_2_Open"
+			(at 58.928 176.276 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+			(at 80.01 176.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 80.01 176.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Jumper, 2-pole, open"
+			(at 80.01 176.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "61300211121"
+			(at 80.01 176.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 80.01 176.53 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "71460043-c73a-4c36-a8ca-2408da9c6fd1")
+		)
+		(pin "1"
+			(uuid "82fc8031-a59b-4040-bc5c-857ae8e07cc6")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
+					(reference "JP25")
 					(unit 1)
 				)
 			)
@@ -7343,7 +6472,7 @@
 	)
 	(symbol
 		(lib_id "power:+3.3V")
-		(at 279.4 147.32 0)
+		(at 279.4 154.94 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7351,7 +6480,7 @@
 		(dnp no)
 		(uuid "3b31d5ec-104c-463d-b385-a671d827e04f")
 		(property "Reference" "#PWR0122"
-			(at 279.4 151.13 0)
+			(at 279.4 158.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7360,7 +6489,7 @@
 			)
 		)
 		(property "Value" "+3.3V"
-			(at 275.336 146.558 0)
+			(at 275.336 154.178 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7368,7 +6497,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 279.4 147.32 0)
+			(at 279.4 154.94 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7377,7 +6506,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 279.4 147.32 0)
+			(at 279.4 154.94 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7386,7 +6515,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 279.4 147.32 0)
+			(at 279.4 154.94 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8472,99 +7601,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_US")
-		(at 88.9 43.18 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "6f35cf97-b3f4-433f-a1f5-82d75b0afc93")
-		(property "Reference" "R34"
-			(at 84.836 42.672 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "130"
-			(at 83.566 44.958 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
-			(at 87.884 42.926 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 88.9 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, US symbol"
-			(at 88.9 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" "RC0805JR-07130RL"
-			(at 88.9 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MANUFACTURER" "Yageo"
-			(at 88.9 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "5e6417a7-6dbd-436d-9099-9791c6ac5a5e")
-		)
-		(pin "1"
-			(uuid "10d0f467-e662-41ea-acca-13db1f751a49")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "R34")
-					(unit 1)
-				)
-			)
-			(project ""
-				(path "/7fa06b88-5970-4757-bb4a-058dc331a5d2"
-					(reference "R?")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:+3.3V")
 		(at 160.02 180.34 0)
 		(unit 1)
@@ -8637,7 +7673,7 @@
 	)
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x04")
-		(at 313.69 185.42 0)
+		(at 313.69 186.69 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8646,7 +7682,7 @@
 		(fields_autoplaced yes)
 		(uuid "712838b1-7dff-4fdb-a911-dec440d36790")
 		(property "Reference" "J18"
-			(at 316.23 185.4199 0)
+			(at 316.23 186.6899 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8655,7 +7691,7 @@
 			)
 		)
 		(property "Value" "Revolute Stepper"
-			(at 316.23 187.9599 0)
+			(at 316.23 189.2299 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8664,7 +7700,7 @@
 			)
 		)
 		(property "Footprint" "Connector_Molex:Molex_KK-254_AE-6410-04A_1x04_P2.54mm_Vertical"
-			(at 313.69 185.42 0)
+			(at 313.69 186.69 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8673,7 +7709,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.molex.com/en-us/products/part-detail/22232041?display=pdf"
-			(at 313.69 185.42 0)
+			(at 313.69 186.69 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8682,7 +7718,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 313.69 185.42 0)
+			(at 313.69 186.69 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8691,7 +7727,7 @@
 			)
 		)
 		(property "Manufacturer_Part_Number" "0022232041"
-			(at 313.69 185.42 0)
+			(at 313.69 186.69 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8700,7 +7736,7 @@
 			)
 		)
 		(property "MANUFACTURER" "Molex"
-			(at 313.69 185.42 0)
+			(at 313.69 186.69 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8902,16 +7938,17 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:LED")
-		(at 279.4 161.29 90)
+		(lib_id "Jumper:Jumper_2_Open")
+		(at 271.78 66.04 0)
+		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "7353a507-7e94-40d9-a8a0-50c8e23c66af")
-		(property "Reference" "D15"
-			(at 275.59 158.75 90)
+		(uuid "75297b2a-c1bc-4641-8603-fd22722fdccc")
+		(property "Reference" "JP24"
+			(at 260.858 68.326 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8919,8 +7956,8 @@
 				(justify right)
 			)
 		)
-		(property "Value" "RED"
-			(at 274.574 161.036 90)
+		(property "Value" "Jumper_2_Open"
+			(at 250.952 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8928,8 +7965,8 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "LED_SMD:LED_0805_2012Metric"
-			(at 279.4 161.29 0)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+			(at 271.78 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8938,7 +7975,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 279.4 161.29 0)
+			(at 271.78 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8946,8 +7983,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Light emitting diode"
-			(at 279.4 161.29 0)
+		(property "Description" "Jumper, 2-pole, open"
+			(at 271.78 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8955,17 +7992,8 @@
 				(hide yes)
 			)
 		)
-		(property "Sim.Pins" "1=K 2=A"
-			(at 279.4 161.29 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" "150080RS75000"
-			(at 279.4 161.29 0)
+		(property "Manufacturer_Part_Number" "61300211121"
+			(at 271.78 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8974,7 +8002,7 @@
 			)
 		)
 		(property "MANUFACTURER" "Wurth"
-			(at 279.4 161.29 90)
+			(at 271.78 66.04 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8983,114 +8011,15 @@
 			)
 		)
 		(pin "2"
-			(uuid "7f4a73ac-693e-4bc7-800d-7f8ed3b798ad")
+			(uuid "441ad031-980f-4a48-8b6a-041eab4f1120")
 		)
 		(pin "1"
-			(uuid "4068c19a-34eb-4a45-920e-f664bcc7aa66")
+			(uuid "10c04293-2755-41e2-8669-292e7695938b")
 		)
 		(instances
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "D15")
-					(unit 1)
-				)
-			)
-			(project "motor"
-				(path "/7fa06b88-5970-4757-bb4a-058dc331a5d2"
-					(reference "D?")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_US")
-		(at 279.4 153.67 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "750dc953-aa57-4bdd-a21d-7f2e076cfd64")
-		(property "Reference" "R41"
-			(at 274.32 152.4 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "130"
-			(at 273.812 154.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
-			(at 278.384 153.416 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 279.4 153.67 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, US symbol"
-			(at 279.4 153.67 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" "RC0805JR-07130RL"
-			(at 279.4 153.67 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MANUFACTURER" "Yageo"
-			(at 279.4 153.67 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "0ba06aae-1671-4fe6-bc99-327c38f38f18")
-		)
-		(pin "1"
-			(uuid "e3946054-c797-43c8-8bc6-8a9151232f77")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "R41")
-					(unit 1)
-				)
-			)
-			(project "motor"
-				(path "/7fa06b88-5970-4757-bb4a-058dc331a5d2"
-					(reference "R?")
+					(reference "JP24")
 					(unit 1)
 				)
 			)
@@ -9163,6 +8092,94 @@
 			(project "motor"
 				(path "/7fa06b88-5970-4757-bb4a-058dc331a5d2"
 					(reference "#PWR?")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Jumper:Jumper_2_Open")
+		(at 270.51 176.53 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "7b81ee81-660c-4296-9d1b-48ffc135ed31")
+		(property "Reference" "JP26"
+			(at 259.334 178.816 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "Jumper_2_Open"
+			(at 249.428 176.276 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+			(at 270.51 176.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 270.51 176.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Jumper, 2-pole, open"
+			(at 270.51 176.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "61300211121"
+			(at 270.51 176.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 270.51 176.53 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "54514a06-9687-4367-8935-0c088605b585")
+		)
+		(pin "1"
+			(uuid "b9604319-acba-4160-821b-18ac74083658")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
+					(reference "JP26")
 					(unit 1)
 				)
 			)
@@ -9666,99 +8683,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_US")
-		(at 279.4 43.18 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "8a85c01b-47ca-4e97-92be-a680ff4de8e9")
-		(property "Reference" "R40"
-			(at 274.32 41.91 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "130"
-			(at 273.812 44.45 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
-			(at 278.384 42.926 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 279.4 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, US symbol"
-			(at 279.4 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" "RC0805JR-07130RL"
-			(at 279.4 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MANUFACTURER" "Yageo"
-			(at 279.4 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "d14c5c48-486b-418e-bfde-0c491cf5091a")
-		)
-		(pin "1"
-			(uuid "032ef7ba-9e76-4241-b8bb-53ad7822ff3c")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "R40")
-					(unit 1)
-				)
-			)
-			(project "motor"
-				(path "/7fa06b88-5970-4757-bb4a-058dc331a5d2"
-					(reference "R?")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:+3.3V")
 		(at 347.98 139.7 0)
 		(unit 1)
@@ -9831,7 +8755,7 @@
 	)
 	(symbol
 		(lib_id "Jumper:Jumper_2_Open")
-		(at 271.78 48.26 90)
+		(at 279.4 53.34 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -9839,7 +8763,7 @@
 		(dnp no)
 		(uuid "9114ae64-6207-4855-95ba-b5ce8f68c6b1")
 		(property "Reference" "JP11"
-			(at 265.176 46.736 90)
+			(at 272.796 51.816 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9848,7 +8772,7 @@
 			)
 		)
 		(property "Value" "Jumper_2_Open"
-			(at 254.254 49.022 90)
+			(at 261.874 54.102 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9857,7 +8781,7 @@
 			)
 		)
 		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
-			(at 271.78 48.26 0)
+			(at 279.4 53.34 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9866,7 +8790,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 271.78 48.26 0)
+			(at 279.4 53.34 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9875,7 +8799,7 @@
 			)
 		)
 		(property "Description" "Jumper, 2-pole, open"
-			(at 271.78 48.26 0)
+			(at 279.4 53.34 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9884,7 +8808,7 @@
 			)
 		)
 		(property "Manufacturer_Part_Number" "61300211121"
-			(at 271.78 48.26 0)
+			(at 279.4 53.34 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9893,7 +8817,7 @@
 			)
 		)
 		(property "MANUFACTURER" "Wurth"
-			(at 271.78 48.26 90)
+			(at 279.4 53.34 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9996,7 +8920,7 @@
 	)
 	(symbol
 		(lib_id "power:+3.3V")
-		(at 279.4 36.83 0)
+		(at 279.4 45.72 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -10004,7 +8928,7 @@
 		(dnp no)
 		(uuid "928a737d-77cf-43a6-9a76-e3844922d4ca")
 		(property "Reference" "#PWR0121"
-			(at 279.4 40.64 0)
+			(at 279.4 49.53 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10013,7 +8937,7 @@
 			)
 		)
 		(property "Value" "+3.3V"
-			(at 275.336 36.068 0)
+			(at 275.336 44.958 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10021,7 +8945,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 279.4 36.83 0)
+			(at 279.4 45.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10030,7 +8954,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 279.4 36.83 0)
+			(at 279.4 45.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10039,7 +8963,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 279.4 36.83 0)
+			(at 279.4 45.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10152,6 +9076,71 @@
 			(project "motor"
 				(path "/7fa06b88-5970-4757-bb4a-058dc331a5d2"
 					(reference "R?")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 265.43 175.26 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "958b9fa9-bb81-4d4d-9a12-6d33d43a2119")
+		(property "Reference" "#PWR0119"
+			(at 265.43 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 261.62 174.244 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 265.43 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 265.43 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 265.43 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "6a51a4b0-f327-4183-9e57-fc9dea487d61")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
+					(reference "#PWR0119")
 					(unit 1)
 				)
 			)
@@ -10627,77 +9616,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+3.3V")
-		(at 82.55 175.26 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "b179c561-bbcc-4082-a618-e6a2f0c56f88")
-		(property "Reference" "#PWR097"
-			(at 82.55 179.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3.3V"
-			(at 78.74 174.244 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 82.55 175.26 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 82.55 175.26 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 82.55 175.26 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "018f9c42-52fe-4846-8036-95d9ba83c3b8")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "#PWR097")
-					(unit 1)
-				)
-			)
-			(project "motor"
-				(path "/7fa06b88-5970-4757-bb4a-058dc331a5d2"
-					(reference "#PWR?")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Connector:TestPoint")
 		(at 63.5 101.6 90)
 		(unit 1)
@@ -11000,7 +9918,7 @@
 	)
 	(symbol
 		(lib_id "power:+3.3V")
-		(at 88.9 36.83 0)
+		(at 88.9 45.72 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -11008,7 +9926,7 @@
 		(dnp no)
 		(uuid "b4543bfc-b1ec-4c26-9720-b0ce26602931")
 		(property "Reference" "#PWR098"
-			(at 88.9 40.64 0)
+			(at 88.9 49.53 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11017,7 +9935,7 @@
 			)
 		)
 		(property "Value" "+3.3V"
-			(at 84.836 36.068 0)
+			(at 84.836 44.958 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11025,7 +9943,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 88.9 36.83 0)
+			(at 88.9 45.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11034,7 +9952,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 88.9 36.83 0)
+			(at 88.9 45.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11043,7 +9961,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 88.9 36.83 0)
+			(at 88.9 45.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11237,7 +10155,7 @@
 	)
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x04")
-		(at 123.19 74.93 0)
+		(at 123.19 76.2 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -11245,7 +10163,7 @@
 		(dnp no)
 		(uuid "b79f6d4b-03fe-475f-8a33-223cd4810847")
 		(property "Reference" "J14"
-			(at 125.73 74.9299 0)
+			(at 125.73 76.1999 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11254,7 +10172,7 @@
 			)
 		)
 		(property "Value" "Turntable Stepper"
-			(at 124.968 77.216 0)
+			(at 124.968 78.486 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11263,7 +10181,7 @@
 			)
 		)
 		(property "Footprint" "Connector_Molex:Molex_KK-254_AE-6410-04A_1x04_P2.54mm_Vertical"
-			(at 123.19 74.93 0)
+			(at 123.19 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11272,7 +10190,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.molex.com/en-us/products/part-detail/22232041?display=pdf"
-			(at 123.19 74.93 0)
+			(at 123.19 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11281,7 +10199,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 123.19 74.93 0)
+			(at 123.19 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11290,7 +10208,7 @@
 			)
 		)
 		(property "Manufacturer_Part_Number" "0022232041"
-			(at 123.19 74.93 0)
+			(at 123.19 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11299,7 +10217,7 @@
 			)
 		)
 		(property "MANUFACTURER" "Molex"
-			(at 123.19 74.93 0)
+			(at 123.19 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11329,77 +10247,6 @@
 			(project ""
 				(path "/7fa06b88-5970-4757-bb4a-058dc331a5d2"
 					(reference "J?")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+3.3V")
-		(at 273.05 175.26 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "b8e6ee68-451a-436a-85a9-4122380356a4")
-		(property "Reference" "#PWR0120"
-			(at 273.05 179.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3.3V"
-			(at 269.24 174.244 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 273.05 175.26 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 273.05 175.26 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 273.05 175.26 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "b7070dfc-f867-493d-ada3-009a4b434abd")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "#PWR0120")
-					(unit 1)
-				)
-			)
-			(project "motor"
-				(path "/7fa06b88-5970-4757-bb4a-058dc331a5d2"
-					(reference "#PWR?")
 					(unit 1)
 				)
 			)
@@ -11714,7 +10561,7 @@
 	)
 	(symbol
 		(lib_id "power:+3.3V")
-		(at 88.9 147.32 0)
+		(at 88.9 154.94 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -11722,7 +10569,7 @@
 		(dnp no)
 		(uuid "cf6c2b6a-7af1-4eb9-97b0-632312d885e8")
 		(property "Reference" "#PWR099"
-			(at 88.9 151.13 0)
+			(at 88.9 158.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11731,7 +10578,7 @@
 			)
 		)
 		(property "Value" "+3.3V"
-			(at 84.836 146.558 0)
+			(at 84.836 154.178 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11739,7 +10586,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 88.9 147.32 0)
+			(at 88.9 154.94 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11748,7 +10595,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 88.9 147.32 0)
+			(at 88.9 154.94 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11757,7 +10604,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 88.9 147.32 0)
+			(at 88.9 154.94 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11959,7 +10806,7 @@
 	)
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x04")
-		(at 313.69 74.93 0)
+		(at 313.69 76.2 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -11968,7 +10815,7 @@
 		(fields_autoplaced yes)
 		(uuid "d26738ec-e185-4e3e-b2d6-928a05fced49")
 		(property "Reference" "J17"
-			(at 316.23 74.9299 0)
+			(at 316.23 76.1999 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11977,7 +10824,7 @@
 			)
 		)
 		(property "Value" "Gantry Stepper"
-			(at 316.23 77.4699 0)
+			(at 316.23 78.7399 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11986,7 +10833,7 @@
 			)
 		)
 		(property "Footprint" "Connector_Molex:Molex_KK-254_AE-6410-04A_1x04_P2.54mm_Vertical"
-			(at 313.69 74.93 0)
+			(at 313.69 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11995,7 +10842,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.molex.com/en-us/products/part-detail/22232041?display=pdf"
-			(at 313.69 74.93 0)
+			(at 313.69 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12004,7 +10851,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 313.69 74.93 0)
+			(at 313.69 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12013,7 +10860,7 @@
 			)
 		)
 		(property "Manufacturer_Part_Number" "0022232041"
-			(at 313.69 74.93 0)
+			(at 313.69 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12022,7 +10869,7 @@
 			)
 		)
 		(property "MANUFACTURER" "Molex"
-			(at 313.69 74.93 0)
+			(at 313.69 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12059,7 +10906,7 @@
 	)
 	(symbol
 		(lib_id "Jumper:Jumper_2_Open")
-		(at 271.78 158.75 90)
+		(at 279.4 162.56 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -12067,7 +10914,7 @@
 		(dnp no)
 		(uuid "d27e2f8c-c0bd-4a82-b779-96fd8ab61c0c")
 		(property "Reference" "JP12"
-			(at 265.176 157.226 90)
+			(at 272.796 161.036 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12076,7 +10923,7 @@
 			)
 		)
 		(property "Value" "Jumper_2_Open"
-			(at 254.254 159.512 90)
+			(at 261.874 163.322 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12085,7 +10932,7 @@
 			)
 		)
 		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
-			(at 271.78 158.75 0)
+			(at 279.4 162.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12094,7 +10941,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 271.78 158.75 0)
+			(at 279.4 162.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12103,7 +10950,7 @@
 			)
 		)
 		(property "Description" "Jumper, 2-pole, open"
-			(at 271.78 158.75 0)
+			(at 279.4 162.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12112,7 +10959,7 @@
 			)
 		)
 		(property "Manufacturer_Part_Number" "61300211121"
-			(at 271.78 158.75 0)
+			(at 279.4 162.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12121,7 +10968,7 @@
 			)
 		)
 		(property "MANUFACTURER" "Wurth"
-			(at 271.78 158.75 90)
+			(at 279.4 162.56 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12802,15 +11649,15 @@
 	)
 	(symbol
 		(lib_id "power:+3.3V")
-		(at 82.55 64.77 0)
+		(at 266.7 64.77 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "e6f812d7-040e-4d5e-b34b-55ea234d232c")
-		(property "Reference" "#PWR096"
-			(at 82.55 68.58 0)
+		(property "Reference" "#PWR0120"
+			(at 266.7 68.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12819,7 +11666,7 @@
 			)
 		)
 		(property "Value" "+3.3V"
-			(at 78.74 63.754 0)
+			(at 262.89 63.754 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12827,7 +11674,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 82.55 64.77 0)
+			(at 266.7 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12836,7 +11683,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 82.55 64.77 0)
+			(at 266.7 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12845,7 +11692,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 82.55 64.77 0)
+			(at 266.7 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12855,6 +11702,71 @@
 		)
 		(pin "1"
 			(uuid "d6025a70-f0d8-404e-bad1-3ce41cdcf3d3")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
+					(reference "#PWR0120")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 73.66 64.77 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "e6f812d7-040e-4d5e-b34b-55ea234d232d")
+		(property "Reference" "#PWR096"
+			(at 73.66 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 69.85 63.754 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 73.66 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 73.66 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 73.66 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d6025a70-f0d8-404e-bad1-3ce41cdcf3d4")
 		)
 		(instances
 			(project "TopiaryTrimbot"
@@ -12943,108 +11855,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:LED")
-		(at 88.9 50.8 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "e8f45038-d2dd-4249-9ff3-275cabda7f87")
-		(property "Reference" "D12"
-			(at 85.09 48.26 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "RED"
-			(at 84.074 50.546 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "LED_SMD:LED_0805_2012Metric"
-			(at 88.9 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 88.9 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Light emitting diode"
-			(at 88.9 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Pins" "1=K 2=A"
-			(at 88.9 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" "150080RS75000"
-			(at 88.9 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MANUFACTURER" "Wurth"
-			(at 88.9 50.8 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "e5d5a842-37f4-4957-a74c-ec5f12ec0f0c")
-		)
-		(pin "1"
-			(uuid "964fa99e-8597-478c-8768-d6ede3876c4d")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
-					(reference "D12")
-					(unit 1)
-				)
-			)
-			(project ""
-				(path "/7fa06b88-5970-4757-bb4a-058dc331a5d2"
-					(reference "D?")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:+3.3V")
 		(at 160.02 139.7 0)
 		(unit 1)
@@ -13116,8 +11926,73 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+3.3V")
+		(at 74.93 175.26 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "f817df5c-779f-4a2e-867f-ec5cdadf49ae")
+		(property "Reference" "#PWR097"
+			(at 74.93 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 71.12 174.244 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 74.93 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 74.93 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 74.93 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "48830bb8-7f65-4fa6-8062-d017d27eb0bd")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
+					(reference "#PWR097")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Connector_Generic:Conn_01x04")
-		(at 123.19 185.42 0)
+		(at 123.19 186.69 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -13126,7 +12001,7 @@
 		(fields_autoplaced yes)
 		(uuid "f9822f4a-c926-4768-a649-8fd2a90121bf")
 		(property "Reference" "J15"
-			(at 125.73 185.4199 0)
+			(at 125.73 186.6899 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13135,7 +12010,7 @@
 			)
 		)
 		(property "Value" "Extruder Stepper"
-			(at 125.73 187.9599 0)
+			(at 125.73 189.2299 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13144,7 +12019,7 @@
 			)
 		)
 		(property "Footprint" "Connector_Molex:Molex_KK-254_AE-6410-04A_1x04_P2.54mm_Vertical"
-			(at 123.19 185.42 0)
+			(at 123.19 186.69 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13153,7 +12028,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.molex.com/en-us/products/part-detail/22232041?display=pdf"
-			(at 123.19 185.42 0)
+			(at 123.19 186.69 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13162,7 +12037,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 123.19 185.42 0)
+			(at 123.19 186.69 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13171,7 +12046,7 @@
 			)
 		)
 		(property "Manufacturer_Part_Number" "0022232041"
-			(at 123.19 185.42 0)
+			(at 123.19 186.69 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13180,7 +12055,7 @@
 			)
 		)
 		(property "MANUFACTURER" "Molex"
-			(at 123.19 185.42 0)
+			(at 123.19 186.69 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13217,7 +12092,7 @@
 	)
 	(symbol
 		(lib_id "Jumper:Jumper_2_Open")
-		(at 81.28 48.26 90)
+		(at 88.9 53.34 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -13225,7 +12100,7 @@
 		(dnp no)
 		(uuid "fb2d8be6-8ce9-4fa5-a8fe-4c40ad543500")
 		(property "Reference" "JP1"
-			(at 74.676 46.736 90)
+			(at 82.296 51.816 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13234,7 +12109,7 @@
 			)
 		)
 		(property "Value" "Jumper_2_Open"
-			(at 63.754 49.022 90)
+			(at 71.374 54.102 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13243,7 +12118,7 @@
 			)
 		)
 		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
-			(at 81.28 48.26 0)
+			(at 88.9 53.34 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13252,7 +12127,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 81.28 48.26 0)
+			(at 88.9 53.34 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13261,7 +12136,7 @@
 			)
 		)
 		(property "Description" "Jumper, 2-pole, open"
-			(at 81.28 48.26 0)
+			(at 88.9 53.34 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13270,7 +12145,7 @@
 			)
 		)
 		(property "Manufacturer_Part_Number" "61300211121"
-			(at 81.28 48.26 0)
+			(at 88.9 53.34 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13279,7 +12154,7 @@
 			)
 		)
 		(property "MANUFACTURER" "Wurth"
-			(at 81.28 48.26 90)
+			(at 88.9 53.34 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13303,6 +12178,94 @@
 			(project "motor"
 				(path "/7fa06b88-5970-4757-bb4a-058dc331a5d2"
 					(reference "JP?")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Jumper:Jumper_2_Open")
+		(at 78.74 66.04 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "fb2d8be6-8ce9-4fa5-a8fe-4c40ad543501")
+		(property "Reference" "JP23"
+			(at 67.564 68.834 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "Jumper_2_Open"
+			(at 57.658 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+			(at 78.74 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 78.74 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Jumper, 2-pole, open"
+			(at 78.74 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "61300211121"
+			(at 78.74 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Wurth"
+			(at 78.74 66.04 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "73240ceb-a005-4f8f-8985-a523a0f2a450")
+		)
+		(pin "1"
+			(uuid "111ef5e4-60be-4821-8a32-8feb400e0eb1")
+		)
+		(instances
+			(project "TopiaryTrimbot"
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/60c25ff0-1584-491b-871e-d697acc05978"
+					(reference "JP23")
 					(unit 1)
 				)
 			)

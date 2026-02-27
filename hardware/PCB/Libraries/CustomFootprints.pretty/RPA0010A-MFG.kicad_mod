@@ -294,6 +294,7 @@
 		(at 0.989998 -0.800001)
 		(size 0.349905 0.349905)
 		(layers "F.Cu" "F.Mask" "F.Paste")
+		(zone_connect 2)
 		(options
 			(clearance outline)
 			(anchor rect)
@@ -318,6 +319,7 @@
 		(at -0.21 -0.650001)
 		(size 0.399999 2.100001)
 		(layers "F.Cu" "F.Mask")
+		(zone_connect 2)
 		(uuid "09cafe61-2270-4a7c-a20c-acee89f6f9fa")
 	)
 	(pad "10" smd rect
