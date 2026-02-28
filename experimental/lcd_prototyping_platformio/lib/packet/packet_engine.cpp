@@ -5,6 +5,7 @@
 #include "status.h"
 #include "cobs.h"
 #include "file_sender.h"
+#include "profiler.h"
 
 #include <string.h>
 
@@ -58,6 +59,8 @@ int packet_engine_init() {
 }
 
 void packet_engine_task() {
+    PROFILER_ENTER();
+
     int len = 0;
 
     if (usb_available() > 0) {
@@ -82,4 +85,6 @@ void packet_engine_task() {
             s_rx_buf_len = remaining_len;
         }
     }
+
+    PROFILER_EXIT();
 }

@@ -1,6 +1,7 @@
 #include "gui.h"
 
 #include "ft6336g.h"
+#include "profiler.h"
 
 #include <algorithm>
 
@@ -238,11 +239,19 @@ void gui_touch_irq() {
 }
 
 void gui_update() {
+    PROFILER_ENTER();
+
     gui_touch_update();
+
+    PROFILER_EXIT();
 }
 
 void gui_render() {
+    PROFILER_ENTER();
+
     if (g_current_scene) {
         g_current_scene->redraw();
     }
+
+    PROFILER_EXIT();
 }

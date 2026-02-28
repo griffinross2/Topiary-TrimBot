@@ -31,6 +31,7 @@
 
 #include "tusb.h"
 #include "status.h"
+#include "profiler.h"
 #include "stm32f4xx.h"
 
 extern "C" {
@@ -74,8 +75,12 @@ Status usb_init(void) {
 }
 
 void usb_task(void) {
+    PROFILER_ENTER();
+
     tud_task();
     cdc_task();
+
+    PROFILER_EXIT();
 }
 
 // Invoked when device is mounted

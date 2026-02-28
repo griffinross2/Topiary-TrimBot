@@ -2,6 +2,7 @@
 
 #include "packet.h"
 #include "filesystem.h"
+#include "profiler.h"
 
 #include "string.h"
 
@@ -15,6 +16,8 @@ static uint32_t s_chunk_idx = 0;
 static uint32_t s_resend_chunk_idx = 0;
 
 void file_sender_task() {
+    PROFILER_ENTER();
+
     // Big state machine
     switch (s_file_sender_status) {
         case FILE_SENDER_STATUS_IDLE:
@@ -100,6 +103,8 @@ void file_sender_task() {
         default:
             break;
     }
+
+    PROFILER_EXIT();
 }
 
 void file_sender_give_packet(PacketID id, const uint8_t* data,

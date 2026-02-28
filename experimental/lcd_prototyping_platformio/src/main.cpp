@@ -12,6 +12,7 @@
 #include "file_sender.h"
 #include "packet_engine.h"
 #include "main.h"
+#include "profiler.h"
 
 // #include "images/test.h"
 // #include "images/squares.h"
@@ -27,6 +28,7 @@ extern TIM_HandleTypeDef htim3;
 
 int main(void) {
     HAL_Init();
+    profiler_init();
 
     int ret = clocks_init();
     ret |= terminal_init() << 1;
@@ -91,10 +93,11 @@ int main(void) {
         packet_engine_task();
         file_sender_task();
 
-        if (HAL_GetTick() - tick >= 5000) {
+        if (HAL_GetTick() - tick >= 10000) {
             tick = HAL_GetTick();
 
             file_sender_send_file("cube.obj");
+            profiler_print_summary();
         }
     }
 
