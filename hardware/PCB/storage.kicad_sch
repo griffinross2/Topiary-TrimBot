@@ -858,7 +858,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "CustomSymbols:MT25QL128ABA1ESE-0SIT"
+		(symbol "CustomSymbols:MX25L51245GZ2I-08G"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -870,7 +870,7 @@
 					)
 				)
 			)
-			(property "Value" "MT25QL128ABA1ESE-0SIT"
+			(property "Value" "MX25L51245GZ2I-08G"
 				(at -2.286 -17.78 0)
 				(effects
 					(font
@@ -878,16 +878,7 @@
 					)
 				)
 			)
-			(property "Footprint" "Package_SO:SSOP-8_5.25x5.24mm_P1.27mm"
-				(at -2.286 -17.78 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "https://www.micron.com/content/dam/micron/global/secure/products/data-sheet/nor-flash/serial-nor/mt25q/die-rev-a/mt25q-qlhs-l-128-aba-0.pdf"
+			(property "Footprint" "Package_DFN_QFN:WDFN-8-1EP_8x6mm_P1.27mm_EP6x4.8mm"
 				(at -2.286 -17.78 0)
 				(effects
 					(font
@@ -896,7 +887,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "128 Mb NOR Flash IC SPI 133 MHz"
+			(property "Datasheet" "https://www.mxic.com.tw/Lists/Datasheet/Attachments/9100/MX25L51245G,%203V,%20512Mb,%20v1.8.pdf"
 				(at -2.286 -17.78 0)
 				(effects
 					(font
@@ -905,7 +896,16 @@
 					(hide yes)
 				)
 			)
-			(symbol "MT25QL128ABA1ESE-0SIT_1_1"
+			(property "Description" "512 Mb NOR Flash IC SPI 166 MHz 8-WDFN"
+				(at -2.286 -17.78 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "MX25L51245GZ2I-08G_1_1"
 				(rectangle
 					(start -8.89 25.4)
 					(end 8.89 0)
@@ -992,7 +992,7 @@
 				(pin bidirectional line
 					(at -11.43 8.89 0)
 					(length 2.54)
-					(name "~{W}/DQ2"
+					(name "DQ/~{WP}"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1010,7 +1010,7 @@
 				(pin bidirectional line
 					(at -11.43 6.35 0)
 					(length 2.54)
-					(name "DQ3/~{HOLD}"
+					(name "DQ3/~{RESET}"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1054,6 +1054,24 @@
 						)
 					)
 					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 2.54 -2.54 90)
+					(length 2.54)
+					(name "EP"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "9"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1633,7 +1651,7 @@
 		)
 		(uuid "1aaa5871-a9f8-42d5-a0cc-ad2363d6f8d7")
 	)
-	(text "128Mb NOR Flash"
+	(text "512Mb NOR Flash"
 		(exclude_from_sim no)
 		(at 178.308 129.032 0)
 		(effects
@@ -1648,6 +1666,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "207c1c07-f995-4fc7-924f-a62221dd172f")
+	)
+	(junction
+		(at 160.02 142.24)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "64b6770f-c676-46de-b1a4-522a293719e5")
 	)
 	(junction
 		(at 137.16 50.8)
@@ -1819,6 +1843,16 @@
 	)
 	(wire
 		(pts
+			(xy 162.56 142.24) (xy 160.02 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "39b38c38-1f42-4685-a2f4-8937a798f55c")
+	)
+	(wire
+		(pts
 			(xy 161.29 78.74) (xy 161.29 81.28)
 		)
 		(stroke
@@ -1916,6 +1950,26 @@
 			(type default)
 		)
 		(uuid "7183a255-8ba6-4ebc-9ec4-d2319c95f38e")
+	)
+	(wire
+		(pts
+			(xy 160.02 142.24) (xy 160.02 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "73f519bd-87d2-4ec6-a199-280a697fade6")
+	)
+	(wire
+		(pts
+			(xy 162.56 139.7) (xy 162.56 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "769cc9be-12bb-49d9-a742-3b27bbabf48c")
 	)
 	(wire
 		(pts
@@ -2895,6 +2949,115 @@
 		)
 	)
 	(symbol
+		(lib_id "CustomSymbols:MX25L51245GZ2I-08G")
+		(at 160.02 137.16 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "04b8109a-9fa0-4eb4-83b8-d9ea20275c47")
+		(property "Reference" "U12"
+			(at 169.545 123.2478 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "MX25L51245GZ2I-08G"
+			(at 169.545 125.6721 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Package_DFN_QFN:WDFN-8-1EP_8x6mm_P1.27mm_EP6x4.8mm"
+			(at 157.734 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.mxic.com.tw/Lists/Datasheet/Attachments/9100/MX25L51245G,%203V,%20512Mb,%20v1.8.pdf"
+			(at 157.734 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "512 Mb NOR Flash IC SPI 166 MHz 8-WDFN"
+			(at 157.734 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Macronix"
+			(at 160.02 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "MX25L51245GZ2I-08G"
+			(at 160.02 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "6"
+			(uuid "f4fbe4c7-31de-43be-bdd6-268b27871b6e")
+		)
+		(pin "5"
+			(uuid "11004d22-7d81-414f-9a42-11be50c9f1c8")
+		)
+		(pin "7"
+			(uuid "2bc1ab76-7dc9-4fff-89fa-a6d122f772af")
+		)
+		(pin "8"
+			(uuid "1a1673fc-a85c-4daf-92ae-18f393853517")
+		)
+		(pin "1"
+			(uuid "ff59996f-b252-41d4-8f5a-fa366ef18f4b")
+		)
+		(pin "2"
+			(uuid "8e874189-9225-40e7-9983-bd14b127af38")
+		)
+		(pin "4"
+			(uuid "b3784792-1c26-42d1-8cda-17f79291f37b")
+		)
+		(pin "3"
+			(uuid "c6d9eb38-c1e0-496d-81fe-8df69436d4d5")
+		)
+		(pin "9"
+			(uuid "e1a0136c-e1e1-47c9-a4bd-42a29fe20bdf")
+		)
+		(instances
+			(project ""
+				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/5e1a5ae0-b63d-4e63-8db3-55a7cc5df283"
+					(reference "U12")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+3.3V")
 		(at 142.24 107.95 0)
 		(unit 1)
@@ -3447,6 +3610,15 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Part_Number" "MEM2090-00-145-00-A"
+			(at 162.56 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "SW"
 			(uuid "d329dcae-4e01-488e-9038-d8b2d3b72058")
 		)
@@ -3488,7 +3660,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 160.02 139.7 0)
+		(at 160.02 142.24 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3497,7 +3669,7 @@
 		(fields_autoplaced yes)
 		(uuid "50a353ec-cd35-4fe5-a2ba-e753e30b12ba")
 		(property "Reference" "#PWR0148"
-			(at 160.02 146.05 0)
+			(at 160.02 148.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3506,7 +3678,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 160.02 143.8331 0)
+			(at 160.02 146.3731 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3514,7 +3686,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 160.02 139.7 0)
+			(at 160.02 142.24 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3523,7 +3695,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 160.02 139.7 0)
+			(at 160.02 142.24 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3532,7 +3704,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 160.02 139.7 0)
+			(at 160.02 142.24 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4598,112 +4770,6 @@
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/5e1a5ae0-b63d-4e63-8db3-55a7cc5df283"
 					(reference "TP19")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "CustomSymbols:MT25QL128ABA1ESE-0SIT")
-		(at 160.02 137.16 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "d30acaed-9fd9-48e7-929c-b74359d6807c")
-		(property "Reference" "U12"
-			(at 169.545 123.2478 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "MT25QL128ABA1ESE-0SIT"
-			(at 169.545 125.6721 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Package_SO:SSOP-8_5.25x5.24mm_P1.27mm"
-			(at 157.734 154.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.micron.com/content/dam/micron/global/secure/products/data-sheet/nor-flash/serial-nor/mt25q/die-rev-a/mt25q-qlhs-l-128-aba-0.pdf"
-			(at 157.734 154.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "128 Mb NOR Flash IC SPI 133 MHz"
-			(at 157.734 154.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" "MT25QL128ABA1ESE-0SIT"
-			(at 160.02 137.16 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MANUFACTURER" "Micron Technology Inc."
-			(at 160.02 137.16 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "5"
-			(uuid "659caf37-b525-4a5f-bc89-f5e289d644b7")
-		)
-		(pin "4"
-			(uuid "0fd07bf4-f690-4b2d-8c00-dacc2c31a2ae")
-		)
-		(pin "2"
-			(uuid "ed99fbda-67c0-4b2b-8ffb-9c7ab66981b1")
-		)
-		(pin "3"
-			(uuid "0741c4ed-adef-475d-85b0-42736a5d72c6")
-		)
-		(pin "7"
-			(uuid "e066cc89-a828-44e5-a154-6d52f422f8ab")
-		)
-		(pin "8"
-			(uuid "f2f75b98-12f9-4edb-aab4-f416fc90447a")
-		)
-		(pin "6"
-			(uuid "2a8dbe86-880d-4df5-8615-810089f88f78")
-		)
-		(pin "1"
-			(uuid "05064251-cba1-45d5-a72c-e3823e6b6645")
-		)
-		(instances
-			(project ""
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/5e1a5ae0-b63d-4e63-8db3-55a7cc5df283"
-					(reference "U12")
 					(unit 1)
 				)
 			)

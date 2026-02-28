@@ -2256,7 +2256,7 @@
 		)
 		(embedded_fonts no)
 	)
-	(symbol "MT25QL128ABA1ESE-0SIT"
+	(symbol "MX25L51245GZ2I-08G"
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
@@ -2268,7 +2268,7 @@
 				)
 			)
 		)
-		(property "Value" "MT25QL128ABA1ESE-0SIT"
+		(property "Value" "MX25L51245GZ2I-08G"
 			(at -2.286 -17.78 0)
 			(effects
 				(font
@@ -2276,16 +2276,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_SO:SSOP-8_5.25x5.24mm_P1.27mm"
-			(at -2.286 -17.78 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.micron.com/content/dam/micron/global/secure/products/data-sheet/nor-flash/serial-nor/mt25q/die-rev-a/mt25q-qlhs-l-128-aba-0.pdf"
+		(property "Footprint" "Package_DFN_QFN:WDFN-8-1EP_8x6mm_P1.27mm_EP6x4.8mm"
 			(at -2.286 -17.78 0)
 			(effects
 				(font
@@ -2294,7 +2285,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "128 Mb NOR Flash IC SPI 133 MHz"
+		(property "Datasheet" "https://www.mxic.com.tw/Lists/Datasheet/Attachments/9100/MX25L51245G,%203V,%20512Mb,%20v1.8.pdf"
 			(at -2.286 -17.78 0)
 			(effects
 				(font
@@ -2303,7 +2294,16 @@
 				(hide yes)
 			)
 		)
-		(symbol "MT25QL128ABA1ESE-0SIT_1_1"
+		(property "Description" "512 Mb NOR Flash IC SPI 166 MHz 8-WDFN"
+			(at -2.286 -17.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(symbol "MX25L51245GZ2I-08G_1_1"
 			(rectangle
 				(start -8.89 25.4)
 				(end 8.89 0)
@@ -2390,7 +2390,7 @@
 			(pin bidirectional line
 				(at -11.43 8.89 0)
 				(length 2.54)
-				(name "~{W}/DQ2"
+				(name "DQ/~{WP}"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -2408,7 +2408,7 @@
 			(pin bidirectional line
 				(at -11.43 6.35 0)
 				(length 2.54)
-				(name "DQ3/~{HOLD}"
+				(name "DQ3/~{RESET}"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -2452,6 +2452,24 @@
 					)
 				)
 				(number "4"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin power_in line
+				(at 2.54 -2.54 90)
+				(length 2.54)
+				(name "EP"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "9"
 					(effects
 						(font
 							(size 1.27 1.27)
