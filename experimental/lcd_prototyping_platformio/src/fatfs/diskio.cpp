@@ -271,6 +271,7 @@ DRESULT disk_ioctl(BYTE drv,  /* Physical drive number (0) */
             case CTRL_TRIM: /* Erase a block of sectors (used when _USE_ERASE ==
                              * 1)
                              */
+                dp = (LBA_t*)buff;
                 st = (DWORD)dp[0];
                 ed = (DWORD)dp[1];
                 if (sdmmc_erase(st, ed) != STATUS_OK) {

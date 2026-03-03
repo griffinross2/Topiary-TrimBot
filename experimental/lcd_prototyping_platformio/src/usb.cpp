@@ -103,11 +103,11 @@ void tud_cdc_line_state_cb(uint8_t instance, bool dtr, bool rts) {
     TRACE_PRINTF("New line state: dtr: %d rts: %d\n", dtr, rts);
 }
 
-int usb_available_write() {
+unsigned int usb_available_write() {
     return tud_cdc_write_available();
 }
 
-int usb_send(const char* data, int len) {
+unsigned int usb_send(const char* data, unsigned int len) {
     if (!data || len > tud_cdc_write_available()) {
         return -1;
     }
@@ -117,20 +117,18 @@ int usb_send(const char* data, int len) {
     return 0;
 }
 
-int usb_available() {
+unsigned int usb_available() {
     return tud_cdc_available();
 }
 
-int usb_receive(char* buf, int len) {
+unsigned int usb_receive(char* buf, unsigned int len) {
     if (!buf) {
         return -1;
     }
 
     // Receive at most len bytes
-    int to_receive = std::min(len, usb_available());
-    if (to_receive > 0) {
-        tud_cdc_read(buf, to_receive);
-    }
+    unsigned int to_receive = std::min(len, usb_available());
+    tud_cdc_read(buf, to_receive);
 
     return to_receive;
 }

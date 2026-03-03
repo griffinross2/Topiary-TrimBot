@@ -1703,26 +1703,6 @@
 	)
 	(wire
 		(pts
-			(xy 241.3 109.22) (xy 254 109.22)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "00311617-7acb-4dcd-a18b-7340ff9f36ed")
-	)
-	(wire
-		(pts
-			(xy 241.3 104.14) (xy 254 104.14)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "03dd8452-35a3-4508-b1ae-efc4b4e678ae")
-	)
-	(wire
-		(pts
 			(xy 142.24 115.57) (xy 142.24 120.65)
 		)
 		(stroke
@@ -1783,16 +1763,6 @@
 	)
 	(wire
 		(pts
-			(xy 241.3 99.06) (xy 254 99.06)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "22e661c0-d9ff-4785-9e90-f6bf5177c601")
-	)
-	(wire
-		(pts
 			(xy 134.62 63.5) (xy 148.59 63.5)
 		)
 		(stroke
@@ -1810,16 +1780,6 @@
 			(type default)
 		)
 		(uuid "325779f0-5d04-4aa0-8c4e-bdd55e5ea48c")
-	)
-	(wire
-		(pts
-			(xy 241.3 93.98) (xy 254 93.98)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3427ef45-8853-4c40-bec0-79e2500d52f0")
 	)
 	(wire
 		(pts
@@ -1993,16 +1953,6 @@
 	)
 	(wire
 		(pts
-			(xy 241.3 88.9) (xy 254 88.9)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "81c4f6ba-e811-4922-9ae5-03cc8ac846b1")
-	)
-	(wire
-		(pts
 			(xy 241.3 66.04) (xy 254 66.04)
 		)
 		(stroke
@@ -2040,16 +1990,6 @@
 			(type default)
 		)
 		(uuid "8b42a240-7314-4577-804e-8d1548518b58")
-	)
-	(wire
-		(pts
-			(xy 241.3 114.3) (xy 254 114.3)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8cbe9db5-c230-4ae5-8051-aff252b339ae")
 	)
 	(wire
 		(pts
@@ -2391,16 +2331,6 @@
 		)
 		(uuid "35f8b8b0-d484-4dcf-b6ae-0d2adc17f8fe")
 	)
-	(label "NOR_CLK"
-		(at 241.3 88.9 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "3f7d5333-201e-4801-a300-a884aff1a8c0")
-	)
 	(label "SD_D0"
 		(at 241.3 60.96 0)
 		(effects
@@ -2410,26 +2340,6 @@
 			(justify left bottom)
 		)
 		(uuid "48fda83c-3bc2-4677-b0a2-b9c2cd9341a2")
-	)
-	(label "NOR_D1"
-		(at 241.3 104.14 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "4c38aba3-2df5-4b48-8109-3b7404e3ee5d")
-	)
-	(label "NOR_D0"
-		(at 241.3 99.06 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "7d625ce8-c6fc-4c23-b6a3-212b13367e32")
 	)
 	(label "SD_CD"
 		(at 241.3 81.28 0)
@@ -2451,26 +2361,6 @@
 		)
 		(uuid "9c4dae7b-d18e-4198-91c9-14fee2fe0abf")
 	)
-	(label "NOR_CS"
-		(at 241.3 93.98 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "bc3f6e71-8956-40f9-bddc-eba5286c8ee2")
-	)
-	(label "NOR_D2"
-		(at 241.3 109.22 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "c18f3786-58ed-4f4a-8c57-51b3ed109cb9")
-	)
 	(label "SD_CLK"
 		(at 241.3 50.8 0)
 		(effects
@@ -2480,16 +2370,6 @@
 			(justify left bottom)
 		)
 		(uuid "c5d7fd9f-6228-482d-9e9c-f94968c84666")
-	)
-	(label "NOR_D3"
-		(at 241.3 114.3 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "cb71c715-1181-4c78-8476-6596d3fdb21a")
 	)
 	(label "SD_CD"
 		(at 139.7 73.66 0)
@@ -3204,91 +3084,6 @@
 			(project ""
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/5e1a5ae0-b63d-4e63-8db3-55a7cc5df283"
 					(reference "C70")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 254 93.98 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "2f81e760-a875-42ec-9bf7-df07bb99538c")
-		(property "Reference" "TP22"
-			(at 259.08 92.7099 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "TestPoint"
-			(at 259.08 95.2499 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_D1.5mm"
-			(at 254 99.06 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 254 99.06 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "test point"
-			(at 254 93.98 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MANUFACTURER" "~"
-			(at 254 93.98 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" "~"
-			(at 254 93.98 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "45ea1018-9fca-428f-8e78-6462ae65b62a")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/5e1a5ae0-b63d-4e63-8db3-55a7cc5df283"
-					(reference "TP22")
 					(unit 1)
 				)
 			)
@@ -4182,91 +3977,6 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 254 114.3 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "b87f04d3-3717-4275-bcf9-c6030bbff970")
-		(property "Reference" "TP26"
-			(at 259.08 113.0299 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "TestPoint"
-			(at 259.08 115.5699 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_D1.5mm"
-			(at 254 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 254 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "test point"
-			(at 254 114.3 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MANUFACTURER" "~"
-			(at 254 114.3 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" "~"
-			(at 254 114.3 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "fc9bb719-7060-441d-a5f8-48d38fbcefd9")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/5e1a5ae0-b63d-4e63-8db3-55a7cc5df283"
-					(reference "TP26")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:TestPoint")
 		(at 254 71.12 270)
 		(unit 1)
 		(exclude_from_sim no)
@@ -4345,261 +4055,6 @@
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/5e1a5ae0-b63d-4e63-8db3-55a7cc5df283"
 					(reference "TP18")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 254 99.06 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "bce0db8c-0970-4012-a607-dd59a52c4a0e")
-		(property "Reference" "TP23"
-			(at 259.08 97.7899 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "TestPoint"
-			(at 259.08 100.3299 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_D1.5mm"
-			(at 254 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 254 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "test point"
-			(at 254 99.06 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MANUFACTURER" "~"
-			(at 254 99.06 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" "~"
-			(at 254 99.06 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "530c9eed-a6b9-41b6-9764-44eb2c12a9b0")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/5e1a5ae0-b63d-4e63-8db3-55a7cc5df283"
-					(reference "TP23")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 254 104.14 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "c4a29126-d125-4ac7-a26e-5394992da9e0")
-		(property "Reference" "TP24"
-			(at 259.08 102.8699 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "TestPoint"
-			(at 259.08 105.4099 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_D1.5mm"
-			(at 254 109.22 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 254 109.22 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "test point"
-			(at 254 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MANUFACTURER" "~"
-			(at 254 104.14 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" "~"
-			(at 254 104.14 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "acdcbb2c-4c4c-4221-9544-3ed1762dd70a")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/5e1a5ae0-b63d-4e63-8db3-55a7cc5df283"
-					(reference "TP24")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 254 109.22 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "c9c9f91e-a1b9-4233-833e-c34ef9841bb3")
-		(property "Reference" "TP25"
-			(at 259.08 107.9499 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "TestPoint"
-			(at 259.08 110.4899 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_D1.5mm"
-			(at 254 114.3 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 254 114.3 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "test point"
-			(at 254 109.22 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MANUFACTURER" "~"
-			(at 254 109.22 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" "~"
-			(at 254 109.22 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "e7e3e8c3-87aa-44e5-818a-bd779abc3b5a")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/5e1a5ae0-b63d-4e63-8db3-55a7cc5df283"
-					(reference "TP25")
 					(unit 1)
 				)
 			)
@@ -4855,91 +4310,6 @@
 			(project "TopiaryTrimbot"
 				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/5e1a5ae0-b63d-4e63-8db3-55a7cc5df283"
 					(reference "TP14")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 254 88.9 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "e9e77ad1-4da0-4b23-b2ed-7733c008e5f4")
-		(property "Reference" "TP21"
-			(at 259.08 87.6299 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "TestPoint"
-			(at 259.08 90.1699 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_D1.5mm"
-			(at 254 93.98 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 254 93.98 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "test point"
-			(at 254 88.9 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MANUFACTURER" "~"
-			(at 254 88.9 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" "~"
-			(at 254 88.9 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "2f3cdbc2-d429-4ff8-911a-ffcc7f7eb4d3")
-		)
-		(instances
-			(project "TopiaryTrimbot"
-				(path "/2826ff7c-9767-4078-8ea2-1cd3a432abf3/5e1a5ae0-b63d-4e63-8db3-55a7cc5df283"
-					(reference "TP21")
 					(unit 1)
 				)
 			)

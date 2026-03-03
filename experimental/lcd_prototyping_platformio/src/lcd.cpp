@@ -14,6 +14,7 @@
 #include "ltdc_dsi.h"
 #include "nt35510.h"
 #include "ft6336g.h"
+#include "profiler.h"
 
 #define LCD_RESET_PORT GPIOH
 #define LCD_RESET_PIN GPIO_PIN_7
@@ -102,6 +103,8 @@ Status lcd_init() {
 }
 
 void lcd_swap_buffers() {
+    PROFILER_ENTER();
+
     // Wait til not refreshing
     while (s_refreshing) {
     }
@@ -114,6 +117,8 @@ void lcd_swap_buffers() {
 
     // Set the new front buffer and refresh
     lcd_set_foreground(FRONTBUFFER);
+
+    PROFILER_EXIT();
 }
 
 ColorRGB565* lcd_get_backbuffer() {
@@ -296,6 +301,8 @@ void lcd_draw_text(const Font* font, const char* str, unsigned start_x,
 }
 
 void lcd_end_of_refresh_callback(DSI_HandleTypeDef* hdsi) {
+    PROFILER_ENTER();
+
     // Frame rate tracking
     static unsigned int last_tick = 0;
     static unsigned int frame_count = 0;
@@ -311,4 +318,6 @@ void lcd_end_of_refresh_callback(DSI_HandleTypeDef* hdsi) {
 
     // Done refreshing
     s_refreshing = false;
+
+    PROFILER_EXIT();
 }
