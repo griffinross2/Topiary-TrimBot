@@ -21,7 +21,6 @@
 
 DSI_HandleTypeDef* hdsi;
 LTDC_HandleTypeDef* hltdc;
-DMA_HandleTypeDef hdma = {0};
 
 // Double-buffered setup
 static ColorRGB565 __attribute__((
@@ -62,6 +61,7 @@ Status lcd_init() {
         .Mode = GPIO_MODE_OUTPUT_PP,
         .Pull = GPIO_NOPULL,
         .Speed = GPIO_SPEED_FREQ_LOW,
+        .Alternate = 0,
     };
 
     // Reset the LCD and touchscreen
@@ -224,7 +224,7 @@ unsigned int lcd_get_text_width(const Font* font, const char* str,
         char ch = *str;
         str++;
 
-        if (ch < 0) {
+        if (ch & 0x80) {
             continue;
         }
 
@@ -246,7 +246,7 @@ void lcd_draw_char(const Font* font, char ch, unsigned start_x,
         *advance = 0;
     }
 
-    if (ch < 0) {
+    if (ch & 0x80) {
         return;
     }
 

@@ -3,9 +3,11 @@
 #include "board.h"
 #include "stm32f4xx_hal.h"
 
-SD_HandleTypeDef hsd = {0};
-DMA_HandleTypeDef hdma_tx = {0};
-DMA_HandleTypeDef hdma_rx = {0};
+#include "string.h"
+
+SD_HandleTypeDef hsd;
+DMA_HandleTypeDef hdma_tx;
+DMA_HandleTypeDef hdma_rx;
 
 Status sdmmc_init(SdmmcSpeed clk) {
     GPIO_InitTypeDef GPIO_InitStruct;

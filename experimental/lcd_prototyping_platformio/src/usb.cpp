@@ -52,12 +52,13 @@ Status usb_init(void) {
 
     USB_OTG_FS->GCCFG |= USB_OTG_GCCFG_VBDEN;
 
-    GPIO_InitTypeDef GPIO_InitStruct = {0};
-    GPIO_InitStruct.Pin = GPIO_PIN_11 | GPIO_PIN_12;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Alternate = GPIO_AF10_OTG_FS;
+    GPIO_InitTypeDef GPIO_InitStruct = {
+        .Pin = GPIO_PIN_11 | GPIO_PIN_12,
+        .Mode = GPIO_MODE_AF_PP,
+        .Pull = GPIO_NOPULL,
+        .Speed = GPIO_SPEED_FREQ_HIGH,
+        .Alternate = GPIO_AF10_OTG_FS,
+    };
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
     // init device stack on configured roothub port

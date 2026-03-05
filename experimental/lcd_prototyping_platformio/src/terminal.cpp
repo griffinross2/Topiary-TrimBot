@@ -4,14 +4,14 @@
 
 static UART_HandleTypeDef s_huart3;
 
-Status terminal_init()
-{
-    GPIO_InitTypeDef gpio_init = {0};
-    gpio_init.Pin = GPIO_PIN_10 | GPIO_PIN_11;
-    gpio_init.Mode = GPIO_MODE_AF_PP;
-    gpio_init.Pull = GPIO_NOPULL;
-    gpio_init.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-    gpio_init.Alternate = GPIO_AF7_USART3;
+Status terminal_init() {
+    GPIO_InitTypeDef gpio_init = {
+        .Pin = GPIO_PIN_10 | GPIO_PIN_11,
+        .Mode = GPIO_MODE_AF_PP,
+        .Pull = GPIO_NOPULL,
+        .Speed = GPIO_SPEED_FREQ_VERY_HIGH,
+        .Alternate = GPIO_AF7_USART3,
+    };
     HAL_GPIO_Init(GPIOB, &gpio_init);
 
     __HAL_RCC_USART3_CLK_ENABLE();
@@ -26,25 +26,22 @@ Status terminal_init()
 
     s_huart3.Instance = USART3;
 
-    if (HAL_UART_Init(&s_huart3) != HAL_OK)
-    {
+    if (HAL_UART_Init(&s_huart3) != HAL_OK) {
         return STATUS_ERROR;
     }
 
     return STATUS_OK;
 }
 
-void terminal_write(const char *data, unsigned int size)
-{
-    HAL_UART_Transmit(&s_huart3, (uint8_t *)data, size, 100);
+void terminal_write(const char* data, unsigned int size) {
+    HAL_UART_Transmit(&s_huart3, (uint8_t*)data, size, 100);
 }
 
 extern "C" {
-    int _write(int file, char *data, int len);
+int _write(int file, char* data, int len);
 }
 
-int _write(int file, char *data, int len)
-{
+int _write(int file, char* data, int len) {
     terminal_write(data, len);
     return len;
 }
