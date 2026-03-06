@@ -21,6 +21,7 @@
 
 DSI_HandleTypeDef* hdsi;
 LTDC_HandleTypeDef* hltdc;
+DMA2D_HandleTypeDef hdma2d;
 
 // Double-buffered setup
 static ColorRGB565 __attribute__((
@@ -51,6 +52,11 @@ ColorRGB565 rgb888_to_rgb565(ColorRGB888 color) {
            ((color >> 3) & 0x001F);
 }
 
+ColorRGB888 rgb565_to_rgb888(ColorRGB565 color) {
+    return (color & 0xF800) << 8 | (color & 0x07E0) << 5 |
+           (color & 0x001F) << 3;
+}
+
 Status lcd_init() {
     ltdc_dsi_init();
     hltdc = ltdc_get_handle();
@@ -72,6 +78,36 @@ Status lcd_init() {
     HAL_Delay(20);
     HAL_GPIO_WritePin(LCD_RESET_PORT, LCD_RESET_PIN, GPIO_PIN_SET);
     HAL_Delay(20);
+
+    __HAL_RCC_DMA2D_CLK_ENABLE();
+    memset(&hdma2d, 0, sizeof(hdma2d));
+    hdma2d.Instance = DMA2D;
+    hdma2d.Init.Mode = DMA2D_R2M;
+    hdma2d.Init.ColorMode = DMA2D_RGB565;
+    hdma2d.Init.OutputOffset = 0;
+    hdma2d.XferCpltCallback = nullptr;
+    hdma2d.XferErrorCallback = nullptr;
+    hdma2d.LayerCfg[0].InputOffset = 0;
+    hdma2d.LayerCfg[0].InputColorMode = DMA2D_RGB565;
+    hdma2d.LayerCfg[0].AlphaMode = DMA2D_NO_MODIF_ALPHA;
+    hdma2d.LayerCfg[0].InputAlpha = 0xFF;
+    hdma2d.LayerCfg[1].InputOffset = 0;
+    hdma2d.LayerCfg[1].InputColorMode = DMA2D_RGB565;
+    hdma2d.LayerCfg[1].AlphaMode = DMA2D_NO_MODIF_ALPHA;
+    hdma2d.LayerCfg[1].InputAlpha = 0xFF;
+
+    // Initialize the DMA2D
+    if (HAL_DMA2D_Init(&hdma2d) != HAL_OK) {
+        return STATUS_ERROR;
+    }
+
+    if (HAL_DMA2D_ConfigLayer(&hdma2d, 0) != HAL_OK) {
+        return STATUS_ERROR;
+    }
+
+    if (HAL_DMA2D_ConfigLayer(&hdma2d, 1) != HAL_OK) {
+        return STATUS_ERROR;
+    }
 
     // LCD init
     if (nt35510_init(hdsi) != STATUS_OK) {
@@ -157,20 +193,47 @@ void lcd_clear_foreground() {
 
 void lcd_clear_area(unsigned int xl, unsigned int xr, unsigned int yb,
                     unsigned int yt) {
-    for (unsigned int xi = xl; xi <= xr; xi++) {
-        for (unsigned int yi = yb; yi <= yt; yi++) {
-            BACKBUFFER[yi + xi * LCD_HEIGHT] = 0xFF;
-        }
-    }
+    // for (unsigned int xi = xl; xi <= xr; xi++) {
+    //     for (unsigned int yi = yb; yi <= yt; yi++) {
+    //         BACKBUFFER[yi + xi * LCD_HEIGHT] = 0xFF;
+    //     }
+    // }
+    hdma2d.Init.Mode = DMA2D_R2M;
+    hdma2d.Init.OutputOffset = LCD_HEIGHT - (yt - yb + 1);
+    HAL_DMA2D_Init(&hdma2d);
+
+    hdma2d.LayerCfg[0].InputOffset = 0;
+    hdma2d.LayerCfg[0].InputColorMode = DMA2D_RGB565;
+    hdma2d.LayerCfg[0].AlphaMode = DMA2D_NO_MODIF_ALPHA;
+    hdma2d.LayerCfg[0].InputAlpha = 0xFF;
+    HAL_DMA2D_ConfigLayer(&hdma2d, 0);
+
+    HAL_DMA2D_Start(&hdma2d, 0xFFFFFFFF,
+                    (uint32_t)&BACKBUFFER[yb + xl * LCD_HEIGHT], (yt - yb + 1),
+                    (xr - xl + 1));
+    HAL_DMA2D_PollForTransfer(&hdma2d, 100);
 }
 
 void lcd_draw_rectangle(unsigned int x, unsigned int y, unsigned int w,
                         unsigned int h, ColorRGB565 color) {
-    for (unsigned int xi = x; xi < x + w; xi++) {
-        for (unsigned int yi = y; yi < y + h; yi++) {
-            BACKBUFFER[yi + xi * LCD_HEIGHT] = color;
-        }
-    }
+    // for (unsigned int xi = x; xi < x + w; xi++) {
+    //     for (unsigned int yi = y; yi < y + h; yi++) {
+    //         BACKBUFFER[yi + xi * LCD_HEIGHT] = color;
+    //     }
+    // }
+    hdma2d.Init.Mode = DMA2D_R2M;
+    hdma2d.Init.OutputOffset = LCD_HEIGHT - h;
+    HAL_DMA2D_Init(&hdma2d);
+
+    hdma2d.LayerCfg[0].InputOffset = 0;
+    hdma2d.LayerCfg[0].InputColorMode = DMA2D_RGB565;
+    hdma2d.LayerCfg[0].AlphaMode = DMA2D_NO_MODIF_ALPHA;
+    hdma2d.LayerCfg[0].InputAlpha = 0xFF;
+    HAL_DMA2D_ConfigLayer(&hdma2d, 0);
+
+    HAL_DMA2D_Start(&hdma2d, (uint32_t)rgb565_to_rgb888(color),
+                    (uint32_t)&BACKBUFFER[y + x * LCD_HEIGHT], h, w);
+    HAL_DMA2D_PollForTransfer(&hdma2d, 100);
 }
 
 void lcd_draw_circle(unsigned int x, unsigned int y, unsigned int r,
@@ -301,8 +364,6 @@ void lcd_draw_text(const Font* font, const char* str, unsigned start_x,
 }
 
 void lcd_end_of_refresh_callback(DSI_HandleTypeDef* hdsi) {
-    PROFILER_ENTER();
-
     // Frame rate tracking
     static unsigned int last_tick = 0;
     static unsigned int frame_count = 0;
@@ -318,6 +379,8 @@ void lcd_end_of_refresh_callback(DSI_HandleTypeDef* hdsi) {
 
     // Done refreshing
     s_refreshing = false;
+}
 
-    PROFILER_EXIT();
+bool lcd_is_refreshing() {
+    return s_refreshing;
 }

@@ -1,3 +1,5 @@
+#include "main.h"
+
 #include "stm32f4xx_hal.h"
 #include "status.h"
 #include "clocks.h"
@@ -6,19 +8,13 @@
 #include "ram.h"
 #include "flash.h"
 #include "gui.h"
+#include "gui_app.h"
 #include "usb.h"
 #include "sdmmc/sdmmc.h"
 #include "filesystem.h"
 #include "file_sender.h"
 #include "packet_engine.h"
-#include "main.h"
 #include "profiler.h"
-
-// #include "images/test.h"
-// #include "images/squares.h"
-#include "images/splashscreen.h"
-#include "images/blank.h"
-#include "fonts/arial.h"
 
 #include <vector>
 #include <stdio.h>
@@ -38,6 +34,7 @@ int main(void) {
     ret |= usb_init() << 5;
     ret |= diskio_init(SD_SPEED_HIGH) << 6;
     ret |= filesystem_init() << 7;
+    ret |= gui_app_init() << 8;
 
     if (ret == 0) {
         printf("System initialized successfully.\n");
@@ -45,51 +42,12 @@ int main(void) {
         printf("System initialization failed with code: %x\n", ret);
     }
 
-    std::vector<FileInfo> file_list;
-    filesystem_get_file_list(file_list);
-
-    lcd_set_background(BLANK);
-    lcd_clear_foreground();
-    lcd_swap_buffers();
-
-    Scene scene(0xDFFFDF);
-
-    for (size_t i = 0; i < file_list.size(); ++i) {
-        auto name_label = std::make_shared<Label>(
-            &scene, 10, LCD_HEIGHT - 48 - i * 48, file_list[i].name, 32);
-        scene.add_object(name_label);
-
-        auto div_line = std::make_shared<Rectangle>(
-            &scene, 10, LCD_HEIGHT - 48 - i * 48 - 4, LCD_WIDTH - 20, 2,
-            0x202020);
-        scene.add_object(div_line);
-
-        unsigned long long file_size = file_list[i].size;
-        char size_str[32];
-        if (file_size >= 1024 * 1024) {
-            snprintf(size_str, sizeof(size_str), "%.2f MB",
-                     file_size / (1024.0 * 1024.0));
-        } else if (file_size >= 1024) {
-            snprintf(size_str, sizeof(size_str), "%.2f KB", file_size / 1024.0);
-        } else {
-            snprintf(size_str, sizeof(size_str), "%lu B",
-                     (unsigned long)file_size);
-        }
-
-        auto size_label = std::make_shared<Label>(
-            &scene, LCD_WIDTH - 15, LCD_HEIGHT - 48 - i * 48, size_str, 32);
-        size_label->set_right_aligned(true);
-        scene.add_object(size_label);
-    }
-
-    gui_set_current_scene(&scene);
-
     uint32_t tick = HAL_GetTick();
 
     while (1) {
-        gui_update();
-        gui_render();
+        gui_app_task();
         usb_task();
+        filesystem_task();
         packet_engine_task();
         file_sender_task();
 

@@ -5,9 +5,12 @@
 #include <string>
 #include <vector>
 
-typedef struct {
+typedef struct FileInfo {
     std::string name;
     unsigned long long size;
+    bool operator==(const FileInfo& other) const {
+        return name == other.name && size == other.size;
+    }
 } FileInfo;
 
 Status filesystem_init();
@@ -16,3 +19,4 @@ Status filesystem_open_file(const char* filename);
 Status filesystem_read_file(char* buf, size_t len, size_t* actual_len);
 Status filesystem_seek_file(size_t offset);
 Status filesystem_close_file();
+void filesystem_task();

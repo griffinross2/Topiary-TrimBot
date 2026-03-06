@@ -9,6 +9,13 @@
 #include <vector>
 #include <string>
 #include <memory>
+#include <functional>
+
+typedef enum {
+    LABEL_ALIGN_LEFT,
+    LABEL_ALIGN_CENTER,
+    LABEL_ALIGN_RIGHT,
+} LabelAlignment;
 
 class Scene;
 
@@ -18,6 +25,7 @@ public:
 
     void set_visible(bool visible);
     bool is_clickable() { return m_clickable; }
+    bool is_visible() { return m_visible; }
 
     virtual void redraw() {}
     virtual void handle_press(int x, int y) {}
@@ -35,14 +43,24 @@ public:
     Scene(ColorRGB888 background_color);
 
     void add_object(std::shared_ptr<SceneObject> obj);
+    void add_dialog_object(std::shared_ptr<SceneObject> obj);
     void redraw();
     std::vector<std::shared_ptr<SceneObject>>& get_objects() {
         return m_objects;
     }
+    std::vector<std::shared_ptr<SceneObject>>& get_dialog_objects() {
+        return m_dialog_objects;
+    }
+    void clear_objects() { m_objects.clear(); }
+    void clear_dialog_objects() { m_dialog_objects.clear(); }
+    void set_dialog_active(bool active) { m_dialog_active = active; }
+    bool is_dialog_active() { return m_dialog_active; }
 
 private:
     ColorRGB565 m_background_color = 0xFFFF;
     std::vector<std::shared_ptr<SceneObject>> m_objects;
+    std::vector<std::shared_ptr<SceneObject>> m_dialog_objects;
+    bool m_dialog_active = false;
 };
 
 class Rectangle : public SceneObject {
@@ -79,7 +97,7 @@ public:
     void set_text(std::string text);
     void set_color(ColorRGB888 color);
     void set_font(const Font* font);
-    void set_right_aligned(bool right_align) { m_right_align = right_align; }
+    void set_alignment(LabelAlignment alignment) { m_alignment = alignment; }
 
     void redraw() override;
     void handle_press(int x, int y) override {}
@@ -93,7 +111,7 @@ private:
     ColorRGB565 m_color = 0;
     const Font* m_font = &ARIAL;
     int m_text_width = 0;
-    bool m_right_align = false;
+    LabelAlignment m_alignment = LABEL_ALIGN_LEFT;
 };
 
 class Button : public SceneObject {
@@ -103,6 +121,10 @@ public:
     void redraw() override;
     void handle_press(int x, int y) override;
     void handle_release(int x, int y) override;
+    void bg_off() { m_background_on = false; }
+    void set_on_click(std::function<void(int, int)> on_click) {
+        m_on_click = on_click;
+    }
 
 private:
     int m_x = 0;
@@ -110,6 +132,8 @@ private:
     int m_width = 0;
     int m_height = 0;
     bool m_pressed = false;
+    bool m_background_on = true;
+    std::function<void(int, int)> m_on_click;
 };
 
 typedef struct {
@@ -124,6 +148,6 @@ void gui_touch_update();
 void gui_touch_irq();
 
 void gui_update();
-void gui_render();
+void gui_render(unsigned int target_fps = 60);
 
 #endif  // GUI_H

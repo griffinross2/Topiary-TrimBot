@@ -21,10 +21,12 @@ typedef uint16_t ColorRGB565;
     ((((rgb888) >> 8) & 0xF800) | (((rgb888) >> 5) & 0x07E0) | \
      (((rgb888) >> 3) & 0x001F))
 ColorRGB565 rgb888_to_rgb565(ColorRGB888);
+ColorRGB888 rgb565_to_rgb888(ColorRGB565);
 
 Status lcd_init();
 
 void lcd_refresh();
+bool lcd_is_refreshing();
 
 void lcd_swap_buffers();
 ColorRGB565* lcd_get_backbuffer();

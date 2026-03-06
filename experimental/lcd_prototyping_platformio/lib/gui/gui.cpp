@@ -2,19 +2,21 @@
 
 #include "ft6336g.h"
 #include "profiler.h"
+#include "timing.h"
 
 #include <algorithm>
 
-Scene* g_current_scene = nullptr;
-TouchState g_touch_state = {false, 0, 0};
+static Scene* s_current_scene = nullptr;
+static TouchState s_touch_state = {false, 0, 0};
+static uint32_t s_last_refresh = 0;
 
 void gui_set_current_scene(Scene* scene) {
-    g_current_scene = scene;
-    g_current_scene->redraw();
+    s_current_scene = scene;
+    s_current_scene->redraw();
 }
 
 Scene* gui_get_current_scene() {
-    return g_current_scene;
+    return s_current_scene;
 }
 
 Scene::Scene() {}
@@ -25,7 +27,14 @@ Scene::Scene(ColorRGB888 background_color) {
 
 void Scene::add_object(std::shared_ptr<SceneObject> obj) {
     m_objects.push_back(std::move(obj));
-    if (g_current_scene == this) {
+    if (s_current_scene == this) {
+        redraw();
+    }
+}
+
+void Scene::add_dialog_object(std::shared_ptr<SceneObject> obj) {
+    m_dialog_objects.push_back(std::move(obj));
+    if (s_current_scene == this) {
         redraw();
     }
 }
@@ -40,6 +49,12 @@ void Scene::redraw() {
 
     for (auto& o : m_objects) {
         o->redraw();
+    }
+
+    if (m_dialog_active) {
+        for (auto& o : m_dialog_objects) {
+            o->redraw();
+        }
     }
 
     lcd_swap_buffers();
@@ -131,8 +146,11 @@ void Label::set_font(const Font* font) {
 
 void Label::redraw() {
     if (m_visible) {
-        if (m_right_align) {
+        if (m_alignment == LABEL_ALIGN_RIGHT) {
             lcd_draw_text(m_font, m_text.c_str(), m_x - m_text_width, m_y,
+                          m_size, m_color);
+        } else if (m_alignment == LABEL_ALIGN_CENTER) {
+            lcd_draw_text(m_font, m_text.c_str(), m_x - m_text_width / 2, m_y,
                           m_size, m_color);
         } else {
             lcd_draw_text(m_font, m_text.c_str(), m_x, m_y, m_size, m_color);
@@ -149,9 +167,11 @@ void Button::redraw() {
         int y = std::min(std::max(0, m_y), LCD_HEIGHT - 1);
         unsigned int w = std::min(m_width, LCD_WIDTH - x);
         unsigned int h = std::min(m_height, LCD_HEIGHT - y);
-        lcd_draw_rectangle(x, y, w, h,
-                           m_pressed ? LITERAL_RGB888_TO_RGB565(0xBBBBBB)
-                                     : LITERAL_RGB888_TO_RGB565(0x888888));
+        if (m_background_on && !m_pressed) {
+            lcd_draw_rectangle(x, y, w, h, LITERAL_RGB888_TO_RGB565(0x888888));
+        } else if (m_pressed) {
+            lcd_draw_rectangle(x, y, w, h, LITERAL_RGB888_TO_RGB565(0xBBBBBB));
+        }
     }
 }
 
@@ -176,21 +196,51 @@ void Button::handle_release(int x, int y) {
         m_pressed = false;
 
         printf("Button clicked at (%d, %d)\n", x, y);
+
+        if (m_on_click) {
+            m_on_click(x, y);
+        }
     }
 }
 
 void gui_touch_update() {
-    int x = g_touch_state.x;
-    int y = g_touch_state.y;
-    if (g_touch_state.pressed) {
-        for (auto obj : g_current_scene->get_objects()) {
-            if (obj->is_clickable()) {
+    int x = s_touch_state.x;
+    int y = s_touch_state.y;
+    if (s_touch_state.pressed) {
+        if (s_current_scene->is_dialog_active()) {
+            bool dialog_interaction = false;
+            for (auto obj : s_current_scene->get_dialog_objects()) {
+                if (obj->is_clickable() && obj->is_visible()) {
+                    obj->handle_press(x, y);
+                    dialog_interaction = true;
+                }
+            }
+
+            if (dialog_interaction) {
+                return;
+            }
+        }
+        for (auto obj : s_current_scene->get_objects()) {
+            if (obj->is_clickable() && obj->is_visible()) {
                 obj->handle_press(x, y);
             }
         }
     } else {
-        for (auto obj : g_current_scene->get_objects()) {
-            if (obj->is_clickable()) {
+        if (s_current_scene->is_dialog_active()) {
+            bool dialog_interaction = false;
+            for (auto obj : s_current_scene->get_dialog_objects()) {
+                if (obj->is_clickable() && obj->is_visible()) {
+                    obj->handle_release(x, y);
+                    dialog_interaction = true;
+                }
+            }
+
+            if (dialog_interaction) {
+                return;
+            }
+        }
+        for (auto obj : s_current_scene->get_objects()) {
+            if (obj->is_clickable() && obj->is_visible()) {
                 obj->handle_release(x, y);
             }
         }
@@ -212,27 +262,27 @@ void gui_touch_irq() {
 
     if (event == FT6336G_TOUCH_EVENT_DOWN) {
         // Press event
-        g_touch_state.pressed = true;
-        g_touch_state.x = x;
-        g_touch_state.y = y;
+        s_touch_state.pressed = true;
+        s_touch_state.x = x;
+        s_touch_state.y = y;
 
         return;
     }
 
     if (event == FT6336G_TOUCH_EVENT_CONTACT) {
         // Contact event
-        g_touch_state.pressed = true;
-        g_touch_state.x = x;
-        g_touch_state.y = y;
+        s_touch_state.pressed = true;
+        s_touch_state.x = x;
+        s_touch_state.y = y;
 
         return;
     }
 
     if (event == FT6336G_TOUCH_EVENT_UP) {
         // Release event
-        g_touch_state.pressed = false;
-        g_touch_state.x = x;
-        g_touch_state.y = y;
+        s_touch_state.pressed = false;
+        s_touch_state.x = x;
+        s_touch_state.y = y;
 
         return;
     }
@@ -246,11 +296,18 @@ void gui_update() {
     PROFILER_EXIT();
 }
 
-void gui_render() {
+void gui_render(unsigned int target_fps) {
     PROFILER_ENTER();
 
-    if (g_current_scene) {
-        g_current_scene->redraw();
+    if (lcd_is_refreshing() ||
+        get_tick_ms() - s_last_refresh < 1000 / target_fps) {
+        PROFILER_EXIT();
+        return;
+    }
+    s_last_refresh = get_tick_ms();
+
+    if (s_current_scene) {
+        s_current_scene->redraw();
     }
 
     PROFILER_EXIT();

@@ -3,8 +3,6 @@
 #include "board.h"
 #include "stm32f4xx_hal.h"
 
-#include "string.h"
-
 SD_HandleTypeDef hsd;
 DMA_HandleTypeDef hdma_tx;
 DMA_HandleTypeDef hdma_rx;

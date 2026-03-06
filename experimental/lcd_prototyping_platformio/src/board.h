@@ -316,5 +316,6 @@ __attribute__((unused)) static uint32_t GPIO_PIN_TO_MODEPOS[] = {
 #define BOARD_GPIO_MODER_POS(pin) GPIO_PIN_TO_MODEPOS[pin]
 
 // Pin aliases
+#define SD_CARD_DETECT_PIN PIN_PG2
 
 #endif  // BOARD_H
