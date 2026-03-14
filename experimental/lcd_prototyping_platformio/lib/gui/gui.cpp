@@ -208,40 +208,30 @@ void gui_touch_update() {
     int y = s_touch_state.y;
     if (s_touch_state.pressed) {
         if (s_current_scene->is_dialog_active()) {
-            bool dialog_interaction = false;
             for (auto obj : s_current_scene->get_dialog_objects()) {
                 if (obj->is_clickable() && obj->is_visible()) {
                     obj->handle_press(x, y);
-                    dialog_interaction = true;
                 }
             }
-
-            if (dialog_interaction) {
-                return;
-            }
-        }
-        for (auto obj : s_current_scene->get_objects()) {
-            if (obj->is_clickable() && obj->is_visible()) {
-                obj->handle_press(x, y);
+        } else {
+            for (auto obj : s_current_scene->get_objects()) {
+                if (obj->is_clickable() && obj->is_visible()) {
+                    obj->handle_press(x, y);
+                }
             }
         }
     } else {
         if (s_current_scene->is_dialog_active()) {
-            bool dialog_interaction = false;
             for (auto obj : s_current_scene->get_dialog_objects()) {
                 if (obj->is_clickable() && obj->is_visible()) {
                     obj->handle_release(x, y);
-                    dialog_interaction = true;
                 }
             }
-
-            if (dialog_interaction) {
-                return;
-            }
-        }
-        for (auto obj : s_current_scene->get_objects()) {
-            if (obj->is_clickable() && obj->is_visible()) {
-                obj->handle_release(x, y);
+        } else {
+            for (auto obj : s_current_scene->get_objects()) {
+                if (obj->is_clickable() && obj->is_visible()) {
+                    obj->handle_release(x, y);
+                }
             }
         }
     }

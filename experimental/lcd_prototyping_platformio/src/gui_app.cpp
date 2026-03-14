@@ -5,6 +5,7 @@
 #include "filesystem.h"
 #include "timing.h"
 #include "profiler.h"
+#include "file_sender.h"
 
 // #include "images/test.h"
 // #include "images/squares.h"
@@ -17,7 +18,7 @@
 struct {
     Scene scene;
     std::vector<FileInfo> file_list;
-    int selected_file_index = 0;
+    size_t selected_file_index = 0;
     long long unsigned last_update_tick;
     std::shared_ptr<Rectangle> dialog_border;
     std::shared_ptr<Rectangle> dialog_bg;
@@ -36,6 +37,11 @@ Status update_file_list() {
 
     std::vector<FileInfo> new_file_list;
     Status status = filesystem_get_file_list(new_file_list);
+
+    // If the file list has become empty, close the dialog
+    if (new_file_list.empty()) {
+        file_list_scene_ctx.scene.set_dialog_active(false);
+    }
 
     if (std::equal(file_list.begin(), file_list.end(), new_file_list.begin(),
                    new_file_list.end())) {
@@ -145,10 +151,15 @@ Status load_file_list_scene() {
     dialog_confirm_label->set_alignment(LABEL_ALIGN_CENTER);
 
     dialog_confirm_button->set_on_click([](int x, int y) {
-        printf("Clicked confirm for file: %s\n",
-               file_list_scene_ctx
-                   .file_list[file_list_scene_ctx.selected_file_index]
-                   .name.c_str());
+        // Send file if the index is still valid (card wasn't removed)
+        if (file_list_scene_ctx.selected_file_index <
+            file_list_scene_ctx.file_list.size()) {
+            const FileInfo& selected_file =
+                file_list_scene_ctx
+                    .file_list[file_list_scene_ctx.selected_file_index];
+            file_sender_send_file(selected_file.name.c_str());
+        }
+
         file_list_scene_ctx.scene.set_dialog_active(false);
     });
 
@@ -163,10 +174,6 @@ Status load_file_list_scene() {
     dialog_cancel_label->set_alignment(LABEL_ALIGN_CENTER);
 
     dialog_cancel_button->set_on_click([](int x, int y) {
-        printf("Clicked cancel for file: %s\n",
-               file_list_scene_ctx
-                   .file_list[file_list_scene_ctx.selected_file_index]
-                   .name.c_str());
         file_list_scene_ctx.scene.set_dialog_active(false);
     });
 
@@ -194,6 +201,8 @@ Status gui_app_init() {
 }
 
 void gui_app_task() {
+    PROFILER_ENTER();
+
     // Scene specific updates
     if (gui_get_current_scene() == &file_list_scene_ctx.scene) {
         if (get_tick_ms() - file_list_scene_ctx.last_update_tick >= 1000) {
@@ -205,4 +214,6 @@ void gui_app_task() {
     // Global update
     gui_update();
     gui_render();
+
+    PROFILER_EXIT();
 }

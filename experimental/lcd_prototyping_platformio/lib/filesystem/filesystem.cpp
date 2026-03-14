@@ -5,6 +5,7 @@
 #include "timing.h"
 #include "gpio/gpio.h"
 #include "board.h"
+#include "profiler.h"
 
 #include "string.h"
 
@@ -115,6 +116,8 @@ Status filesystem_close_file() {
 }
 
 void filesystem_task() {
+    PROFILER_ENTER();
+
     GpioValue card_detect = gpio_read(SD_CARD_DETECT_PIN);
     if (s_inited && card_detect == GPIO_HIGH) {
         TRACE_PRINTF("SD card disconnected.\n");
@@ -126,6 +129,8 @@ void filesystem_task() {
         if (sdmmc_init_card() != STATUS_OK) {
             TRACE_PRINTF("Failed to reinitialize SD card.\n");
             s_last_init_try_tick = get_tick_ms();
+
+            PROFILER_EXIT();
             return;
         }
         if (f_mount(&s_fs, "/", 1) == FR_OK) {
@@ -134,4 +139,6 @@ void filesystem_task() {
         }
         s_last_init_try_tick = get_tick_ms();
     }
+
+    PROFILER_EXIT();
 }

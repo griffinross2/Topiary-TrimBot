@@ -19,6 +19,7 @@
 #include <vector>
 #include <stdio.h>
 #include <malloc.h>
+#include <iostream>
 
 extern TIM_HandleTypeDef htim3;
 
@@ -54,7 +55,6 @@ int main(void) {
         if (HAL_GetTick() - tick >= 10000) {
             tick = HAL_GetTick();
 
-            file_sender_send_file("cube.obj");
             profiler_print_summary();
         }
     }
