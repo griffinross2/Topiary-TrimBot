@@ -1,0 +1,1 @@
+"C:\Program Files\STMicroelectronics\STM32Cube\STM32CubeProgrammer\bin\STM32_Programmer_CLI.exe" -c port=SWD -d .pio/build/core_m4/firmware.elf -rst
