@@ -1,4 +1,7 @@
 #include "stm32h7xx_hal.h"
+#include "clocks.h"
+#include "board.h"
+#include "gpio/gpio.h"
 
 #include <stdio.h>
 
@@ -6,32 +9,14 @@ int main(void)
 {
     HAL_Init();
 
-    __HAL_RCC_SYSCFG_CLK_ENABLE();
-    HAL_PWREx_ConfigSupply(PWR_LDO_SUPPLY);
-    __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
-
-    while (!__HAL_PWR_GET_FLAG(PWR_FLAG_VOSRDY))
-    {
-    }
-
-    __HAL_RCC_GPIOD_CLK_ENABLE();
-
-    GPIO_InitTypeDef gpioConf = {
-        .Pin = GPIO_PIN_3,
-        .Mode = GPIO_MODE_OUTPUT_PP,
-        .Pull = GPIO_NOPULL,
-        .Speed = GPIO_SPEED_LOW,
-        .Alternate = 0,
-    };
-
-    HAL_GPIO_Init(GPIOD, &gpioConf);
+    clocks_init();
 
     // Main loop
     while (1)
     {
-        HAL_GPIO_WritePin(GPIOD, GPIO_PIN_3, GPIO_PIN_SET);
+        gpio_write(PIN_PD3, GPIO_HIGH);
         HAL_Delay(500);
-        HAL_GPIO_WritePin(GPIOD, GPIO_PIN_3, GPIO_PIN_RESET);
+        gpio_write(PIN_PD3, GPIO_LOW);
         HAL_Delay(500);
     }
 
