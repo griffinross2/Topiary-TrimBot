@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 
-extern "C" int main(void);
+// extern "C" int main(void);
 
 int main(void)
 {
@@ -11,7 +11,6 @@ int main(void)
     // Main loop
     while (1)
     {
-        printf("Hello from M4 core!\n");
         HAL_Delay(1000);
     }
 
