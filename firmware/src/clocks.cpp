@@ -7,10 +7,72 @@ Status clocks_init()
 {
     __HAL_RCC_SYSCFG_CLK_ENABLE();
     HAL_PWREx_ConfigSupply(PWR_LDO_SUPPLY);
-    __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+    HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE0);
 
     while (!__HAL_PWR_GET_FLAG(PWR_FLAG_VOSRDY))
     {
+    }
+
+    HAL_Delay(10);
+
+    // Oscillator and PLL initialization
+    // RCC_OscInitTypeDef osc_init = {0};
+    // osc_init.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+    // osc_init.HSEState = RCC_HSE_BYPASS;
+    // osc_init.PLL.PLLState = RCC_PLL_ON;
+    // osc_init.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+    // osc_init.PLL.PLLM = 8;
+    // osc_init.PLL.PLLN = 240;
+    // osc_init.PLL.PLLP = 2;
+    // osc_init.PLL.PLLQ = 20;
+    // osc_init.PLL.PLLR = 2;
+    // osc_init.PLL.PLLRGE = RCC_PLL1VCIRANGE_2;
+    // osc_init.PLL.PLLVCOSEL = RCC_PLL1VCOWIDE;
+    // osc_init.PLL.PLLFRACN = 0;
+    RCC_OscInitTypeDef osc_init = {0};
+    osc_init.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+    osc_init.HSIState = RCC_HSI_ON;
+    osc_init.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+    osc_init.PLL.PLLState = RCC_PLL_ON;
+    osc_init.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+    osc_init.PLL.PLLM = 16;
+    osc_init.PLL.PLLN = 240;
+    osc_init.PLL.PLLP = 2;
+    osc_init.PLL.PLLQ = 20;
+    osc_init.PLL.PLLR = 2;
+    osc_init.PLL.PLLRGE = RCC_PLL1VCIRANGE_2;
+    osc_init.PLL.PLLVCOSEL = RCC_PLL1VCOWIDE;
+    osc_init.PLL.PLLFRACN = 0;
+    if (HAL_RCC_OscConfig(&osc_init) != HAL_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    // CPU and Bus clock initialization
+    RCC_ClkInitTypeDef clk_init = {0};
+    clk_init.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2
+                              |RCC_CLOCKTYPE_D3PCLK1|RCC_CLOCKTYPE_D1PCLK1;
+    clk_init.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+    clk_init.SYSCLKDivider = RCC_SYSCLK_DIV1;
+    clk_init.AHBCLKDivider = RCC_HCLK_DIV2;
+    clk_init.APB3CLKDivider = RCC_APB3_DIV2;
+    clk_init.APB1CLKDivider = RCC_APB1_DIV2;
+    clk_init.APB2CLKDivider = RCC_APB2_DIV2;
+    clk_init.APB4CLKDivider = RCC_APB4_DIV2;
+
+    if (HAL_RCC_ClockConfig(&clk_init, FLASH_LATENCY_4) != HAL_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    // Peripheral clocks initialization
+    RCC_PeriphCLKInitTypeDef pclk_init = {0};
+    pclk_init.SdmmcClockSelection = RCC_SDMMCCLKSOURCE_PLL;
+    pclk_init.PeriphClockSelection = RCC_PERIPHCLK_SDMMC;
+
+    if (HAL_RCCEx_PeriphCLKConfig(&pclk_init) != HAL_OK) {
+        return STATUS_ERROR;
     }
 
     __HAL_RCC_GPIOA_CLK_ENABLE();
