@@ -14,26 +14,14 @@ Status clocks_init()
     }
 
     // Oscillator and PLL initialization
-    // RCC_OscInitTypeDef osc_init = {0};
-    // osc_init.OscillatorType = RCC_OSCILLATORTYPE_HSE;
-    // osc_init.HSEState = RCC_HSE_BYPASS;
-    // osc_init.PLL.PLLState = RCC_PLL_ON;
-    // osc_init.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-    // osc_init.PLL.PLLM = 8;
-    // osc_init.PLL.PLLN = 240;
-    // osc_init.PLL.PLLP = 2;
-    // osc_init.PLL.PLLQ = 20;
-    // osc_init.PLL.PLLR = 2;
-    // osc_init.PLL.PLLRGE = RCC_PLL1VCIRANGE_2;
-    // osc_init.PLL.PLLVCOSEL = RCC_PLL1VCOWIDE;
-    // osc_init.PLL.PLLFRACN = 0;
+    // Start with HSI
     RCC_OscInitTypeDef osc_init = {};
     osc_init.OscillatorType = RCC_OSCILLATORTYPE_HSI;
-    osc_init.HSIState = RCC_HSI_ON;
+    osc_init.HSIState = RCC_HSI_DIV2;
     osc_init.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
     osc_init.PLL.PLLState = RCC_PLL_ON;
     osc_init.PLL.PLLSource = RCC_PLLSOURCE_HSI;
-    osc_init.PLL.PLLM = 16;
+    osc_init.PLL.PLLM = 8;
     osc_init.PLL.PLLN = 240;
     osc_init.PLL.PLLP = 2;
     osc_init.PLL.PLLQ = 20;
@@ -45,6 +33,12 @@ Status clocks_init()
     {
         return STATUS_ERROR;
     }
+
+    // Manually enable HSE (no HAL) to avoid timeout in HSERDY check
+    RCC->CR |= RCC_CR_HSEBYP;
+    RCC->CR |= RCC_CR_HSEON;
+    HAL_Delay(100);
+    RCC->PLLCKSELR |= RCC_PLLCKSELR_PLLSRC_HSE;
 
     // CPU and Bus clock initialization
     RCC_ClkInitTypeDef clk_init = {};
@@ -64,14 +58,22 @@ Status clocks_init()
 
     // Peripheral clocks initialization
     RCC_PeriphCLKInitTypeDef pclk_init = {};
+    pclk_init.PeriphClockSelection = RCC_PERIPHCLK_SDMMC | RCC_PERIPHCLK_LTDC;
     pclk_init.SdmmcClockSelection = RCC_SDMMCCLKSOURCE_PLL;
-    pclk_init.PeriphClockSelection = RCC_PERIPHCLK_SDMMC;
+    pclk_init.PLL3.PLL3M = 8;
+    pclk_init.PLL3.PLL3N = 128;
+    pclk_init.PLL3.PLL3P = 2;
+    pclk_init.PLL3.PLL3Q = 2;
+    pclk_init.PLL3.PLL3R = 32;
+    pclk_init.PLL3.PLL3RGE = RCC_PLL3VCIRANGE_2;
+    pclk_init.PLL3.PLL3VCOSEL = RCC_PLL3VCOWIDE;
+    pclk_init.PLL3.PLL3FRACN = 0;
 
     if (HAL_RCCEx_PeriphCLKConfig(&pclk_init) != HAL_OK)
     {
         return STATUS_ERROR;
     }
-
+    
     __HAL_RCC_GPIOA_CLK_ENABLE();
     __HAL_RCC_GPIOB_CLK_ENABLE();
     __HAL_RCC_GPIOC_CLK_ENABLE();

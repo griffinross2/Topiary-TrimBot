@@ -402,4 +402,40 @@ __attribute__((unused)) static uint32_t GPIO_PIN_TO_MODEPOS[] = {
 #define PIN_TS_NRST PIN_PF2
 #define PIN_TS_INT PIN_PF3
 
+// Backlight
+#define PIN_BL_EN PIN_PB13
+#define PIN_BL_DIM PIN_PB14
+#define PIN_BL_DISC PIN_PB15
+
+// LCD (all AF14 unless specified)
+#define PIN_LCD_DISP PIN_PA0
+#define PIN_LCD_DE PIN_PE13
+#define PIN_LCD_PCLK PIN_PE14
+#define PIN_LCD_HSYNC PIN_PC6
+#define PIN_LCD_VSYNC PIN_PA4
+#define PIN_LCD_R0 PIN_PG13
+#define PIN_LCD_R1 PIN_PA2
+#define PIN_LCD_R2 PIN_PA1
+#define PIN_LCD_R3 PIN_PB0 // AF9
+#define PIN_LCD_R4 PIN_PA5
+#define PIN_LCD_R5 PIN_PC0
+#define PIN_LCD_R6 PIN_PB1 // AF9
+#define PIN_LCD_R7 PIN_PE15
+#define PIN_LCD_G0 PIN_PE5
+#define PIN_LCD_G1 PIN_PE6
+#define PIN_LCD_G2 PIN_PA6
+#define PIN_LCD_G3 PIN_PE11
+#define PIN_LCD_G4 PIN_PB10
+#define PIN_LCD_G5 PIN_PB11
+#define PIN_LCD_G6 PIN_PC7
+#define PIN_LCD_G7 PIN_PG8
+#define PIN_LCD_B0 PIN_PE4
+#define PIN_LCD_B1 PIN_PA10
+#define PIN_LCD_B2 PIN_PD6
+#define PIN_LCD_B3 PIN_PD10
+#define PIN_LCD_B4 PIN_PE12
+#define PIN_LCD_B5 PIN_PA3
+#define PIN_LCD_B6 PIN_PB8
+#define PIN_LCD_B7 PIN_PB9
+
 #endif // BOARD_H

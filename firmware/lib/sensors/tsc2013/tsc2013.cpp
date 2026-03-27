@@ -96,11 +96,7 @@ Status tsc2013_init()
         return STATUS_ERROR;
     }
 
-    if (tsc2013_read_reg(TSC2013_REG_CFR0, &readback_val) != STATUS_OK || readback_val != 0x8000)
-    {
-        TRACE_PRINTF("TSC2013 CFR0 readback failed: expected 0x%04X, got 0x%04X\n", cfr0_val, readback_val);
-        return STATUS_ERROR;
-    }
+    // No readback on CFR0
 
     // CFR1:
     // Bit 15-3     - Reserved, set to 0

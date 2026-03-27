@@ -6,6 +6,7 @@
 #include "flash.h"
 #include "sdmmc/sdmmc.h"
 #include "tsc2013/tsc2013.h"
+#include "ltdc.h"
 
 #include <stdio.h>
 
@@ -20,7 +21,7 @@ int main(void)
     init_stat |= sdmmc_init(SD_SPEED_HIGH) << 3;
     init_stat |= tsc2013_init() << 4;
 
-    printf("Init status: %x\n", init_stat);
+    printf("Init status: 0x%x\n", init_stat);
 
     if (init_stat != STATUS_OK)
     {
@@ -30,6 +31,9 @@ int main(void)
     {
         gpio_write(PIN_GRN, GPIO_HIGH);
     }
+
+    gpio_write(PIN_BL_EN, GPIO_HIGH);
+    gpio_write(PIN_BL_DIM, GPIO_HIGH);
 
     gpio_write(PIN_TURNTABLE_DIR, GPIO_HIGH);
     gpio_write(PIN_GANTRY_DIR, GPIO_HIGH);
@@ -43,6 +47,11 @@ int main(void)
         // HAL_Delay(500);
         // gpio_write(PIN_PD3, GPIO_LOW);
         // HAL_Delay(500);
+        if (gpio_read(PIN_BL_DISC) == GPIO_LOW) {
+            gpio_write(PIN_YEL, GPIO_HIGH);
+        } else {
+            gpio_write(PIN_YEL, GPIO_LOW);
+        }
 
         gpio_write(PIN_TURNTABLE_STEP, GPIO_HIGH);
         gpio_write(PIN_GANTRY_STEP, GPIO_HIGH);
