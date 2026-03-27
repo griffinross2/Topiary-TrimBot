@@ -1,5 +1,8 @@
 #include "sdmmc/sdmmc.h"
 
+// Adapted from Purdue Space Program High Altitude, Originally written by
+// Griffin Ross
+
 #include "board.h"
 #include "stm32h7xx_hal.h"
 
@@ -7,7 +10,8 @@ SD_HandleTypeDef hsd;
 DMA_HandleTypeDef hdma_tx;
 DMA_HandleTypeDef hdma_rx;
 
-Status sdmmc_init(SdmmcSpeed clk) {
+Status sdmmc_init(SdmmcSpeed clk)
+{
     GPIO_InitTypeDef GPIO_InitStruct;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
@@ -31,14 +35,16 @@ Status sdmmc_init(SdmmcSpeed clk) {
     hsd.Init.ClockEdge = SDMMC_CLOCK_EDGE_RISING;
     hsd.Init.ClockPowerSave = SDMMC_CLOCK_POWER_SAVE_DISABLE;
     hsd.Init.HardwareFlowControl = SDMMC_HARDWARE_FLOW_CONTROL_DISABLE;
-    hsd.Init.ClockDiv = clk == SD_SPEED_HIGH ? 0 : 1;  // SDIO_CK = 48MHz / (ClockDiv * 2)
+    hsd.Init.ClockDiv = clk == SD_SPEED_HIGH ? 0 : 1; // SDIO_CK = 48MHz / (ClockDiv * 2)
 
-    if (HAL_SD_Init(&hsd) != HAL_OK) {
+    if (HAL_SD_Init(&hsd) != HAL_OK)
+    {
         return STATUS_ERROR;
     }
 
     if (hsd.Init.BusWide != SDMMC_BUS_WIDE_1B &&
-        HAL_SD_ConfigWideBusOperation(&hsd, hsd.Init.BusWide) != HAL_OK) {
+        HAL_SD_ConfigWideBusOperation(&hsd, hsd.Init.BusWide) != HAL_OK)
+    {
         return STATUS_ERROR;
     }
 
@@ -87,15 +93,18 @@ Status sdmmc_init(SdmmcSpeed clk) {
     return STATUS_OK;
 }
 
-Status sdmmc_init_card() {
-    if (HAL_SD_InitCard(&hsd) != HAL_OK) {
+Status sdmmc_init_card()
+{
+    if (HAL_SD_InitCard(&hsd) != HAL_OK)
+    {
         return STATUS_ERROR;
     }
     return STATUS_OK;
 }
 
-Status sdmmc_write_blocks(uint8_t* tx_buf, uint32_t block_start,
-                          uint32_t num_blocks) {
+Status sdmmc_write_blocks(uint8_t *tx_buf, uint32_t block_start,
+                          uint32_t num_blocks)
+{
     // if (HAL_SD_WriteBlocks_DMA(&hsd, tx_buf, block_start, num_blocks) !=
     //     HAL_OK) {
     //     return STATUS_ERROR;
@@ -111,8 +120,9 @@ Status sdmmc_write_blocks(uint8_t* tx_buf, uint32_t block_start,
     return STATUS_OK;
 }
 
-Status sdmmc_read_blocks(uint8_t* rx_buf, uint32_t block_start,
-                         uint32_t num_blocks) {
+Status sdmmc_read_blocks(uint8_t *rx_buf, uint32_t block_start,
+                         uint32_t num_blocks)
+{
     // if (HAL_SD_ReadBlocks_DMA(&hsd, rx_buf, block_start, num_blocks) !=
     //     HAL_OK) {
     //     return STATUS_ERROR;
@@ -128,39 +138,44 @@ Status sdmmc_read_blocks(uint8_t* rx_buf, uint32_t block_start,
     return STATUS_OK;
 }
 
-Status sdmmc_erase(uint32_t block_start, uint32_t block_end) {
-    if (HAL_SD_Erase(&hsd, block_start, block_end) != HAL_OK) {
+Status sdmmc_erase(uint32_t block_start, uint32_t block_end)
+{
+    if (HAL_SD_Erase(&hsd, block_start, block_end) != HAL_OK)
+    {
         return STATUS_ERROR;
     }
     return STATUS_OK;
 }
 
-SdmmcState sdmmc_status() {
-    switch (HAL_SD_GetCardState(&hsd)) {
-        case HAL_SD_CARD_READY:
-            return SD_CARD_READY;
-        case HAL_SD_CARD_IDENTIFICATION:
-            return SD_CARD_IDENTIFICATION;
-        case HAL_SD_CARD_STANDBY:
-            return SD_CARD_STANDBY;
-        case HAL_SD_CARD_TRANSFER:
-            return SD_CARD_TRANSFER;
-        case HAL_SD_CARD_SENDING:
-            return SD_CARD_SENDING;
-        case HAL_SD_CARD_RECEIVING:
-            return SD_CARD_RECEIVING;
-        case HAL_SD_CARD_PROGRAMMING:
-            return SD_CARD_PROGRAMMING;
-        case HAL_SD_CARD_DISCONNECTED:
-            return SD_CARD_DISCONNECTED;
-        case HAL_SD_CARD_ERROR:
-            return SD_CARD_ERROR;
-        default:
-            return SD_CARD_ERROR;
+SdmmcState sdmmc_status()
+{
+    switch (HAL_SD_GetCardState(&hsd))
+    {
+    case HAL_SD_CARD_READY:
+        return SD_CARD_READY;
+    case HAL_SD_CARD_IDENTIFICATION:
+        return SD_CARD_IDENTIFICATION;
+    case HAL_SD_CARD_STANDBY:
+        return SD_CARD_STANDBY;
+    case HAL_SD_CARD_TRANSFER:
+        return SD_CARD_TRANSFER;
+    case HAL_SD_CARD_SENDING:
+        return SD_CARD_SENDING;
+    case HAL_SD_CARD_RECEIVING:
+        return SD_CARD_RECEIVING;
+    case HAL_SD_CARD_PROGRAMMING:
+        return SD_CARD_PROGRAMMING;
+    case HAL_SD_CARD_DISCONNECTED:
+        return SD_CARD_DISCONNECTED;
+    case HAL_SD_CARD_ERROR:
+        return SD_CARD_ERROR;
+    default:
+        return SD_CARD_ERROR;
     }
 }
 
-Status sdmmc_info(SdmmcInfo* info) {
+Status sdmmc_info(SdmmcInfo *info)
+{
     info->CardType = hsd.SdCard.CardType;
     info->CardVersion = 0;
     info->Class = hsd.SdCard.Class;
@@ -173,12 +188,14 @@ Status sdmmc_info(SdmmcInfo* info) {
     return STATUS_OK;
 }
 
-extern "C" {
-void SDMMC1_IRQHandler();
-// void DMA2_Stream3_IRQHandler();
+extern "C"
+{
+    void SDMMC1_IRQHandler();
+    // void DMA2_Stream3_IRQHandler();
 }
 
-void SDMMC1_IRQHandler() {
+void SDMMC1_IRQHandler()
+{
     HAL_SD_IRQHandler(&hsd);
 }
 

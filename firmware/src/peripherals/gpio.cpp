@@ -1,5 +1,8 @@
 #include "gpio/gpio.h"
 
+// Adapted from Purdue Space Program High Altitude, Originally written by
+// Griffin Ross
+
 #include "board.h"
 #include "stm32h7xx_hal.h"
 

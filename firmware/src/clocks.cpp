@@ -13,8 +13,6 @@ Status clocks_init()
     {
     }
 
-    HAL_Delay(10);
-
     // Oscillator and PLL initialization
     // RCC_OscInitTypeDef osc_init = {0};
     // osc_init.OscillatorType = RCC_OSCILLATORTYPE_HSE;
@@ -29,7 +27,7 @@ Status clocks_init()
     // osc_init.PLL.PLLRGE = RCC_PLL1VCIRANGE_2;
     // osc_init.PLL.PLLVCOSEL = RCC_PLL1VCOWIDE;
     // osc_init.PLL.PLLFRACN = 0;
-    RCC_OscInitTypeDef osc_init = {0};
+    RCC_OscInitTypeDef osc_init = {};
     osc_init.OscillatorType = RCC_OSCILLATORTYPE_HSI;
     osc_init.HSIState = RCC_HSI_ON;
     osc_init.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
@@ -49,10 +47,8 @@ Status clocks_init()
     }
 
     // CPU and Bus clock initialization
-    RCC_ClkInitTypeDef clk_init = {0};
-    clk_init.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2
-                              |RCC_CLOCKTYPE_D3PCLK1|RCC_CLOCKTYPE_D1PCLK1;
+    RCC_ClkInitTypeDef clk_init = {};
+    clk_init.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2 | RCC_CLOCKTYPE_D3PCLK1 | RCC_CLOCKTYPE_D1PCLK1;
     clk_init.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
     clk_init.SYSCLKDivider = RCC_SYSCLK_DIV1;
     clk_init.AHBCLKDivider = RCC_HCLK_DIV2;
@@ -67,11 +63,12 @@ Status clocks_init()
     }
 
     // Peripheral clocks initialization
-    RCC_PeriphCLKInitTypeDef pclk_init = {0};
+    RCC_PeriphCLKInitTypeDef pclk_init = {};
     pclk_init.SdmmcClockSelection = RCC_SDMMCCLKSOURCE_PLL;
     pclk_init.PeriphClockSelection = RCC_PERIPHCLK_SDMMC;
 
-    if (HAL_RCCEx_PeriphCLKConfig(&pclk_init) != HAL_OK) {
+    if (HAL_RCCEx_PeriphCLKConfig(&pclk_init) != HAL_OK)
+    {
         return STATUS_ERROR;
     }
 

@@ -12,6 +12,7 @@ typedef enum
     STATUS_ERROR = 1,
     STATUS_BUSY = 2,
     STATUS_TIMEOUT = 3,
+    STATUS_PARAMETER_ERROR = 4,
 } Status;
 
 // Macro abuse :)
