@@ -1,7 +1,6 @@
 #include "i2c/i2c.h"
 
-// Adapted from Purdue Space Program High Altitude, Originally written by
-// Griffin Ross
+// Adapted from Purdue Space Program High Altitude
 
 #include "board.h"
 #include "stm32h7xx_hal.h"

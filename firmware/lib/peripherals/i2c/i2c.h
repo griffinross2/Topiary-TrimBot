@@ -1,8 +1,7 @@
 #ifndef I2C_H
 #define I2C_H
 
-// Adapted from Purdue Space Program High Altitude, Originally written by
-// Griffin Ross
+// Adapted from Purdue Space Program High Altitude
 
 #include <stddef.h>
 #include <stdint.h>

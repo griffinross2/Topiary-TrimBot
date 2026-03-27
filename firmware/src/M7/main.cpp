@@ -5,6 +5,7 @@
 #include "terminal.h"
 #include "flash.h"
 #include "sdmmc/sdmmc.h"
+#include "tsc2013/tsc2013.h"
 
 #include <stdio.h>
 
@@ -14,13 +15,19 @@ int main(void)
 
     int init_stat = STATUS_OK;
     init_stat |= clocks_init();
-    init_stat |= terminal_init();
-    init_stat |= flash_init();
-    init_stat |= sdmmc_init(SD_SPEED_HIGH);
+    init_stat |= terminal_init() << 1;
+    init_stat |= flash_init() << 2;
+    init_stat |= sdmmc_init(SD_SPEED_HIGH) << 3;
+    init_stat |= tsc2013_init() << 4;
 
-    if (init_stat != STATUS_OK) {
+    printf("Init status: %x\n", init_stat);
+
+    if (init_stat != STATUS_OK)
+    {
         gpio_write(PIN_RED, GPIO_HIGH);
-    } else {
+    }
+    else
+    {
         gpio_write(PIN_GRN, GPIO_HIGH);
     }
 
@@ -32,10 +39,10 @@ int main(void)
     // Main loop
     while (1)
     {
-        //gpio_write(PIN_PD3, GPIO_HIGH);
-        //HAL_Delay(500);
-        //gpio_write(PIN_PD3, GPIO_LOW);
-        //HAL_Delay(500);
+        // gpio_write(PIN_PD3, GPIO_HIGH);
+        // HAL_Delay(500);
+        // gpio_write(PIN_PD3, GPIO_LOW);
+        // HAL_Delay(500);
 
         gpio_write(PIN_TURNTABLE_STEP, GPIO_HIGH);
         gpio_write(PIN_GANTRY_STEP, GPIO_HIGH);

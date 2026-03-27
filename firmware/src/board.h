@@ -395,4 +395,11 @@ __attribute__((unused)) static uint32_t GPIO_PIN_TO_MODEPOS[] = {
 #define PIN_GANTRY_STEP PIN_PD14
 #define PIN_EXTRUDER_STEP PIN_PD13
 #define PIN_REVOLUTE_STEP PIN_PD12
+
+// Touchscreen driver
+#define PIN_TS_SDA PIN_PF0
+#define PIN_TS_SCL PIN_PF1
+#define PIN_TS_NRST PIN_PF2
+#define PIN_TS_INT PIN_PF3
+
 #endif // BOARD_H
