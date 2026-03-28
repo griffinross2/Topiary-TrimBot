@@ -6,7 +6,7 @@
 #include "board.h"
 #include "stm32h7xx_hal.h"
 
-Status gpio_mode(uint8_t pin, GpioMode mode)
+Status gpio_mode(uint8_t pin, GpioMode mode, GpioSpeed speed, uint32_t af)
 {
     uint32_t gpio_pin = BOARD_GPIO_PIN(pin);
     GPIO_TypeDef *base = BOARD_GPIO_PORT(pin);
@@ -17,21 +17,69 @@ Status gpio_mode(uint8_t pin, GpioMode mode)
         .Speed = GPIO_SPEED_FREQ_LOW,
         .Alternate = 0,
     };
-    if ((mode == GPIO_INPUT) | (mode == GPIO_INPUT_PULLDOWN) |
-        (mode == GPIO_INPUT_PULLUP))
+
+    // Speed
+    switch (speed)
+    {
+    case GPIO_SPD_LOW:
+        conf.Speed = GPIO_SPEED_FREQ_LOW;
+        break;
+    case GPIO_SPD_MEDIUM:
+        conf.Speed = GPIO_SPEED_FREQ_MEDIUM;
+        break;
+    case GPIO_SPD_HIGH:
+        conf.Speed = GPIO_SPEED_FREQ_HIGH;
+        break;
+    case GPIO_SPD_VERY_HIGH:
+        conf.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+        break;
+    default:
+        return STATUS_PARAMETER_ERROR;
+    }
+
+    // Mode, alternate
+    switch (mode)
+    {
+    case GPIO_INPUT:
+    case GPIO_INPUT_PULLDOWN:
+    case GPIO_INPUT_PULLUP:
         conf.Mode = GPIO_MODE_INPUT;
-    else if (mode == GPIO_OUTPUT)
+        break;
+    case GPIO_OUTPUT:
+        conf.Mode = GPIO_MODE_OUTPUT_PP;
+        break;
+    case GPIO_OUTPUT_OD:
         conf.Mode = GPIO_MODE_OUTPUT_OD;
-    else if (mode == GPIO_OUTPUT_OD)
-        conf.Mode = GPIO_MODE_OUTPUT_OD;
-    else if (mode == GPIO_ANALOG)
+        break;
+    case GPIO_OUTPUT_AF:
+        conf.Mode = GPIO_MODE_AF_PP;
+        conf.Alternate = af;
+        break;
+    case GPIO_OUTPUT_OD_AF:
+        conf.Mode = GPIO_MODE_AF_OD;
+        conf.Alternate = af;
+        break;
+    case GPIO_ANALOG:
         conf.Mode = GPIO_MODE_ANALOG;
-    if (mode == GPIO_INPUT_PULLUP)
+        break;
+    default:
+        return STATUS_PARAMETER_ERROR;
+    }
+
+    // Pull
+    switch (mode)
+    {
+    case GPIO_INPUT_PULLUP:
         conf.Pull = GPIO_PULLUP;
-    else if (mode == GPIO_INPUT_PULLDOWN)
+        break;
+    case GPIO_INPUT_PULLDOWN:
         conf.Pull = GPIO_PULLDOWN;
-    else
+        break;
+    default:
         conf.Pull = GPIO_NOPULL;
+        break;
+    }
+
     HAL_GPIO_Init(base, &conf);
     return STATUS_OK;
 }

@@ -6,19 +6,11 @@
 
 LTDC_HandleTypeDef g_hltdc;
 
-Status ltdc_init() {
+Status ltdc_init()
+{
     /**************/
     /* Pin Config */
     /**************/
-
-    GPIO_InitTypeDef pin_conf = {
-        .Pin = 
-        .Mode = GPIO_MODE_AF_PP,
-        .Pull = GPIO_NOPULL,
-        .Speed = GPIO_SPEED_LOW,
-        .Alternate = GPIO_AF14_LTDC,
-    };
-
 
     /*************/
     /* LTDC Init */
@@ -45,7 +37,8 @@ Status ltdc_init() {
     g_hltdc.Init.Backcolor.Green = 255;
     g_hltdc.Init.Backcolor.Red = 255;
 
-    if (HAL_LTDC_Init(&g_hltdc) != HAL_OK) {
+    if (HAL_LTDC_Init(&g_hltdc) != HAL_OK)
+    {
         return STATUS_ERROR;
     }
 
@@ -71,17 +64,20 @@ Status ltdc_init() {
             },
     };
 
-    if (HAL_LTDC_ConfigLayer(&g_hltdc, &pLayerCfg, LTDC_LAYER_1) != HAL_OK) {
+    if (HAL_LTDC_ConfigLayer(&g_hltdc, &pLayerCfg, LTDC_LAYER_1) != HAL_OK)
+    {
         return STATUS_ERROR;
     }
 
-    if (HAL_LTDC_ConfigLayer(&g_hltdc, &pLayerCfg, LTDC_LAYER_2) != HAL_OK) {
+    if (HAL_LTDC_ConfigLayer(&g_hltdc, &pLayerCfg, LTDC_LAYER_2) != HAL_OK)
+    {
         return STATUS_ERROR;
     }
 
     return STATUS_OK;
 }
 
-LTDC_HandleTypeDef* ltdc_get_handle() {
+LTDC_HandleTypeDef *ltdc_get_handle()
+{
     return &g_hltdc;
 }
