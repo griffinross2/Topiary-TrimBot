@@ -76,7 +76,7 @@ static I2C_HandleTypeDef i2c4_handle = {};
 static I2C_HandleTypeDef *i2c_handles[4] = {
     &i2c1_handle, &i2c2_handle, &i2c3_handle, &i2c4_handle};
 
-static uint32_t get_timings(I2cDevice *dev)
+static uint32_t get_timings(const I2cDevice *dev)
 {
     switch (dev->clk)
     {
@@ -114,7 +114,7 @@ static Status get_pin(uint8_t periph, uint8_t pin, uint8_t function,
     return STATUS_ERROR;
 }
 
-static Status i2c_setup(I2cDevice *dev)
+static Status i2c_setup(const I2cDevice *dev)
 {
     // Check if the peripheral is valid
     if (dev->periph > P_I2C4)
@@ -208,7 +208,7 @@ static Status i2c_setup(I2cDevice *dev)
     return STATUS_OK;
 }
 
-Status i2c_write_verify(I2cDevice *device, uint8_t *tx_buf, size_t len)
+Status i2c_write_verify(const I2cDevice *device, uint8_t *tx_buf, size_t len)
 {
     uint8_t buf[8];
 
@@ -245,7 +245,7 @@ Status i2c_write_verify(I2cDevice *device, uint8_t *tx_buf, size_t len)
     return STATUS_OK;
 }
 
-Status i2c_write(I2cDevice *device, uint8_t *tx_buf, size_t len)
+Status i2c_write(const I2cDevice *device, uint8_t *tx_buf, size_t len)
 {
     if (i2c_setup(device) != STATUS_OK)
     {
@@ -260,7 +260,7 @@ Status i2c_write(I2cDevice *device, uint8_t *tx_buf, size_t len)
     return STATUS_OK;
 }
 
-Status i2c_read(I2cDevice *device, uint8_t *rx_buf, size_t len)
+Status i2c_read(const I2cDevice *device, uint8_t *rx_buf, size_t len)
 {
     if (i2c_setup(device) != STATUS_OK)
     {

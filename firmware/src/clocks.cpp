@@ -5,6 +5,16 @@
 
 Status clocks_init()
 {
+    // Power and clock initialization
+    // Power: LDO supply, VOS0 voltage scaling
+    // Clock source: HSE in bypass
+    // PLL1: P: 480 MHz, Q: 48 MHz, R: 480 MHz
+    // I2C1,2,3: 120 MHz (PCLK1)
+    // USB: 48 MHz (PLL1Q)
+    // SDMMC: 48 MHz (PLL1Q)
+    // QSPI: 240 MHz (HCLK3)
+    // LTDC: 33.33 MHz (PLL3R)
+
     __HAL_RCC_SYSCFG_CLK_ENABLE();
     HAL_PWREx_ConfigSupply(PWR_LDO_SUPPLY);
     HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE0);
@@ -60,12 +70,12 @@ Status clocks_init()
     RCC_PeriphCLKInitTypeDef pclk_init = {};
     pclk_init.PeriphClockSelection = RCC_PERIPHCLK_SDMMC | RCC_PERIPHCLK_LTDC;
     pclk_init.SdmmcClockSelection = RCC_SDMMCCLKSOURCE_PLL;
-    pclk_init.PLL3.PLL3M = 8;
-    pclk_init.PLL3.PLL3N = 128;
+    pclk_init.PLL3.PLL3M = 32;
+    pclk_init.PLL3.PLL3N = 200;
     pclk_init.PLL3.PLL3P = 2;
     pclk_init.PLL3.PLL3Q = 2;
-    pclk_init.PLL3.PLL3R = 32;
-    pclk_init.PLL3.PLL3RGE = RCC_PLL3VCIRANGE_2;
+    pclk_init.PLL3.PLL3R = 6;
+    pclk_init.PLL3.PLL3RGE = RCC_PLL3VCIRANGE_0;
     pclk_init.PLL3.PLL3VCOSEL = RCC_PLL3VCOWIDE;
     pclk_init.PLL3.PLL3FRACN = 0;
 
@@ -73,7 +83,7 @@ Status clocks_init()
     {
         return STATUS_ERROR;
     }
-    
+
     __HAL_RCC_GPIOA_CLK_ENABLE();
     __HAL_RCC_GPIOB_CLK_ENABLE();
     __HAL_RCC_GPIOC_CLK_ENABLE();

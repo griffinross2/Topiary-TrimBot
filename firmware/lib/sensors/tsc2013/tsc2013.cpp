@@ -4,7 +4,17 @@
 #include "gpio/gpio.h"
 #include "i2c/i2c.h"
 
-static I2cDevice s_i2c_dev = {
+uint8_t operator"" _u8(unsigned long long x)
+{
+    return x;
+}
+
+uint16_t operator"" _u16(unsigned long long x)
+{
+    return x;
+}
+
+constexpr static I2cDevice s_i2c_dev = {
     .address = TSC2013_I2C_ADDRESS,
     .clk = I2C_SPEED_STANDARD,
     .periph = P_I2C2,
@@ -15,7 +25,7 @@ static I2cDevice s_i2c_dev = {
 Status tsc2013_write_reg(uint8_t reg, uint16_t value)
 {
     // 1st byte: control byte (bit 7 = 0 for registers, bit 3-6 are register address, bit 0 = 0 for write)
-    uint8_t buf[3] = {(reg & 0xF) << 3, (value >> 8) & 0xFF, value & 0xFF};
+    uint8_t buf[3] = {static_cast<uint8_t>((reg & 0xF) << 3), static_cast<uint8_t>((value >> 8) & 0xFF), static_cast<uint8_t>(value & 0xFF)};
 
     return i2c_write(&s_i2c_dev, buf, 3);
 }

@@ -191,6 +191,15 @@ SECTIONS
     . = ALIGN(4);
   } >EXTFLASH
 
+  /* Framebuffer ram section */
+  .fb_ram :
+  {
+    . = ALIGN(4);
+    *(.fb_ram)
+    *(.fb_ram*)
+    . = ALIGN(4);
+  } >RAM_D1
+
   /* Remove information from the compiler libraries */
   /DISCARD/ :
   {

@@ -20,6 +20,7 @@ int main(void)
     init_stat |= flash_init() << 2;
     init_stat |= sdmmc_init(SD_SPEED_HIGH) << 3;
     init_stat |= tsc2013_init() << 4;
+    init_stat |= ltdc_init() << 5;
 
     printf("Init status: 0x%x\n", init_stat);
 
@@ -47,9 +48,12 @@ int main(void)
         // HAL_Delay(500);
         // gpio_write(PIN_PD3, GPIO_LOW);
         // HAL_Delay(500);
-        if (gpio_read(PIN_BL_DISC) == GPIO_LOW) {
+        if (gpio_read(PIN_BL_DISC) == GPIO_LOW)
+        {
             gpio_write(PIN_YEL, GPIO_HIGH);
-        } else {
+        }
+        else
+        {
             gpio_write(PIN_YEL, GPIO_LOW);
         }
 
