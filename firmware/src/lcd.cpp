@@ -2,7 +2,7 @@
 
 #include "board.h"
 #include "gpio/gpio.h"
-#include "images/splashscreen.h"
+#include "images/blank.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -78,7 +78,7 @@ Status lcd_init()
     // }
     // nt35510_set_brightness(hdsi, 200);
 
-    lcd_set_background(SPLASHSCREEN);
+    lcd_set_background(BLANK);
 
     // Blank both buffers
     memset(s_foreground_buffer_0, 0x00, sizeof(s_foreground_buffer_0));

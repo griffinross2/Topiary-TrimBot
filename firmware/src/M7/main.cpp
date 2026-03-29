@@ -7,8 +7,6 @@
 #include "sdmmc/sdmmc.h"
 #include "tsc2013/tsc2013.h"
 #include "ltdc.h"
-#include "lcd.h"
-#include "images/squares.h"
 
 #include <stdio.h>
 
@@ -34,7 +32,6 @@ int main(void)
     lcd_swap_buffers();
 
     HAL_Delay(1000);
-    lcd_set_background(SQUARES);
 
     printf("Init status: 0x%x\n", init_stat);
 

@@ -132,15 +132,23 @@ static Status i2c_setup(const I2cDevice *dev)
     switch (dev->periph)
     {
     case P_I2C1:
+        __HAL_RCC_I2C1_FORCE_RESET();
+        __HAL_RCC_I2C1_RELEASE_RESET();
         __HAL_RCC_I2C1_CLK_ENABLE();
         break;
     case P_I2C2:
+        __HAL_RCC_I2C2_FORCE_RESET();
+        __HAL_RCC_I2C2_RELEASE_RESET();
         __HAL_RCC_I2C2_CLK_ENABLE();
         break;
     case P_I2C3:
+        __HAL_RCC_I2C3_FORCE_RESET();
+        __HAL_RCC_I2C3_RELEASE_RESET();
         __HAL_RCC_I2C3_CLK_ENABLE();
         break;
     case P_I2C4:
+        __HAL_RCC_I2C4_FORCE_RESET();
+        __HAL_RCC_I2C4_RELEASE_RESET();
         __HAL_RCC_I2C4_CLK_ENABLE();
         break;
     default:

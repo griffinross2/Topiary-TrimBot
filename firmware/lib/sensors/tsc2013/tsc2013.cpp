@@ -83,9 +83,9 @@ Status tsc2013_init()
 {
     // Reset
     gpio_write(PIN_TS_NRST, GPIO_LOW);
-    HAL_Delay(2);
+    HAL_Delay(10);
     gpio_write(PIN_TS_NRST, GPIO_HIGH);
-    HAL_Delay(2);
+    HAL_Delay(10);
 
     uint16_t readback_val = 0;
 
@@ -103,6 +103,7 @@ Status tsc2013_init()
 
     if (tsc2013_write_reg(TSC2013_REG_CFR0, cfr0_val) != STATUS_OK)
     {
+        TRACE_PRINTF("TSC2013 CFR0 write failed\n");
         return STATUS_ERROR;
     }
 
@@ -115,6 +116,7 @@ Status tsc2013_init()
 
     if (tsc2013_write_reg(TSC2013_REG_CFR1, cfr1_val) != STATUS_OK)
     {
+        TRACE_PRINTF("TSC2013 CFR1 write failed\n");
         return STATUS_ERROR;
     }
 
