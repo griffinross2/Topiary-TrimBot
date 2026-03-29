@@ -15,4 +15,12 @@ typedef enum
     STATUS_PARAMETER_ERROR = 4,
 } Status;
 
+// Macro abuse :)
+#define TRACE_PRINTF(...)                      \
+    do                                         \
+    {                                          \
+        printf("%s:%d: ", __FILE__, __LINE__); \
+        printf(__VA_ARGS__);                   \
+    } while (0);
+
 #endif // STATUS_H

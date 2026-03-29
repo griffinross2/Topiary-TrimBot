@@ -58,83 +58,48 @@ static QSPI_CommandTypeDef flash_get_default_cmd()
     return s_qspi_default_cmd_1_line;
 }
 
-static Status flash_wen()
-{
-    QSPI_CommandTypeDef cmd = flash_get_default_cmd();
-    cmd.Instruction = 0x06;
-    cmd.NbData = 0;
-    cmd.AddressMode = QSPI_ADDRESS_NONE;
-    cmd.DataMode = QSPI_DATA_NONE;
-    if (HAL_QSPI_Command(&hqspi, &cmd, 100) != HAL_OK)
-    {
-        return STATUS_ERROR;
-    }
-
-    return STATUS_OK;
-}
-
-static Status flash_wel()
-{
-    if (flash_wen() != STATUS_OK)
-    {
-        return STATUS_ERROR;
-    }
-
-    QSPI_CommandTypeDef cmd = flash_get_default_cmd();
-    cmd.Instruction = 0x01;
-    cmd.NbData = 1;
-    cmd.AddressMode = QSPI_ADDRESS_NONE;
-    cmd.DataMode = QSPI_DATA_1_LINE;
-    uint8_t reg = 0x02;
-
-    if (HAL_QSPI_Command(&hqspi, &cmd, 100) != HAL_OK)
-    {
-        return STATUS_ERROR;
-    }
-
-    if (HAL_QSPI_Transmit(&hqspi, &reg, 100) != HAL_OK)
-    {
-        return STATUS_ERROR;
-    }
-
-    return STATUS_OK;
-}
-
-static Status flash_set_qspi_mode()
-{
-    if (flash_wen() != STATUS_OK)
-    {
-        return STATUS_ERROR;
-    }
-
-    QSPI_CommandTypeDef cmd = flash_get_default_cmd();
-    cmd.Instruction = 0x61;
-    cmd.NbData = 1;
-    cmd.DataMode = QSPI_DATA_1_LINE;
-    cmd.AddressMode = QSPI_ADDRESS_NONE;
-    uint8_t reg = 0x7F;
-    if (HAL_QSPI_Command(&hqspi, &cmd, 100) != HAL_OK)
-    {
-        return STATUS_ERROR;
-    }
-
-    if (HAL_QSPI_Transmit(&hqspi, &reg, 100) != HAL_OK)
-    {
-        return STATUS_ERROR;
-    }
-
-    qspi_mode = 1;
-
-    return STATUS_OK;
-}
-
-static Status flash_wait_ready(uint32_t timeout)
+static Status flash_read_status(uint8_t *status)
 {
     QSPI_CommandTypeDef cmd = flash_get_default_cmd();
     cmd.Instruction = 0x05;
     cmd.NbData = 1;
     cmd.AddressMode = QSPI_ADDRESS_NONE;
 
+    if (HAL_QSPI_Command(&hqspi, &cmd, 100) != HAL_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    if (HAL_QSPI_Receive(&hqspi, status, 100) != HAL_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    return STATUS_OK;
+}
+
+static Status flash_read_config(uint8_t *config)
+{
+    QSPI_CommandTypeDef cmd = flash_get_default_cmd();
+    cmd.Instruction = 0x15;
+    cmd.NbData = 1;
+    cmd.AddressMode = QSPI_ADDRESS_NONE;
+
+    if (HAL_QSPI_Command(&hqspi, &cmd, 100) != HAL_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    if (HAL_QSPI_Receive(&hqspi, config, 100) != HAL_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    return STATUS_OK;
+}
+
+static Status flash_wait_ready(uint32_t timeout)
+{
     uint32_t tickstart = HAL_GetTick();
     uint8_t status = 0x1;
     while (status & 0x1)
@@ -144,15 +109,131 @@ static Status flash_wait_ready(uint32_t timeout)
             return STATUS_TIMEOUT;
         }
 
-        if (HAL_QSPI_Command(&hqspi, &cmd, 100) != HAL_OK)
+        flash_read_status(&status);
+    }
+
+    return STATUS_OK;
+}
+
+static Status flash_wen(uint32_t timeout)
+{
+    uint8_t sr = 0;
+
+    QSPI_CommandTypeDef wen_cmd = flash_get_default_cmd();
+    wen_cmd.Instruction = 0x06;
+    wen_cmd.NbData = 0;
+    wen_cmd.AddressMode = QSPI_ADDRESS_NONE;
+    wen_cmd.DataMode = QSPI_DATA_NONE;
+
+    while ((sr & 0x2) == 0) {
+        // Write enable
+        if (HAL_QSPI_Command(&hqspi, &wen_cmd, 100) != HAL_OK)
         {
             return STATUS_ERROR;
         }
 
-        if (HAL_QSPI_Receive(&hqspi, &status, 100) != HAL_OK)
+        // Read status
+        if (flash_read_status(&sr) != STATUS_OK)
         {
             return STATUS_ERROR;
         }
+    }
+
+    return STATUS_OK;
+}
+
+static Status flash_write_status_config(uint16_t status_config)
+{
+    if (flash_wen(100) != STATUS_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    QSPI_CommandTypeDef cmd = flash_get_default_cmd();
+    cmd.Instruction = 0x01;
+    cmd.NbData = 2;
+    cmd.AddressMode = QSPI_ADDRESS_NONE;
+
+    if (HAL_QSPI_Command(&hqspi, &cmd, 100) != HAL_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    if (HAL_QSPI_Transmit(&hqspi, (uint8_t*)&status_config, 100) != HAL_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    flash_wait_ready(100);
+
+    return STATUS_OK;
+}
+
+static Status flash_set_qspi_mode()
+{
+    uint16_t status_config = 0;
+    if (flash_read_status((uint8_t*)&status_config) != STATUS_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    if (flash_read_config((uint8_t*)&status_config + 1) != STATUS_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    // Set QE bit
+    status_config |= 0x40;
+
+    if (flash_write_status_config(status_config) != STATUS_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    QSPI_CommandTypeDef cmd = flash_get_default_cmd();
+    cmd.Instruction = 0x35;
+    cmd.AddressMode = QSPI_ADDRESS_NONE;
+    cmd.DataMode = QSPI_DATA_NONE;
+    if (HAL_QSPI_Command(&hqspi, &cmd, 100) != HAL_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    qspi_mode = 1;
+
+    return STATUS_OK;
+}
+
+static Status flash_clear_qspi_mode()
+{
+    QSPI_CommandTypeDef cmd = s_qspi_default_cmd_4_lines;
+    cmd.Instruction = 0xF5;
+    cmd.AddressMode = QSPI_ADDRESS_NONE;
+    cmd.DataMode = QSPI_DATA_NONE;
+    if (HAL_QSPI_Command(&hqspi, &cmd, 100) != HAL_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    qspi_mode = 0;
+
+    uint16_t status_config = 0;
+    if (flash_read_status((uint8_t*)&status_config) != STATUS_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    if (flash_read_config((uint8_t*)&status_config + 1) != STATUS_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    // Reset QE bit
+    status_config &= ~0x40;
+
+    if (flash_write_status_config(status_config) != STATUS_OK)
+    {
+        return STATUS_ERROR;
     }
 
     return STATUS_OK;
@@ -176,6 +257,8 @@ static Status flash_reset()
     {
         return STATUS_ERROR;
     }
+
+    HAL_Delay(100);
 
     return STATUS_OK;
 }
@@ -218,7 +301,7 @@ static QSPI_CommandTypeDef flash_get_mm_read_cmd()
     return cmd;
 }
 
-static Status flash_read(uint32_t addr, uint8_t *buf, int len)
+Status flash_read(uint32_t addr, uint8_t *buf, int len)
 {
     QSPI_CommandTypeDef cmd = flash_get_default_cmd();
     cmd.Instruction = 0xEB;
@@ -234,6 +317,31 @@ static Status flash_read(uint32_t addr, uint8_t *buf, int len)
     }
 
     if (HAL_QSPI_Receive(&hqspi, buf, 100) != HAL_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    return STATUS_OK;
+}
+
+static Status flash_set_dummy_cycles(uint8_t dummy_cycles)
+{
+    uint16_t status_config = 0;
+
+    if (flash_read_status((uint8_t*)&status_config) != STATUS_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    if (flash_read_config((uint8_t*)&status_config + 1) != STATUS_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    status_config &= ~(0xC000);
+    status_config |= dummy_cycles << 14;
+
+    if (flash_write_status_config(status_config) != STATUS_OK)
     {
         return STATUS_ERROR;
     }
@@ -285,40 +393,142 @@ Status flash_init()
 
     if (HAL_QSPI_Init(&hqspi) != HAL_OK)
     {
+        TRACE_PRINTF("QSPI init failed\n");
+        return STATUS_ERROR;
+    }
+
+    // Clear QSPI mode in case it was set before
+    if (flash_clear_qspi_mode() != STATUS_OK)
+    {
+        TRACE_PRINTF("Clearing QSPI mode failed\n");
         return STATUS_ERROR;
     }
 
     // Reset
     if (flash_reset() != STATUS_OK)
     {
+        TRACE_PRINTF("Flash reset failed\n");
         return STATUS_ERROR;
     }
 
     // Wait til ready
     flash_wait_ready(100);
-
-    // Write enable latch
-    if (flash_wel() != STATUS_OK)
-    {
-        return STATUS_ERROR;
-    }
-
-    // Wait til ready
-    flash_wait_ready(100);
+    TRACE_PRINTF("Flash reset complete\n");
 
     // Verify hardware IDs
     if (flash_check_id() != STATUS_OK)
     {
+        TRACE_PRINTF("Flash ID check failed\n");
         return STATUS_ERROR;
     }
 
+    // Set dummy cycles for 120 MHz
+    if (flash_set_dummy_cycles(0x3) != STATUS_OK)
+    {
+        TRACE_PRINTF("Setting dummy cycles failed\n");
+        return STATUS_ERROR;
+    }
+
+    // Set QSPI mode
+    if (flash_set_qspi_mode() != STATUS_OK)
+    {
+        TRACE_PRINTF("Setting QSPI mode failed\n");
+        return STATUS_ERROR;
+    }
+
+    return STATUS_OK;
+}
+
+Status flash_set_memory_mapped_mode() {
+    // Set read command
     QSPI_MemoryMappedTypeDef cfg;
     cfg.TimeOutActivation = QSPI_TIMEOUT_COUNTER_DISABLE;
     cfg.TimeOutPeriod = 0;
 
-    // Set read command
     QSPI_CommandTypeDef cmd = flash_get_mm_read_cmd();
-    HAL_QSPI_MemoryMapped(&hqspi, &cmd, &cfg);
+    if (HAL_QSPI_MemoryMapped(&hqspi, &cmd, &cfg) != HAL_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    return STATUS_OK;
+}
+
+Status flash_clear_memory_mapped_mode() {
+    if (HAL_QSPI_Abort(&hqspi) != HAL_OK)
+    {        
+        return STATUS_ERROR;
+    }
+
+    return STATUS_OK;
+}
+
+Status flash_write(uint32_t addr, uint8_t *buf, int len) {
+    QSPI_CommandTypeDef cmd = flash_get_default_cmd();
+    cmd.Instruction = 0x02;
+    cmd.NbData = len;
+    cmd.Address = addr;
+
+    if (flash_wen(100) != STATUS_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    if (HAL_QSPI_Command(&hqspi, &cmd, 100) != HAL_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    if (HAL_QSPI_Transmit(&hqspi, buf, 100) != HAL_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    flash_wait_ready(100);
+
+    return STATUS_OK;
+}
+
+Status flash_erase_sector(uint32_t addr) {
+    // Erase 64KB sector
+
+    if (flash_wen(100) != STATUS_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    QSPI_CommandTypeDef cmd = flash_get_default_cmd();
+    cmd.Instruction = 0xD8;
+    cmd.Address = addr;
+    cmd.DataMode = QSPI_DATA_NONE;
+
+    if (HAL_QSPI_Command(&hqspi, &cmd, 100) != HAL_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    flash_wait_ready(100);
+
+    return STATUS_OK;
+}
+
+Status flash_erase_chip() {
+    if (flash_wen(100) != STATUS_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    QSPI_CommandTypeDef cmd = flash_get_default_cmd();
+    cmd.Instruction = 0x60;
+    cmd.AddressMode = QSPI_ADDRESS_NONE;
+    cmd.DataMode = QSPI_DATA_NONE;
+
+    if (HAL_QSPI_Command(&hqspi, &cmd, 100) != HAL_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    flash_wait_ready(100);
 
     return STATUS_OK;
 }

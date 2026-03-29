@@ -8,6 +8,7 @@
 #include "tsc2013/tsc2013.h"
 #include "ltdc.h"
 #include "lcd.h"
+#include "images/squares.h"
 
 #include <stdio.h>
 
@@ -32,6 +33,9 @@ int main(void)
     lcd_get_backbuffer()[4] = 0xF2;
     lcd_swap_buffers();
 
+    HAL_Delay(1000);
+    lcd_set_background(SQUARES);
+
     printf("Init status: 0x%x\n", init_stat);
 
     if (init_stat != STATUS_OK)
@@ -42,9 +46,6 @@ int main(void)
     {
         gpio_write(PIN_GRN, GPIO_HIGH);
     }
-
-    gpio_write(PIN_BL_EN, GPIO_HIGH);
-    gpio_write(PIN_BL_DIM, GPIO_HIGH);
 
     gpio_write(PIN_TURNTABLE_DIR, GPIO_HIGH);
     gpio_write(PIN_GANTRY_DIR, GPIO_HIGH);

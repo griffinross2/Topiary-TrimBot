@@ -1,3 +1,5 @@
+Import("env")
+
 import os
 
 def bmp_to_header(img_dir, filename):
@@ -92,19 +94,22 @@ def data_to_header(header_dir, filename, data):
     header_file.write(header)
     header_file.close()
 
-print("Converting BMPs to header data")
+def main(source, target, env):
+    print("Converting BMPs to header data")
 
-if not os.path.exists("images"):
-    print("Images folder does not exist, creating...")
-    os.mkdir("images")
+    if not os.path.exists("images"):
+        print("Images folder does not exist, creating...")
+        os.mkdir("images")
 
-if not os.path.exists("include/images"):
-    print("Images header folder does not exist, creating...")
-    os.mkdir("include/images")
+    if not os.path.exists("include/images"):
+        print("Images header folder does not exist, creating...")
+        os.mkdir("include/images")
 
-for path in os.listdir("images"):
-    print(path)
-    data = bmp_to_header("images", path)
-    data = data_reorg(data)
-    data = data_argb_to_rgb565(data)
-    data_to_header("include/images", path, data)
+    for path in os.listdir("images"):
+        print(path)
+        data = bmp_to_header("images", path)
+        data = data_reorg(data)
+        data = data_argb_to_rgb565(data)
+        data_to_header("include/images", path, data)
+
+env.AddPreAction("buildprog", main)

@@ -1,3 +1,5 @@
+Import("env")
+
 import cairo
 from fontTools.ttLib import TTFont
 from fontTools.pens.cairoPen import CairoPen
@@ -124,28 +126,31 @@ def write_header(header, font_name: str):
     with open(f'include/fonts/{font_name.lower()}.h', 'w') as hf:
         hf.write(header)
 
-print("Converting TTF fonts to bitmap headers")
+def main(source, target, env):
+    print("Converting TTF fonts to bitmap headers")
 
-if not os.path.isdir("fonts"):
-    print("No fonts directory, creating...")
-    try:
-        os.mkdir("fonts")
-    except OSError:
-        quit()
+    if not os.path.isdir("fonts"):
+        print("No fonts directory, creating...")
+        try:
+            os.mkdir("fonts")
+        except OSError:
+            quit()
 
-for font_file in os.listdir('fonts'):
-    font_name = font_file.split('.')[0].lower()
-    print(f'Converting {font_file}...')
+    for font_file in os.listdir('fonts'):
+        font_name = font_file.split('.')[0].lower()
+        print(f'Converting {font_file}...')
 
-    pt_size = 256
-    header = header_start(font_name)
-    glyph_structs = []
-    for char in [bytes([code]).decode('ascii') for code in range(128)]:
-        save_char(f'fonts/{font_file}', char, pt_size=pt_size)
-        header, glyph_struct_name = header_char(header, char)
-        glyph_structs.append(glyph_struct_name)
-    header = header_font_manifest(header, pt_size, glyph_structs, font_name)
-    header = header_end(header, font_name)
-    write_header(header, font_name)
+        pt_size = 256
+        header = header_start(font_name)
+        glyph_structs = []
+        for char in [bytes([code]).decode('ascii') for code in range(128)]:
+            save_char(f'fonts/{font_file}', char, pt_size=pt_size)
+            header, glyph_struct_name = header_char(header, char)
+            glyph_structs.append(glyph_struct_name)
+        header = header_font_manifest(header, pt_size, glyph_structs, font_name)
+        header = header_end(header, font_name)
+        write_header(header, font_name)
 
-    print(f'Finished converting {font_file}!')
+        print(f'Finished converting {font_file}!')
+
+env.AddPreAction("buildprog", main)

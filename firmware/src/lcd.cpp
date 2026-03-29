@@ -78,7 +78,7 @@ Status lcd_init()
     // }
     // nt35510_set_brightness(hdsi, 200);
 
-    lcd_set_background((const Color *)SPLASHSCREEN);
+    lcd_set_background(SPLASHSCREEN);
 
     // Blank both buffers
     memset(s_foreground_buffer_0, 0x00, sizeof(s_foreground_buffer_0));
@@ -95,7 +95,10 @@ Status lcd_init()
     //     return STATUS_ERROR;
     // }
     
+    // Enable display and backlight
     gpio_write(PIN_LCD_DISP, GPIO_HIGH);
+    gpio_write(PIN_BL_EN, GPIO_HIGH);
+    gpio_write(PIN_BL_DIM, GPIO_HIGH);
 
     return STATUS_OK;
 }
@@ -135,11 +138,11 @@ void lcd_set_foreground(const Color *fb_address)
     __HAL_LTDC_LAYER_ENABLE(hltdc, LTDC_LAYER_2);
 }
 
-void lcd_set_background(const Color *fb_address)
+void lcd_set_background(const ColorBG *fb_address)
 {
-    __HAL_LTDC_LAYER_DISABLE(hltdc, LTDC_LAYER_1);
+    // __HAL_LTDC_LAYER_DISABLE(hltdc, LTDC_LAYER_1);
     HAL_LTDC_SetAddress(hltdc, (uint32_t)fb_address, LTDC_LAYER_1);
-    __HAL_LTDC_LAYER_ENABLE(hltdc, LTDC_LAYER_1);
+    // __HAL_LTDC_LAYER_ENABLE(hltdc, LTDC_LAYER_1);
 }
 
 void lcd_clear_foreground()

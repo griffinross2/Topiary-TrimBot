@@ -16,6 +16,7 @@
 #define WINDOW_HEIGHT LTDC_WINDOW_HEIGHT
 
 typedef uint8_t Color;
+typedef uint16_t ColorBG;
 
 Status lcd_init();
 
@@ -24,7 +25,7 @@ Color *lcd_get_backbuffer();
 Color *lcd_get_frontbuffer();
 
 void lcd_set_foreground(const Color *fb_address);
-void lcd_set_background(const Color *fb_address);
+void lcd_set_background(const ColorBG *fb_address);
 void lcd_clear_foreground();
 void lcd_clear_area(unsigned int xl, unsigned int xr, unsigned int yb,
                     unsigned int yt);
