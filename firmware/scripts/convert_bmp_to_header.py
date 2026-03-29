@@ -35,11 +35,17 @@ def data_reorg(data):
     width = 800
     height = 480
 
-    out_data = []
+    int_data = []
 
     for x in range(width):
         for y in range(height):
-            out_data.append(data[y*width + x])
+            int_data.append(data[x*height + y])
+
+    out_data = []
+
+    for y in range(height):
+        for x in range(width):
+            out_data.append(data[(width-x-1) + y*width])
 
     return out_data
 

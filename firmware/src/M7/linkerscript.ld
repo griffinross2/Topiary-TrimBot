@@ -189,7 +189,7 @@ SECTIONS
     *(.ext_rodata)
     *(.ext_rodata*)
     . = ALIGN(4);
-  } >EXTFLASH
+  } >FLASH
 
   /* Framebuffer ram section */
   .fb_ram :

@@ -2,11 +2,15 @@
 
 #include "board.h"
 #include "gpio/gpio.h"
-#include "images/blank.h"
 
 #include <stdio.h>
 
 LTDC_HandleTypeDef g_hltdc;
+
+constexpr uint32_t palette[16] = {
+    0xFFFFFF, 0x000000, 0xFF0000, 0x00FF00, 0x0000FF, 0xFFFF00, 0xFF00FF,
+    0x00FFFF,
+};
 
 Status ltdc_init()
 {
@@ -15,34 +19,34 @@ Status ltdc_init()
     /**************/
 
     gpio_mode(PIN_LCD_DISP, GPIO_OUTPUT);
-    gpio_mode(PIN_LCD_DE, GPIO_OUTPUT_AF, GPIO_SPD_LOW, 14);
-    gpio_mode(PIN_LCD_PCLK, GPIO_OUTPUT_AF, GPIO_SPD_LOW, 14);
-    gpio_mode(PIN_LCD_HSYNC, GPIO_OUTPUT_AF, GPIO_SPD_LOW, 14);
-    gpio_mode(PIN_LCD_VSYNC, GPIO_OUTPUT_AF, GPIO_SPD_LOW, 14);
-    gpio_mode(PIN_LCD_R0, GPIO_OUTPUT_AF, GPIO_SPD_LOW, 14);
-    gpio_mode(PIN_LCD_R1, GPIO_OUTPUT_AF, GPIO_SPD_LOW, 14);
-    gpio_mode(PIN_LCD_R2, GPIO_OUTPUT_AF, GPIO_SPD_LOW, 14);
-    gpio_mode(PIN_LCD_R3, GPIO_OUTPUT_AF, GPIO_SPD_LOW, 9);
-    gpio_mode(PIN_LCD_R4, GPIO_OUTPUT_AF, GPIO_SPD_LOW, 14);
-    gpio_mode(PIN_LCD_R5, GPIO_OUTPUT_AF, GPIO_SPD_LOW, 14);
-    gpio_mode(PIN_LCD_R6, GPIO_OUTPUT_AF, GPIO_SPD_LOW, 9);
-    gpio_mode(PIN_LCD_R7, GPIO_OUTPUT_AF, GPIO_SPD_LOW, 14);
-    gpio_mode(PIN_LCD_G0, GPIO_OUTPUT_AF, GPIO_SPD_LOW, 14);
-    gpio_mode(PIN_LCD_G1, GPIO_OUTPUT_AF, GPIO_SPD_LOW, 14);
-    gpio_mode(PIN_LCD_G2, GPIO_OUTPUT_AF, GPIO_SPD_LOW, 14);
-    gpio_mode(PIN_LCD_G3, GPIO_OUTPUT_AF, GPIO_SPD_LOW, 14);
-    gpio_mode(PIN_LCD_G4, GPIO_OUTPUT_AF, GPIO_SPD_LOW, 14);
-    gpio_mode(PIN_LCD_G5, GPIO_OUTPUT_AF, GPIO_SPD_LOW, 14);
-    gpio_mode(PIN_LCD_G6, GPIO_OUTPUT_AF, GPIO_SPD_LOW, 14);
-    gpio_mode(PIN_LCD_G7, GPIO_OUTPUT_AF, GPIO_SPD_LOW, 14);
-    gpio_mode(PIN_LCD_B0, GPIO_OUTPUT_AF, GPIO_SPD_LOW, 14);
-    gpio_mode(PIN_LCD_B1, GPIO_OUTPUT_AF, GPIO_SPD_LOW, 14);
-    gpio_mode(PIN_LCD_B2, GPIO_OUTPUT_AF, GPIO_SPD_LOW, 14);
-    gpio_mode(PIN_LCD_B3, GPIO_OUTPUT_AF, GPIO_SPD_LOW, 14);
-    gpio_mode(PIN_LCD_B4, GPIO_OUTPUT_AF, GPIO_SPD_LOW, 14);
-    gpio_mode(PIN_LCD_B5, GPIO_OUTPUT_AF, GPIO_SPD_LOW, 14);
-    gpio_mode(PIN_LCD_B6, GPIO_OUTPUT_AF, GPIO_SPD_LOW, 14);
-    gpio_mode(PIN_LCD_B7, GPIO_OUTPUT_AF, GPIO_SPD_LOW, 14);
+    gpio_mode(PIN_LCD_DE, GPIO_OUTPUT_AF, GPIO_SPD_MEDIUM, 14);
+    gpio_mode(PIN_LCD_PCLK, GPIO_OUTPUT_AF, GPIO_SPD_MEDIUM, 14);
+    gpio_mode(PIN_LCD_HSYNC, GPIO_OUTPUT_AF, GPIO_SPD_MEDIUM, 14);
+    gpio_mode(PIN_LCD_VSYNC, GPIO_OUTPUT_AF, GPIO_SPD_MEDIUM, 14);
+    gpio_mode(PIN_LCD_R0, GPIO_OUTPUT_AF, GPIO_SPD_MEDIUM, 14);
+    gpio_mode(PIN_LCD_R1, GPIO_OUTPUT_AF, GPIO_SPD_MEDIUM, 14);
+    gpio_mode(PIN_LCD_R2, GPIO_OUTPUT_AF, GPIO_SPD_MEDIUM, 14);
+    gpio_mode(PIN_LCD_R3, GPIO_OUTPUT_AF, GPIO_SPD_MEDIUM, 9);
+    gpio_mode(PIN_LCD_R4, GPIO_OUTPUT_AF, GPIO_SPD_MEDIUM, 14);
+    gpio_mode(PIN_LCD_R5, GPIO_OUTPUT_AF, GPIO_SPD_MEDIUM, 14);
+    gpio_mode(PIN_LCD_R6, GPIO_OUTPUT_AF, GPIO_SPD_MEDIUM, 9);
+    gpio_mode(PIN_LCD_R7, GPIO_OUTPUT_AF, GPIO_SPD_MEDIUM, 14);
+    gpio_mode(PIN_LCD_G0, GPIO_OUTPUT_AF, GPIO_SPD_MEDIUM, 14);
+    gpio_mode(PIN_LCD_G1, GPIO_OUTPUT_AF, GPIO_SPD_MEDIUM, 14);
+    gpio_mode(PIN_LCD_G2, GPIO_OUTPUT_AF, GPIO_SPD_MEDIUM, 14);
+    gpio_mode(PIN_LCD_G3, GPIO_OUTPUT_AF, GPIO_SPD_MEDIUM, 14);
+    gpio_mode(PIN_LCD_G4, GPIO_OUTPUT_AF, GPIO_SPD_MEDIUM, 14);
+    gpio_mode(PIN_LCD_G5, GPIO_OUTPUT_AF, GPIO_SPD_MEDIUM, 14);
+    gpio_mode(PIN_LCD_G6, GPIO_OUTPUT_AF, GPIO_SPD_MEDIUM, 14);
+    gpio_mode(PIN_LCD_G7, GPIO_OUTPUT_AF, GPIO_SPD_MEDIUM, 14);
+    gpio_mode(PIN_LCD_B0, GPIO_OUTPUT_AF, GPIO_SPD_MEDIUM, 14);
+    gpio_mode(PIN_LCD_B1, GPIO_OUTPUT_AF, GPIO_SPD_MEDIUM, 14);
+    gpio_mode(PIN_LCD_B2, GPIO_OUTPUT_AF, GPIO_SPD_MEDIUM, 14);
+    gpio_mode(PIN_LCD_B3, GPIO_OUTPUT_AF, GPIO_SPD_MEDIUM, 14);
+    gpio_mode(PIN_LCD_B4, GPIO_OUTPUT_AF, GPIO_SPD_MEDIUM, 14);
+    gpio_mode(PIN_LCD_B5, GPIO_OUTPUT_AF, GPIO_SPD_MEDIUM, 14);
+    gpio_mode(PIN_LCD_B6, GPIO_OUTPUT_AF, GPIO_SPD_MEDIUM, 14);
+    gpio_mode(PIN_LCD_B7, GPIO_OUTPUT_AF, GPIO_SPD_MEDIUM, 14);
 
     /*************/
     /* LTDC Init */
@@ -53,7 +57,7 @@ Status ltdc_init()
     g_hltdc.Instance = LTDC;
     g_hltdc.Init.HSPolarity = LTDC_HSPOLARITY_AL;
     g_hltdc.Init.VSPolarity = LTDC_VSPOLARITY_AL;
-    g_hltdc.Init.DEPolarity = LTDC_DEPOLARITY_AH;
+    g_hltdc.Init.DEPolarity = LTDC_DEPOLARITY_AL;
     g_hltdc.Init.PCPolarity = LTDC_PCPOLARITY_IPC;
     g_hltdc.Init.HorizontalSync = (LTDC_HSYNC - 1);
     g_hltdc.Init.VerticalSync = (LTDC_VSYNC - 1);
@@ -84,7 +88,7 @@ Status ltdc_init()
         .Alpha0 = 0xFF,
         .BlendingFactor1 = LTDC_BLENDING_FACTOR1_CA,
         .BlendingFactor2 = LTDC_BLENDING_FACTOR2_CA,
-        .FBStartAdress = (uint32_t)BLANK,
+        .FBStartAdress = 0,
         .ImageWidth = LTDC_WIDTH,
         .ImageHeight = LTDC_HEIGHT,
         .Backcolor =
@@ -101,11 +105,11 @@ Status ltdc_init()
         .WindowX1 = ((LTDC_WIDTH - LTDC_WINDOW_WIDTH) / 2) + LTDC_WINDOW_WIDTH - 1,
         .WindowY0 = (LTDC_HEIGHT - LTDC_WINDOW_HEIGHT) / 2,
         .WindowY1 = ((LTDC_HEIGHT - LTDC_WINDOW_HEIGHT) / 2) + LTDC_WINDOW_HEIGHT - 1,
-        .PixelFormat = LTDC_PIXEL_FORMAT_L8,
+        .PixelFormat = LTDC_PIXEL_FORMAT_AL44,
         .Alpha = 0xFF,
-        .Alpha0 = 0xFF,
-        .BlendingFactor1 = LTDC_BLENDING_FACTOR1_CA,
-        .BlendingFactor2 = LTDC_BLENDING_FACTOR2_CA,
+        .Alpha0 = 0x00,
+        .BlendingFactor1 = LTDC_BLENDING_FACTOR1_PAxCA,
+        .BlendingFactor2 = LTDC_BLENDING_FACTOR2_PAxCA,
         .FBStartAdress = 0x0,
         .ImageWidth = LTDC_WIDTH,
         .ImageHeight = LTDC_HEIGHT,
@@ -124,6 +128,16 @@ Status ltdc_init()
     }
 
     if (HAL_LTDC_ConfigLayer(&g_hltdc, &pLayer2Cfg, LTDC_LAYER_2) != HAL_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    if (HAL_LTDC_ConfigCLUT(&g_hltdc, (uint32_t *)palette, 256, LTDC_LAYER_2) != HAL_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    if (HAL_LTDC_EnableCLUT(&g_hltdc, LTDC_LAYER_2) != HAL_OK)
     {
         return STATUS_ERROR;
     }

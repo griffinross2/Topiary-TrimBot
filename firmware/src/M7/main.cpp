@@ -7,6 +7,7 @@
 #include "sdmmc/sdmmc.h"
 #include "tsc2013/tsc2013.h"
 #include "ltdc.h"
+#include "lcd.h"
 
 #include <stdio.h>
 
@@ -20,7 +21,16 @@ int main(void)
     init_stat |= flash_init() << 2;
     init_stat |= sdmmc_init(SD_SPEED_HIGH) << 3;
     init_stat |= tsc2013_init() << 4;
-    init_stat |= ltdc_init() << 5;
+    init_stat |= lcd_init() << 5;    
+
+    // lcd_draw_rectangle(0, 0, LTDC_WINDOW_WIDTH, LTDC_WINDOW_HEIGHT, 0xF2);
+    // lcd_draw_text(&ARIAL, "Hello, World!", 50, 160, 48, 0xF1);
+    lcd_get_backbuffer()[0] = 0xF2;
+    lcd_get_backbuffer()[1] = 0xF2;
+    lcd_get_backbuffer()[2] = 0xF2;
+    lcd_get_backbuffer()[3] = 0xF2;
+    lcd_get_backbuffer()[4] = 0xF2;
+    lcd_swap_buffers();
 
     printf("Init status: 0x%x\n", init_stat);
 

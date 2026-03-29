@@ -1,5 +1,9 @@
 #include "lcd.h"
 
+#include "board.h"
+#include "gpio/gpio.h"
+#include "images/splashscreen.h"
+
 #include <stdio.h>
 #include <string.h>
 #include <algorithm>
@@ -28,7 +32,11 @@ static volatile int s_current_frontbuffer = 0;
 
 Status lcd_init()
 {
-    ltdc_init();
+    hltdc = ltdc_get_handle();
+
+    if (ltdc_init() != STATUS_OK) {
+        return STATUS_ERROR;
+    }
 
     // __HAL_RCC_DMA2D_CLK_ENABLE();
     // memset(&hdma2d, 0, sizeof(hdma2d));
@@ -70,9 +78,11 @@ Status lcd_init()
     // }
     // nt35510_set_brightness(hdsi, 200);
 
+    lcd_set_background((const Color *)SPLASHSCREEN);
+
     // Blank both buffers
-    memset(s_foreground_buffer_0, 0xFF, sizeof(s_foreground_buffer_0));
-    memset(s_foreground_buffer_1, 0xFF, sizeof(s_foreground_buffer_1));
+    memset(s_foreground_buffer_0, 0x00, sizeof(s_foreground_buffer_0));
+    memset(s_foreground_buffer_1, 0x00, sizeof(s_foreground_buffer_1));
 
     HAL_LTDC_SetAddress(hltdc, (uint32_t)FRONTBUFFER, LTDC_LAYER_2);
 
@@ -84,6 +94,8 @@ Status lcd_init()
     // {
     //     return STATUS_ERROR;
     // }
+    
+    gpio_write(PIN_LCD_DISP, GPIO_HIGH);
 
     return STATUS_OK;
 }
@@ -142,11 +154,11 @@ void lcd_clear_area(unsigned int xl, unsigned int xr, unsigned int yb,
     {
         for (unsigned int yi = yb; yi <= yt; yi++)
         {
-            BACKBUFFER[yi + xi * LCD_HEIGHT] = 0xFF;
+            BACKBUFFER[yi + xi * LTDC_WINDOW_HEIGHT] = 0xFF;
         }
     }
     // hdma2d.Init.Mode = DMA2D_R2M;
-    // hdma2d.Init.OutputOffset = LCD_HEIGHT - (yt - yb + 1);
+    // hdma2d.Init.OutputOffset = LTDC_WINDOW_HEIGHT - (yt - yb + 1);
     // HAL_DMA2D_Init(&hdma2d);
 
     // hdma2d.LayerCfg[0].InputOffset = 0;
@@ -156,7 +168,7 @@ void lcd_clear_area(unsigned int xl, unsigned int xr, unsigned int yb,
     // HAL_DMA2D_ConfigLayer(&hdma2d, 0);
 
     // HAL_DMA2D_Start(&hdma2d, 0xFFFFFFFF,
-    //                 (uint32_t)&BACKBUFFER[yb + xl * LCD_HEIGHT], (yt - yb + 1),
+    //                 (uint32_t)&BACKBUFFER[yb + xl * LTDC_WINDOW_HEIGHT], (yt - yb + 1),
     //                 (xr - xl + 1));
     // HAL_DMA2D_PollForTransfer(&hdma2d, 100);
 }
@@ -168,11 +180,11 @@ void lcd_draw_rectangle(unsigned int x, unsigned int y, unsigned int w,
     {
         for (unsigned int yi = y; yi < y + h; yi++)
         {
-            BACKBUFFER[yi + xi * LCD_HEIGHT] = color;
+            BACKBUFFER[yi + xi * LTDC_WINDOW_HEIGHT] = color;
         }
     }
     // hdma2d.Init.Mode = DMA2D_R2M;
-    // hdma2d.Init.OutputOffset = LCD_HEIGHT - h;
+    // hdma2d.Init.OutputOffset = LTDC_WINDOW_HEIGHT - h;
     // HAL_DMA2D_Init(&hdma2d);
 
     // hdma2d.LayerCfg[0].InputOffset = 0;
@@ -182,7 +194,7 @@ void lcd_draw_rectangle(unsigned int x, unsigned int y, unsigned int w,
     // HAL_DMA2D_ConfigLayer(&hdma2d, 0);
 
     // HAL_DMA2D_Start(&hdma2d, (uint32_t)rgb565_to_rgb888(color),
-    //                 (uint32_t)&BACKBUFFER[y + x * LCD_HEIGHT], h, w);
+    //                 (uint32_t)&BACKBUFFER[y + x * LTDC_WINDOW_HEIGHT], h, w);
     // HAL_DMA2D_PollForTransfer(&hdma2d, 100);
 }
 
@@ -198,7 +210,7 @@ void lcd_draw_circle(unsigned int x, unsigned int y, unsigned int r,
 
             if ((unsigned int)(dx * dx + dy * dy) < r * r)
             {
-                BACKBUFFER[yi + xi * LCD_HEIGHT] = color;
+                BACKBUFFER[yi + xi * LTDC_WINDOW_HEIGHT] = color;
             }
         }
     }
@@ -299,8 +311,8 @@ void lcd_draw_char(const Font *font, char ch, unsigned start_x,
         {
             int dest_x = (start_x + x);
             int dest_y = (start_y + pt_size - y);
-            if (dest_y < 0 || dest_y >= LCD_HEIGHT || dest_x < 0 ||
-                dest_x >= LCD_WIDTH)
+            if (dest_y < 0 || dest_y >= LTDC_WINDOW_HEIGHT || dest_x < 0 ||
+                dest_x >= LTDC_WINDOW_WIDTH)
             {
                 continue;
             }
@@ -318,7 +330,7 @@ void lcd_draw_char(const Font *font, char ch, unsigned start_x,
             if (subpixel)
             {
                 BACKBUFFER[(start_y + pt_size - y) +
-                           (start_x + x) * LCD_HEIGHT] = color;
+                           (start_x + x) * LTDC_WINDOW_HEIGHT] = color;
             }
         }
     }
