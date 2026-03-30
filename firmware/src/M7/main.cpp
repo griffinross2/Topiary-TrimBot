@@ -7,6 +7,7 @@
 #include "sdmmc/sdmmc.h"
 #include "tsc2013/tsc2013.h"
 #include "ltdc.h"
+#include "lcd.h"
 
 #include <stdio.h>
 

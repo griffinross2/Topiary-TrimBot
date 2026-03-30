@@ -133,6 +133,8 @@ __attribute__((used)) int SectorErase(uint32_t StartAddress, uint32_t EndAddress
 
     for (uint32_t sect = (StartAddress - 0x90000000) >> 16; sect <= (EndAddress - 0x90000000) >> 16; sect += 1)
     {
+        TRACE_PRINTF("Erasing flash sector 0x%08X\n", sect);
+
         if (flash_erase_sector(sect << 16) != STATUS_OK)
         {
             TRACE_PRINTF("Flash sector erase failed at sector 0x%08X\n", sect);
@@ -281,6 +283,7 @@ void SysTick_Handler(void);
 
 void NMI_Handler(void)
 {
+    gpio_write(PIN_RED, GPIO_HIGH);
     while (1)
     {
     }
@@ -288,6 +291,7 @@ void NMI_Handler(void)
 
 void HardFault_Handler(void)
 {
+    gpio_write(PIN_RED, GPIO_HIGH);
     while (1)
     {
     }
@@ -295,6 +299,7 @@ void HardFault_Handler(void)
 
 void MemManage_Handler(void)
 {
+    gpio_write(PIN_RED, GPIO_HIGH);
     while (1)
     {
     }
@@ -302,6 +307,7 @@ void MemManage_Handler(void)
 
 void BusFault_Handler(void)
 {
+    gpio_write(PIN_RED, GPIO_HIGH);
     while (1)
     {
     }
@@ -309,6 +315,7 @@ void BusFault_Handler(void)
 
 void UsageFault_Handler(void)
 {
+    gpio_write(PIN_RED, GPIO_HIGH);
     while (1)
     {
     }

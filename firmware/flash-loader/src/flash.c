@@ -217,31 +217,33 @@ static Status flash_clear_qspi_mode()
 
     qspi_mode = 0;
 
-    uint16_t status_config = 0;
-    if (flash_read_status((uint8_t*)&status_config) != STATUS_OK)
-    {
-        return STATUS_ERROR;
-    }
-
-    if (flash_read_config((uint8_t*)&status_config + 1) != STATUS_OK)
-    {
-        return STATUS_ERROR;
-    }
-
-    // Reset QE bit
-    status_config &= ~0x40;
-
-    if (flash_write_status_config(status_config) != STATUS_OK)
-    {
-        return STATUS_ERROR;
-    }
-
     return STATUS_OK;
 }
 
 static Status flash_reset()
 {
-    QSPI_CommandTypeDef cmd = flash_get_default_cmd();
+    // First in QSPI mode
+    QSPI_CommandTypeDef cmd = s_qspi_default_cmd_4_lines;
+    cmd.Instruction = 0x66; // Reset Enable
+    cmd.AddressMode = QSPI_ADDRESS_NONE;
+    cmd.DataMode = QSPI_DATA_NONE;
+
+    if (HAL_QSPI_Command(&hqspi, &cmd, 100) != HAL_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    cmd.Instruction = 0x99; // Reset Memory
+
+    if (HAL_QSPI_Command(&hqspi, &cmd, 100) != HAL_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    HAL_Delay(100);
+
+    // Then in SPI mode
+    cmd = s_qspi_default_cmd_1_line;
     cmd.Instruction = 0x66; // Reset Enable
     cmd.AddressMode = QSPI_ADDRESS_NONE;
     cmd.DataMode = QSPI_DATA_NONE;
@@ -280,7 +282,7 @@ static Status flash_check_id()
         return STATUS_ERROR;
     }
 
-    // printf("0x%02x, 0x%02x, 0x%02x\n", id[0], id[1], id[2]);
+    printf("Flash ID: 0x%02x, 0x%02x, 0x%02x\n", id[0], id[1], id[2]);
 
     if (id[0] != 0xC2 || id[1] != 0x20 || id[2] != 0x1A)
     {
@@ -351,6 +353,8 @@ static Status flash_set_dummy_cycles(uint8_t dummy_cycles)
 
 Status flash_init()
 {
+    qspi_mode = 0;
+
     __HAL_RCC_QSPI_CLK_ENABLE();
     __HAL_RCC_QSPI_FORCE_RESET();
     __HAL_RCC_QSPI_RELEASE_RESET();
@@ -394,13 +398,6 @@ Status flash_init()
     if (HAL_QSPI_Init(&hqspi) != HAL_OK)
     {
         TRACE_PRINTF("QSPI init failed\n");
-        return STATUS_ERROR;
-    }
-
-    // Clear QSPI mode in case it was set before
-    if (flash_clear_qspi_mode() != STATUS_OK)
-    {
-        TRACE_PRINTF("Clearing QSPI mode failed\n");
         return STATUS_ERROR;
     }
 

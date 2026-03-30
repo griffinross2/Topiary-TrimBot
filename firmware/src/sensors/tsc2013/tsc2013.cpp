@@ -1,8 +1,9 @@
-#include "tsc2013.h"
+#include "tsc2013/tsc2013.h"
 
 #include "board.h"
 #include "gpio/gpio.h"
 #include "i2c/i2c.h"
+#include "stm32h7xx_hal.h"
 
 uint8_t operator"" _u8(unsigned long long x)
 {
@@ -21,6 +22,8 @@ constexpr static I2cDevice s_i2c_dev = {
     .scl = PIN_TS_SCL,
     .sda = PIN_TS_SDA,
 };
+
+static EXTI_HandleTypeDef s_hexti;
 
 Status tsc2013_write_reg(uint8_t reg, uint16_t value)
 {
@@ -127,23 +130,44 @@ Status tsc2013_init()
     }
 
     // CFR2:
-    // Bit 15-14    - PINTS = 00 (interrupt on AND of PENIRQ and DAV)
+    // Bit 15-14    - PINTS = 10 (interrupt on PENIRQ)
     // Bit 13-10    - 0000 (preprocessing disabled)
     // Bit 9-5      - Reserved, set to 0
     // Bit 4-1      - MAVE = 0000 (MAV filter disabled)
     // Bit 0        - Reserved, set to 0
-    constexpr uint16_t cfr2_val = 0x0000;
+    constexpr uint16_t cfr2_val = 0x8000;
 
-    if (tsc2013_write_reg(TSC2013_REG_CFR2, 0x0000) != STATUS_OK)
+    if (tsc2013_write_reg(TSC2013_REG_CFR2, cfr2_val) != STATUS_OK)
     {
         return STATUS_ERROR;
     }
 
-    if (tsc2013_read_reg(TSC2013_REG_CFR2, &readback_val) != STATUS_OK || readback_val != 0x0000)
+    if (tsc2013_read_reg(TSC2013_REG_CFR2, &readback_val) != STATUS_OK || readback_val != 0x8000)
     {
         TRACE_PRINTF("TSC2013 CFR2 readback failed: expected 0x%04X, got 0x%04X\n", cfr2_val, readback_val);
         return STATUS_ERROR;
     }
 
+    // Configure touch interrupt
+    s_hexti.Line = EXTI_LINE_3;
+    EXTI_ConfigTypeDef exti_config = {
+        .Line = EXTI_LINE_3,
+        .Mode = EXTI_MODE_INTERRUPT,
+        .Trigger = EXTI_TRIGGER_FALLING,
+        .GPIOSel = EXTI_GPIOF,
+        .PendClearSource = EXTI_D3_PENDCLR_SRC_NONE,
+    };
+    HAL_EXTI_SetConfigLine(&s_hexti, &exti_config);
+
+    NVIC_SetPriority(EXTI3_IRQn, 1);
+    NVIC_EnableIRQ(EXTI3_IRQn);
+
     return STATUS_OK;
+}
+
+void EXTI3_IRQHandler(void)
+{
+    HAL_EXTI_IRQHandler(&s_hexti);
+
+    printf("Touch interrupt triggered\n");
 }
