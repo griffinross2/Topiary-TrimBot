@@ -133,16 +133,12 @@ Color *lcd_get_frontbuffer()
 
 void lcd_set_foreground(const Color *fb_address)
 {
-    __HAL_LTDC_LAYER_DISABLE(hltdc, LTDC_LAYER_2);
     HAL_LTDC_SetAddress(hltdc, (uint32_t)fb_address, LTDC_LAYER_2);
-    __HAL_LTDC_LAYER_ENABLE(hltdc, LTDC_LAYER_2);
 }
 
 void lcd_set_background(const ColorBG *fb_address)
 {
-    // __HAL_LTDC_LAYER_DISABLE(hltdc, LTDC_LAYER_1);
     HAL_LTDC_SetAddress(hltdc, (uint32_t)fb_address, LTDC_LAYER_1);
-    // __HAL_LTDC_LAYER_ENABLE(hltdc, LTDC_LAYER_1);
 }
 
 void lcd_clear_foreground()

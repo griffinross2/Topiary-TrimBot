@@ -164,7 +164,10 @@ static Status flash_write_status_config(uint16_t status_config)
         return STATUS_ERROR;
     }
 
-    flash_wait_ready(100);
+    if (flash_wait_ready(100) != STATUS_OK)
+    {
+        return STATUS_TIMEOUT;
+    }
 
     return STATUS_OK;
 }
@@ -386,7 +389,7 @@ Status flash_init()
 
     hqspi.Instance = QUADSPI;
 
-    hqspi.Init.ClockPrescaler = 1; // 240 MHz / 2 = 120 MHz
+    hqspi.Init.ClockPrescaler = 2; // 240 MHz / 3 = 80 MHz
     hqspi.Init.FifoThreshold = 1;
     hqspi.Init.SampleShifting = QSPI_SAMPLE_SHIFTING_HALFCYCLE;
     hqspi.Init.FlashSize = 25;
@@ -409,7 +412,12 @@ Status flash_init()
     }
 
     // Wait til ready
-    flash_wait_ready(100);
+    if (flash_wait_ready(100) != STATUS_OK)
+    {
+        TRACE_PRINTF("Flash reset timeout\n");
+        return STATUS_TIMEOUT;
+    }
+
     TRACE_PRINTF("Flash reset complete\n");
 
     // Verify hardware IDs
@@ -481,7 +489,10 @@ Status flash_write(uint32_t addr, uint8_t *buf, int len) {
         return STATUS_ERROR;
     }
 
-    flash_wait_ready(100);
+    if (flash_wait_ready(100) != STATUS_OK)
+    {
+        return STATUS_TIMEOUT;
+    }
 
     return STATUS_OK;
 }
@@ -504,7 +515,11 @@ Status flash_erase_sector(uint32_t addr) {
         return STATUS_ERROR;
     }
 
-    flash_wait_ready(100);
+    if (flash_wait_ready(2000) != STATUS_OK)
+    {
+        TRACE_PRINTF("Sector erase timeout\n");
+        return STATUS_TIMEOUT;
+    }
 
     return STATUS_OK;
 }
@@ -525,7 +540,11 @@ Status flash_erase_chip() {
         return STATUS_ERROR;
     }
 
-    flash_wait_ready(100);
+    if (flash_wait_ready(200000) != STATUS_OK)
+    {
+        TRACE_PRINTF("Chip erase timeout\n");
+        return STATUS_TIMEOUT;
+    }
 
     return STATUS_OK;
 }

@@ -31,7 +31,7 @@ Status sdmmc_init(SdmmcSpeed clk)
     NVIC_EnableIRQ(SDMMC1_IRQn);
 
     hsd.Instance = SDMMC1;
-    hsd.Init.BusWide = SDMMC_BUS_WIDE_1B;
+    hsd.Init.BusWide = SDMMC_BUS_WIDE_4B;
     hsd.Init.ClockEdge = SDMMC_CLOCK_EDGE_RISING;
     hsd.Init.ClockPowerSave = SDMMC_CLOCK_POWER_SAVE_DISABLE;
     hsd.Init.HardwareFlowControl = SDMMC_HARDWARE_FLOW_CONTROL_DISABLE;

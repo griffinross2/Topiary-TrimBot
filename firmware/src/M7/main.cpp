@@ -8,6 +8,7 @@
 #include "tsc2013/tsc2013.h"
 #include "ltdc.h"
 #include "lcd.h"
+#include "fonts/arial.h"
 
 #include <stdio.h>
 
@@ -25,12 +26,7 @@ int main(void)
 
     // lcd_draw_rectangle(0, 0, LTDC_WINDOW_WIDTH, LTDC_WINDOW_HEIGHT, 0xF2);
     // lcd_draw_text(&ARIAL, "Hello, World!", 50, 160, 48, 0xF1);
-    lcd_get_backbuffer()[0] = 0xF2;
-    lcd_get_backbuffer()[1] = 0xF2;
-    lcd_get_backbuffer()[2] = 0xF2;
-    lcd_get_backbuffer()[3] = 0xF2;
-    lcd_get_backbuffer()[4] = 0xF2;
-    lcd_swap_buffers();
+    // lcd_swap_buffers();
 
     HAL_Delay(1000);
 
@@ -53,10 +49,10 @@ int main(void)
     // Main loop
     while (1)
     {
-        // gpio_write(PIN_PD3, GPIO_HIGH);
-        // HAL_Delay(500);
-        // gpio_write(PIN_PD3, GPIO_LOW);
-        // HAL_Delay(500);
+        gpio_write(PIN_BLU, GPIO_HIGH);
+        HAL_Delay(500);
+        gpio_write(PIN_BLU, GPIO_LOW);
+        HAL_Delay(500);
         if (gpio_read(PIN_BL_DISC) == GPIO_LOW)
         {
             gpio_write(PIN_YEL, GPIO_HIGH);
