@@ -111,8 +111,8 @@ Status ltdc_init()
         .BlendingFactor1 = LTDC_BLENDING_FACTOR1_PAxCA,
         .BlendingFactor2 = LTDC_BLENDING_FACTOR2_PAxCA,
         .FBStartAdress = 0x0,
-        .ImageWidth = LTDC_WIDTH,
-        .ImageHeight = LTDC_HEIGHT,
+        .ImageWidth = LTDC_WINDOW_WIDTH,
+        .ImageHeight = LTDC_WINDOW_HEIGHT,
         .Backcolor =
             {
                 .Blue = 255,

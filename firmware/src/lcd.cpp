@@ -149,11 +149,11 @@ void lcd_clear_foreground()
 void lcd_clear_area(unsigned int xl, unsigned int xr, unsigned int yb,
                     unsigned int yt)
 {
-    for (unsigned int xi = xl; xi <= xr; xi++)
+    for (unsigned int yi = yb; yi < yt; yi++)
     {
-        for (unsigned int yi = yb; yi <= yt; yi++)
+        for (unsigned int xi = LTDC_WINDOW_WIDTH - xr - 1; xi < LTDC_WINDOW_WIDTH - xl; xi++)
         {
-            BACKBUFFER[yi + xi * LTDC_WINDOW_HEIGHT] = 0xFF;
+            BACKBUFFER[yi*LTDC_WINDOW_WIDTH + xi] = 0x00;
         }
     }
     // hdma2d.Init.Mode = DMA2D_R2M;
@@ -175,11 +175,11 @@ void lcd_clear_area(unsigned int xl, unsigned int xr, unsigned int yb,
 void lcd_draw_rectangle(unsigned int x, unsigned int y, unsigned int w,
                         unsigned int h, Color color)
 {
-    for (unsigned int xi = x; xi < x + w; xi++)
+    for (unsigned int yi = y; yi < y + h; yi++)
     {
-        for (unsigned int yi = y; yi < y + h; yi++)
+        for (unsigned int xi = LTDC_WINDOW_WIDTH - w - x; xi < LTDC_WINDOW_WIDTH - x; xi++)
         {
-            BACKBUFFER[yi + xi * LTDC_WINDOW_HEIGHT] = color;
+            BACKBUFFER[yi*LTDC_WINDOW_WIDTH + xi] = color;
         }
     }
     // hdma2d.Init.Mode = DMA2D_R2M;
@@ -200,16 +200,16 @@ void lcd_draw_rectangle(unsigned int x, unsigned int y, unsigned int w,
 void lcd_draw_circle(unsigned int x, unsigned int y, unsigned int r,
                      Color color)
 {
-    for (unsigned int xi = x - r; xi < x + r; xi++)
+    for (unsigned int yi = y - r; yi < y + r; yi++)
     {
-        for (unsigned int yi = y - r; yi < y + r; yi++)
+        for (unsigned int xi = LTDC_WINDOW_WIDTH - x - r; xi < LTDC_WINDOW_WIDTH - x + r; xi++)
         {
-            int dx = (int)xi - (int)x;
+            int dx = (int)xi - (int)(LTDC_WINDOW_WIDTH - x);
             int dy = (int)yi - (int)y;
 
             if ((unsigned int)(dx * dx + dy * dy) < r * r)
             {
-                BACKBUFFER[yi + xi * LTDC_WINDOW_HEIGHT] = color;
+                BACKBUFFER[yi*LTDC_WINDOW_WIDTH + xi] = color;
             }
         }
     }
@@ -304,11 +304,11 @@ void lcd_draw_char(const Font *font, char ch, unsigned start_x,
         return;
     }
 
-    for (int x = 0; x < (int)pt_size; x++)
+    for (int y = 0; y < (int)pt_size; y++)
     {
-        for (int y = 0; y < (int)pt_size; y++)
+        for (int x = 0; x < (int)pt_size; x++)
         {
-            int dest_x = (start_x + x);
+            int dest_x = (LTDC_WINDOW_WIDTH - start_x - x - 1);
             int dest_y = (start_y + pt_size - y);
             if (dest_y < 0 || dest_y >= LTDC_WINDOW_HEIGHT || dest_x < 0 ||
                 dest_x >= LTDC_WINDOW_WIDTH)
@@ -328,8 +328,8 @@ void lcd_draw_char(const Font *font, char ch, unsigned start_x,
                 (glyph->data[offset_byte] & (0x1 << offset_bit)) != 0;
             if (subpixel)
             {
-                BACKBUFFER[(start_y + pt_size - y) +
-                           (start_x + x) * LTDC_WINDOW_HEIGHT] = color;
+                BACKBUFFER[(start_y + pt_size - y)*LTDC_WINDOW_WIDTH +
+                           (LTDC_WINDOW_WIDTH - start_x - x - 1)] = color;
             }
         }
     }

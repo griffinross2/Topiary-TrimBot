@@ -24,11 +24,8 @@ int main(void)
     init_stat |= tsc2013_init() << 4;
     init_stat |= lcd_init() << 5;    
 
-    // lcd_draw_rectangle(0, 0, LTDC_WINDOW_WIDTH, LTDC_WINDOW_HEIGHT, 0xF2);
-    // lcd_draw_text(&ARIAL, "Hello, World!", 50, 160, 48, 0xF1);
-    // lcd_swap_buffers();
-
-    HAL_Delay(1000);
+    lcd_draw_text(&ARIAL, "Hello, World!", 240, 150, 48, 0xF1);
+    lcd_swap_buffers();
 
     printf("Init status: 0x%x\n", init_stat);
 
