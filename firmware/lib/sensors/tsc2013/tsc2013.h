@@ -21,5 +21,6 @@
 #define TSC2013_REG_CFN 0x0F
 
 Status tsc2013_init();
+uint16_t tsc2013_status();
 
 #endif // TSC2013_H

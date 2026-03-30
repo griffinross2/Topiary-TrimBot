@@ -82,6 +82,13 @@ Status tsc2013_multi_read_reg(uint8_t reg, uint16_t *value, size_t count)
     return STATUS_OK;
 }
 
+Status tsc2013_start_conversion()
+{
+    // Control byte: bit 7 = 1 for conversion command
+    uint8_t buf = 0x80;
+    return i2c_write(&s_i2c_dev, &buf, 1);
+}
+
 Status tsc2013_init()
 {
     // Reset
@@ -148,7 +155,16 @@ Status tsc2013_init()
         return STATUS_ERROR;
     }
 
+    // Start conversion
+    if (tsc2013_start_conversion() != STATUS_OK)
+    {
+        TRACE_PRINTF("TSC2013 start conversion failed\n");
+        return STATUS_ERROR;
+    }
+
     // Configure touch interrupt
+    gpio_mode(PIN_TS_INT, GPIO_INPUT);
+
     s_hexti.Line = EXTI_LINE_3;
     EXTI_ConfigTypeDef exti_config = {
         .Line = EXTI_LINE_3,
@@ -163,6 +179,21 @@ Status tsc2013_init()
     NVIC_EnableIRQ(EXTI3_IRQn);
 
     return STATUS_OK;
+}
+
+uint16_t tsc2013_status() {
+    uint16_t status = 0;
+    if (tsc2013_read_reg(TSC2013_REG_STATUS, &status) != STATUS_OK)
+    {
+        return 0;
+    }
+
+    return status;
+}
+
+extern "C"
+{
+    void EXTI3_IRQHandler(void);
 }
 
 void EXTI3_IRQHandler(void)

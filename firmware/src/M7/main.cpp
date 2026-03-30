@@ -65,17 +65,6 @@ int main(void)
         {
             gpio_write(PIN_YEL, GPIO_LOW);
         }
-
-        gpio_write(PIN_TURNTABLE_STEP, GPIO_HIGH);
-        gpio_write(PIN_GANTRY_STEP, GPIO_HIGH);
-        gpio_write(PIN_EXTRUDER_STEP, GPIO_HIGH);
-        gpio_write(PIN_REVOLUTE_STEP, GPIO_HIGH);
-        HAL_Delay(15);
-        gpio_write(PIN_TURNTABLE_STEP, GPIO_LOW);
-        gpio_write(PIN_GANTRY_STEP, GPIO_LOW);
-        gpio_write(PIN_EXTRUDER_STEP, GPIO_LOW);
-        gpio_write(PIN_REVOLUTE_STEP, GPIO_LOW);
-        HAL_Delay(15);
     }
 
     return 0;
