@@ -9,8 +9,18 @@
 #include "ltdc.h"
 #include "lcd.h"
 #include "fonts/arial.h"
+#include "images/calibration.h"
+#include "images/splashscreen.h"
 
 #include <stdio.h>
+
+int tx = 0, ty = 0;
+
+void tsc2013_touch_callback(int x, int y) {
+    tx = x;
+    ty = y;
+    printf("Touch callback - X: %d, Y: %d\n", x, y);
+}
 
 int main(void)
 {
@@ -22,10 +32,14 @@ int main(void)
     init_stat |= flash_init() << 2;
     init_stat |= sdmmc_init(SD_SPEED_HIGH) << 3;
     init_stat |= tsc2013_init() << 4;
-    init_stat |= lcd_init() << 5;    
+    init_stat |= lcd_init() << 5;
 
-    lcd_draw_text(&ARIAL, "Hello, World!", 240, 150, 48, 0xF1);
-    lcd_swap_buffers();
+    tsc2013_set_touch_callback(tsc2013_touch_callback);
+
+    // lcd_draw_text(&ARIAL, "Hello, World!", 240, 150, 48, 0xF1);
+    // lcd_swap_buffers();
+    lcd_set_background(CALIBRATION);
+    // lcd_set_background(SPLASHSCREEN);
 
     printf("Init status: 0x%x\n", init_stat);
 
@@ -43,20 +57,47 @@ int main(void)
     gpio_write(PIN_EXTRUDER_DIR, GPIO_HIGH);
     gpio_write(PIN_REVOLUTE_DIR, GPIO_HIGH);
 
+    gpio_write(PIN_CUTTER, GPIO_HIGH);
+
     // Main loop
+    uint32_t last_tick = 0;
     while (1)
     {
-        gpio_write(PIN_BLU, GPIO_HIGH);
-        HAL_Delay(500);
-        gpio_write(PIN_BLU, GPIO_LOW);
-        HAL_Delay(500);
-        if (gpio_read(PIN_BL_DISC) == GPIO_LOW)
+        // gpio_write(PIN_BLU, GPIO_HIGH);
+        // HAL_Delay(500);
+        // gpio_write(PIN_BLU, GPIO_LOW);
+        // HAL_Delay(500);
+        // if (gpio_read(PIN_BL_DISC) == GPIO_LOW)
+        // {
+        //     gpio_write(PIN_YEL, GPIO_HIGH);
+        // }
+        // else
+        // {
+        //     gpio_write(PIN_YEL, GPIO_LOW);
+        // }
+
+        // int tx_window = tx - (LCD_WIDTH - WINDOW_WIDTH) / 2;
+        // int ty_window = ty - (LCD_HEIGHT - WINDOW_HEIGHT) / 2;
+        // if (tx_window >= 0 && tx_window < WINDOW_WIDTH && ty_window >= 0 && ty_window < WINDOW_HEIGHT)
+        // {
+        //     lcd_clear_foreground();
+        //     lcd_draw_circle(tx_window, ty_window, 10, 0xF2);
+        //     lcd_swap_buffers();
+        // }
+
+        gpio_write(PIN_GANTRY_STEP, GPIO_HIGH);
+        HAL_Delay(20);
+        gpio_write(PIN_GANTRY_STEP, GPIO_LOW);
+        HAL_Delay(20);
+
+        if (HAL_GetTick() - last_tick > 5000)
         {
-            gpio_write(PIN_YEL, GPIO_HIGH);
+            gpio_write(PIN_GANTRY_DIR, GPIO_HIGH);
         }
-        else
+        if (HAL_GetTick() - last_tick > 10000)
         {
-            gpio_write(PIN_YEL, GPIO_LOW);
+            gpio_write(PIN_GANTRY_DIR, GPIO_LOW);
+            last_tick = HAL_GetTick();
         }
     }
 

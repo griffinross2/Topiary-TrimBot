@@ -389,7 +389,7 @@ Status flash_init()
 
     hqspi.Instance = QUADSPI;
 
-    hqspi.Init.ClockPrescaler = 2; // 240 MHz / 3 = 80 MHz
+    hqspi.Init.ClockPrescaler = 1; // 240 MHz / 2 = 120 MHz
     hqspi.Init.FifoThreshold = 1;
     hqspi.Init.SampleShifting = QSPI_SAMPLE_SHIFTING_HALFCYCLE;
     hqspi.Init.FlashSize = 25;

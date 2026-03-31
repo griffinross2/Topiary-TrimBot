@@ -94,7 +94,7 @@ def data_to_header(header_dir, filename, data):
     header_file.write(header)
     header_file.close()
 
-def main(source, target, env):
+def before_build(source, target, env):
     print("Converting BMPs to header data")
 
     if not os.path.exists("images"):
@@ -112,4 +112,5 @@ def main(source, target, env):
         data = data_argb_to_rgb565(data)
         data_to_header("include/images", path, data)
 
-env.AddPreAction("buildprog", main)
+# env.AddPreAction("buildprog", before_build)
+before_build(None, None, env)

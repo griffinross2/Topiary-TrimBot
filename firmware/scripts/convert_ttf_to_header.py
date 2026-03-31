@@ -126,7 +126,7 @@ def write_header(header, font_name: str):
     with open(f'include/fonts/{font_name.lower()}.h', 'w') as hf:
         hf.write(header)
 
-def main(source, target, env):
+def before_build(source, target, env):
     print("Converting TTF fonts to bitmap headers")
 
     if not os.path.isdir("fonts"):
@@ -153,4 +153,5 @@ def main(source, target, env):
 
         print(f'Finished converting {font_file}!')
 
-env.AddPreAction("buildprog", main)
+# env.AddPreAction("buildprog", before_build)
+before_build(None, None, env)
