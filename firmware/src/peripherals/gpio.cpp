@@ -138,3 +138,26 @@ GpioValue gpio_read(uint8_t pin)
         return GPIO_ERR;
     }
 }
+
+Status gpio_toggle(uint8_t pin)
+{
+    uint32_t gpio_pin = BOARD_GPIO_PIN(pin);
+    GPIO_TypeDef *base = BOARD_GPIO_PORT(pin);
+    GPIO_InitTypeDef conf = {
+        .Pin = gpio_pin,
+        .Mode = GPIO_MODE_OUTPUT_PP,
+        .Pull = GPIO_NOPULL,
+        .Speed = GPIO_SPEED_FREQ_LOW,
+        .Alternate = 0,
+    };
+    uint32_t current_mode =
+        (BOARD_GPIO_PORT(pin)->MODER & BOARD_GPIO_MODER_MASK(pin)) >>
+        BOARD_GPIO_MODER_POS(pin);
+    if (current_mode != GPIO_MODE_OUTPUT_PP &&
+        current_mode != GPIO_MODE_OUTPUT_OD)
+    {
+        HAL_GPIO_Init(base, &conf);
+    }
+    HAL_GPIO_TogglePin(base, gpio_pin);
+    return STATUS_OK;
+}

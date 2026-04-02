@@ -399,6 +399,40 @@ __attribute__((unused)) static uint32_t GPIO_PIN_TO_MODEPOS[] = {
 // Cutter
 #define PIN_CUTTER PIN_PC1
 
+// Start Marlin
+
+// Switches
+#define PIN_TURNTABLE_MIN PIN_PG10
+#define PIN_GANTRY_MIN PIN_PG11
+#define PIN_EXTRUDER_MIN PIN_PG12
+#define PIN_REVOLUTE_MIN PIN_PG15
+
+// Turntable
+#define X_STEP_PIN PIN_TURNTABLE_STEP
+#define X_DIR_PIN PIN_TURNTABLE_DIR
+#define X_ENABLE_PIN -1
+#define X_MIN_PIN PIN_TURNTABLE_MIN
+
+// Extruder
+#define Y_STEP_PIN PIN_EXTRUDER_STEP
+#define Y_DIR_PIN PIN_EXTRUDER_DIR
+#define Y_ENABLE_PIN -1
+#define Y_MIN_PIN PIN_EXTRUDER_MIN
+
+// Gantry
+#define Z_STEP_PIN PIN_GANTRY_STEP
+#define Z_DIR_PIN PIN_GANTRY_DIR
+#define Z_ENABLE_PIN -1
+#define Z_MIN_PIN PIN_GANTRY_MIN
+
+// Wrist/Revolute
+#define E0_STEP_PIN PIN_REVOLUTE_STEP
+#define E0_DIR_PIN PIN_REVOLUTE_DIR
+#define E0_ENABLE_PIN -1
+#define E0_MIN_PIN PIN_REVOLUTE_MIN
+
+// End Marlin
+
 // Touchscreen driver
 #define PIN_TS_SDA PIN_PF0
 #define PIN_TS_SCL PIN_PF1

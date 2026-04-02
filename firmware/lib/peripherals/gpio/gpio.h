@@ -39,7 +39,7 @@ Status
 gpio_mode(uint8_t pin, GpioMode mode, GpioSpeed speed = GPIO_SPD_LOW, uint32_t af = 0);
 
 Status gpio_write(uint8_t pin, GpioValue value);
-
 GpioValue gpio_read(uint8_t pin);
+Status gpio_toggle(uint8_t pin);
 
 #endif // GPIO_H
