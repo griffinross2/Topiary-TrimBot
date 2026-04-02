@@ -475,4 +475,13 @@ __attribute__((unused)) static uint32_t GPIO_PIN_TO_MODEPOS[] = {
 #define PIN_LCD_B6 PIN_PB8
 #define PIN_LCD_B7 PIN_PB9
 
+// SD
+#define PIN_SD_CD PIN_PD1
+#define PIN_SD_CLK PIN_PC12
+#define PIN_SD_CMD PIN_PD2
+#define PIN_SD_D0 PIN_PC8
+#define PIN_SD_D1 PIN_PC9
+#define PIN_SD_D2 PIN_PC10
+#define PIN_SD_D3 PIN_PC11
+
 #endif // BOARD_H

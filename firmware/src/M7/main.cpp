@@ -9,37 +9,11 @@
 #include "ltdc.h"
 #include "lcd.h"
 #include "fonts/arial.h"
-#include "images/calibration.h"
-#include "images/splashscreen.h"
+#include "images/blank.h"
+#include "gui_app.h"
+#include "filesystem.h"
 
 #include <stdio.h>
-
-static int tx = 0, ty = 0;
-static bool touched = false;
-
-void touch_update() {
-    static uint32_t last_tick = 0;
-    if (HAL_GetTick() - last_tick < 10) {
-        return;
-    }
-    
-    if (!tsc2013_is_touched()) {
-        touched = false;
-        return;
-    }
-
-    touched = true;
-
-    uint16_t x, y, z;
-    if (tsc2013_is_data_ready()) {
-        if (tsc2013_read_touch(&x, &y, &z) == STATUS_OK) {
-            tx = x;
-            ty = y;
-        }
-    }
-
-    last_tick = HAL_GetTick();
-}
 
 int main(void)
 {
@@ -51,14 +25,10 @@ int main(void)
     init_stat |= clocks_init();
     init_stat |= terminal_init() << 1;
     init_stat |= flash_init() << 2;
-    init_stat |= sdmmc_init(SD_SPEED_HIGH) << 3;
+    init_stat |= filesystem_init() << 3;
     init_stat |= tsc2013_init() << 4;
     init_stat |= lcd_init() << 5;
-
-    // lcd_draw_text(&ARIAL, "Hello, World!", 240, 150, 48, 0xF1);
-    // lcd_swap_buffers();
-    lcd_set_background(CALIBRATION);
-    // lcd_set_background(SPLASHSCREEN);
+    init_stat |= gui_app_init() << 6;
 
     printf("Init status: 0x%x\n", init_stat);
     HAL_RCCEx_EnableBootCore(RCC_BOOT_C2);
@@ -79,9 +49,14 @@ int main(void)
 
     gpio_write(PIN_CUTTER, GPIO_HIGH);
 
+    std::vector<FileInfo> file_list;
+    filesystem_get_file_list(file_list);
+    for (size_t i = 0; i < file_list.size(); i++)
+    {
+        printf("File %lu: %s (%lu bytes)\n", (uint32_t)i, file_list[i].name.c_str(), (uint32_t)file_list[i].size);
+    }
+
     // Main loop
-    uint32_t last_tick = 0;
-    uint32_t frame_count = 0;
     while (1)
     {
         // gpio_write(PIN_BLU, GPIO_HIGH);
@@ -97,23 +72,8 @@ int main(void)
         //     gpio_write(PIN_YEL, GPIO_LOW);
         // }
 
-        int tx_window = tx - (LCD_WIDTH - WINDOW_WIDTH) / 2;
-        int ty_window = ty - (LCD_HEIGHT - WINDOW_HEIGHT) / 2;
-        if (tx_window >= 0 && tx_window < WINDOW_WIDTH && ty_window >= 0 && ty_window < WINDOW_HEIGHT)
-        {
-            lcd_clear_foreground();
-            lcd_draw_circle(tx_window, ty_window, 10, 0xF2);
-            lcd_swap_buffers();
-            frame_count++;
-        }
-        touch_update();
-
-        if (HAL_GetTick() - last_tick >= 1000)
-        {
-            printf("FPS: %lu\n", frame_count);
-            frame_count = 0;
-            last_tick = HAL_GetTick();
-        }
+        filesystem_task();
+        gui_app_task();
     }
 
     return 0;

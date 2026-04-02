@@ -9,7 +9,7 @@ LTDC_HandleTypeDef g_hltdc;
 
 constexpr uint32_t palette[16] = {
     0xFFFFFF, 0x000000, 0xFF0000, 0x00FF00, 0x0000FF, 0xFFFF00, 0xFF00FF,
-    0x00FFFF,
+    0x00FFFF, 0x808080, 0xB0B0B0, 0x404040,
 };
 
 Status ltdc_init()

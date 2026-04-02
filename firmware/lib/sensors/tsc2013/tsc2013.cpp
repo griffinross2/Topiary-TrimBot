@@ -35,8 +35,6 @@ static constexpr struct {
     -0.00769267f, -0.558612f, 515.039f,
 };
 
-// static void (*s_tsc2013_touch_callback)(int tx, int ty) = nullptr;
-
 Status tsc2013_write_reg(uint8_t reg, uint16_t value)
 {
     // 1st byte: control byte (bit 7 = 0 for registers, bit 3-6 are register address, bit 0 = 0 for write)
@@ -182,22 +180,6 @@ Status tsc2013_init()
         return STATUS_ERROR;
     }
 
-    // Configure touch interrupt
-    // gpio_mode(PIN_TS_INT, GPIO_INPUT);
-
-    // s_hexti.Line = EXTI_LINE_3;
-    // EXTI_ConfigTypeDef exti_config = {
-    //     .Line = EXTI_LINE_3,
-    //     .Mode = EXTI_MODE_INTERRUPT,
-    //     .Trigger = EXTI_TRIGGER_RISING,
-    //     .GPIOSel = EXTI_GPIOF,
-    //     .PendClearSource = EXTI_D3_PENDCLR_SRC_NONE,
-    // };
-    // HAL_EXTI_SetConfigLine(&s_hexti, &exti_config);
-
-    // NVIC_SetPriority(EXTI3_IRQn, 1);
-    // NVIC_EnableIRQ(EXTI3_IRQn);
-
     return STATUS_OK;
 }
 
@@ -275,36 +257,3 @@ Status tsc2013_read_touch(uint16_t *x, uint16_t *y, uint16_t *z) {
 
     return STATUS_OK;
 }
-
-// void tsc2013_set_touch_callback(void (*callback)(int tx, int ty)) {
-//     s_tsc2013_touch_callback = callback;
-// }
-
-// extern "C"
-// {
-//     void EXTI3_IRQHandler(void);
-// }
-
-// void EXTI3_IRQHandler(void)
-// {
-//     HAL_EXTI_IRQHandler(&s_hexti);
-
-//     // Make sure data is read (it should be)
-//     if (!tsc2013_is_data_ready())
-//     {
-//         return;
-//     }
-
-//     // Read the touch data
-//     uint16_t x, y, z;
-//     if (tsc2013_read_touch(&x, &y, &z) != STATUS_OK)
-//     {
-//         return;
-//     }
-
-//     // printf("Touch data - X: %u, Y: %u, Z: %u\n", x, y, z);
-//     if (s_tsc2013_touch_callback)
-//     {
-//         s_tsc2013_touch_callback(x, y);
-//     }
-// }
