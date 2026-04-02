@@ -21,6 +21,7 @@
 #define TSC2013_REG_CFN 0x0F
 
 Status tsc2013_init();
+bool tsc2013_is_touched();
 bool tsc2013_is_data_ready();
 Status tsc2013_read_touch(uint16_t *x, uint16_t *y, uint16_t *z);
 void tsc2013_set_touch_callback(void (*callback)(int tx, int ty));

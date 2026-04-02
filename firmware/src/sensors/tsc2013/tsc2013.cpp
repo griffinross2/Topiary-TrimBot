@@ -25,7 +25,7 @@ constexpr static I2cDevice s_i2c_dev = {
     .sda = PIN_TS_SDA,
 };
 
-static EXTI_HandleTypeDef s_hexti;
+// static EXTI_HandleTypeDef s_hexti;
 
 static constexpr struct {
     float ax, bx, cx;
@@ -35,7 +35,7 @@ static constexpr struct {
     -0.00769267f, -0.558612f, 515.039f,
 };
 
-static void (*s_tsc2013_touch_callback)(int tx, int ty) = nullptr;
+// static void (*s_tsc2013_touch_callback)(int tx, int ty) = nullptr;
 
 Status tsc2013_write_reg(uint8_t reg, uint16_t value)
 {
@@ -183,22 +183,37 @@ Status tsc2013_init()
     }
 
     // Configure touch interrupt
-    gpio_mode(PIN_TS_INT, GPIO_INPUT);
+    // gpio_mode(PIN_TS_INT, GPIO_INPUT);
 
-    s_hexti.Line = EXTI_LINE_3;
-    EXTI_ConfigTypeDef exti_config = {
-        .Line = EXTI_LINE_3,
-        .Mode = EXTI_MODE_INTERRUPT,
-        .Trigger = EXTI_TRIGGER_RISING,
-        .GPIOSel = EXTI_GPIOF,
-        .PendClearSource = EXTI_D3_PENDCLR_SRC_NONE,
-    };
-    HAL_EXTI_SetConfigLine(&s_hexti, &exti_config);
+    // s_hexti.Line = EXTI_LINE_3;
+    // EXTI_ConfigTypeDef exti_config = {
+    //     .Line = EXTI_LINE_3,
+    //     .Mode = EXTI_MODE_INTERRUPT,
+    //     .Trigger = EXTI_TRIGGER_RISING,
+    //     .GPIOSel = EXTI_GPIOF,
+    //     .PendClearSource = EXTI_D3_PENDCLR_SRC_NONE,
+    // };
+    // HAL_EXTI_SetConfigLine(&s_hexti, &exti_config);
 
-    NVIC_SetPriority(EXTI3_IRQn, 1);
-    NVIC_EnableIRQ(EXTI3_IRQn);
+    // NVIC_SetPriority(EXTI3_IRQn, 1);
+    // NVIC_EnableIRQ(EXTI3_IRQn);
 
     return STATUS_OK;
+}
+
+bool tsc2013_is_touched() {
+    uint16_t status = 0;
+    if (tsc2013_read_reg(TSC2013_REG_CFR0, &status) != STATUS_OK)
+    {
+        return false;
+    }
+
+    if (status & 0x8000)
+    {
+        return true;
+    }
+
+    return false;
 }
 
 bool tsc2013_is_data_ready() {
@@ -261,39 +276,35 @@ Status tsc2013_read_touch(uint16_t *x, uint16_t *y, uint16_t *z) {
     return STATUS_OK;
 }
 
-void tsc2013_set_touch_callback(void (*callback)(int tx, int ty)) {
-    s_tsc2013_touch_callback = callback;
-}
+// void tsc2013_set_touch_callback(void (*callback)(int tx, int ty)) {
+//     s_tsc2013_touch_callback = callback;
+// }
 
-extern "C"
-{
-    void EXTI3_IRQHandler(void);
-}
+// extern "C"
+// {
+//     void EXTI3_IRQHandler(void);
+// }
 
-void EXTI3_IRQHandler(void)
-{
-    HAL_EXTI_IRQHandler(&s_hexti);
+// void EXTI3_IRQHandler(void)
+// {
+//     HAL_EXTI_IRQHandler(&s_hexti);
 
-    printf("Touch interrupt triggered\n");
+//     // Make sure data is read (it should be)
+//     if (!tsc2013_is_data_ready())
+//     {
+//         return;
+//     }
 
-    // Make sure data is read (it should be)
-    if (!tsc2013_is_data_ready())
-    {
-        TRACE_PRINTF("Data not ready after interrupt\n");
-        return;
-    }
+//     // Read the touch data
+//     uint16_t x, y, z;
+//     if (tsc2013_read_touch(&x, &y, &z) != STATUS_OK)
+//     {
+//         return;
+//     }
 
-    // Read the touch data
-    uint16_t x, y, z;
-    if (tsc2013_read_touch(&x, &y, &z) != STATUS_OK)
-    {
-        TRACE_PRINTF("Failed to read touch data\n");
-        return;
-    }
-
-    // printf("Touch data - X: %u, Y: %u, Z: %u\n", x, y, z);
-    if (s_tsc2013_touch_callback)
-    {
-        s_tsc2013_touch_callback(x, y);
-    }
-}
+//     // printf("Touch data - X: %u, Y: %u, Z: %u\n", x, y, z);
+//     if (s_tsc2013_touch_callback)
+//     {
+//         s_tsc2013_touch_callback(x, y);
+//     }
+// }
