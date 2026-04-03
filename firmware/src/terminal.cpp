@@ -5,6 +5,10 @@
 static UART_HandleTypeDef s_huart6;
 
 Status terminal_init() {
+    #ifdef CORE_M4
+    return STATUS_ERROR; // Should only be init on M7 core
+    #endif
+
     GPIO_InitTypeDef gpio_init = {
         .Pin = GPIO_PIN_9 | GPIO_PIN_14,
         .Mode = GPIO_MODE_AF_PP,
@@ -34,7 +38,16 @@ Status terminal_init() {
 }
 
 void terminal_write(const char* data, unsigned int size) {
+    uint32_t start_tick = HAL_GetTick();
+    while (HAL_HSEM_Take(0, 0) != HAL_OK)
+    {
+        if (HAL_GetTick() - start_tick > TERMINAL_SEMAPHORE_MAX_WAIT)
+        {
+            return; // timeout
+        }
+    }
     HAL_UART_Transmit(&s_huart6, (uint8_t*)data, size, 100);
+    HAL_HSEM_Release(0, 0);
 }
 
 extern "C" {

@@ -2,6 +2,7 @@
 #include "marlin_wrapper.h"
 #include "gpio/gpio.h"
 #include "board.h"
+// #include "gcode/gcode.h"
 
 #include <stdio.h>
 
@@ -10,6 +11,10 @@ void main_loop();
 int main(void)
 {
     HAL_Init();
+
+    marlin_wrapper_init();
+
+    // gcode.home_all_axes();
 
     // Marlin wrapper hosts the loop
     marlin_wrapper_set_idle_cb(main_loop);

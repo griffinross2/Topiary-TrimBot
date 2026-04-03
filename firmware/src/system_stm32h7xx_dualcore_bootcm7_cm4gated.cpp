@@ -259,6 +259,11 @@ void SystemInit (void)
     *((__IO uint32_t*)0x51008108) = 0x000000001U;
   }
 
+  // Enable debug in standby/stop/sleep mode
+  DBGMCU->CR |= DBGMCU_CR_DBG_STANDBYD1 | DBGMCU_CR_DBG_STANDBYD2 | 
+                DBGMCU_CR_DBG_STOPD1 | DBGMCU_CR_DBG_STOPD2 |
+                DBGMCU_CR_DBG_SLEEPD1 | DBGMCU_CR_DBG_SLEEPD2;
+
 #endif /* CORE_CM7 */
 
 #if defined(CORE_CM4)

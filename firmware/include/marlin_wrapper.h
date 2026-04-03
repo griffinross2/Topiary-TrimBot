@@ -3,9 +3,30 @@
 
 #include <stddef.h>
 #include <stdint.h>
-#include "macros.h"
+// #include "macros.h"
 #include "stm32h7xx_hal.h"
 
+void marlin_wrapper_init();
+void marlin_wrapper_set_idle_cb(void (*cb)(void));
+void marlin_wrapper_loop();
+void marlin_wrapper_idle();
+size_t marlin_wrapper_serial_available();
+int marlin_wrapper_serial_read();
+void marlin_wrapper_kill();
+bool marlin_wrapper_is_running();
+bool marlin_wrapper_is_printer_busy();
+uint32_t marlin_wrapper_step_timer_count();
+
+enum MarlinState : uint8_t {
+    MF_INITIALIZING = 0,
+    MF_STOPPED,
+    MF_KILLED,
+    MF_RUNNING,
+    MF_SD_COMPLETE,
+    MF_PAUSED,
+    MF_WAITING,
+};
+/*
 #define MF_TIMER_STEP 0  // Timer Index for Stepper
 #define MF_TIMER_PULSE MF_TIMER_STEP
 #define STEP_TIMER_IRQ_PRIO      2
@@ -27,17 +48,6 @@ extern uint32_t GetStepperTimerClkFreq();
 #define STEPPER_TIMER_PRESCALE ((HAL_TIMER_RATE) / (STEPPER_TIMER_RATE))
 #define STEPPER_TIMER_TICKS_PER_US \
     ((STEPPER_TIMER_RATE) / 1000000UL)  // (ticks/μs) Stepper Timer ticks per µs
-
-void marlin_wrapper_init();
-void marlin_wrapper_set_idle_cb(void (*cb)(void));
-void marlin_wrapper_loop();
-void marlin_wrapper_idle();
-size_t marlin_wrapper_serial_available();
-int marlin_wrapper_serial_read();
-void marlin_wrapper_kill();
-bool marlin_wrapper_is_running();
-bool marlin_wrapper_is_printer_busy();
-uint32_t marlin_wrapper_step_timer_count();
 
 #define ENABLE_STEPPER_DRIVER_INTERRUPT() \
     HAL_timer_enable_interrupt(MF_TIMER_STEP)
@@ -98,6 +108,6 @@ FORCE_INLINE static void HAL_timer_set_compare(const uint8_t timer_num,
 
 inline void HAL_timer_isr_prologue(const uint8_t) {}
 inline void HAL_timer_isr_epilogue(const uint8_t) {}
-
+*/
 
 #endif  // MARLIN_WRAPPER_H

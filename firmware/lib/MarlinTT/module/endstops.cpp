@@ -340,16 +340,16 @@ void __O2 Endstops::report_states() {
   // TERF(USE_CALIBRATION, print_es_state)(READ(CALIBRATION_PIN) != CALIBRATION_PIN_INVERTING, F(STR_CALIBRATION));
 
   // #if MULTI_FILAMENT_SENSOR
-  //   #define _CASE_RUNOUT(N) do{ \
-  //     SERIAL_ECHO(F(STR_FILAMENT)); \
-  //     if ((N) > 1) SERIAL_CHAR(' ', '0' + char(N)); \
-  //     print_es_state(!FILAMENT_IS_OUT(N)); \
-  //   }while(0);
-  //   REPEAT_1(NUM_RUNOUT_SENSORS, _CASE_RUNOUT)
-  //   #undef _CASE_RUNOUT
-  // #elif HAS_FILAMENT_SENSOR
-  //   print_es_state(!FILAMENT_IS_OUT(), F(STR_FILAMENT));
-  // #endif
+  /* #define _CASE_RUNOUT(N) do{ \
+      SERIAL_ECHO(F(STR_FILAMENT)); \
+      if ((N) > 1) SERIAL_CHAR(' ', '0' + char(N)); \
+      print_es_state(!FILAMENT_IS_OUT(N)); \
+    }while(0);
+    REPEAT_1(NUM_RUNOUT_SENSORS, _CASE_RUNOUT)
+    #undef _CASE_RUNOUT
+  #elif HAS_FILAMENT_SENSOR
+    print_es_state(!FILAMENT_IS_OUT(), F(STR_FILAMENT));
+  #endif */
 
   // TERN_(BLTOUCH, bltouch._reset_SW_mode());
   // TERN_(JOYSTICK_DEBUG, joystick.report());

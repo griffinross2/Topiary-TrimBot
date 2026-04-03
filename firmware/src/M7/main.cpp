@@ -15,23 +15,26 @@
 
 #include <stdio.h>
 
+Status corem4_init() {
+    HAL_RCCEx_EnableBootCore(RCC_BOOT_C2);
+    return STATUS_OK;
+}
+
 int main(void)
 {
     HAL_Init();
 
-    DBGMCU->CR |= DBGMCU_CR_DBG_CKD1EN | DBGMCU_CR_DBG_CKD3EN;
-
     int init_stat = STATUS_OK;
-    init_stat |= clocks_init();
-    init_stat |= terminal_init() << 1;
-    init_stat |= flash_init() << 2;
-    init_stat |= filesystem_init() << 3;
-    init_stat |= tsc2013_init() << 4;
-    init_stat |= lcd_init() << 5;
-    init_stat |= gui_app_init() << 6;
+    init_stat |= clocks_init() << 0;
+    init_stat |= corem4_init() << 1;
+    init_stat |= terminal_init() << 2;
+    init_stat |= flash_init() << 3;
+    init_stat |= filesystem_init() << 4;
+    init_stat |= tsc2013_init() << 5;
+    init_stat |= lcd_init() << 6;
+    init_stat |= gui_app_init() << 7;
 
     printf("Init status: 0x%x\n", init_stat);
-    HAL_RCCEx_EnableBootCore(RCC_BOOT_C2);
 
     if (init_stat != STATUS_OK)
     {

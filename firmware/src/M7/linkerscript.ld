@@ -153,7 +153,7 @@ SECTIONS
     . = ALIGN(4);
     _edata = .;        /* define a global symbol at data end */
 
-  } >RAM_D2 AT> FLASH
+  } >DTCMRAM AT> FLASH
 
   /* Uninitialized data section into "RAM" Ram type memory */
   . = ALIGN(4);
@@ -169,7 +169,7 @@ SECTIONS
     . = ALIGN(4);
     _ebss = .;         /* define a global symbol at bss end */
     __bss_end__ = _ebss;
-  } >RAM_D2
+  } >DTCMRAM
 
   /* User_heap_stack section, used to check that there is enough "RAM" Ram  type memory left */
   ._user_heap_stack :
