@@ -165,6 +165,10 @@ inline int read_serial() { return marlin_wrapper_serial_read(); }
 
 #endif // (ARDUINO_ARCH_STM32F4 || ARDUINO_ARCH_STM32) && USBCON
 
+void GCodeQueue::gcode_line_error(const char * const ferr) {
+  
+}
+
 #define PS_NORMAL 0
 #define PS_EOL    1
 #define PS_QUOTED 2
@@ -464,6 +468,8 @@ void GCodeQueue::advance() {
       NOLESS(max_command_buffer_empty_duration, command_buffer_empty_duration);
     }
   #endif
+
+
 
   #if HAS_MEDIA
 

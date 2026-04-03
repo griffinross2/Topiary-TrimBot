@@ -2,7 +2,7 @@
 #include "marlin_wrapper.h"
 #include "gpio/gpio.h"
 #include "board.h"
-// #include "gcode/gcode.h"
+#include "gcode/gcode.h"
 
 #include <stdio.h>
 
@@ -14,7 +14,7 @@ int main(void)
 
     marlin_wrapper_init();
 
-    // gcode.home_all_axes();
+    gcode.home_all_axes();
 
     // Marlin wrapper hosts the loop
     marlin_wrapper_set_idle_cb(main_loop);
@@ -41,7 +41,6 @@ extern "C"
     void DebugMon_Handler(void);
     void PendSV_Handler(void);
     void SysTick_Handler(void);
-    void HSEM_IRQHandler(void);
 }
 
 void NMI_Handler(void)
@@ -88,10 +87,4 @@ void PendSV_Handler(void) {}
 void SysTick_Handler(void)
 {
     HAL_IncTick();
-}
-
-void HSEM2_IRQHandler(void) {
-    if (__HAL_HSEM_GET_FLAG(__HAL_HSEM_SEMID_TO_MASK(0))) {
-        __HAL_HSEM_CLEAR_FLAG(__HAL_HSEM_SEMID_TO_MASK(0));
-    }
 }

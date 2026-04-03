@@ -3,7 +3,7 @@
 
 #include <stddef.h>
 #include <stdint.h>
-// #include "macros.h"
+#include "macros.h"
 #include "stm32h7xx_hal.h"
 
 void marlin_wrapper_init();
@@ -26,7 +26,7 @@ enum MarlinState : uint8_t {
     MF_PAUSED,
     MF_WAITING,
 };
-/*
+
 #define MF_TIMER_STEP 0  // Timer Index for Stepper
 #define MF_TIMER_PULSE MF_TIMER_STEP
 #define STEP_TIMER_IRQ_PRIO      2
@@ -108,6 +108,6 @@ FORCE_INLINE static void HAL_timer_set_compare(const uint8_t timer_num,
 
 inline void HAL_timer_isr_prologue(const uint8_t) {}
 inline void HAL_timer_isr_epilogue(const uint8_t) {}
-*/
+
 
 #endif  // MARLIN_WRAPPER_H
