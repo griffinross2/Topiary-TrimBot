@@ -1,18 +1,33 @@
 #include "stm32h7xx_hal.h"
+#include "marlin_wrapper.h"
+#include "gpio/gpio.h"
+#include "board.h"
+#include "gcode/gcode.h"
 
 #include <stdio.h>
+
+void main_loop();
 
 int main(void)
 {
     HAL_Init();
 
-    // Main loop
-    while (1)
-    {
-        HAL_Delay(1000);
-    }
+    marlin_wrapper_init();
+
+    gcode.home_all_axes();
+
+    // Marlin wrapper hosts the loop
+    marlin_wrapper_set_idle_cb(main_loop);
+    marlin_wrapper_loop();
 
     return 0;
+}
+
+void main_loop() {
+    gpio_write(PIN_BLU, GPIO_HIGH);
+    HAL_Delay(1000);
+    gpio_write(PIN_BLU, GPIO_LOW);
+    HAL_Delay(1000);
 }
 
 extern "C"

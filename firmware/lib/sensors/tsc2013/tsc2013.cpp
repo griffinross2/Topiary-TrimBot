@@ -1,10 +1,23 @@
-#include "tsc2013.h"
+#include "tsc2013/tsc2013.h"
 
 #include "board.h"
 #include "gpio/gpio.h"
 #include "i2c/i2c.h"
+#include "stm32h7xx_hal.h"
 
-static I2cDevice s_i2c_dev = {
+#define TSC2013_MAX_MULTI_READ 16
+
+uint8_t operator"" _u8(unsigned long long x)
+{
+    return x;
+}
+
+uint16_t operator"" _u16(unsigned long long x)
+{
+    return x;
+}
+
+constexpr static I2cDevice s_i2c_dev = {
     .address = TSC2013_I2C_ADDRESS,
     .clk = I2C_SPEED_STANDARD,
     .periph = P_I2C2,
@@ -12,10 +25,20 @@ static I2cDevice s_i2c_dev = {
     .sda = PIN_TS_SDA,
 };
 
+// static EXTI_HandleTypeDef s_hexti;
+
+static constexpr struct {
+    float ax, bx, cx;
+    float ay, by, cy;
+} s_calibration_params = {
+    0.852788f, -0.00406077f, -41.4795f,
+    -0.00769267f, -0.558612f, 515.039f,
+};
+
 Status tsc2013_write_reg(uint8_t reg, uint16_t value)
 {
     // 1st byte: control byte (bit 7 = 0 for registers, bit 3-6 are register address, bit 0 = 0 for write)
-    uint8_t buf[3] = {(reg & 0xF) << 3, (value >> 8) & 0xFF, value & 0xFF};
+    uint8_t buf[3] = {static_cast<uint8_t>((reg & 0xF) << 3), static_cast<uint8_t>((value >> 8) & 0xFF), static_cast<uint8_t>(value & 0xFF)};
 
     return i2c_write(&s_i2c_dev, buf, 3);
 }
@@ -45,6 +68,11 @@ Status tsc2013_read_reg(uint8_t reg, uint16_t *value)
 
 Status tsc2013_multi_read_reg(uint8_t reg, uint16_t *value, size_t count)
 {
+    if (count > TSC2013_MAX_MULTI_READ)
+    {
+        return STATUS_PARAMETER_ERROR;
+    }
+
     // 1st byte: control byte (bit 7 = 0 for registers, bit 3-6 are register address, bit 0 = 1 for write)
     uint8_t buf = (reg & 0xF) << 3 | 0x1;
 
@@ -55,27 +83,36 @@ Status tsc2013_multi_read_reg(uint8_t reg, uint16_t *value, size_t count)
     }
 
     // Read register values
-    uint8_t rx_buf[2];
+    uint8_t rx_buf[2*TSC2013_MAX_MULTI_READ];
+    if (i2c_read(&s_i2c_dev, rx_buf, 2 * count) != STATUS_OK)
+    {
+        return STATUS_ERROR;
+    }
+
     for (size_t i = 0; i < count; i++)
     {
-        if (i2c_read(&s_i2c_dev, rx_buf, 2) != STATUS_OK)
-        {
-            return STATUS_ERROR;
-        }
+        
 
-        value[i] = (rx_buf[0] << 8) | rx_buf[1];
+        value[i] = (rx_buf[2*i] << 8) | rx_buf[2*i + 1];
     }
 
     return STATUS_OK;
+}
+
+Status tsc2013_start_conversion()
+{
+    // Control byte: bit 7 = 1 for conversion command
+    uint8_t buf = 0x80;
+    return i2c_write(&s_i2c_dev, &buf, 1);
 }
 
 Status tsc2013_init()
 {
     // Reset
     gpio_write(PIN_TS_NRST, GPIO_LOW);
-    HAL_Delay(2);
+    HAL_Delay(10);
     gpio_write(PIN_TS_NRST, GPIO_HIGH);
-    HAL_Delay(2);
+    HAL_Delay(10);
 
     uint16_t readback_val = 0;
 
@@ -93,14 +130,11 @@ Status tsc2013_init()
 
     if (tsc2013_write_reg(TSC2013_REG_CFR0, cfr0_val) != STATUS_OK)
     {
+        TRACE_PRINTF("TSC2013 CFR0 write failed\n");
         return STATUS_ERROR;
     }
 
-    if (tsc2013_read_reg(TSC2013_REG_CFR0, &readback_val) != STATUS_OK || readback_val != 0x8000)
-    {
-        TRACE_PRINTF("TSC2013 CFR0 readback failed: expected 0x%04X, got 0x%04X\n", cfr0_val, readback_val);
-        return STATUS_ERROR;
-    }
+    // No readback on CFR0
 
     // CFR1:
     // Bit 15-3     - Reserved, set to 0
@@ -109,6 +143,7 @@ Status tsc2013_init()
 
     if (tsc2013_write_reg(TSC2013_REG_CFR1, cfr1_val) != STATUS_OK)
     {
+        TRACE_PRINTF("TSC2013 CFR1 write failed\n");
         return STATUS_ERROR;
     }
 
@@ -119,23 +154,106 @@ Status tsc2013_init()
     }
 
     // CFR2:
-    // Bit 15-14    - PINTS = 00 (interrupt on AND of PENIRQ and DAV)
-    // Bit 13-10    - 0000 (preprocessing disabled)
+    // Bit 15-14    - PINTS = 00 (AND of PENIRQ and DAV (goes high when data should be read))
+    // Bit 13-12    - 01 (M=1)
+    // Bit 11-10    - 10 (W=2)
     // Bit 9-5      - Reserved, set to 0
-    // Bit 4-1      - MAVE = 0000 (MAV filter disabled)
+    // Bit 4-1      - MAVE = 1111 (MAV filter enabled)
     // Bit 0        - Reserved, set to 0
-    constexpr uint16_t cfr2_val = 0x0000;
+    constexpr uint16_t cfr2_val = 0x181E;
 
-    if (tsc2013_write_reg(TSC2013_REG_CFR2, 0x0000) != STATUS_OK)
+    if (tsc2013_write_reg(TSC2013_REG_CFR2, cfr2_val) != STATUS_OK)
     {
         return STATUS_ERROR;
     }
 
-    if (tsc2013_read_reg(TSC2013_REG_CFR2, &readback_val) != STATUS_OK || readback_val != 0x0000)
+    if (tsc2013_read_reg(TSC2013_REG_CFR2, &readback_val) != STATUS_OK || readback_val != cfr2_val)
     {
         TRACE_PRINTF("TSC2013 CFR2 readback failed: expected 0x%04X, got 0x%04X\n", cfr2_val, readback_val);
         return STATUS_ERROR;
     }
+
+    // Start conversion
+    if (tsc2013_start_conversion() != STATUS_OK)
+    {
+        TRACE_PRINTF("TSC2013 start conversion failed\n");
+        return STATUS_ERROR;
+    }
+
+    return STATUS_OK;
+}
+
+bool tsc2013_is_touched() {
+    uint16_t status = 0;
+    if (tsc2013_read_reg(TSC2013_REG_CFR0, &status) != STATUS_OK)
+    {
+        return false;
+    }
+
+    if (status & 0x8000)
+    {
+        return true;
+    }
+
+    return false;
+}
+
+bool tsc2013_is_data_ready() {
+    uint16_t status = 0;
+    if (tsc2013_read_reg(TSC2013_REG_STATUS, &status) != STATUS_OK)
+    {
+        return false;
+    }
+
+    if (status & 0xF8)
+    {
+        return true;
+    }
+
+    return false;
+}
+
+Status tsc2013_read_touch(uint16_t *x, uint16_t *y, uint16_t *z) {
+    uint16_t values[8];
+    if (tsc2013_multi_read_reg(TSC2013_REG_X1, values, 8) != STATUS_OK)
+    {
+        return STATUS_ERROR;
+    }
+
+    uint16_t X1 = values[0];
+    uint16_t X2 = values[1];
+    uint16_t Y1 = values[2];
+    uint16_t Y2 = values[3];
+    // uint16_t IX = values[4];
+    // uint16_t IY = values[5];
+    // uint16_t Z1 = values[6];
+    // uint16_t Z2 = values[7];
+
+    if (X1 >= X2)
+	{
+		*x = X2 + ((X1 - X2) >> 1);
+	}
+	else
+	{
+		*x = X1 + ((X2 - X1) >> 1);
+	}
+
+	if (Y1 >= Y2)
+	{
+		*y = Y2 + ((Y1 - Y2) >> 1);
+	}
+	else
+	{
+		*y = Y1 + ((Y2 - Y1) >> 1);
+	}
+
+	*x = 1024 - *x;
+	*y = 1024 - *y;
+    *z = 0;
+
+    // Apply calibration
+    *x = s_calibration_params.ax * (*x) + s_calibration_params.bx * (*y) + s_calibration_params.cx;
+    *y = s_calibration_params.ay * (*x) + s_calibration_params.by * (*y) + s_calibration_params.cy;
 
     return STATUS_OK;
 }

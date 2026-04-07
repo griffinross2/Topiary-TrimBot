@@ -33,10 +33,10 @@ typedef struct
     uint8_t sda;
 } I2cDevice;
 
-Status i2c_write_verify(I2cDevice *device, uint8_t *tx_buf, size_t len);
+Status i2c_write_verify(const I2cDevice *device, uint8_t *tx_buf, size_t len);
 
-Status i2c_write(I2cDevice *device, uint8_t *tx_buf, size_t len);
+Status i2c_write(const I2cDevice *device, uint8_t *tx_buf, size_t len);
 
-Status i2c_read(I2cDevice *device, uint8_t *rx_buf, size_t len);
+Status i2c_read(const I2cDevice *device, uint8_t *rx_buf, size_t len);
 
 #endif // I2C_H

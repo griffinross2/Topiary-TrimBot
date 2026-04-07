@@ -1,1 +1,1 @@
-"C:\Program Files\STMicroelectronics\STM32Cube\STM32CubeProgrammer\bin\STM32_Programmer_CLI.exe" -c port=SWD -d .pio/build/core_m7/firmware.elf -rst
+"C:\Program Files\STMicroelectronics\STM32Cube\STM32CubeProgrammer\bin\STM32_Programmer_CLI.exe" -c port=SWD -el "C:\Program Files\STMicroelectronics\STM32Cube\STM32CubeProgrammer\bin\ExternalLoader\MX25L51245G_STM32H747-TT.stldr" -d .pio/build/core_m7/firmware.elf -rst
