@@ -7,6 +7,7 @@
 #include "gpio/gpio.h"
 #include "Delay.h"
 #include "memory.h"
+#include "module/settings.h"
 
 void (*marlin_idle_cb)(void) = nullptr;
 
@@ -15,6 +16,12 @@ MarlinState marlin_state = MF_INITIALIZING;
 void marlin_wrapper_init() {
     // Some HAL need precise delay adjustment
     calibrate_delay_loop();
+
+    TERN_(HAS_HOME_OFFSET,
+          current_position +=
+          home_offset);  // Init current position based on home_offset
+
+    settings.first_load();
 
     sync_plan_position();  // Vital to init stepper/planner equivalent for
                             // current_position
@@ -41,6 +48,7 @@ void marlin_wrapper_loop() {
 }
 
 void marlin_wrapper_idle() {
+    endstops.poll();
     queue.get_available_commands();
     const millis_t ms = get_tick_ms();
     gcode.reset_stepper_timeout(ms);
@@ -206,7 +214,7 @@ bool HAL_timer_interrupt_enabled(const uint8_t timer_num) {
   switch (timer_num) {
     case MF_TIMER_STEP:
       #if (STEP_TIMER == 4)
-      return HAL_timer_initialized(timer_num) && NVIC_GetEnableIRQ(TIM4_IRQn);
+      return HAL_timer_initialized(timer_num) && __HAL_TIM_GET_FLAG(&timer_instance[timer_num], TIM_IT_UPDATE);
       #else
       #error "Change the timer IRQ is enabled check"
       #endif

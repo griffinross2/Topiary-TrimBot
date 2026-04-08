@@ -1282,25 +1282,25 @@
  * Endstop "Hit" State
  * Set to the state (HIGH or LOW) that applies to each endstop.
  */
-#define X_MIN_ENDSTOP_HIT_STATE HIGH
-#define X_MAX_ENDSTOP_HIT_STATE HIGH
-#define Y_MIN_ENDSTOP_HIT_STATE HIGH
-#define Y_MAX_ENDSTOP_HIT_STATE HIGH
-#define Z_MIN_ENDSTOP_HIT_STATE HIGH
-#define Z_MAX_ENDSTOP_HIT_STATE HIGH
-#define I_MIN_ENDSTOP_HIT_STATE HIGH
-#define I_MAX_ENDSTOP_HIT_STATE HIGH
-#define J_MIN_ENDSTOP_HIT_STATE HIGH
-#define J_MAX_ENDSTOP_HIT_STATE HIGH
-#define K_MIN_ENDSTOP_HIT_STATE HIGH
-#define K_MAX_ENDSTOP_HIT_STATE HIGH
-#define U_MIN_ENDSTOP_HIT_STATE HIGH
-#define U_MAX_ENDSTOP_HIT_STATE HIGH
-#define V_MIN_ENDSTOP_HIT_STATE HIGH
-#define V_MAX_ENDSTOP_HIT_STATE HIGH
-#define W_MIN_ENDSTOP_HIT_STATE HIGH
-#define W_MAX_ENDSTOP_HIT_STATE HIGH
-#define Z_MIN_PROBE_ENDSTOP_HIT_STATE HIGH
+#define X_MIN_ENDSTOP_HIT_STATE LOW
+#define X_MAX_ENDSTOP_HIT_STATE LOW
+#define Y_MIN_ENDSTOP_HIT_STATE LOW
+#define Y_MAX_ENDSTOP_HIT_STATE LOW
+#define Z_MIN_ENDSTOP_HIT_STATE LOW
+#define Z_MAX_ENDSTOP_HIT_STATE LOW
+#define I_MIN_ENDSTOP_HIT_STATE LOW
+#define I_MAX_ENDSTOP_HIT_STATE LOW
+#define J_MIN_ENDSTOP_HIT_STATE LOW
+#define J_MAX_ENDSTOP_HIT_STATE LOW
+#define K_MIN_ENDSTOP_HIT_STATE LOW
+#define K_MAX_ENDSTOP_HIT_STATE LOW
+#define U_MIN_ENDSTOP_HIT_STATE LOW
+#define U_MAX_ENDSTOP_HIT_STATE LOW
+#define V_MIN_ENDSTOP_HIT_STATE LOW
+#define V_MAX_ENDSTOP_HIT_STATE LOW
+#define W_MIN_ENDSTOP_HIT_STATE LOW
+#define W_MAX_ENDSTOP_HIT_STATE LOW
+#define Z_MIN_PROBE_ENDSTOP_HIT_STATE LOW
 
 // Enable this feature if all enabled endstop pins are interrupt-capable.
 // This will remove the need to poll the interrupt pins, saving many CPU cycles.
@@ -1348,7 +1348,7 @@
  * Override with M92 (when enabled below)
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 500 } // X, !Y, Z, !I, J, K - replace values
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 1.0f/1.8f, 80, 400, 500 } // X, !Y, Z, !I, J, K - replace values
 
 /**
  * Enable support for M92. Disable to save at least ~530 bytes of flash.
@@ -1360,7 +1360,7 @@
  * Override with M203
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 300, 300, 5, 25 }
+#define DEFAULT_MAX_FEEDRATE          { 500, 25, 25, 25 }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)

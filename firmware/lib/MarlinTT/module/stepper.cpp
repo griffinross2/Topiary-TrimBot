@@ -3323,7 +3323,7 @@ void Stepper::init() {
   #if DISABLED(I2S_STEPPER_STREAM)
     HAL_timer_start(MF_TIMER_STEP, 122); // Init Stepper ISR to 122 Hz for quick starting
     wake_up();
-    // sei();
+    __enable_irq();
   #endif
 
   // Init direction states
