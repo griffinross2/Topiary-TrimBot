@@ -2,6 +2,15 @@ import pyvista as pv
 import numpy as np
 import io
 from PIL import Image
+import os
+
+gtk_bin_path = r'C:\Program Files\GTK3-Runtime Win64\bin'
+
+if os.path.exists(gtk_bin_path):
+    os.add_dll_directory(gtk_bin_path)
+else:
+    print(f"Warning: {gtk_bin_path} not found!")
+
 import cairosvg
 
 def generate_lumpy_sphere(radius=12.0, lumpy_factor=0.07, resolution=100):
