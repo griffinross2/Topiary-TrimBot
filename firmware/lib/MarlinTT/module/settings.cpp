@@ -3774,7 +3774,7 @@ void MarlinSettings::reset() {
   postprocess();
 
   #if ANY(EEPROM_CHITCHAT, DEBUG_LEVELING_FEATURE)
-    TRACE_PRINTF("Hardcoded Default Settings Loaded")
+    TRACE_PRINTF("Hardcoded Default Settings Loaded\n")
   #endif
 
   TERN_(EXTENSIBLE_UI, ExtUI::onFactoryReset());

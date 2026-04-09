@@ -128,7 +128,7 @@ void GCodeParser::parse(char *p) {
   }
 
   // *p now points to the current command, which should be G, M, or T
-  // command_ptr = p;
+  command_ptr = p;
 
   // Get the command letter, which must be G, M, or T
   const char letter = uppercase(*p++);

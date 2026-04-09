@@ -57,6 +57,15 @@ MEMORY
 /* Sections */
 SECTIONS
 {
+  /* Put the UART handle at a fixed location so it can be shared */
+  .uart_handle : 
+  {
+    . = ALIGN(4);
+    *(.uart_handle)
+    *(.uart_handle*)
+    . = ALIGN(4);
+
+  } >RAM_D2
 
   /* The startup code into "FLASH" Rom type memory */
   .isr_vector :
