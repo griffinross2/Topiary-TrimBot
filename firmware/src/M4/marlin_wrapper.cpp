@@ -12,8 +12,21 @@
 void (*marlin_idle_cb)(void) = nullptr;
 
 MarlinState marlin_state = MF_INITIALIZING;
+static TIM_HandleTypeDef s_endstop_timer = {};
+
+void endstop_timer_init(TIM_HandleTypeDef *htim);
+
 
 void marlin_wrapper_init() {
+    gpio_mode(PIN_TURNTABLE_DIR, GPIO_OUTPUT);
+    gpio_mode(PIN_TURNTABLE_STEP, GPIO_OUTPUT);
+    gpio_mode(PIN_GANTRY_DIR, GPIO_OUTPUT);
+    gpio_mode(PIN_GANTRY_STEP, GPIO_OUTPUT);
+    gpio_mode(PIN_REVOLUTE_DIR, GPIO_OUTPUT);
+    gpio_mode(PIN_REVOLUTE_STEP, GPIO_OUTPUT);
+    gpio_mode(PIN_EXTRUDER_DIR, GPIO_OUTPUT);
+    gpio_mode(PIN_EXTRUDER_STEP, GPIO_OUTPUT);
+    
     // Some HAL need precise delay adjustment
     calibrate_delay_loop();
 
@@ -27,6 +40,10 @@ void marlin_wrapper_init() {
                             // current_position
 
     endstops.init();
+
+    // Start endstop timer
+    endstop_timer_init(&s_endstop_timer);
+
     stepper.init();
     marlin_state = MF_RUNNING;
 
@@ -356,8 +373,33 @@ static constexpr bool verify_no_timer_conflicts() {
 // when hovering over it, making it easy to identify the conflicting timers.
 static_assert(verify_no_timer_conflicts(), "One or more timer conflict detected. Examine \"timers_in_use\" to help identify conflict.");
 
+void endstop_timer_init(TIM_HandleTypeDef *htim) {
+  __HAL_RCC_TIM3_CLK_ENABLE();
+
+  htim->Instance = TIM3;
+  htim->Init.Prescaler = (HAL_RCC_GetPCLK1Freq() / 10000) - 1; // 10kHz timer clock
+  htim->Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim->Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim->Init.Period = 100 - 1; // 100Hz timer frequency
+  htim->Init.RepetitionCounter = 0;
+  htim->Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+
+  HAL_TIM_Base_Init(htim);
+
+  NVIC_SetPriority(TIM3_IRQn, 0);
+  NVIC_EnableIRQ(TIM3_IRQn);
+
+  HAL_TIM_Base_Start_IT(htim);
+}
+
 extern "C" {
+  void TIM3_IRQHandler();
   void TIM4_IRQHandler();
+}
+
+void TIM3_IRQHandler() {
+  HAL_TIM_IRQHandler(&s_endstop_timer);
+  endstops.poll();
 }
 
 void TIM4_IRQHandler() {
