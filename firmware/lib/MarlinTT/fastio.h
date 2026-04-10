@@ -33,8 +33,8 @@
 // Defines
 // ------------------------
 
-#define HIGH true
-#define LOW  false
+#define HIGH GPIO_HIGH
+#define LOW  GPIO_LOW
 
 #define _BV32(b) (1UL << (b))
 

@@ -3,6 +3,7 @@
 #include "gpio/gpio.h"
 #include "board.h"
 #include "gcode/gcode.h"
+#include "terminal.h"
 
 #include <stdio.h>
 
@@ -12,22 +13,34 @@ int main(void)
 {
     HAL_Init();
 
-    marlin_wrapper_init();
+    terminal_rx_start();
 
-    gcode.home_all_axes();
+    marlin_wrapper_init();
 
     // Marlin wrapper hosts the loop
     marlin_wrapper_set_idle_cb(main_loop);
+
+    // gcode.home_all_axes();
+    
     marlin_wrapper_loop();
 
     return 0;
 }
+
+char buf[64];
 
 void main_loop() {
     gpio_write(PIN_BLU, GPIO_HIGH);
     HAL_Delay(1000);
     gpio_write(PIN_BLU, GPIO_LOW);
     HAL_Delay(1000);
+
+    int bytes_read = terminal_read((uint8_t*)buf, sizeof(buf)-1);
+    if (bytes_read > 0) {
+        buf[bytes_read] = '\0';
+        printf("%s", buf);
+        gcode.process_subcommands_now(buf);
+    }
 }
 
 extern "C"

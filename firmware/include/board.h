@@ -484,4 +484,7 @@ __attribute__((unused)) static uint32_t GPIO_PIN_TO_MODEPOS[] = {
 #define PIN_SD_D2 PIN_PC10
 #define PIN_SD_D3 PIN_PC11
 
+// Door Switch
+#define PIN_DOOR PIN_PB3
+
 #endif // BOARD_H
