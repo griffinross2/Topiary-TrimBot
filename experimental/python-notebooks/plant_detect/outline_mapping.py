@@ -149,6 +149,7 @@ def process_angle(angle, angle_step):
     right_png.seek(0)
 
     left_image = Image.open(left_png)
+    left_image.show()
     right_image = Image.open(right_png)
 
     disparity = get_disparity_level(left_image, right_image)
