@@ -3,6 +3,7 @@
 #include "board.h"
 #include "gpio/gpio.h"
 #include "images/blank.h"
+#include "profiler.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -105,7 +106,7 @@ Status lcd_init()
 
 void lcd_swap_buffers()
 {
-    // PROFILER_ENTER();
+    PROFILER_ENTER();
 
     // Wait until in vsync to swap buffers
     while (!lcd_is_in_vsync())
@@ -118,7 +119,7 @@ void lcd_swap_buffers()
     // Set the new front buffer and refresh
     lcd_set_foreground(FRONTBUFFER);
 
-    // PROFILER_EXIT();
+    PROFILER_EXIT();
 }
 
 Color *lcd_get_backbuffer()

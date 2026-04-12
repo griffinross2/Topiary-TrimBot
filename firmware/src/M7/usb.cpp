@@ -1,0 +1,149 @@
+/*
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2019 Ha Thach (tinyusb.org)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ *
+ */
+#include "status.h"
+#include "profiler.h"
+
+#include "tusb.h"
+#include "stm32h7xx.h"
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#include <algorithm>
+
+extern "C" {
+void OTG_FS_IRQHandler(void);
+void tud_mount_cb(void);
+void tud_umount_cb(void);
+void tud_cdc_line_state_cb(uint8_t instance, bool dtr, bool rts);
+}
+
+static void cdc_task(void);
+
+/*------------- MAIN -------------*/
+Status usb_init(void) {
+    // Low-level init
+    HAL_PWREx_EnableUSBVoltageDetector();
+    HAL_PWREx_EnableUSBReg();
+    __HAL_RCC_USB2_OTG_FS_CLK_ENABLE();
+    NVIC_SetPriority(OTG_FS_IRQn, 0);
+    NVIC_EnableIRQ(OTG_FS_IRQn);
+    
+    // DM/DP Pins
+    GPIO_InitTypeDef GPIO_InitStruct = {
+        .Pin = GPIO_PIN_11 | GPIO_PIN_12,
+        .Mode = GPIO_MODE_AF_PP,
+        .Pull = GPIO_NOPULL,
+        .Speed = GPIO_SPEED_FREQ_HIGH,
+        .Alternate = GPIO_AF10_OTG2_FS,
+    };
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+    
+    // VBUS Pin
+    GPIO_InitStruct.Pin = GPIO_PIN_9;
+    GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+    
+    // Enable VBUS sensing
+    USB_OTG_FS->GCCFG |= USB_OTG_GCCFG_VBDEN;
+
+    // init device stack on configured roothub port
+    tusb_rhport_init_t dev_init = {.role = TUSB_ROLE_DEVICE,
+                                   .speed = TUSB_SPEED_FULL};
+
+    if (tusb_init(BOARD_TUD_RHPORT, &dev_init) != true) {
+        TRACE_PRINTF("Failed to initialize USB\n");
+        return STATUS_ERROR;
+    }
+
+    TRACE_PRINTF("USB initialized\n");
+
+    return STATUS_OK;
+}
+
+void usb_task(void) {
+    PROFILER_ENTER();
+
+    tud_task();
+    cdc_task();
+
+    PROFILER_EXIT();
+}
+
+// Invoked when device is mounted
+void tud_mount_cb(void) {
+    TRACE_PRINTF("USB mounted\n");
+}
+
+// Invoked when device is unmounted
+void tud_umount_cb(void) {
+    TRACE_PRINTF("USB unmounted\n");
+}
+
+static void cdc_task(void) {
+    tud_cdc_write_flush();
+}
+
+// Invoked when cdc when line state changed e.g connected/disconnected
+// Use to reset to DFU when disconnect with 1200 bps
+void tud_cdc_line_state_cb(uint8_t instance, bool dtr, bool rts) {
+    TRACE_PRINTF("New line state: dtr: %d rts: %d\n", dtr, rts);
+}
+
+unsigned int usb_available_write() {
+    return tud_cdc_write_available();
+}
+
+unsigned int usb_send(const char* data, unsigned int len) {
+    if (!data || len > tud_cdc_write_available()) {
+        return -1;
+    }
+
+    tud_cdc_write(data, len);
+
+    return 0;
+}
+
+unsigned int usb_available() {
+    return tud_cdc_available();
+}
+
+unsigned int usb_receive(char* buf, unsigned int len) {
+    if (!buf) {
+        return -1;
+    }
+
+    // Receive at most len bytes
+    unsigned int to_receive = std::min(len, usb_available());
+    tud_cdc_read(buf, to_receive);
+
+    return to_receive;
+}
+
+void OTG_FS_IRQHandler(void) {
+    tud_int_handler(0);
+}

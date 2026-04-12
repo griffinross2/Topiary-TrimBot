@@ -68,8 +68,9 @@ Status clocks_init()
 
     // Peripheral clocks initialization
     RCC_PeriphCLKInitTypeDef pclk_init = {};
-    pclk_init.PeriphClockSelection = RCC_PERIPHCLK_SDMMC | RCC_PERIPHCLK_LTDC;
+    pclk_init.PeriphClockSelection = RCC_PERIPHCLK_SDMMC | RCC_PERIPHCLK_LTDC | RCC_PERIPHCLK_USB;
     pclk_init.SdmmcClockSelection = RCC_SDMMCCLKSOURCE_PLL;
+    pclk_init.UsbClockSelection = RCC_USBCLKSOURCE_PLL;
     pclk_init.PLL3.PLL3M = 32;
     pclk_init.PLL3.PLL3N = 200;
     pclk_init.PLL3.PLL3P = 2;

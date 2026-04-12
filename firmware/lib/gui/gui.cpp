@@ -1,7 +1,7 @@
 #include "gui.h"
 
 #include "tsc2013/tsc2013.h"
-// #include "profiler.h"
+#include "profiler.h"
 #include "timing.h"
 
 #include <algorithm>
@@ -248,21 +248,21 @@ void gui_touch_update() {
 }
 
 void gui_update() {
-    // PROFILER_ENTER();
+    PROFILER_ENTER();
 
     gui_touch_poll();
     gui_touch_update();
     // printf("Touch state: %s at (%d, %d)\n", s_touch_state.pressed ? "Pressed" : "Released",
     //        s_touch_state.x, s_touch_state.y);
 
-    // PROFILER_EXIT();
+    PROFILER_EXIT();
 }
 
 void gui_render(unsigned int target_fps) {
-    // PROFILER_ENTER();
+    PROFILER_ENTER();
 
     if (get_tick_ms() - s_last_refresh < 1000 / target_fps) {
-        // PROFILER_EXIT();
+        PROFILER_EXIT();
         return;
     }
     s_last_refresh = get_tick_ms();
@@ -271,5 +271,5 @@ void gui_render(unsigned int target_fps) {
         s_current_scene->redraw();
     }
 
-    // PROFILER_EXIT();
+    PROFILER_EXIT();
 }

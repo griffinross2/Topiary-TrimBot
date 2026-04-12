@@ -12,6 +12,8 @@
 #include "images/blank.h"
 #include "gui_app.h"
 #include "filesystem.h"
+#include "usb.h"
+#include "profiler.h"
 
 #include <stdio.h>
 
@@ -27,12 +29,14 @@ int main(void)
     int init_stat = STATUS_OK;
     init_stat |= clocks_init() << 0;
     init_stat |= corem4_init() << 1;
+    profiler_init();
     init_stat |= terminal_init() << 2;
     init_stat |= flash_init() << 3;
     init_stat |= filesystem_init() << 4;
-    init_stat |= tsc2013_init() << 5;
-    init_stat |= lcd_init() << 6;
-    init_stat |= gui_app_init() << 7;
+    init_stat |= usb_init() << 5;
+    init_stat |= tsc2013_init() << 6;
+    init_stat |= lcd_init() << 7;
+    init_stat |= gui_app_init() << 8;
 
     printf("Init status: 0x%x\n", init_stat);
 
@@ -59,23 +63,19 @@ int main(void)
         printf("File %lu: %s (%lu bytes)\n", (uint32_t)i, file_list[i].name.c_str(), (uint32_t)file_list[i].size);
     }
 
+    uint32_t profiler_tick = HAL_GetTick();
+
     // Main loop
     while (1)
     {
-        // gpio_write(PIN_BLU, GPIO_HIGH);
-        // HAL_Delay(500);
-        // gpio_write(PIN_BLU, GPIO_LOW);
-        // HAL_Delay(500);
-        // if (gpio_read(PIN_BL_DISC) == GPIO_LOW)
-        // {
-        //     gpio_write(PIN_YEL, GPIO_HIGH);
-        // }
-        // else
-        // {
-        //     gpio_write(PIN_YEL, GPIO_LOW);
-        // }
+        // Print profiler summary every 10 seconds
+        if (HAL_GetTick() - profiler_tick >= 10000) {
+            profiler_print_summary();
+            profiler_tick = HAL_GetTick();
+        }
 
         filesystem_task();
+        usb_task();
         gui_app_task();
     }
 

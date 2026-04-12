@@ -4,7 +4,7 @@
 #include "gui.h"
 #include "filesystem.h"
 #include "timing.h"
-// #include "profiler.h"
+#include "profiler.h"
 // #include "file_sender.h"
 
 // #include "images/test.h"
@@ -30,7 +30,7 @@ struct {
 } file_list_scene_ctx;
 
 Status update_file_list() {
-    // PROFILER_ENTER();
+    PROFILER_ENTER();
 
     std::vector<FileInfo>& file_list = file_list_scene_ctx.file_list;
     Scene& scene = file_list_scene_ctx.scene;
@@ -46,14 +46,14 @@ Status update_file_list() {
     if (std::equal(file_list.begin(), file_list.end(), new_file_list.begin(),
                    new_file_list.end())) {
         // No change in file list, so we don't need to update
-        // PROFILER_EXIT();
+        PROFILER_EXIT();
         return STATUS_OK;
     }
 
     file_list = std::move(new_file_list);
 
     if (status != STATUS_OK) {
-        // PROFILER_EXIT();
+        PROFILER_EXIT();
         return status;
     }
 
@@ -99,7 +99,7 @@ Status update_file_list() {
         scene.add_object(size_label);
     }
 
-    // PROFILER_EXIT();
+    PROFILER_EXIT();
     return STATUS_OK;
 };
 
@@ -201,7 +201,10 @@ Status gui_app_init() {
 }
 
 void gui_app_task() {
-    // PROFILER_ENTER();
+    PROFILER_ENTER();
+
+    static uint32_t last_fps_check = HAL_GetTick();
+    static int num_frames = 0;
 
     // Scene specific updates
     if (gui_get_current_scene() == &file_list_scene_ctx.scene) {
@@ -215,5 +218,15 @@ void gui_app_task() {
     gui_update();
     gui_render();
 
-    // PROFILER_EXIT();
+    num_frames++;
+
+    // Print framerate
+    if (HAL_GetTick() - last_fps_check >= 5000) {
+        float fps = 1000.0f * num_frames / (HAL_GetTick() - last_fps_check);
+        printf("FPS: %.2f\n", fps);
+        last_fps_check = HAL_GetTick();
+        num_frames = 0;
+    }
+
+    PROFILER_EXIT();
 }

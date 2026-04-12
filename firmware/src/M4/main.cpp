@@ -4,6 +4,7 @@
 #include "board.h"
 #include "gcode/gcode.h"
 #include "terminal.h"
+#include "profiler.h"
 
 #include <stdio.h>
 
@@ -12,6 +13,8 @@ void main_loop();
 int main(void)
 {
     HAL_Init();
+
+    profiler_init();
 
     terminal_rx_start();
 
@@ -30,11 +33,22 @@ int main(void)
 char buf[64];
 
 void main_loop() {
-    gpio_write(PIN_BLU, GPIO_HIGH);
-    HAL_Delay(1000);
-    gpio_write(PIN_BLU, GPIO_LOW);
-    HAL_Delay(1000);
+    static uint32_t profiler_tick = HAL_GetTick();
+    static uint32_t blinky_tick = HAL_GetTick();
 
+    // Blink blue LED for status
+    if (get_tick_ms() - blinky_tick >= 1000) {
+        gpio_toggle(PIN_BLU);
+        blinky_tick = get_tick_ms();
+    }
+
+    // Print profiler summary every 10 seconds
+    if (get_tick_ms() - profiler_tick >= 10000) {
+        profiler_print_summary();
+        profiler_tick = get_tick_ms();
+    }
+
+    // Process manual g-code input
     int bytes_read = terminal_read((uint8_t*)buf, sizeof(buf)-1);
     if (bytes_read > 0) {
         buf[bytes_read] = '\0';
