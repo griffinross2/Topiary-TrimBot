@@ -64,7 +64,15 @@ SECTIONS
     *(.uart_handle)
     *(.uart_handle*)
     . = ALIGN(4);
+  } >RAM_D2
 
+  /* Shared buffer and flag to pass gcode from M7 to M4 */
+  .gcode_buffer : 
+  {
+    . = ALIGN(4);
+    *(.gcode_buffer)
+    *(.gcode_buffer*)
+    . = ALIGN(4);
   } >RAM_D2
 
   /* The startup code into "FLASH" Rom type memory */

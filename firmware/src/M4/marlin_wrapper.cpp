@@ -68,10 +68,41 @@ void marlin_wrapper_idle() {
     endstops.poll();
     queue.get_available_commands();
     const millis_t ms = get_tick_ms();
-    gcode.reset_stepper_timeout(ms);
+    
     if (gcode.stepper_max_timed_out(ms)) {
         TRACE_PRINTF("Stepper timed out\n");
         marlin_wrapper_kill();
+    }
+
+    const bool has_blocks =
+        planner.has_blocks_queued();
+    if (has_blocks)
+        gcode.reset_stepper_timeout(ms);
+
+    if (gcode.stepper_inactive_time) {
+        static bool already_shutdown_steppers;  // = false
+
+        if (!has_blocks &&
+            gcode.stepper_inactive_timeout()) {
+            if (!already_shutdown_steppers) {
+                already_shutdown_steppers = true;
+
+                // Individual axes will be disabled if configured
+                TERN_(DISABLE_IDLE_X, stepper.disable_axis(X_AXIS));
+                TERN_(DISABLE_IDLE_Y, stepper.disable_axis(Y_AXIS));
+                TERN_(DISABLE_IDLE_Z, stepper.disable_axis(Z_AXIS));
+                TERN_(DISABLE_IDLE_I, stepper.disable_axis(I_AXIS));
+                TERN_(DISABLE_IDLE_J, stepper.disable_axis(J_AXIS));
+                TERN_(DISABLE_IDLE_K, stepper.disable_axis(K_AXIS));
+                TERN_(DISABLE_IDLE_U, stepper.disable_axis(U_AXIS));
+                TERN_(DISABLE_IDLE_V, stepper.disable_axis(V_AXIS));
+                TERN_(DISABLE_IDLE_W, stepper.disable_axis(W_AXIS));
+                TERN_(DISABLE_IDLE_E, stepper.disable_e_steppers());
+
+                TERN_(AUTO_BED_LEVELING_UBL, bedlevel.steppers_were_disabled());
+            }
+        } else
+            already_shutdown_steppers = false;
     }
 
     // Limit check_axes_activity frequency to 10Hz

@@ -14,6 +14,7 @@
 #include "filesystem.h"
 #include "usb.h"
 #include "profiler.h"
+#include "packet_engine.h"
 
 #include <stdio.h>
 
@@ -37,6 +38,7 @@ int main(void)
     init_stat |= tsc2013_init() << 6;
     init_stat |= lcd_init() << 7;
     init_stat |= gui_app_init() << 8;
+    init_stat |= packet_engine_init() << 9;
 
     printf("Init status: 0x%x\n", init_stat);
 
@@ -76,6 +78,7 @@ int main(void)
 
         filesystem_task();
         usb_task();
+        packet_engine_task();
         gui_app_task();
     }
 

@@ -5,6 +5,7 @@
 #include "gcode/gcode.h"
 #include "terminal.h"
 #include "profiler.h"
+#include "gcode_receiver.h"
 
 #include <stdio.h>
 
@@ -55,6 +56,11 @@ void main_loop() {
         printf("%s", buf);
         gcode.process_subcommands_now(buf);
     }
+
+    // Receive g-code from the Pi
+    gcode_receiver_task();
+
+    HAL_Delay(50);
 }
 
 extern "C"

@@ -5,7 +5,7 @@
 #include "filesystem.h"
 #include "timing.h"
 #include "profiler.h"
-// #include "file_sender.h"
+#include "file_sender.h"
 
 // #include "images/test.h"
 // #include "images/squares.h"
@@ -154,10 +154,11 @@ Status load_file_list_scene() {
         // Send file if the index is still valid (card wasn't removed)
         if (file_list_scene_ctx.selected_file_index <
             file_list_scene_ctx.file_list.size()) {
-            // const FileInfo& selected_file =
-            //     file_list_scene_ctx
-            //         .file_list[file_list_scene_ctx.selected_file_index];
-            // file_sender_send_file(selected_file.name.c_str());
+            const FileInfo& selected_file =
+                file_list_scene_ctx
+                    .file_list[file_list_scene_ctx.selected_file_index];
+            file_sender_send_file(selected_file.name.c_str());
+            TRACE_PRINTF("Sending file: %s\n", selected_file.name.c_str());
         }
 
         file_list_scene_ctx.scene.set_dialog_active(false);
