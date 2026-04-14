@@ -59,8 +59,6 @@ def create_outline(img):
     paths = contour.get_paths()
     path = paths[0]
 
-    plt.figure()
-
     points = []
     ops = []
     for vertices, code in path.iter_segments():
