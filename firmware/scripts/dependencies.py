@@ -10,3 +10,8 @@ try:
     import fontTools
 except ImportError:
     env.Execute("$PYTHONEXE -m pip install fontTools")
+
+try:
+    from PIL import Image
+except ImportError:
+    env.Execute("$PYTHONEXE -m pip install pillow")

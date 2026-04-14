@@ -2,7 +2,7 @@ Import("env")
 
 import os
 
-def bmp_to_header(img_dir, filename):
+def bmp_to_data(img_dir, filename):
     file_stem = filename.split('.')[0]
 
     data = []
@@ -107,7 +107,7 @@ def before_build(source, target, env):
 
     for path in os.listdir("images"):
         print(path)
-        data = bmp_to_header("images", path)
+        data = bmp_to_data("images", path)
         data = data_reorg(data)
         data = data_argb_to_rgb565(data)
         data_to_header("include/images", path, data)

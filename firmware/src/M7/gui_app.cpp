@@ -7,18 +7,35 @@
 #include "profiler.h"
 #include "file_sender.h"
 
-// #include "images/test.h"
-// #include "images/squares.h"
 #include "images/splashscreen.h"
 #include "images/blank.h"
 #include "images/main.h"
+#include "images/file_send_error.h"
+#include "images/begin_scanning.h"
 #include "fonts/arial.h"
 #include "graphics/arrow_up.h"
 #include "graphics/arrow_down.h"
+#include "graphics/loading0.h"
+#include "graphics/loading1.h"
+#include "graphics/loading2.h"
+#include "graphics/loading3.h"
+#include "graphics/loading4.h"
+#include "graphics/loading5.h"
+#include "graphics/loading6.h"
+#include "graphics/loading7.h"
 
 #include <algorithm>
 
 static int s_init_status = STATUS_ERROR;
+
+// Declare scene helpers
+static Status load_splash_screen_scene();
+static Status load_file_list_scene();
+static Status update_file_list(bool force_update = false);
+static Status load_sending_file_scene();
+static Status update_sending_file_scene();
+static Status load_error_sending_file_scene();
+static Status load_begin_scanning_scene();
 
 /************************/
 /* STARTUP SPLASHSCREEN */
@@ -64,7 +81,7 @@ struct {
     Label dialog_cancel_label;
 } file_list_scene_ctx;
 
-static Status update_file_list(bool force_update = false) {
+static Status update_file_list(bool force_update) {
     PROFILER_ENTER();
 
     // Need to check if the file list changed or we scrolled
@@ -187,6 +204,9 @@ static Status load_file_list_scene() {
                     .file_list[file_list_scene_ctx.selected_file_index];
             file_sender_send_file(selected_file.name.c_str());
             TRACE_PRINTF("Sending file: %s\n", selected_file.name.c_str());
+
+            // Go to file sending screen
+            load_sending_file_scene();
         }
 
         file_list_scene_ctx.scene.set_dialog_active(false);
@@ -293,6 +313,194 @@ static Status load_file_list_scene() {
     return STATUS_OK;
 }
 
+/***********************/
+/* SENDING FILE SCREEN */
+/***********************/
+
+struct {
+    Scene scene;
+    Label status_label;
+    GraphicsObject spinner;
+    size_t animation_idx = 0;
+    long long unsigned last_update_tick;
+} sending_file_scene_ctx;
+
+static Status load_sending_file_scene() {
+    Scene& scene = sending_file_scene_ctx.scene;
+    Label& status_label = sending_file_scene_ctx.status_label;
+    GraphicsObject& spinner = sending_file_scene_ctx.spinner;
+
+    status_label = Label(&scene, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2 + 20,
+                         "Sending file...", 32);
+    status_label.set_alignment(LABEL_ALIGN_CENTER);
+
+    spinner =
+        GraphicsObject(&scene, LOADING0, WINDOW_WIDTH / 2 - LOADING0.width / 2,
+                       WINDOW_HEIGHT / 2 - 20 - LOADING0.height);
+
+    scene.add_object(&spinner);
+    scene.add_object(&status_label);
+
+    lcd_set_background(MAIN);
+    gui_set_current_scene(&scene);
+
+    return STATUS_OK;
+}
+
+static Status update_sending_file_scene() {
+    // Go to error screen if the file sender is in the error state
+    if (file_sender_get_status() == FILE_SENDER_STATUS_ERROR) {
+        file_sender_reset();
+        load_error_sending_file_scene();
+        return STATUS_OK;
+    }
+
+    // Go to the scanning confirmation screen if the file sender is done
+    if (file_sender_get_status() == FILE_SENDER_STATUS_SUCCESS) {
+        file_sender_reset();
+        load_begin_scanning_scene();
+        return STATUS_OK;
+    }
+
+    // Looping 8-frame animation
+    sending_file_scene_ctx.animation_idx =
+        (sending_file_scene_ctx.animation_idx + 1) % 8;
+
+    switch (sending_file_scene_ctx.animation_idx) {
+        case 0:
+            sending_file_scene_ctx.spinner.set_graphics(LOADING0);
+            break;
+        case 1:
+            sending_file_scene_ctx.spinner.set_graphics(LOADING1);
+            break;
+        case 2:
+            sending_file_scene_ctx.spinner.set_graphics(LOADING2);
+            break;
+        case 3:
+            sending_file_scene_ctx.spinner.set_graphics(LOADING3);
+            break;
+        case 4:
+            sending_file_scene_ctx.spinner.set_graphics(LOADING4);
+            break;
+        case 5:
+            sending_file_scene_ctx.spinner.set_graphics(LOADING5);
+            break;
+        case 6:
+            sending_file_scene_ctx.spinner.set_graphics(LOADING6);
+            break;
+        case 7:
+            sending_file_scene_ctx.spinner.set_graphics(LOADING7);
+            break;
+        default:
+            break;
+    }
+
+    return STATUS_OK;
+}
+
+/*****************************/
+/* ERROR SENDING FILE SCREEN */
+/*****************************/
+
+struct {
+    Scene scene;
+    Button back_button;
+    Label back_label;
+} error_sending_file_scene_ctx;
+
+constexpr unsigned int BACK_BUTTON_WIDTH = 150;
+constexpr unsigned int BACK_BUTTON_HEIGHT = 60;
+constexpr unsigned int BACK_TEXT_SIZE = 32;
+
+static Status load_error_sending_file_scene() {
+    Scene& scene = error_sending_file_scene_ctx.scene;
+    Button& back_button = error_sending_file_scene_ctx.back_button;
+    Label& back_label = error_sending_file_scene_ctx.back_label;
+
+    back_button = Button(&scene, WINDOW_WIDTH / 2 - BACK_BUTTON_WIDTH / 2, 0,
+                         BACK_BUTTON_WIDTH, BACK_BUTTON_HEIGHT);
+    back_button.set_on_click([](int x, int y) {
+        load_file_list_scene();
+        update_file_list(true);
+    });
+
+    back_label = Label(&scene, WINDOW_WIDTH / 2,
+                       BACK_BUTTON_HEIGHT / 2 - BACK_TEXT_SIZE / 2, "Back",
+                       BACK_TEXT_SIZE);
+    back_label.set_alignment(LABEL_ALIGN_CENTER);
+
+    scene.add_object(&back_button);
+    scene.add_object(&back_label);
+
+    lcd_set_background(FILE_SEND_ERROR);
+    gui_set_current_scene(&scene);
+
+    return STATUS_OK;
+}
+
+/*************************/
+/* BEGIN SCANNING SCREEN */
+/*************************/
+
+struct {
+    Scene scene;
+    Button cancel_button;
+    Label cancel_label;
+    Button confirm_button;
+    Label confirm_label;
+} begin_scanning_scene_ctx;
+
+constexpr unsigned int BEGIN_SCANNING_BUTTON_WIDTH = 150;
+constexpr unsigned int BEGIN_SCANNING_BUTTON_HEIGHT = 60;
+constexpr unsigned int BEGIN_SCANNING_TEXT_SIZE = 32;
+
+static Status load_begin_scanning_scene() {
+    Scene& scene = begin_scanning_scene_ctx.scene;
+    Button& cancel_button = begin_scanning_scene_ctx.cancel_button;
+    Label& cancel_label = begin_scanning_scene_ctx.cancel_label;
+    Button& confirm_button = begin_scanning_scene_ctx.confirm_button;
+    Label& confirm_label = begin_scanning_scene_ctx.confirm_label;
+
+    cancel_button =
+        Button(&scene, WINDOW_WIDTH / 2 - BEGIN_SCANNING_BUTTON_WIDTH - 10, 0,
+               BEGIN_SCANNING_BUTTON_WIDTH, BEGIN_SCANNING_BUTTON_HEIGHT);
+    cancel_button.set_on_click([](int x, int y) {
+        load_file_list_scene();
+        update_file_list(true);
+    });
+
+    cancel_label =
+        Label(&scene, WINDOW_WIDTH / 2 - BEGIN_SCANNING_BUTTON_WIDTH / 2 - 10,
+              BEGIN_SCANNING_BUTTON_HEIGHT / 2 - BEGIN_SCANNING_TEXT_SIZE / 2,
+              "Cancel", BEGIN_SCANNING_TEXT_SIZE);
+    cancel_label.set_alignment(LABEL_ALIGN_CENTER);
+
+    confirm_button =
+        Button(&scene, WINDOW_WIDTH / 2 + 10, 0, BEGIN_SCANNING_BUTTON_WIDTH,
+               BEGIN_SCANNING_BUTTON_HEIGHT);
+    confirm_button.set_on_click([](int x, int y) {
+        // TODO: Change to start scanning
+        load_file_list_scene();
+        update_file_list(true);
+    });
+
+    confirm_label =
+        Label(&scene, WINDOW_WIDTH / 2 + BEGIN_SCANNING_BUTTON_WIDTH / 2 + 10,
+              BEGIN_SCANNING_BUTTON_HEIGHT / 2 - BEGIN_SCANNING_TEXT_SIZE / 2,
+              "Confirm", BEGIN_SCANNING_TEXT_SIZE);
+    confirm_label.set_alignment(LABEL_ALIGN_CENTER);
+
+    scene.add_object(&cancel_button);
+    scene.add_object(&cancel_label);
+    scene.add_object(&confirm_button);
+    scene.add_object(&confirm_label);
+
+    lcd_set_background(BEGIN_SCANNING);
+    gui_set_current_scene(&scene);
+
+    return STATUS_OK;
+}
+
 Status gui_app_init() {
     lcd_set_background(BLANK);
     lcd_clear_foreground();
@@ -334,6 +542,14 @@ void gui_app_task() {
         if (get_tick_ms() - file_list_scene_ctx.last_update_tick >= 1000) {
             update_file_list();
             file_list_scene_ctx.last_update_tick = get_tick_ms();
+        }
+    }
+
+    // Sending file screen
+    if (gui_get_current_scene() == &sending_file_scene_ctx.scene) {
+        if (get_tick_ms() - sending_file_scene_ctx.last_update_tick >= 200) {
+            update_sending_file_scene();
+            sending_file_scene_ctx.last_update_tick = get_tick_ms();
         }
     }
 

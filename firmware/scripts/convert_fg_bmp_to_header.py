@@ -1,56 +1,62 @@
 Import("env")
 
 import os
+from PIL import Image
 
-def bmp_to_header(img_dir, filename):
+def png_to_data(img_dir, filename):
     file_stem = filename.split('.')[0]
 
     data = []
 
-    file = open(f"{img_dir}/{filename}", 'rb')
+    img = Image.open(f"{img_dir}/{filename}")
+    width, height = img.size
 
-    # First get the width and height
-    file.seek(18)
-    width = int.from_bytes(file.read(4), 'little')
-    height = int.from_bytes(file.read(4), 'little')
+    # Convert image to RGBA mode if it isn't already
+    img = img.convert("RGBA")
 
-    # Then get the starting offset from the header
-    file.seek(10)
-    start = int.from_bytes(file.read(4), 'little')
-    file.seek(start)
-
-    # Now get the data until the end of the file
-    while True:
-        pixel_bytes = file.read(4)
-        if len(pixel_bytes) != 4:
-            break
-
-        # a = int(pixel_bytes[0])
-        a = 0xFF
-        # a = 0x0
-        b = int(pixel_bytes[1])
-        g = int(pixel_bytes[2])
-        r = int(pixel_bytes[3])
-
-        data.append((a << 24) | (r << 16) | (g << 8) | b)
-
-    file.close()
+    # Get pixel data
+    for y in range(height):
+        for x in range(width):
+            r, g, b, a = img.getpixel((x, y))
+            data.append((a << 24) | (r << 16) | (g << 8) | b)
 
     return data, width, height
 
+def data_argb_to_palette_al44(data):
+    out_data = []
+
+    # Convert data from ARGB8888 to AL44
+    palette = [
+        0xFFFFFF, 0x000000, 0xFF0000, 0x00FF00, 0x0000FF, 0xFFFF00, 0xFF00FF,
+        0x00FFFF, 0x808080, 0xB0B0B0, 0x404040,
+    ]
+
+    for pix in data:
+        a = (pix >> 24) & 0xFF
+        r = (pix >> 16) & 0xFF
+        g = (pix >> 8) & 0xFF
+        b = pix & 0xFF
+
+        # Find the closest color in the palette
+        closest_color = min(palette, key=lambda c: (r - ((c >> 16) & 0xFF))**2 + (g - ((c >> 8) & 0xFF))**2 + (b - (c & 0xFF))**2)
+
+        # Get the index of the closest color in the palette
+        index = palette.index(closest_color)
+
+        # Convert to AL44 format
+        al44_pix = (a & 0xF0) | index
+
+        out_data.append(al44_pix)
+
+    return out_data
+
 def data_reorg(data, width, height):
-
-    int_data = []
-
-    for x in range(width):
-        for y in range(height):
-            int_data.append(data[x*height + y])
 
     out_data = []
 
     for y in range(height):
         for x in range(width):
-            out_data.append(data[(width-x-1) + y*width])
+            out_data.append(data[x + (height - 1 - y) * width])
 
     return out_data
 
@@ -66,17 +72,7 @@ def data_to_header(header_dir, filename, data, width, height):
     line_width = 8
     line_index = 0
     for pix in data:
-        bw = 0
-        b = pix & 0xFF
-        g = (pix >> 8) & 0xFF
-        r = (pix >> 16) & 0xFF
-
-        if ((r**2 + g**2 + b**2)**0.5) > 127:
-            bw = 0x00
-        else:
-            bw = 0xF1
-
-        header += f"0x{bw:02x}, "
+        header += f"0x{pix:02x}, "
         line_index += 1
         if line_index == line_width:
             header += '\n'
@@ -94,7 +90,7 @@ def data_to_header(header_dir, filename, data, width, height):
     header_file.close()
 
 def before_build(source, target, env):
-    print("Converting BMPs to header data")
+    print("Converting PNGs to header data")
 
     if not os.path.exists("graphics"):
         print("Graphics folder does not exist, creating...")
@@ -106,8 +102,9 @@ def before_build(source, target, env):
 
     for path in os.listdir("graphics"):
         print(path)
-        data, width, height = bmp_to_header("graphics", path)
+        data, width, height = png_to_data("graphics", path)
         data = data_reorg(data, width, height)
+        data = data_argb_to_palette_al44(data)
         data_to_header("include/graphics", path, data, width, height)
 
 # env.AddPreAction("buildprog", before_build)

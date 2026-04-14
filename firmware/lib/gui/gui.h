@@ -143,6 +143,7 @@ public:
     void redraw() override;
     void handle_press(int x, int y) override {}
     void handle_release(int x, int y) override {}
+    void set_graphics(const Graphics& graphics) { m_graphics = &graphics; }
 
 private:
     int m_x = 0;
