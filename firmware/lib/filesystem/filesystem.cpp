@@ -142,3 +142,11 @@ void filesystem_task() {
 
     PROFILER_EXIT();
 }
+
+bool filesystem_is_card_inserted() {
+    return gpio_read(PIN_SD_CD) == GPIO_LOW;
+}
+
+bool filesystem_is_mounted() {
+    return s_inited;
+}

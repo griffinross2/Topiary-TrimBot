@@ -12,6 +12,7 @@
 #include "images/main.h"
 #include "images/file_send_error.h"
 #include "images/begin_scanning.h"
+#include "images/insert_card.h"
 #include "fonts/arial.h"
 #include "graphics/arrow_up.h"
 #include "graphics/arrow_down.h"
@@ -36,6 +37,8 @@ static Status load_sending_file_scene();
 static Status update_sending_file_scene();
 static Status load_error_sending_file_scene();
 static Status load_begin_scanning_scene();
+static Status load_insert_card_scene();
+static Status update_insert_card_scene();
 
 /************************/
 /* STARTUP SPLASHSCREEN */
@@ -83,6 +86,15 @@ struct {
 
 static Status update_file_list(bool force_update) {
     PROFILER_ENTER();
+
+    // If the SD card was removed close the dialog and switch to the insert card
+    // scene
+    if (!filesystem_is_card_inserted()) {
+        file_list_scene_ctx.scene.set_dialog_active(false);
+        load_insert_card_scene();
+        PROFILER_EXIT();
+        return STATUS_OK;
+    }
 
     // Need to check if the file list changed or we scrolled
     // then update the text and or number of files displayed
@@ -501,6 +513,29 @@ static Status load_begin_scanning_scene() {
     return STATUS_OK;
 }
 
+/**********************/
+/* INSERT CARD SCREEN */
+/**********************/
+
+static Scene s_insert_card_scene;
+
+static Status load_insert_card_scene() {
+    lcd_set_background(INSERT_CARD);
+    gui_set_current_scene(&s_insert_card_scene);
+
+    return STATUS_OK;
+}
+
+static Status update_insert_card_scene() {
+    // If the card is inserted, go to the file list scene
+    if (filesystem_is_card_inserted() && filesystem_is_mounted()) {
+        load_file_list_scene();
+        update_file_list(true);
+    }
+
+    return STATUS_OK;
+}
+
 Status gui_app_init() {
     lcd_set_background(BLANK);
     lcd_clear_foreground();
@@ -551,6 +586,11 @@ void gui_app_task() {
             update_sending_file_scene();
             sending_file_scene_ctx.last_update_tick = get_tick_ms();
         }
+    }
+
+    // Insert card screen
+    if (gui_get_current_scene() == &s_insert_card_scene) {
+        update_insert_card_scene();
     }
 
     // Global update

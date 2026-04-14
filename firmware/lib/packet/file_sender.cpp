@@ -217,7 +217,7 @@ Status file_sender_send_file(const char* filename) {
 
     if (filesystem_open_file(filename) != STATUS_OK) {
         TRACE_PRINTF("Failed to open file to send: %s\n", filename);
-
+        s_file_sender_status = FILE_SENDER_STATUS_ERROR;
         return STATUS_ERROR;
     }
 
