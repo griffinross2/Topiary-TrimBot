@@ -21,6 +21,7 @@ class Scene;
 
 class SceneObject {
 public:
+    SceneObject() = default;
     SceneObject(Scene* parent, bool clickable = false);
 
     void set_visible(bool visible);
@@ -42,29 +43,26 @@ public:
     Scene();
     Scene(Color background_color);
 
-    void add_object(std::shared_ptr<SceneObject> obj);
-    void add_dialog_object(std::shared_ptr<SceneObject> obj);
+    void add_object(SceneObject* obj);
+    void add_dialog_object(SceneObject* obj);
     void redraw();
-    std::vector<std::shared_ptr<SceneObject>>& get_objects() {
-        return m_objects;
-    }
-    std::vector<std::shared_ptr<SceneObject>>& get_dialog_objects() {
-        return m_dialog_objects;
-    }
+    std::vector<SceneObject*>& get_objects() { return m_objects; }
+    std::vector<SceneObject*>& get_dialog_objects() { return m_dialog_objects; }
     void clear_objects() { m_objects.clear(); }
     void clear_dialog_objects() { m_dialog_objects.clear(); }
     void set_dialog_active(bool active) { m_dialog_active = active; }
     bool is_dialog_active() { return m_dialog_active; }
 
 private:
-    Color m_background_color = 0xF0;
-    std::vector<std::shared_ptr<SceneObject>> m_objects;
-    std::vector<std::shared_ptr<SceneObject>> m_dialog_objects;
+    Color m_background_color = 0x00;
+    std::vector<SceneObject*> m_objects;
+    std::vector<SceneObject*> m_dialog_objects;
     bool m_dialog_active = false;
 };
 
 class Rectangle : public SceneObject {
 public:
+    Rectangle() = default;
     Rectangle(Scene* parent, int x, int y, int w, int h, Color color);
 
     void set_position(int x, int y);
@@ -85,13 +83,13 @@ private:
 
 class Label : public SceneObject {
 public:
+    Label() = default;
     Label(Scene* parent, int x, int y);
     Label(Scene* parent, int x, int y, std::string text);
     Label(Scene* parent, int x, int y, std::string text, int size);
-    Label(Scene* parent, int x, int y, std::string text, int size,
-          Color color);
-    Label(Scene* parent, int x, int y, std::string text, int size,
-          Color color, const Font* font);
+    Label(Scene* parent, int x, int y, std::string text, int size, Color color);
+    Label(Scene* parent, int x, int y, std::string text, int size, Color color,
+          const Font* font);
 
     void set_position(int x, int);
     void set_text(std::string text);
@@ -116,6 +114,7 @@ private:
 
 class Button : public SceneObject {
 public:
+    Button() = default;
     Button(Scene* parent, int x, int y, int w, int h);
 
     void redraw() override;
@@ -134,6 +133,21 @@ private:
     bool m_pressed = false;
     bool m_background_on = true;
     std::function<void(int, int)> m_on_click;
+};
+
+class GraphicsObject : public SceneObject {
+public:
+    GraphicsObject() = default;
+    GraphicsObject(Scene* parent, const Graphics& graphics, int x, int y);
+
+    void redraw() override;
+    void handle_press(int x, int y) override {}
+    void handle_release(int x, int y) override {}
+
+private:
+    int m_x = 0;
+    int m_y = 0;
+    const Graphics* m_graphics;
 };
 
 typedef struct {

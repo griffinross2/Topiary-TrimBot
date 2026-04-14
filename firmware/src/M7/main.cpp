@@ -23,8 +23,7 @@ Status corem4_init() {
     return STATUS_OK;
 }
 
-int main(void)
-{
+int main(void) {
     HAL_Init();
 
     int init_stat = STATUS_OK;
@@ -40,14 +39,13 @@ int main(void)
     init_stat |= gui_app_init() << 8;
     init_stat |= packet_engine_init() << 9;
 
+    gui_app_init_status(init_stat);
+
     printf("Init status: 0x%x\n", init_stat);
 
-    if (init_stat != STATUS_OK)
-    {
+    if (init_stat != STATUS_OK) {
         gpio_write(PIN_RED, GPIO_HIGH);
-    }
-    else
-    {
+    } else {
         gpio_write(PIN_GRN, GPIO_HIGH);
     }
 
@@ -60,16 +58,15 @@ int main(void)
 
     std::vector<FileInfo> file_list;
     filesystem_get_file_list(file_list);
-    for (size_t i = 0; i < file_list.size(); i++)
-    {
-        printf("File %lu: %s (%lu bytes)\n", (uint32_t)i, file_list[i].name.c_str(), (uint32_t)file_list[i].size);
+    for (size_t i = 0; i < file_list.size(); i++) {
+        printf("File %lu: %s (%lu bytes)\n", (uint32_t)i,
+               file_list[i].name.c_str(), (uint32_t)file_list[i].size);
     }
 
     uint32_t profiler_tick = HAL_GetTick();
 
     // Main loop
-    while (1)
-    {
+    while (1) {
         // Print profiler summary every 10 seconds
         if (HAL_GetTick() - profiler_tick >= 10000) {
             profiler_print_summary();
@@ -85,51 +82,40 @@ int main(void)
     return 0;
 }
 
-extern "C"
-{
-    void NMI_Handler(void);
-    void HardFault_Handler(void);
-    void MemManage_Handler(void);
-    void BusFault_Handler(void);
-    void UsageFault_Handler(void);
-    void SVC_Handler(void);
-    void DebugMon_Handler(void);
-    void PendSV_Handler(void);
-    void SysTick_Handler(void);
+extern "C" {
+void NMI_Handler(void);
+void HardFault_Handler(void);
+void MemManage_Handler(void);
+void BusFault_Handler(void);
+void UsageFault_Handler(void);
+void SVC_Handler(void);
+void DebugMon_Handler(void);
+void PendSV_Handler(void);
+void SysTick_Handler(void);
 }
 
-void NMI_Handler(void)
-{
-    while (1)
-    {
+void NMI_Handler(void) {
+    while (1) {
     }
 }
 
-void HardFault_Handler(void)
-{
-    while (1)
-    {
+void HardFault_Handler(void) {
+    while (1) {
     }
 }
 
-void MemManage_Handler(void)
-{
-    while (1)
-    {
+void MemManage_Handler(void) {
+    while (1) {
     }
 }
 
-void BusFault_Handler(void)
-{
-    while (1)
-    {
+void BusFault_Handler(void) {
+    while (1) {
     }
 }
 
-void UsageFault_Handler(void)
-{
-    while (1)
-    {
+void UsageFault_Handler(void) {
+    while (1) {
     }
 }
 
@@ -139,7 +125,6 @@ void DebugMon_Handler(void) {}
 
 void PendSV_Handler(void) {}
 
-void SysTick_Handler(void)
-{
+void SysTick_Handler(void) {
     HAL_IncTick();
 }

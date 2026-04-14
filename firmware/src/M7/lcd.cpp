@@ -12,7 +12,7 @@
 #define LCD_RESET_PORT GPIOH
 #define LCD_RESET_PIN GPIO_PIN_7
 
-LTDC_HandleTypeDef *hltdc;
+LTDC_HandleTypeDef* hltdc;
 // DMA2D_HandleTypeDef hdma2d;
 
 // Double-buffered setup
@@ -21,7 +21,7 @@ static Color __attribute__((
 static Color __attribute__((
     section(".fb_ram"))) s_foreground_buffer_1[WINDOW_WIDTH * WINDOW_HEIGHT];
 
-static Color **s_foreground_buffers = (Color *[]){
+static Color** s_foreground_buffers = (Color*[]){
     s_foreground_buffer_0,
     s_foreground_buffer_1,
 };
@@ -31,8 +31,7 @@ static volatile int s_current_frontbuffer = 0;
 #define FRONTBUFFER s_foreground_buffers[s_current_frontbuffer]
 #define BACKBUFFER s_foreground_buffers[1 - s_current_frontbuffer]
 
-Status lcd_init()
-{
+Status lcd_init() {
     hltdc = ltdc_get_handle();
 
     if (ltdc_init() != STATUS_OK) {
@@ -95,7 +94,7 @@ Status lcd_init()
     // {
     //     return STATUS_ERROR;
     // }
-    
+
     // Enable display and backlight
     gpio_write(PIN_LCD_DISP, GPIO_HIGH);
     gpio_write(PIN_BL_EN, GPIO_HIGH);
@@ -104,13 +103,11 @@ Status lcd_init()
     return STATUS_OK;
 }
 
-void lcd_swap_buffers()
-{
+void lcd_swap_buffers() {
     PROFILER_ENTER();
 
     // Wait until in vsync to swap buffers
-    while (!lcd_is_in_vsync())
-    {
+    while (!lcd_is_in_vsync()) {
     }
 
     // Swap the buffer index
@@ -122,39 +119,32 @@ void lcd_swap_buffers()
     PROFILER_EXIT();
 }
 
-Color *lcd_get_backbuffer()
-{
+Color* lcd_get_backbuffer() {
     return BACKBUFFER;
 }
 
-Color *lcd_get_frontbuffer()
-{
+Color* lcd_get_frontbuffer() {
     return FRONTBUFFER;
 }
 
-void lcd_set_foreground(const Color *fb_address)
-{
+void lcd_set_foreground(const Color* fb_address) {
     HAL_LTDC_SetAddress(hltdc, (uint32_t)fb_address, LTDC_LAYER_2);
 }
 
-void lcd_set_background(const ColorBG *fb_address)
-{
+void lcd_set_background(const ColorBG* fb_address) {
     HAL_LTDC_SetAddress(hltdc, (uint32_t)fb_address, LTDC_LAYER_1);
 }
 
-void lcd_clear_foreground()
-{
-    memset(BACKBUFFER, 0x00, sizeof(s_foreground_buffer_0));
+void lcd_clear_foreground(const Color color) {
+    memset(BACKBUFFER, color, sizeof(s_foreground_buffer_0));
 }
 
 void lcd_clear_area(unsigned int xl, unsigned int xr, unsigned int yb,
-                    unsigned int yt)
-{
-    for (unsigned int yi = yb; yi < yt; yi++)
-    {
-        for (unsigned int xi = LTDC_WINDOW_WIDTH - xr - 1; xi < LTDC_WINDOW_WIDTH - xl; xi++)
-        {
-            BACKBUFFER[yi*LTDC_WINDOW_WIDTH + xi] = 0x00;
+                    unsigned int yt) {
+    for (unsigned int yi = yb; yi < yt; yi++) {
+        for (unsigned int xi = LTDC_WINDOW_WIDTH - xr - 1;
+             xi < LTDC_WINDOW_WIDTH - xl; xi++) {
+            BACKBUFFER[yi * LTDC_WINDOW_WIDTH + xi] = 0x00;
         }
     }
     // hdma2d.Init.Mode = DMA2D_R2M;
@@ -168,19 +158,17 @@ void lcd_clear_area(unsigned int xl, unsigned int xr, unsigned int yb,
     // HAL_DMA2D_ConfigLayer(&hdma2d, 0);
 
     // HAL_DMA2D_Start(&hdma2d, 0xFFFFFFFF,
-    //                 (uint32_t)&BACKBUFFER[yb + xl * LTDC_WINDOW_HEIGHT], (yt - yb + 1),
-    //                 (xr - xl + 1));
+    //                 (uint32_t)&BACKBUFFER[yb + xl * LTDC_WINDOW_HEIGHT], (yt
+    //                 - yb + 1), (xr - xl + 1));
     // HAL_DMA2D_PollForTransfer(&hdma2d, 100);
 }
 
 void lcd_draw_rectangle(unsigned int x, unsigned int y, unsigned int w,
-                        unsigned int h, Color color)
-{
-    for (unsigned int yi = y; yi < y + h; yi++)
-    {
-        for (unsigned int xi = LTDC_WINDOW_WIDTH - w - x; xi < LTDC_WINDOW_WIDTH - x; xi++)
-        {
-            BACKBUFFER[yi*LTDC_WINDOW_WIDTH + xi] = color;
+                        unsigned int h, Color color) {
+    for (unsigned int yi = y; yi < y + h; yi++) {
+        for (unsigned int xi = LTDC_WINDOW_WIDTH - w - x;
+             xi < LTDC_WINDOW_WIDTH - x; xi++) {
+            BACKBUFFER[yi * LTDC_WINDOW_WIDTH + xi] = color;
         }
     }
     // hdma2d.Init.Mode = DMA2D_R2M;
@@ -199,127 +187,124 @@ void lcd_draw_rectangle(unsigned int x, unsigned int y, unsigned int w,
 }
 
 void lcd_draw_circle(unsigned int x, unsigned int y, unsigned int r,
-                     Color color)
-{
-    for (unsigned int yi = y - r; yi < y + r; yi++)
-    {
-        for (unsigned int xi = LTDC_WINDOW_WIDTH - x - r; xi < LTDC_WINDOW_WIDTH - x + r; xi++)
-        {
+                     Color color) {
+    for (unsigned int yi = y - r; yi < y + r; yi++) {
+        for (unsigned int xi = LTDC_WINDOW_WIDTH - x - r;
+             xi < LTDC_WINDOW_WIDTH - x + r; xi++) {
             int dx = (int)xi - (int)(LTDC_WINDOW_WIDTH - x);
             int dy = (int)yi - (int)y;
 
-            if ((unsigned int)(dx * dx + dy * dy) < r * r)
-            {
-                BACKBUFFER[yi*LTDC_WINDOW_WIDTH + xi] = color;
+            if ((unsigned int)(dx * dx + dy * dy) < r * r) {
+                BACKBUFFER[yi * LTDC_WINDOW_WIDTH + xi] = color;
             }
         }
     }
 }
 
-void lcd_copy_background_to_foreground(const Color *fb_address)
-{
-    if (fb_address != NULL)
-    {
+void lcd_copy_background_to_foreground(const Color* fb_address) {
+    if (fb_address != NULL) {
         memcpy(BACKBUFFER, fb_address, sizeof(s_foreground_buffer_0));
-    }
-    else
-    {
-        memcpy(BACKBUFFER, (Color *)hltdc->LayerCfg[0].FBStartAdress,
+    } else {
+        memcpy(BACKBUFFER, (Color*)hltdc->LayerCfg[0].FBStartAdress,
                sizeof(s_foreground_buffer_0));
     }
 }
 
-void lcd_set_foreground_alpha(uint8_t alpha)
-{
+void lcd_set_foreground_alpha(uint8_t alpha) {
     HAL_LTDC_SetAlpha(hltdc, alpha, LTDC_LAYER_2);
 }
 
-void lcd_set_foreground_visibility(bool visible)
-{
-    if (visible)
-    {
+void lcd_set_foreground_visibility(bool visible) {
+    if (visible) {
         __HAL_LTDC_LAYER_ENABLE(hltdc, LTDC_LAYER_2);
-    }
-    else
-    {
+    } else {
         __HAL_LTDC_LAYER_DISABLE(hltdc, LTDC_LAYER_2);
     }
 }
 
-bool lcd_is_in_vsync()
-{
+bool lcd_is_in_vsync() {
     return (LTDC->CDSR & LTDC_CDSR_VSYNCS) != 0;
 }
 
-unsigned int lcd_get_text_width(const Font *font, const char *str,
-                                unsigned pt_size)
-{
+unsigned int lcd_get_text_width(const Font* font, const char* str,
+                                unsigned pt_size) {
+    // First check if this size exists
+    size_t i;
+    for (i = 0; i < font->num_sizes; i++) {
+        if (font->sizes[i] == pt_size) {
+            break;
+        }
+    }
+    if (i == font->num_sizes) {
+        return 0;
+    }
+
     unsigned int width = 0;
-    while (*str != '\0')
-    {
+    while (*str != '\0') {
         char ch = *str;
         str++;
 
-        if (ch & 0x80)
-        {
+        if (ch & 0x80) {
             continue;
         }
 
-        const Glyph *glyph = font->glyphs[(uint8_t)ch];
-        if (glyph->data == NULL)
-        {
+        const Glyph* glyph = font->glyphs[i][(uint8_t)ch];
+        if (glyph->data == NULL) {
             continue;
         }
 
-        width += glyph->advance * pt_size / font->width;
+        width += glyph->advance * pt_size / font->widths[i];
     }
 
     return width;
 }
 
-void lcd_draw_char(const Font *font, char ch, unsigned start_x,
+void lcd_draw_char(const Font* font, char ch, unsigned start_x,
                    unsigned start_y, unsigned pt_size, Color color,
-                   unsigned int *advance)
-{
-    if (advance)
-    {
+                   unsigned int* advance) {
+    if (advance) {
         *advance = 0;
     }
 
-    if (ch & 0x80)
-    {
+    if (ch & 0x80) {
         return;
     }
 
-    const Glyph *glyph = font->glyphs[(uint8_t)ch];
-    int width = font->width;
-    int height = font->height;
+    // First check if this size exists
+    size_t i;
+    for (i = 0; i < font->num_sizes; i++) {
+        if (font->sizes[i] == pt_size) {
+            break;
+        }
+    }
+    if (i == font->num_sizes) {
+        return;
+    }
 
-    if (advance)
-    {
+    const Glyph* glyph = font->glyphs[i][(uint8_t)ch];
+    int width = font->widths[i];
+    int height = font->heights[i];
+
+    if (advance) {
         *advance = glyph->advance * pt_size / width;
     }
 
-    if (glyph->data == NULL)
-    {
+    if (glyph->data == NULL) {
         return;
     }
 
-    for (int y = 0; y < (int)pt_size; y++)
-    {
-        for (int x = 0; x < (int)pt_size; x++)
-        {
+    for (int y = 0; y < (int)pt_size; y++) {
+        for (int x = 0; x < (int)pt_size; x++) {
             int dest_x = (LTDC_WINDOW_WIDTH - start_x - x - 1);
             int dest_y = (start_y + pt_size - y);
             if (dest_y < 0 || dest_y >= LTDC_WINDOW_HEIGHT || dest_x < 0 ||
-                dest_x >= LTDC_WINDOW_WIDTH)
-            {
+                dest_x >= LTDC_WINDOW_WIDTH) {
                 continue;
             }
 
             // Determine texture coordinates
-            int px = x * width / pt_size;
-            int py = y * height / pt_size;
+            int px = x;
+            int py = y;
 
             int offset = px * height + py;
             int offset_byte = offset / 8;
@@ -327,24 +312,47 @@ void lcd_draw_char(const Font *font, char ch, unsigned start_x,
 
             bool subpixel =
                 (glyph->data[offset_byte] & (0x1 << offset_bit)) != 0;
-            if (subpixel)
-            {
-                BACKBUFFER[(start_y + pt_size - y)*LTDC_WINDOW_WIDTH +
+            if (subpixel) {
+                BACKBUFFER[(start_y + pt_size - y) * LTDC_WINDOW_WIDTH +
                            (LTDC_WINDOW_WIDTH - start_x - x - 1)] = color;
             }
         }
     }
 }
 
-void lcd_draw_text(const Font *font, const char *str, unsigned start_x,
-                   unsigned start_y, unsigned pt_size, Color color)
-{
+void lcd_draw_text(const Font* font, const char* str, unsigned start_x,
+                   unsigned start_y, unsigned pt_size, Color color) {
     unsigned int cur_x = start_x;
     unsigned int advance = 0;
-    while (*str != '\0')
-    {
+    while (*str != '\0') {
         lcd_draw_char(font, *str, cur_x, start_y, pt_size, color, &advance);
         cur_x += advance;
         str++;
+    }
+}
+
+void lcd_draw_graphics(const Graphics& graphics, unsigned start_x,
+                       unsigned start_y) {
+    if (start_x >= LTDC_WINDOW_WIDTH || start_y >= LTDC_WINDOW_HEIGHT) {
+        return;
+    }
+    if (start_x + graphics.width <= 0 || start_y + graphics.height <= 0) {
+        return;
+    }
+    for (unsigned int y = 0; y < graphics.height; y++) {
+        for (unsigned int x = 0; x < graphics.width; x++) {
+            unsigned int dest_x = LTDC_WINDOW_WIDTH - (start_x + x) - 1;
+            unsigned int dest_y = start_y + y;
+            if (dest_y >= LTDC_WINDOW_HEIGHT || dest_x >= LTDC_WINDOW_WIDTH) {
+                continue;
+            }
+
+            if (graphics.data[y * graphics.width + x] == 0x00) {
+                continue;
+            }
+
+            BACKBUFFER[dest_y * LTDC_WINDOW_WIDTH + dest_x] =
+                graphics.data[y * graphics.width + x];
+        }
     }
 }

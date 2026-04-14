@@ -3,8 +3,7 @@
 #include "stm32h7xx_hal.h"
 #include "system_stm32h7xx.h"
 
-Status clocks_init()
-{
+Status clocks_init() {
     // Power and clock initialization
     // Power: LDO supply, VOS0 voltage scaling
     // Clock source: HSE in bypass
@@ -19,8 +18,7 @@ Status clocks_init()
     HAL_PWREx_ConfigSupply(PWR_LDO_SUPPLY);
     HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE0);
 
-    while (!__HAL_PWR_GET_FLAG(PWR_FLAG_VOSRDY))
-    {
+    while (!__HAL_PWR_GET_FLAG(PWR_FLAG_VOSRDY)) {
     }
 
     // Oscillator and PLL initialization
@@ -39,8 +37,7 @@ Status clocks_init()
     osc_init.PLL.PLLRGE = RCC_PLL1VCIRANGE_2;
     osc_init.PLL.PLLVCOSEL = RCC_PLL1VCOWIDE;
     osc_init.PLL.PLLFRACN = 0;
-    if (HAL_RCC_OscConfig(&osc_init) != HAL_OK)
-    {
+    if (HAL_RCC_OscConfig(&osc_init) != HAL_OK) {
         return STATUS_ERROR;
     }
 
@@ -52,7 +49,9 @@ Status clocks_init()
 
     // CPU and Bus clock initialization
     RCC_ClkInitTypeDef clk_init = {};
-    clk_init.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2 | RCC_CLOCKTYPE_D3PCLK1 | RCC_CLOCKTYPE_D1PCLK1;
+    clk_init.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK |
+                         RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2 |
+                         RCC_CLOCKTYPE_D3PCLK1 | RCC_CLOCKTYPE_D1PCLK1;
     clk_init.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
     clk_init.SYSCLKDivider = RCC_SYSCLK_DIV1;
     clk_init.AHBCLKDivider = RCC_HCLK_DIV2;
@@ -61,27 +60,26 @@ Status clocks_init()
     clk_init.APB2CLKDivider = RCC_APB2_DIV2;
     clk_init.APB4CLKDivider = RCC_APB4_DIV2;
 
-    if (HAL_RCC_ClockConfig(&clk_init, FLASH_LATENCY_4) != HAL_OK)
-    {
+    if (HAL_RCC_ClockConfig(&clk_init, FLASH_LATENCY_4) != HAL_OK) {
         return STATUS_ERROR;
     }
 
     // Peripheral clocks initialization
     RCC_PeriphCLKInitTypeDef pclk_init = {};
-    pclk_init.PeriphClockSelection = RCC_PERIPHCLK_SDMMC | RCC_PERIPHCLK_LTDC | RCC_PERIPHCLK_USB;
+    pclk_init.PeriphClockSelection =
+        RCC_PERIPHCLK_SDMMC | RCC_PERIPHCLK_LTDC | RCC_PERIPHCLK_USB;
     pclk_init.SdmmcClockSelection = RCC_SDMMCCLKSOURCE_PLL;
     pclk_init.UsbClockSelection = RCC_USBCLKSOURCE_PLL;
     pclk_init.PLL3.PLL3M = 32;
     pclk_init.PLL3.PLL3N = 200;
     pclk_init.PLL3.PLL3P = 2;
     pclk_init.PLL3.PLL3Q = 2;
-    pclk_init.PLL3.PLL3R = 6;
+    pclk_init.PLL3.PLL3R = 12;
     pclk_init.PLL3.PLL3RGE = RCC_PLL3VCIRANGE_0;
     pclk_init.PLL3.PLL3VCOSEL = RCC_PLL3VCOWIDE;
     pclk_init.PLL3.PLL3FRACN = 0;
 
-    if (HAL_RCCEx_PeriphCLKConfig(&pclk_init) != HAL_OK)
-    {
+    if (HAL_RCCEx_PeriphCLKConfig(&pclk_init) != HAL_OK) {
         return STATUS_ERROR;
     }
 

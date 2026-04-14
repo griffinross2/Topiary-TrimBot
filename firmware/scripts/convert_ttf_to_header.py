@@ -1,4 +1,4 @@
-Import("env")
+# Import("env")
 
 import cairo
 from fontTools.ttLib import TTFont
@@ -75,7 +75,7 @@ def header_end(header, font_name: str):
 def header_pixels_to_array(header, glyph):
     width = glyph['width']
     height = glyph['height']
-    array = [0]*((width*height+1)//8)
+    array = [0]*((width*height+7)//8)
     for x in range(width):
         for y in range(height):
             offset_img = (y * glyph['width'] + x)*4
@@ -92,11 +92,11 @@ def header_pixels_to_array(header, glyph):
 
     return header
 
-def header_char(header, char):
+def header_char(header, char, pt_size):
     glyph_name = glyphs[char]['name']
     advance = glyphs[char]['advance']
     if glyph_name != '':
-        glyph_struct_name = f'char_{glyph_name}'
+        glyph_struct_name = f'char_{glyph_name}_{pt_size}'
         if glyphs[char]['data'] is not None:
             glyph_data_name = f'{glyph_struct_name}_data'
             header += f'const uint8_t __attribute__((section(".ext_rodata"))) {glyph_data_name}[] = {{'
@@ -107,15 +107,18 @@ def header_char(header, char):
             header += f'const Glyph {glyph_struct_name} = {{\n    .advance = {int(advance)},\n    .data = (uint8_t*)0,\n}};\n\n'
     else:
         hex = char.encode('ascii')[0]
-        glyph_struct_name = f'char_codepoint_0x{hex:02x}'
+        glyph_struct_name = f'char_codepoint_0x{hex:02x}_{pt_size}'
         header += f'const Glyph {glyph_struct_name} = {{\n    .advance = {int(advance)},\n    .data = (uint8_t*)0,\n}};\n\n'
     return header, glyph_struct_name
 
-def header_font_manifest(header, pt_size, glyph_struct_names, font_name: str):
-    header += f'const Font {font_name.upper()} = {{\n    .width = {pt_size},\n    .height = {pt_size},\n    .glyphs = {{\n'
-    for name in glyph_struct_names:
-        header += f'        &{name},\n'
-    header += '    },\n};\n'
+def header_font_manifest(header, pt_sizes, glyph_struct_names, font_name: str):
+    header += f'const Font {font_name.upper()} = {{\n    .num_sizes = {len(pt_sizes)},\n    .sizes = {{ {", ".join(str(size) for size in pt_sizes)} }},\n    .widths = {{ {", ".join(str(size) for size in pt_sizes)} }},\n    .heights = {{ {", ".join(str(size) for size in pt_sizes)} }},\n    .glyphs = {{\n'
+    for i, size in enumerate(pt_sizes):
+        header += f'        {{\n'
+        for name in glyph_struct_names[i]:
+            header += f'            &{name},\n'
+        header += '        },\n'
+    header += '    }\n};\n'
     return header
     
 def write_header(header, font_name: str):
@@ -140,18 +143,22 @@ def before_build(source, target, env):
         font_name = font_file.split('.')[0].lower()
         print(f'Converting {font_file}...')
 
-        pt_size = 256
+        pt_sizes = [8, 10, 12, 14, 16, 18, 20, 22, 24, 28, 32, 36, 40, 48, 56, 64]
         header = header_start(font_name)
         glyph_structs = []
-        for char in [bytes([code]).decode('ascii') for code in range(128)]:
-            save_char(f'fonts/{font_file}', char, pt_size=pt_size)
-            header, glyph_struct_name = header_char(header, char)
-            glyph_structs.append(glyph_struct_name)
-        header = header_font_manifest(header, pt_size, glyph_structs, font_name)
+        for i, pt_size in enumerate(pt_sizes):
+            glyph_structs.append([])
+            for char in [bytes([code]).decode('ascii') for code in range(128)]:
+                save_char(f'fonts/{font_file}', char, pt_size=pt_size)
+                header, glyph_struct_name = header_char(header, char, pt_size)
+                glyph_structs[i].append(glyph_struct_name)
+        header = header_font_manifest(header, pt_sizes, glyph_structs, font_name)
         header = header_end(header, font_name)
         write_header(header, font_name)
 
         print(f'Finished converting {font_file}!')
 
 # env.AddPreAction("buildprog", before_build)
-before_build(None, None, env)
+# before_build(None, None, env)
+if __name__ == "__main__":
+    before_build(None, None, None)
