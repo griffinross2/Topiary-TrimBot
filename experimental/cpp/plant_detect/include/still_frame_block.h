@@ -10,5 +10,6 @@ public:
     void onUpdate() override;
 
     private:
-    cv::Mat m_internalFrame;
+    cv::Mat m_internalFrame1;
+    cv::Mat m_internalFrame2;
 };

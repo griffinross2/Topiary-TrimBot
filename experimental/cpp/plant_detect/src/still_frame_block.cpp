@@ -4,14 +4,16 @@
 
 StillFrameBlock::StillFrameBlock() : Block() {
     // Initialize io
-    m_inputs.push_back({"Input Frame", cv::Mat()});
+    m_inputs.push_back({"Input Frame 1", cv::Mat()});
+    m_inputs.push_back({"Input Frame 2", cv::Mat()});
     m_outputs.push_back({"Output Still 1", cv::Mat()});
     m_outputs.push_back({"Output Still 2", cv::Mat()});
 }
 
 StillFrameBlock::StillFrameBlock(std::string id) : Block(id) {
     // Initialize io
-    m_inputs.push_back({"Input Frame", cv::Mat()});
+    m_inputs.push_back({"Input Frame 1", cv::Mat()});
+    m_inputs.push_back({"Input Frame 2", cv::Mat()});
     m_outputs.push_back({"Output Still 1", cv::Mat()});
     m_outputs.push_back({"Output Still 2", cv::Mat()});
 }
@@ -19,17 +21,22 @@ StillFrameBlock::StillFrameBlock(std::string id) : Block(id) {
 void StillFrameBlock::onUpdate() {
     Block::onUpdate();
 
-    if (!m_inputs[0].newData) {
+    if (!m_inputs[0].newData && !m_inputs[1].newData) {
         return;
     }
 
     cv::Mat inFrame = std::get<cv::Mat>(m_inputs[0].data);
 
-    if (inFrame.empty()) {
-        return;
+    if (!inFrame.empty()) {
+        m_internalFrame1 = inFrame.clone();
     }
 
-    m_internalFrame = inFrame.clone();
+    inFrame = std::get<cv::Mat>(m_inputs[1].data);
+
+    if (!inFrame.empty()) {
+        m_internalFrame2 = inFrame.clone();
+    }
+
 }
 
 void StillFrameBlock::onRender() {
@@ -50,17 +57,15 @@ void StillFrameBlock::onRender() {
 
     drawOutputs();
 
-    ImGui::SetCursorPosY(60);
+    ImGui::SetCursorPosY(100);
 
-    if (ImGui::Button(std::format("Capture Still 1##{}", m_id).c_str())) {
-        m_outputs[0].data = m_internalFrame;
+    if (ImGui::Button(std::format("Capture Still##{}", m_id).c_str())) {
+        m_outputs[0].data = m_internalFrame1;
         m_outputs[0].newData = true;
-        m_inputs[0].newData = false;
-    }
-    if (ImGui::Button(std::format("Capture Still 2##{}", m_id).c_str())) {
-        m_outputs[1].data = m_internalFrame;
+        m_outputs[1].data = m_internalFrame2;
         m_outputs[1].newData = true;
         m_inputs[0].newData = false;
+        m_inputs[1].newData = false;
     }
 
     ImGui::End();
