@@ -67,8 +67,11 @@ struct {
 static Status update_file_list(bool force_update = false) {
     PROFILER_ENTER();
 
+    // Need to check if the file list changed or we scrolled
+    // then update the text and or number of files displayed
+    // Force update is true when the scroll button causes an update
+
     std::vector<FileInfo>& file_list = file_list_scene_ctx.file_list;
-    Scene& scene = file_list_scene_ctx.scene;
 
     std::vector<FileInfo> new_file_list;
     Status status = filesystem_get_file_list(new_file_list);
@@ -99,43 +102,21 @@ static Status update_file_list(bool force_update = false) {
         return status;
     }
 
-    // Clear and re-add elements
-    scene.clear_objects();
+    for (size_t i = 0; i < MAX_FILES_DISPLAYED; ++i) {
+        // Check if this line should display a file or if we are out
+        bool line_visible =
+            i < file_list.size() - file_list_scene_ctx.file_list_start_index;
 
-    // Readd static elements
-    scene.add_object(&file_list_scene_ctx.file_scroll_up_button);
-    scene.add_object(&file_list_scene_ctx.file_scroll_down_button);
-    scene.add_object(&file_list_scene_ctx.file_scroll_up_graphic);
-    scene.add_object(&file_list_scene_ctx.file_scroll_down_graphic);
+        if (!line_visible) {
+            file_list_scene_ctx.file_button[i].set_visible(false);
+            file_list_scene_ctx.file_label[i].set_visible(false);
+            file_list_scene_ctx.file_size_label[i].set_visible(false);
+            file_list_scene_ctx.file_divider[i].set_visible(false);
+            continue;
+        }
 
-    for (size_t i = 0;
-         i <
-         std::min(file_list.size() - file_list_scene_ctx.file_list_start_index,
-                  static_cast<size_t>(MAX_FILES_DISPLAYED));
-         ++i) {
         size_t file_idx = file_list_scene_ctx.file_list_start_index + i;
-
-        file_list_scene_ctx.file_button[i] = Button(
-            &scene, 40, WINDOW_HEIGHT - 48 - i * 48, WINDOW_WIDTH - 130, 48);
-        file_list_scene_ctx.file_button[i].bg_off();
-        file_list_scene_ctx.file_button[i].set_on_click([scene, i, file_idx](
-                                                            int x, int y) {
-            file_list_scene_ctx.selected_file_index = file_idx;
-            file_list_scene_ctx.dialog_label.set_text(
-                "Send " + file_list_scene_ctx.file_list[file_idx].name + "?");
-            file_list_scene_ctx.scene.set_dialog_active(true);
-        });
-        scene.add_object(&file_list_scene_ctx.file_button[i]);
-
-        file_list_scene_ctx.file_label[i] =
-            Label(&scene, 50, WINDOW_HEIGHT - 48 - i * 48,
-                  file_list[file_idx].name, 32);
-        scene.add_object(&file_list_scene_ctx.file_label[i]);
-
-        file_list_scene_ctx.file_divider[i] =
-            Rectangle(&scene, 50, WINDOW_HEIGHT - 48 - i * 48 - 4,
-                      WINDOW_WIDTH - 150, 2, 0xFA);
-        scene.add_object(&file_list_scene_ctx.file_divider[i]);
+        file_list_scene_ctx.file_label[i].set_text(file_list[file_idx].name);
 
         unsigned long long file_size = file_list[file_idx].size;
         char size_str[32];
@@ -149,11 +130,12 @@ static Status update_file_list(bool force_update = false) {
                      (unsigned long)file_size);
         }
 
-        file_list_scene_ctx.file_size_label[i] =
-            Label(&scene, WINDOW_WIDTH - 105, WINDOW_HEIGHT - 48 - i * 48,
-                  size_str, 32);
-        file_list_scene_ctx.file_size_label[i].set_alignment(LABEL_ALIGN_RIGHT);
-        scene.add_object(&file_list_scene_ctx.file_size_label[i]);
+        file_list_scene_ctx.file_size_label[i].set_text(size_str);
+
+        file_list_scene_ctx.file_button[i].set_visible(true);
+        file_list_scene_ctx.file_label[i].set_visible(true);
+        file_list_scene_ctx.file_size_label[i].set_visible(true);
+        file_list_scene_ctx.file_divider[i].set_visible(true);
     }
 
     PROFILER_EXIT();
@@ -183,14 +165,9 @@ static Status load_file_list_scene() {
                            WINDOW_HEIGHT / 2 - dialog_height / 2, dialog_width,
                            dialog_height, 0xF0);
 
-    scene.add_dialog_object(dialog_border);
-    scene.add_dialog_object(dialog_bg);
-
     *dialog_label =
         Label(&scene, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2 + 5, "", 32);
     dialog_label->set_alignment(LABEL_ALIGN_CENTER);
-
-    scene.add_dialog_object(dialog_label);
 
     *dialog_confirm_button = Button(&scene, WINDOW_WIDTH / 2 + 10,
                                     WINDOW_HEIGHT / 2 - dialog_height / 3,
@@ -229,6 +206,9 @@ static Status load_file_list_scene() {
         file_list_scene_ctx.scene.set_dialog_active(false);
     });
 
+    scene.add_dialog_object(dialog_border);
+    scene.add_dialog_object(dialog_bg);
+    scene.add_dialog_object(dialog_label);
     scene.add_dialog_object(dialog_confirm_button);
     scene.add_dialog_object(dialog_confirm_label);
     scene.add_dialog_object(dialog_cancel_button);
@@ -243,6 +223,7 @@ static Status load_file_list_scene() {
             update_file_list(true);
         }
     });
+    file_list_scene_ctx.file_scroll_up_button.bg_off();
 
     file_list_scene_ctx.file_scroll_down_button =
         Button(&scene, WINDOW_WIDTH - 80, 10, 40, 40);
@@ -253,6 +234,7 @@ static Status load_file_list_scene() {
             update_file_list(true);
         }
     });
+    file_list_scene_ctx.file_scroll_down_button.bg_off();
 
     file_list_scene_ctx.file_scroll_up_graphic = GraphicsObject(
         &scene, ARROW_UP, WINDOW_WIDTH - 80, WINDOW_HEIGHT - 40 - 10);
@@ -260,7 +242,49 @@ static Status load_file_list_scene() {
     file_list_scene_ctx.file_scroll_down_graphic =
         GraphicsObject(&scene, ARROW_DOWN, WINDOW_WIDTH - 80, 10);
 
+    scene.add_object(&file_list_scene_ctx.file_scroll_up_button);
+    scene.add_object(&file_list_scene_ctx.file_scroll_down_button);
+    scene.add_object(&file_list_scene_ctx.file_scroll_up_graphic);
+    scene.add_object(&file_list_scene_ctx.file_scroll_down_graphic);
+
     // Add in the file list
+    for (size_t i = 0; i < MAX_FILES_DISPLAYED; ++i) {
+        file_list_scene_ctx.file_button[i] = Button(
+            &scene, 40, WINDOW_HEIGHT - 48 - i * 48, WINDOW_WIDTH - 130, 48);
+        file_list_scene_ctx.file_button[i].bg_off();
+        file_list_scene_ctx.file_button[i].set_on_click([scene, i](int x,
+                                                                   int y) {
+            size_t file_idx = file_list_scene_ctx.file_list_start_index + i;
+            file_list_scene_ctx.selected_file_index = file_idx;
+            file_list_scene_ctx.dialog_label.set_text(
+                "Send " + file_list_scene_ctx.file_list[file_idx].name + "?");
+            file_list_scene_ctx.scene.set_dialog_active(true);
+        });
+
+        file_list_scene_ctx.file_label[i] =
+            Label(&scene, 50, WINDOW_HEIGHT - 48 - i * 48, "", 32);
+
+        file_list_scene_ctx.file_divider[i] =
+            Rectangle(&scene, 50, WINDOW_HEIGHT - 48 - i * 48 - 4,
+                      WINDOW_WIDTH - 150, 2, 0xFA);
+
+        file_list_scene_ctx.file_size_label[i] = Label(
+            &scene, WINDOW_WIDTH - 105, WINDOW_HEIGHT - 48 - i * 48, "", 32);
+        file_list_scene_ctx.file_size_label[i].set_alignment(LABEL_ALIGN_RIGHT);
+
+        // Invisible by default
+        file_list_scene_ctx.file_button[i].set_visible(false);
+        file_list_scene_ctx.file_label[i].set_visible(false);
+        file_list_scene_ctx.file_divider[i].set_visible(false);
+        file_list_scene_ctx.file_size_label[i].set_visible(false);
+
+        scene.add_object(&file_list_scene_ctx.file_button[i]);
+        scene.add_object(&file_list_scene_ctx.file_label[i]);
+        scene.add_object(&file_list_scene_ctx.file_divider[i]);
+        scene.add_object(&file_list_scene_ctx.file_size_label[i]);
+    }
+
+    // Update the list objects
     update_file_list();
 
     lcd_set_background(MAIN);
