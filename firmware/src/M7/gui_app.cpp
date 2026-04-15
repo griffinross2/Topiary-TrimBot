@@ -61,6 +61,7 @@ static Status load_splash_screen_scene() {
 #define MAX_FILES_DISPLAYED 6
 
 struct {
+    bool initialized = false;
     Scene scene;
     std::vector<FileInfo> file_list;
     size_t selected_file_index = 0;
@@ -172,6 +173,13 @@ static Status update_file_list(bool force_update) {
 };
 
 static Status load_file_list_scene() {
+    if (file_list_scene_ctx.initialized) {
+        lcd_set_background(MAIN);
+        gui_set_current_scene(&file_list_scene_ctx.scene);
+        update_file_list(true);
+        return STATUS_OK;
+    }
+
     // Dialog box for confirming a file
     Scene& scene = file_list_scene_ctx.scene;
     Rectangle* dialog_border = &file_list_scene_ctx.dialog_border;
@@ -322,6 +330,8 @@ static Status load_file_list_scene() {
     lcd_set_background(MAIN);
     gui_set_current_scene(&scene);
 
+    file_list_scene_ctx.initialized = true;
+
     return STATUS_OK;
 }
 
@@ -330,6 +340,7 @@ static Status load_file_list_scene() {
 /***********************/
 
 struct {
+    bool initialized = false;
     Scene scene;
     Label status_label;
     GraphicsObject spinner;
@@ -338,6 +349,12 @@ struct {
 } sending_file_scene_ctx;
 
 static Status load_sending_file_scene() {
+    if (sending_file_scene_ctx.initialized) {
+        lcd_set_background(MAIN);
+        gui_set_current_scene(&sending_file_scene_ctx.scene);
+        return STATUS_OK;
+    }
+
     Scene& scene = sending_file_scene_ctx.scene;
     Label& status_label = sending_file_scene_ctx.status_label;
     GraphicsObject& spinner = sending_file_scene_ctx.spinner;
@@ -355,6 +372,8 @@ static Status load_sending_file_scene() {
 
     lcd_set_background(MAIN);
     gui_set_current_scene(&scene);
+
+    sending_file_scene_ctx.initialized = true;
 
     return STATUS_OK;
 }
@@ -415,6 +434,7 @@ static Status update_sending_file_scene() {
 /*****************************/
 
 struct {
+    bool initialized = false;
     Scene scene;
     Button back_button;
     Label back_label;
@@ -425,16 +445,19 @@ constexpr unsigned int BACK_BUTTON_HEIGHT = 60;
 constexpr unsigned int BACK_TEXT_SIZE = 32;
 
 static Status load_error_sending_file_scene() {
+    if (error_sending_file_scene_ctx.initialized) {
+        lcd_set_background(FILE_SEND_ERROR);
+        gui_set_current_scene(&error_sending_file_scene_ctx.scene);
+        return STATUS_OK;
+    }
+
     Scene& scene = error_sending_file_scene_ctx.scene;
     Button& back_button = error_sending_file_scene_ctx.back_button;
     Label& back_label = error_sending_file_scene_ctx.back_label;
 
     back_button = Button(&scene, WINDOW_WIDTH / 2 - BACK_BUTTON_WIDTH / 2, 0,
                          BACK_BUTTON_WIDTH, BACK_BUTTON_HEIGHT);
-    back_button.set_on_click([](int x, int y) {
-        load_file_list_scene();
-        update_file_list(true);
-    });
+    back_button.set_on_click([](int x, int y) { load_file_list_scene(); });
 
     back_label = Label(&scene, WINDOW_WIDTH / 2,
                        BACK_BUTTON_HEIGHT / 2 - BACK_TEXT_SIZE / 2, "Back",
@@ -447,6 +470,8 @@ static Status load_error_sending_file_scene() {
     lcd_set_background(FILE_SEND_ERROR);
     gui_set_current_scene(&scene);
 
+    error_sending_file_scene_ctx.initialized = true;
+
     return STATUS_OK;
 }
 
@@ -455,6 +480,7 @@ static Status load_error_sending_file_scene() {
 /*************************/
 
 struct {
+    bool initialized = false;
     Scene scene;
     Button cancel_button;
     Label cancel_label;
@@ -467,6 +493,12 @@ constexpr unsigned int BEGIN_SCANNING_BUTTON_HEIGHT = 60;
 constexpr unsigned int BEGIN_SCANNING_TEXT_SIZE = 32;
 
 static Status load_begin_scanning_scene() {
+    if (begin_scanning_scene_ctx.initialized) {
+        lcd_set_background(BEGIN_SCANNING);
+        gui_set_current_scene(&begin_scanning_scene_ctx.scene);
+        return STATUS_OK;
+    }
+
     Scene& scene = begin_scanning_scene_ctx.scene;
     Button& cancel_button = begin_scanning_scene_ctx.cancel_button;
     Label& cancel_label = begin_scanning_scene_ctx.cancel_label;
@@ -476,10 +508,7 @@ static Status load_begin_scanning_scene() {
     cancel_button =
         Button(&scene, WINDOW_WIDTH / 2 - BEGIN_SCANNING_BUTTON_WIDTH - 10, 0,
                BEGIN_SCANNING_BUTTON_WIDTH, BEGIN_SCANNING_BUTTON_HEIGHT);
-    cancel_button.set_on_click([](int x, int y) {
-        load_file_list_scene();
-        update_file_list(true);
-    });
+    cancel_button.set_on_click([](int x, int y) { load_file_list_scene(); });
 
     cancel_label =
         Label(&scene, WINDOW_WIDTH / 2 - BEGIN_SCANNING_BUTTON_WIDTH / 2 - 10,
@@ -493,7 +522,6 @@ static Status load_begin_scanning_scene() {
     confirm_button.set_on_click([](int x, int y) {
         // TODO: Change to start scanning
         load_file_list_scene();
-        update_file_list(true);
     });
 
     confirm_label =
@@ -509,6 +537,8 @@ static Status load_begin_scanning_scene() {
 
     lcd_set_background(BEGIN_SCANNING);
     gui_set_current_scene(&scene);
+
+    begin_scanning_scene_ctx.initialized = true;
 
     return STATUS_OK;
 }
@@ -530,7 +560,6 @@ static Status update_insert_card_scene() {
     // If the card is inserted, go to the file list scene
     if (filesystem_is_card_inserted() && filesystem_is_mounted()) {
         load_file_list_scene();
-        update_file_list(true);
     }
 
     return STATUS_OK;

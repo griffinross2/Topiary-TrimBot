@@ -11,8 +11,7 @@
 
 void main_loop();
 
-int main(void)
-{
+int main(void) {
     HAL_Init();
 
     profiler_init();
@@ -24,8 +23,8 @@ int main(void)
     // Marlin wrapper hosts the loop
     marlin_wrapper_set_idle_cb(main_loop);
 
-    // gcode.home_all_axes();
-    
+    gcode.home_all_axes();
+
     marlin_wrapper_loop();
 
     return 0;
@@ -50,7 +49,7 @@ void main_loop() {
     }
 
     // Process manual g-code input
-    int bytes_read = terminal_read((uint8_t*)buf, sizeof(buf)-1);
+    int bytes_read = terminal_read((uint8_t*)buf, sizeof(buf) - 1);
     if (bytes_read > 0) {
         buf[bytes_read] = '\0';
         printf("%s", buf);
@@ -63,51 +62,40 @@ void main_loop() {
     HAL_Delay(50);
 }
 
-extern "C"
-{
-    void NMI_Handler(void);
-    void HardFault_Handler(void);
-    void MemManage_Handler(void);
-    void BusFault_Handler(void);
-    void UsageFault_Handler(void);
-    void SVC_Handler(void);
-    void DebugMon_Handler(void);
-    void PendSV_Handler(void);
-    void SysTick_Handler(void);
+extern "C" {
+void NMI_Handler(void);
+void HardFault_Handler(void);
+void MemManage_Handler(void);
+void BusFault_Handler(void);
+void UsageFault_Handler(void);
+void SVC_Handler(void);
+void DebugMon_Handler(void);
+void PendSV_Handler(void);
+void SysTick_Handler(void);
 }
 
-void NMI_Handler(void)
-{
-    while (1)
-    {
+void NMI_Handler(void) {
+    while (1) {
     }
 }
 
-void HardFault_Handler(void)
-{
-    while (1)
-    {
+void HardFault_Handler(void) {
+    while (1) {
     }
 }
 
-void MemManage_Handler(void)
-{
-    while (1)
-    {
+void MemManage_Handler(void) {
+    while (1) {
     }
 }
 
-void BusFault_Handler(void)
-{
-    while (1)
-    {
+void BusFault_Handler(void) {
+    while (1) {
     }
 }
 
-void UsageFault_Handler(void)
-{
-    while (1)
-    {
+void UsageFault_Handler(void) {
+    while (1) {
     }
 }
 
@@ -117,7 +105,6 @@ void DebugMon_Handler(void) {}
 
 void PendSV_Handler(void) {}
 
-void SysTick_Handler(void)
-{
+void SysTick_Handler(void) {
     HAL_IncTick();
 }
