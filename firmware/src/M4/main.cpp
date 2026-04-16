@@ -6,6 +6,7 @@
 #include "terminal.h"
 #include "profiler.h"
 #include "gcode_receiver.h"
+#include "door_stop.h"
 
 #include <stdio.h>
 
@@ -16,7 +17,9 @@ int main(void) {
 
     profiler_init();
 
-    terminal_rx_start();
+    int init_stat = 0;
+    init_stat |= terminal_rx_start();
+    init_stat |= door_stop_init();
 
     marlin_wrapper_init();
 
@@ -58,6 +61,9 @@ void main_loop() {
 
     // Receive g-code from the Pi
     gcode_receiver_task();
+
+    // Check door status
+    door_stop_task();
 
     HAL_Delay(50);
 }
