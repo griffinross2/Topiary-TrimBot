@@ -33,8 +33,8 @@ def correction():
     # in a given directory. CHANGE WHEN IMPLEMENTED ON PI
     # jpg files alone
     images = glob.glob('/Users/duke1/OneDrive/Documents/GitHub/Topiary-TrimBot/software/computer vision/checkerboards/*.jpg')
-
     for filename in images:
+        #print("searching: ", filename)
         image = cv2.imread(filename)
         grayColor = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
@@ -51,6 +51,7 @@ def correction():
         # refine the pixel coordinates and display
         # them on the images of checker board
         if ret == True:
+            #print("found")
             threedpoints.append(objectp3d)
 
             # Refining pixel coordinates
@@ -82,7 +83,6 @@ def correction():
     newcameramtx, roi = cv2.getOptimalNewCameraMatrix(matrix, distortion, (w,h), 1, (w,h))
 
     file = cv2.FileStorage("parameters.yml", cv2.FileStorage_WRITE)
-    file.write("roi",roi)
     file.write("matrix",matrix)
     file.write("distortion",distortion)
     file.write("newcameramtx",newcameramtx)
@@ -94,3 +94,5 @@ def correction():
     file.release()
 
     return()
+
+correction()

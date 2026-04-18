@@ -26,7 +26,6 @@ def iterate_angles():
     pts = scan_plant(img_left, img_right, 60)
     pt_cloud.extend(pts)
 
-
     img_left = Image.open("left_rot_4.jpg")
     img_right = Image.open("right_rot_4.jpg")
     pts = scan_plant(img_left, img_right, 90)
