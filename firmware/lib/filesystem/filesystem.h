@@ -20,3 +20,5 @@ Status filesystem_read_file(char* buf, size_t len, size_t* actual_len);
 Status filesystem_seek_file(size_t offset);
 Status filesystem_close_file();
 void filesystem_task();
+bool filesystem_is_card_inserted();
+bool filesystem_is_mounted();

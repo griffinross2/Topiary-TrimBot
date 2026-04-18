@@ -34,7 +34,8 @@ void file_sender_task() {
                                       PACKET_TYPE_FILE_START);
 
                 if (res >= 0) {
-                    TRACE_PRINTF("Sent file start packet for file: %s\n", s_current_filename);
+                    TRACE_PRINTF("Sent file start packet for file: %s\n",
+                                 s_current_filename);
 
                     // Successfully sent, now wait for ack
                     s_waiting_for_ack = true;
@@ -42,7 +43,9 @@ void file_sender_task() {
                 }
             }
 
-            if (s_waiting_for_ack && (get_tick_ms() - s_ack_timeout_start_tick) >= FILE_SENDER_ACK_TIMEOUT_MS) {
+            if (s_waiting_for_ack &&
+                (get_tick_ms() - s_ack_timeout_start_tick) >=
+                    FILE_SENDER_ACK_TIMEOUT_MS) {
                 TRACE_PRINTF("Ack timeout for file start packet!\n");
                 s_waiting_for_ack = false;
                 s_file_sender_status = FILE_SENDER_STATUS_ERROR;
@@ -103,7 +106,8 @@ void file_sender_task() {
                 int res = packet_send(nullptr, 0, PACKET_TYPE_FILE_END);
 
                 if (res >= 0) {
-                    TRACE_PRINTF("Sent file end packet for file: %s\n", s_current_filename);
+                    TRACE_PRINTF("Sent file end packet for file: %s\n",
+                                 s_current_filename);
 
                     // Successfully sent, now wait for ack
                     s_waiting_for_ack = true;
@@ -111,7 +115,9 @@ void file_sender_task() {
                 }
             }
 
-            if (s_waiting_for_ack && (get_tick_ms() - s_ack_timeout_start_tick) >= FILE_SENDER_ACK_TIMEOUT_MS) {
+            if (s_waiting_for_ack &&
+                (get_tick_ms() - s_ack_timeout_start_tick) >=
+                    FILE_SENDER_ACK_TIMEOUT_MS) {
                 TRACE_PRINTF("Ack timeout for file end packet!\n");
                 s_waiting_for_ack = false;
                 s_file_sender_status = FILE_SENDER_STATUS_ERROR;
@@ -185,7 +191,7 @@ void file_sender_give_packet(PacketID id, const uint8_t* data,
             if (id.ack && s_file_sender_status == FILE_SENDER_STATUS_END) {
                 // If we were waiting for an ack to the end, now go to
                 // idle
-                s_file_sender_status = FILE_SENDER_STATUS_IDLE;
+                s_file_sender_status = FILE_SENDER_STATUS_SUCCESS;
                 s_waiting_for_ack = false;
 
                 // Close the file
@@ -203,8 +209,7 @@ void file_sender_give_packet(PacketID id, const uint8_t* data,
 }
 
 Status file_sender_send_file(const char* filename) {
-    if (s_file_sender_status != FILE_SENDER_STATUS_IDLE &&
-        s_file_sender_status != FILE_SENDER_STATUS_ERROR) {
+    if (s_file_sender_status != FILE_SENDER_STATUS_IDLE) {
         TRACE_PRINTF("File sender is busy sending another file!\n");
 
         return STATUS_BUSY;
@@ -212,7 +217,7 @@ Status file_sender_send_file(const char* filename) {
 
     if (filesystem_open_file(filename) != STATUS_OK) {
         TRACE_PRINTF("Failed to open file to send: %s\n", filename);
-
+        s_file_sender_status = FILE_SENDER_STATUS_ERROR;
         return STATUS_ERROR;
     }
 
@@ -222,4 +227,12 @@ Status file_sender_send_file(const char* filename) {
     s_file_sender_status = FILE_SENDER_STATUS_START;
 
     return STATUS_OK;
+}
+
+FileSenderStatus file_sender_get_status() {
+    return s_file_sender_status;
+}
+
+void file_sender_reset() {
+    s_file_sender_status = FILE_SENDER_STATUS_IDLE;
 }

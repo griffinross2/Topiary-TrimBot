@@ -25,27 +25,22 @@ Scene::Scene(Color background_color) {
     m_background_color = background_color;
 }
 
-void Scene::add_object(std::shared_ptr<SceneObject> obj) {
-    m_objects.push_back(std::move(obj));
+void Scene::add_object(SceneObject* obj) {
+    m_objects.push_back(obj);
     if (s_current_scene == this) {
         redraw();
     }
 }
 
-void Scene::add_dialog_object(std::shared_ptr<SceneObject> obj) {
-    m_dialog_objects.push_back(std::move(obj));
+void Scene::add_dialog_object(SceneObject* obj) {
+    m_dialog_objects.push_back(obj);
     if (s_current_scene == this) {
         redraw();
     }
 }
 
 void Scene::redraw() {
-    if (m_background_color != 0xF0) {
-        lcd_draw_rectangle(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT,
-                           m_background_color);
-    } else {
-        lcd_clear_foreground();
-    }
+    lcd_clear_foreground(m_background_color);
 
     for (auto& o : m_objects) {
         o->redraw();
@@ -67,10 +62,9 @@ void SceneObject::set_visible(bool visible) {
     m_visible = visible;
 }
 
-Rectangle::Rectangle(Scene* parent, int x, int y, int w, int h,
-                     Color color)
-    : SceneObject(parent), m_x(x), m_y(y), m_width(w), m_height(h), m_color(color) {
-}
+Rectangle::Rectangle(Scene* parent, int x, int y, int w, int h, Color color)
+    : SceneObject(parent), m_x(x), m_y(y), m_width(w), m_height(h),
+      m_color(color) {}
 
 void Rectangle::set_position(int x, int y) {
     m_x = x;
@@ -111,14 +105,15 @@ Label::Label(Scene* parent, int x, int y, std::string text, int size)
 
 Label::Label(Scene* parent, int x, int y, std::string text, int size,
              Color color)
-    : SceneObject(parent), m_x(x), m_y(y), m_text(text), m_size(size), m_color(color) {
+    : SceneObject(parent), m_x(x), m_y(y), m_text(text), m_size(size),
+      m_color(color) {
     m_text_width = lcd_get_text_width(m_font, m_text.c_str(), m_size);
 }
 
 Label::Label(Scene* parent, int x, int y, std::string text, int size,
              Color color, const Font* font)
-    : SceneObject(parent), m_x(x), m_y(y), m_text(text), m_size(size), m_color(color),
-      m_font(font) {
+    : SceneObject(parent), m_x(x), m_y(y), m_text(text), m_size(size),
+      m_color(color), m_font(font) {
     m_text_width = lcd_get_text_width(m_font, m_text.c_str(), m_size);
 }
 
@@ -200,10 +195,21 @@ void Button::handle_release(int x, int y) {
     }
 }
 
+GraphicsObject::GraphicsObject(Scene* parent, const Graphics& graphics, int x,
+                               int y)
+    : SceneObject(parent), m_x(x), m_y(y), m_graphics(&graphics) {}
+
+void GraphicsObject::redraw() {
+    if (m_visible) {
+        lcd_draw_graphics(*m_graphics, m_x, m_y);
+    }
+}
+
 void gui_touch_poll() {
     if (tsc2013_is_touched()) {
         uint16_t x, y, z;
-        if (tsc2013_is_data_ready() && tsc2013_read_touch(&x, &y, &z) == STATUS_OK) {
+        if (tsc2013_is_data_ready() &&
+            tsc2013_read_touch(&x, &y, &z) == STATUS_OK) {
             s_touch_state.pressed = true;
             s_touch_state.x = x - (LCD_WIDTH - LTDC_WINDOW_WIDTH) / 2;
             s_touch_state.y = y - (LCD_HEIGHT - LTDC_WINDOW_HEIGHT) / 2;
@@ -252,7 +258,8 @@ void gui_update() {
 
     gui_touch_poll();
     gui_touch_update();
-    // printf("Touch state: %s at (%d, %d)\n", s_touch_state.pressed ? "Pressed" : "Released",
+    // printf("Touch state: %s at (%d, %d)\n", s_touch_state.pressed ? "Pressed"
+    // : "Released",
     //        s_touch_state.x, s_touch_state.y);
 
     PROFILER_EXIT();
