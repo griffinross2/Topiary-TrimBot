@@ -171,7 +171,8 @@
  * 'TMC2660_STANDALONE', 'TMC5130', 'TMC5130_STANDALONE', 'TMC5160',
  * 'TMC5160_STANDALONE']
  */
-#define X_DRIVER_TYPE DRV8825  // turntable
+// #define X_DRIVER_TYPE DRV8825  // turntable
+#define X_DRIVER_TYPE DRV8825  // dummy
 #define Y_DRIVER_TYPE DRV8825  // extruder
 #define Z_DRIVER_TYPE DRV8825  // gantry
 // #define X2_DRIVER_TYPE A4988
@@ -180,8 +181,8 @@
 // #define Z3_DRIVER_TYPE A4988
 // #define Z4_DRIVER_TYPE A4988
 #define I_DRIVER_TYPE DRV8825  // wrist
-// #define J_DRIVER_TYPE  A4988
-// #define K_DRIVER_TYPE  A4988
+#define J_DRIVER_TYPE DRV8825  // turntable
+// #define K_DRIVER_TYPE DRV8825
 // #define U_DRIVER_TYPE  A4988
 // #define V_DRIVER_TYPE  A4988
 // #define W_DRIVER_TYPE  A4988
@@ -1521,8 +1522,28 @@
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[,
  * E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT \
-    {10, 10, 49.00369f, 500}  // X, !Y, Z, !I, J, K - replace values
+
+#define EXTRUDER_MICROSTEPPING 4
+#define GANTRY_MICROSTEPPING 4
+#define REVOLUTE_MICROSTEPPING 4
+#define TURNTABLE_MICROSTEPPING 4
+
+#define EXTRUDER_STEPS_PER_UNIT (EXTRUDER_MICROSTEPPING * 4.973357016f)
+
+#define GANTRY_STEPS_PER_UNIT (GANTRY_MICROSTEPPING * 12.2509225f)
+
+// 1.8 degree stepper motor, 9:1 gear ratio
+#define REVOLUTE_STEPS_PER_UNIT \
+    (REVOLUTE_MICROSTEPPING * (1.0f / 1.8f) * (9.0f))
+
+// 1.8 degree stepper motor, 9 -> 80 tooth chain
+#define TURNTABLE_STEPS_PER_UNIT \
+    (TURNTABLE_MICROSTEPPING * (1.0f / 1.8f) * (80.0f / 9.0f))
+
+#define DEFAULT_AXIS_STEPS_PER_UNIT                     \
+    {1, EXTRUDER_STEPS_PER_UNIT, GANTRY_STEPS_PER_UNIT, \
+     REVOLUTE_STEPS_PER_UNIT, TURNTABLE_STEPS_PER_UNIT}
+// X, Y, Z, I, J - replace values
 
 /**
  * Enable support for M92. Disable to save at least ~530 bytes of flash.
@@ -1535,7 +1556,7 @@
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[,
  * E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE {25, 25, 25, 25}
+#define DEFAULT_MAX_FEEDRATE {1, 25, 25, 100, 30}
 
 // #define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to
 // DEFAULT_MAX_FEEDRATE * 2
@@ -1549,7 +1570,7 @@
  * rotational=°/(s^2)) (Maximum start speed for accelerated moves) Override with
  * M201 X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_ACCELERATION {1000, 3000, 100, 10000}
+#define DEFAULT_MAX_ACCELERATION {1, 1000, 2000, 100, 30}
 
 // #define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to
 // DEFAULT_MAX_ACCELERATION * 2
@@ -2079,9 +2100,9 @@
 #define X_ENABLE_ON LOW
 #define Y_ENABLE_ON LOW
 #define Z_ENABLE_ON LOW
-#define E_ENABLE_ON LOW  // For all extruders
-// #define I_ENABLE_ON LOW
-// #define J_ENABLE_ON LOW
+// #define E_ENABLE_ON LOW
+#define I_ENABLE_ON LOW
+#define J_ENABLE_ON LOW
 // #define K_ENABLE_ON LOW
 // #define U_ENABLE_ON LOW
 // #define V_ENABLE_ON LOW
@@ -2112,7 +2133,7 @@
 #define INVERT_Y_DIR true
 #define INVERT_Z_DIR true
 #define INVERT_I_DIR true
-// #define INVERT_J_DIR false
+#define INVERT_J_DIR true
 // #define INVERT_K_DIR false
 // #define INVERT_U_DIR false
 // #define INVERT_V_DIR false
@@ -2160,7 +2181,7 @@
 #define Y_HOME_DIR -1
 #define Z_HOME_DIR -1
 #define I_HOME_DIR -1
-// #define J_HOME_DIR -1
+#define J_HOME_DIR -1
 // #define K_HOME_DIR -1
 // #define U_HOME_DIR -1
 // #define V_HOME_DIR -1
@@ -2188,13 +2209,13 @@
 #define X_MIN_POS 0
 #define X_MAX_POS 4000
 #define Y_MIN_POS 0
-#define Y_MAX_POS 200
+#define Y_MAX_POS 280
 #define Z_MIN_POS 0
 #define Z_MAX_POS 813
 #define I_MIN_POS 0
-#define I_MAX_POS 50
-// #define J_MIN_POS 0
-// #define J_MAX_POS 50
+#define I_MAX_POS 360
+#define J_MIN_POS 0
+#define J_MAX_POS 360
 // #define K_MIN_POS 0
 // #define K_MAX_POS 50
 // #define U_MIN_POS 0
@@ -2689,7 +2710,7 @@
 #endif
 
 // Homing speeds (linear=mm/min, rotational=°/min)
-#define HOMING_FEEDRATE_MM_M {(4 * 60), (50 * 60), (50 * 60), (5 * 60)}
+#define HOMING_FEEDRATE_MM_M {0, (50 * 60), (50 * 60), (5 * 60), (4 * 60)}
 
 // Edit homing feedrates with M210 and MarlinUI menu items
 // #define EDITABLE_HOMING_FEEDRATE

@@ -7,6 +7,7 @@
 #include "stm32h7xx_hal.h"
 
 static EXTI_HandleTypeDef hexti;
+static bool was_opened_last = false;
 
 Status door_stop_init() {
     gpio_mode(PIN_DOOR, GPIO_INPUT_PULLUP);
@@ -29,12 +30,19 @@ Status door_stop_init() {
 
 void door_stop_task() {
     if (gpio_read(PIN_DOOR) == GPIO_HIGH) {
-        // Door was opened - stop immediately
         planner.quick_stop();
-        TRACE_PRINTF("Door opened, stopping motors...\n");
+
+        if (!was_opened_last) {
+            // Door was just opened
+            TRACE_PRINTF("Door opened\n");
+        }
+        was_opened_last = true;
     } else {
-        // Door was closed
-        TRACE_PRINTF("Door closed.\n");
+        if (was_opened_last) {
+            // Door was just closed
+            TRACE_PRINTF("Door closed\n");
+        }
+        was_opened_last = false;
     }
 }
 

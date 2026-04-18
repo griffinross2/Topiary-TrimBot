@@ -163,7 +163,7 @@ void reset_hotend_offsets();
 #elif HOTENDS
 constexpr xyz_pos_t hotend_offset[HOTENDS] = {{TERN_(HAS_X_AXIS, 0)}};
 #else
-constexpr xyz_pos_t hotend_offset[1] = {{0, 0, 0, 0}};
+constexpr xyz_pos_t hotend_offset[1] = {{0, 0, 0, 0, 0}};
 #endif
 
 #if HAS_SOFTWARE_ENDSTOPS

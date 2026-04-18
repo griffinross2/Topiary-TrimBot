@@ -255,12 +255,18 @@ __attribute__((unused)) static uint32_t GPIO_PIN_TO_MODEPOS[] = {
 #define PIN_EXTRUDER_MIN PIN_PG12
 #define PIN_REVOLUTE_MIN PIN_PG15
 
-// Turntable
-#define X_STEP_PIN PIN_TURNTABLE_STEP
-#define X_DIR_PIN PIN_TURNTABLE_DIR
+// Dummy X
+#define X_STEP_PIN -1
+#define X_DIR_PIN -1
 #define X_ENABLE_PIN -1
-// #define X_MIN_PIN PIN_TURNTABLE_MIN
 #define X_MIN_PIN -1
+
+// Turntable
+#define J_STEP_PIN PIN_TURNTABLE_STEP
+#define J_DIR_PIN PIN_TURNTABLE_DIR
+#define J_ENABLE_PIN -1
+// #define J_MIN_PIN PIN_TURNTABLE_MIN
+#define J_MIN_PIN -1
 
 // Extruder
 #define Y_STEP_PIN PIN_EXTRUDER_STEP
@@ -278,8 +284,8 @@ __attribute__((unused)) static uint32_t GPIO_PIN_TO_MODEPOS[] = {
 #define I_STEP_PIN PIN_REVOLUTE_STEP
 #define I_DIR_PIN PIN_REVOLUTE_DIR
 #define I_ENABLE_PIN -1
-// #define I_MIN_PIN PIN_REVOLUTE_MIN
-#define I_MIN_PIN -1
+#define I_MIN_PIN PIN_REVOLUTE_MIN
+// #define I_MIN_PIN -1
 
 // End Marlin
 

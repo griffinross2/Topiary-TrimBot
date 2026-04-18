@@ -1047,10 +1047,10 @@
 // #define SENSORLESS_BACKOFF_MM  { 2, 2, 0 }  // (linear=mm, rotational=°)
 // Backoff from endstops before sensorless homing
 
-#define HOMING_BUMP_MM {10, 25, 10, 10}
+#define HOMING_BUMP_MM {0, 25, 10, 10, 10}
 // (linear=mm, rotational=°) Backoff from endstops after first bump
 #define HOMING_BUMP_DIVISOR \
-    {5, 5, 5, 5}  // Re-Bump Speed Divisor (Divides the Homing Feedrate)
+    {5, 5, 5, 5, 5}  // Re-Bump Speed Divisor (Divides the Homing Feedrate)
 
 // #define HOMING_BACKOFF_POST_MM { 2, 2, 2 }  // (linear=mm, rotational=°)
 // Backoff from endstops after homing #define XY_COUNTERPART_BACKOFF_MM 0 //
@@ -1469,7 +1469,7 @@
 
 // @section motion
 
-#define AXIS_RELATIVE_MODES {false, false, false, false}
+#define AXIS_RELATIVE_MODES {false, false, false, false, false}
 
 // Add a Duplicate option for well-separated conjoined nozzles
 // #define MULTI_NOZZLE_DUPLICATION
