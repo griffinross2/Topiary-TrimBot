@@ -16,12 +16,12 @@ def create_outline(img):
 
     reference_hue = 100 #green = 120, yellow = 60
 
-    lowest_hue = -70
+    lowest_hue = -50
     lowest_hue = np.deg2rad(lowest_hue)
     highest_hue = 50
     highest_hue = np.deg2rad(highest_hue)
 
-    lowest_sat = .17
+    lowest_sat = .2
     lowest_val = .1      # value filtering included, but not used
 
     for x in range(img.width):
@@ -103,7 +103,5 @@ def create_outline(img):
     
     img = img.transpose(Image.FLIP_LEFT_RIGHT)
     img = img.transpose(Image.ROTATE_180)
-
-    #img.show()
 
     return(img, outline_verts)

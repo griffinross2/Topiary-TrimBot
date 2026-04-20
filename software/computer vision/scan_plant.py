@@ -15,6 +15,8 @@ def scan_plant(img_left, img_right, angle):
 
     img_left, w_left, h_left = picture_prep(img_left)
     silhouette_left, outline_left = create_outline(img_left)
+    outline_left = np.array(outline_left)
+    
 
     img_right, w_right, h_right = picture_prep(img_right)
     silhouette_right, outline_right = create_outline(img_right)
@@ -25,5 +27,6 @@ def scan_plant(img_left, img_right, angle):
     print("depth: ", depth)
 
     pts = project_outline_to_3d(outline_left, 4, disparity, depth, angle, w_left, h_left)
+    pts = np.array(pts)
 
     return(pts)

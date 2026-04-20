@@ -7,8 +7,6 @@ def undistort(img):
     # undistort
     cv_img = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
 
-    
-
     file = cv2.FileStorage("parameters.yml", cv2.FileStorage_READ)
     matrix = file.getNode("matrix").mat()
     distortion = file.getNode("distortion").mat()
@@ -20,11 +18,10 @@ def undistort(img):
     
     undst = cv2.undistort(cv_img, matrix, distortion, None, newcameramtx)
 
-    org_disp = cv2.rotate(cv_img, cv2.ROTATE_180)
-    ud_dis = cv2.rotate(undst, cv2.ROTATE_180)
-    cv2.imshow('original', org_disp)
-    cv2.imshow('undistorted', ud_dis)
-    cv2.waitKey(0)
+
+    # cv2.imshow('original', cv_img)
+    # cv2.imshow('undistorted', undst)
+    # cv2.waitKey(0)
 
     undst = undst[y:y+h, x:x+w]
     rgb_img = cv2.cvtColor(cv_img, cv2.COLOR_BGR2RGB)
