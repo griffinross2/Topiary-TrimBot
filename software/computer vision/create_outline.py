@@ -20,7 +20,7 @@ def create_outline(img):
     lowest_hue = np.deg2rad(lowest_hue)
     highest_hue = np.deg2rad(highest_hue)
 
-    lowest_sat = .05
+    lowest_sat = .12
     lowest_val = 0 # value filtering included, but not used
 
     for x in range(img.width):
@@ -42,10 +42,6 @@ def create_outline(img):
     # Normalize and reorient
     map = map/np.max(map)
     map = map.T
-
-    # Filter low values again (may be unnecessary)
-    threshold = 0.2
-    map[map < threshold] = 0
 
     # # DEBUG: HEAT MAP OF GREENESS
     # Show map
@@ -103,9 +99,11 @@ def create_outline(img):
                 img.putpixel((x, y), (0,0,0,225))
             else:
                 img.putpixel((x, y), (225,225,225,225))
-    
+
     # de-transpose image
     img = img.transpose(Image.FLIP_LEFT_RIGHT)
     img = img.transpose(Image.ROTATE_180)
+
+    #img.show()
 
     return(img, outline_verts)

@@ -17,7 +17,7 @@ def iterate_angles():
     # correction() # MUST RUN AFTER CHANGING CALIBRATION IMAGES
 
     angle = 0
-    path = '/Users/duke1/OneDrive/Documents/GitHub/Topiary-TrimBot/software/computer vision/new_plants/'
+    path = '/Users/duke1/OneDrive/Documents/GitHub/Topiary-TrimBot/software/computer vision/plants/'
     
     global points_2d # stores 2D points separated by image angle
     points_2d = []
@@ -38,9 +38,6 @@ def iterate_angles():
 
 
     
-
-
-
 
 
     #---- PREPARE PLOT DATA ----#
