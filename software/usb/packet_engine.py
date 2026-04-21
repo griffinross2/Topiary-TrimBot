@@ -3,6 +3,7 @@ import cobs.cobs
 from packet import *
 from file_receiver import file_receiver_give_packet
 from gcode_sender import gcode_sender_give_packet
+from pi_control import pi_control_give_packet
 
 rx_buf = bytes()
 
@@ -22,6 +23,7 @@ def handle_received_packet(packet_enc):
 
     print("Packet data:")
     print(packet[packet_data_start:packet_data_end].decode('utf8', errors="replace"))
+    print(packet[packet_data_start:packet_data_end])
 
     match header.id.packet_type:
         case PACKET_TYPE_FILE_START.packet_type:
@@ -34,6 +36,10 @@ def handle_received_packet(packet_enc):
             file_receiver_give_packet(header.id, packet[packet_data_start:packet_data_end])
         case PACKET_TYPE_GCODE.packet_type:
             gcode_sender_give_packet(header.id, packet[packet_data_start:packet_data_end])
+        case PACKET_TYPE_STATUS.packet_type:
+            pi_control_give_packet(header.id, packet[packet_data_start:packet_data_end])
+        case PACKET_TYPE_START_SCANNING.packet_type:
+            pi_control_give_packet(header.id, packet[packet_data_start:packet_data_end])
 
         case _:
             pass

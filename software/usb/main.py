@@ -3,6 +3,8 @@ import signal
 from packet_engine import packet_engine_task
 from file_receiver import file_receiver_task
 from gcode_sender import gcode_sender_task, gcode_sender_send_gcode
+from camera import init_cameras, deinit_cameras
+from plant_scanning import plant_scanning_task
 import packet
 import serial
 import time
@@ -19,6 +21,7 @@ def quit_main():
     
     print("SIGINT received, exiting...")
     usb_dev.disconnect()
+    deinit_cameras()
     quit(0)
 
 def main():
@@ -33,10 +36,15 @@ def main():
         print(f"Failed to connect: {e}")
         quit(0)
 
+    init_cameras()
+    
+    print("Init Complete")
+
     while(True):
         packet_engine_task(usb_dev)
         file_receiver_task(usb_dev)
         gcode_sender_task(usb_dev)
+        plant_scanning_task()
 
         if (should_quit):
             quit_main()

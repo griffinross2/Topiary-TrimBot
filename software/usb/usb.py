@@ -24,6 +24,8 @@ class USBDev():
                         raise serial.SerialException("Could not create serial device.")
 
                     self.ser.reset_input_buffer()
+                    self.ser.reset_output_buffer()
+                    self.send(bytes([0]))
 
                     return
                 
@@ -35,7 +37,9 @@ class USBDev():
 
     def send(self, data: bytes):
         if self.ser:
-            return self.ser.write(data)
+            ret = self.ser.write(data)
+            self.ser.flush()
+            return ret
         return 0
     
     def receive(self, count):
