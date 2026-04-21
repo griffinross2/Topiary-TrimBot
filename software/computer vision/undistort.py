@@ -6,6 +6,7 @@ import glob
 def undistort(img):
     # undistort
     cv_img = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
+    #img.show()
 
     file = cv2.FileStorage("parameters.yml", cv2.FileStorage_READ)
     matrix = file.getNode("matrix").mat()
@@ -24,6 +25,9 @@ def undistort(img):
     # cv2.waitKey(0)
 
     undst = undst[y:y+h, x:x+w]
+
+    # cv2.imshow('undistorted', undst)
+    # cv2.waitKey(0)
     rgb_img = cv2.cvtColor(cv_img, cv2.COLOR_BGR2RGB)
     pil_img = Image.fromarray(rgb_img)
     return(pil_img)

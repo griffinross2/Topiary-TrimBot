@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from matplotlib import colormaps as cm
 
 def get_disparity_level(image_left: Image.Image, image_right: Image.Image):
-    # just shift the left to the right up to a limit until a maximum correlation is found
+    # Shift the left to the right up to a limit until maximum correlation is found
     max_shift = 100
     best_shift = 0
     best_correlation = -1.0
@@ -19,6 +19,7 @@ def get_disparity_level(image_left: Image.Image, image_right: Image.Image):
         correlation = np.sum(np.multiply(left_array, right_array))
         left_array = np.roll(left_array, 1, axis=1)
 
+        ## DEBUG: Show overlap of shilhouettes
         # both = np.logical_not(np.multiply(np.logical_not(left_array), np.logical_not(right_array)))
         # array_img = Image.fromarray(left_array)
         # array_img.show()
