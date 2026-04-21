@@ -15,6 +15,7 @@
 #include "usb.h"
 #include "profiler.h"
 #include "packet_engine.h"
+#include "pi_control.h"
 
 #include <stdio.h>
 
@@ -69,7 +70,7 @@ int main(void) {
     while (1) {
         // Print profiler summary every 10 seconds
         if (HAL_GetTick() - profiler_tick >= 10000) {
-            profiler_print_summary();
+            // profiler_print_summary();
             profiler_tick = HAL_GetTick();
         }
 
@@ -77,6 +78,7 @@ int main(void) {
         usb_task();
         packet_engine_task();
         gui_app_task();
+        pi_control_task();
     }
 
     return 0;

@@ -6,6 +6,7 @@
 #include "timing.h"
 #include "profiler.h"
 #include "file_sender.h"
+#include "pi_control.h"
 
 #include "images/splashscreen.h"
 #include "images/blank.h"
@@ -520,7 +521,7 @@ static Status load_begin_scanning_scene() {
         Button(&scene, WINDOW_WIDTH / 2 + 10, 0, BEGIN_SCANNING_BUTTON_WIDTH,
                BEGIN_SCANNING_BUTTON_HEIGHT);
     confirm_button.set_on_click([](int x, int y) {
-        // TODO: Change to start scanning
+        pi_control_start_scanning();
         load_file_list_scene();
     });
 

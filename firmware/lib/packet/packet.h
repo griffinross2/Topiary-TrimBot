@@ -13,6 +13,8 @@ typedef struct {
 #define PACKET_TYPE_FILE_RESEND {0x02, 0, 0}
 #define PACKET_TYPE_FILE_END {0x03, 1, 0}
 #define PACKET_TYPE_GCODE {0x10, 0, 1}
+#define PACKET_TYPE_STATUS {0x20, 0, 0}
+#define PACKET_TYPE_START_SCANNING {0x21, 0, 0}
 
 static_assert(sizeof(PacketID) == 1, "PacketType should be 1 byte");
 

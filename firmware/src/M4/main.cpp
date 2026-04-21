@@ -7,6 +7,7 @@
 #include "profiler.h"
 #include "gcode_receiver.h"
 #include "door_stop.h"
+#include "pi_control.h"
 
 #include <stdio.h>
 
@@ -33,34 +34,37 @@ int main(void) {
     return 0;
 }
 
-char buf[64];
+static char s_terminal_buf[64];
+static uint32_t s_profiler_tick = 0;
+static uint32_t s_blinky_tick = 0;
 
 void main_loop() {
-    static uint32_t profiler_tick = HAL_GetTick();
-    static uint32_t blinky_tick = HAL_GetTick();
-
     // Blink blue LED for status
-    if (get_tick_ms() - blinky_tick >= 1000) {
+    if (get_tick_ms() - s_blinky_tick >= 1000) {
         gpio_toggle(PIN_BLU);
-        blinky_tick = get_tick_ms();
+        s_blinky_tick = get_tick_ms();
     }
 
     // Print profiler summary every 10 seconds
-    if (get_tick_ms() - profiler_tick >= 10000) {
-        profiler_print_summary();
-        profiler_tick = get_tick_ms();
+    if (get_tick_ms() - s_profiler_tick >= 10000) {
+        // profiler_print_summary();
+        s_profiler_tick = get_tick_ms();
     }
 
     // Process manual g-code input
-    int bytes_read = terminal_read((uint8_t*)buf, sizeof(buf) - 1);
+    int bytes_read =
+        terminal_read((uint8_t*)s_terminal_buf, sizeof(s_terminal_buf) - 1);
     if (bytes_read > 0) {
-        buf[bytes_read] = '\0';
-        printf("%s", buf);
-        gcode.process_subcommands_now(buf);
+        s_terminal_buf[bytes_read] = '\0';
+        printf("%s", s_terminal_buf);
+        gcode.process_subcommands_now(s_terminal_buf);
     }
 
     // Receive g-code from the Pi
     gcode_receiver_task();
+
+    // Update the status for the Pi
+    pi_control_task();
 
     // Check door status
     door_stop_task();

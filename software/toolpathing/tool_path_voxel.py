@@ -6,6 +6,7 @@ CUTTER_WIDTH = 0.1
 VOXEL_SIZE = CUTTER_WIDTH / 5
 VOXEL_VICTIM_RANGE = CUTTER_WIDTH / 3
 MODEL_EXTRA_SCALE = 1
+ANGLE_STEP = 5
 
 cloud = tm.points.PointCloud(pv.read("point_cloud.vtk").points)
 plant_mesh = cloud.convex_hull
@@ -206,6 +207,7 @@ def kill_other_victims(voxels, angle, last_voxel):
 def get_cut_path(voxels, angle):
     for i in range(voxels.matrix.shape[2]):
         voxel_at_i = get_outmost_at_height(voxels, angle, i)
+
         # print(i, angle, voxel_at_i)
         # Remove them as we go
         # mat = voxels.matrix
@@ -226,7 +228,7 @@ print(diff_voxel.matrix.shape)
 # print(get_outmost_at_height(diff_voxel, 45, 15))
 
 for p in range(int(np.max(diff_voxel.matrix.shape)/2)):
-    for a in range(0, 360, 5):
+    for a in range(0, 360, ANGLE_STEP):
         diff_voxel = get_cut_path(diff_voxel, a)
 
 # show_voxel(diff_voxel)
