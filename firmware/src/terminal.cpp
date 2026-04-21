@@ -3,9 +3,13 @@
 #include "stm32h7xx_hal.h"
 #include "memory.h"
 
-static __attribute__((section(".uart_handle"))) UART_HandleTypeDef s_huart6;
-static __attribute__((section(".uart_handle"))) DMA_HandleTypeDef s_hdma1_stream0;
-#define WRITE_PTR (s_terminal_rx_buffer + sizeof(s_terminal_rx_buffer) - __HAL_DMA_GET_COUNTER(&s_hdma1_stream0))
+__attribute__((used)) static
+    __attribute__((section(".uart_handle"))) UART_HandleTypeDef s_huart6;
+__attribute__((used)) static
+    __attribute__((section(".uart_handle"))) DMA_HandleTypeDef s_hdma1_stream0;
+#define WRITE_PTR                                          \
+    (s_terminal_rx_buffer + sizeof(s_terminal_rx_buffer) - \
+     __HAL_DMA_GET_COUNTER(&s_hdma1_stream0))
 
 #ifdef CORE_CM4
 static uint8_t s_terminal_rx_buffer[256];
@@ -13,9 +17,9 @@ static uint8_t* s_terminal_read_ptr = s_terminal_rx_buffer;
 #endif
 
 Status terminal_init() {
-    #ifdef CORE_CM4
-    return STATUS_ERROR; // Should only be init on M7 core
-    #else
+#ifdef CORE_CM4
+    return STATUS_ERROR;  // Should only be init on M7 core
+#else
 
     GPIO_InitTypeDef gpio_init = {
         .Pin = GPIO_PIN_9 | GPIO_PIN_14,
@@ -74,36 +78,38 @@ Status terminal_init() {
 
     return STATUS_OK;
 
-    #endif
+#endif
 }
 
 Status terminal_rx_start() {
-    #ifndef CORE_CM4
-    return STATUS_ERROR; // Should only be called on M4 core
-    #else
+#ifndef CORE_CM4
+    return STATUS_ERROR;  // Should only be called on M4 core
+#else
 
     s_huart6.pRxBuffPtr = s_terminal_rx_buffer;
     s_huart6.RxXferSize = sizeof(s_terminal_rx_buffer);
     s_huart6.RxXferCount = sizeof(s_terminal_rx_buffer);
 
-    if (HAL_UART_Receive_DMA(&s_huart6, s_terminal_rx_buffer, sizeof(s_terminal_rx_buffer)) != HAL_OK) {
+    if (HAL_UART_Receive_DMA(&s_huart6, s_terminal_rx_buffer,
+                             sizeof(s_terminal_rx_buffer)) != HAL_OK) {
         return STATUS_ERROR;
     }
 
     return STATUS_OK;
 
-    #endif
+#endif
 }
 
 int terminal_read(uint8_t* buffer, unsigned int size) {
-    #ifndef CORE_CM4
-    return -1; // Should only be called on M4 core
-    #else
+#ifndef CORE_CM4
+    return -1;  // Should only be called on M4 core
+#else
 
-    uint8_t *write_ptr = (uint8_t*)(WRITE_PTR);
-    unsigned int bytes_available = (write_ptr >= s_terminal_read_ptr)
-        ? (write_ptr - s_terminal_read_ptr)
-        : (sizeof(s_terminal_rx_buffer) + write_ptr - s_terminal_read_ptr);
+    uint8_t* write_ptr = (uint8_t*)(WRITE_PTR);
+    unsigned int bytes_available =
+        (write_ptr >= s_terminal_read_ptr)
+            ? (write_ptr - s_terminal_read_ptr)
+            : (sizeof(s_terminal_rx_buffer) + write_ptr - s_terminal_read_ptr);
 
     if (bytes_available == 0) {
         return 0;
@@ -114,23 +120,22 @@ int terminal_read(uint8_t* buffer, unsigned int size) {
     for (unsigned int i = 0; i < btr; i++) {
         buffer[i] = *s_terminal_read_ptr;
         s_terminal_read_ptr++;
-        if (s_terminal_read_ptr >= s_terminal_rx_buffer + sizeof(s_terminal_rx_buffer)) {
+        if (s_terminal_read_ptr >=
+            s_terminal_rx_buffer + sizeof(s_terminal_rx_buffer)) {
             s_terminal_read_ptr = s_terminal_rx_buffer;
         }
     }
 
     return btr;
 
-    #endif
+#endif
 }
 
 void terminal_write(const char* data, unsigned int size) {
     uint32_t start_tick = HAL_GetTick();
-    while (HAL_HSEM_Take(0, 0) != HAL_OK)
-    {
-        if (HAL_GetTick() - start_tick > TERMINAL_SEMAPHORE_MAX_WAIT)
-        {
-            return; // timeout
+    while (HAL_HSEM_Take(0, 0) != HAL_OK) {
+        if (HAL_GetTick() - start_tick > TERMINAL_SEMAPHORE_MAX_WAIT) {
+            return;  // timeout
         }
     }
     HAL_UART_Transmit(&s_huart6, (uint8_t*)data, size, 100);

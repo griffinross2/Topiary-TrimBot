@@ -66,12 +66,21 @@ SECTIONS
     . = ALIGN(4);
   } >RAM_D2
 
-  /* Shared buffer and flag to pass gcode from M7 to M4 */
-  .gcode_buffer : 
+  /* Shared context to pass gcode from M7 to M4 */
+  .gcode_receiver_ctx : 
   {
     . = ALIGN(4);
-    *(.gcode_buffer)
-    *(.gcode_buffer*)
+    *(.gcode_receiver_ctx)
+    *(.gcode_receiver_ctx*)
+    . = ALIGN(4);
+  } >RAM_D2
+
+  /* Shared context to pass status and pi control data from M7 to M4 */
+  .pi_control_ctx : 
+  {
+    . = ALIGN(4);
+    *(.pi_control_ctx)
+    *(.pi_control_ctx*)
     . = ALIGN(4);
   } >RAM_D2
 

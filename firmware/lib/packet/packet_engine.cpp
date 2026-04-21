@@ -14,6 +14,10 @@ static char s_rx_buf[PACKET_ENGINE_BUFFER_SIZE];
 static int s_rx_buf_len = 0;
 
 int handle_received_packet(uint8_t* buf, int len) {
+    for (int i = 0; i < len; i++) {
+        printf("%02X ", buf[i]);
+    }
+    printf("\n");
     // COBS decode
     cobs_decode_result res = cobs_decode(buf, len, buf, len);
     len = res.out_len;
