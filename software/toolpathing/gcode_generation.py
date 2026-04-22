@@ -1,6 +1,9 @@
 # gcode_generation.py
 import numpy as np
 
+SCAN_SET_HEIGHT = 400 # mm down from home
+PARKING_Y_OFFSET = 20 # mm away from plan in y
+
 # helper functions
 def cart_move(file, coord, feed):
     x,y,z = coord
@@ -8,6 +11,14 @@ def cart_move(file, coord, feed):
 
 def wrist_move(file, angle, feed):
     file.write("G1 B"+str(angle)+" F"+str(feed)+"\n")
+
+def transform_data(paths): # transform toolpath to trimbot coords
+    for path in paths:
+        for point in path:
+            point[0] = 1000.0 * point[0]
+            point[1] = 1000.0 * point[1]
+            point[2] = 1000.0 * point[2] - SCAN_SET_HEIGHT
+    return paths
 
 def get_trimmer_angle(curr_coord, next_coord):
     y_vec = [0, 1, 0]
@@ -34,6 +45,14 @@ f = open(fname, "w")
 f.write("G90 ; absolute positions\n")
 f.write("G21 ; mm system units\n")
 f.write("G28 ; home\n")
+
+for path in paths:
+    cart_offset = [path[0], path[1] - ]
+    cart_move(f, )
+    for point in points:
+
+
+
 
 # for path in paths:
 #     for point in points:
