@@ -17,6 +17,8 @@ typedef struct {
 #define PACKET_TYPE_START_SCANNING {0x21, 0, 0}
 #define PACKET_TYPE_DONE_SCANNING {0x22, 0, 0}
 #define PACKET_TYPE_CROSS_SECTION {0x30, 0, 0}
+#define PACKET_TYPE_CREATE_CROSS_SECTIONS {0x31, 0, 0}
+#define PACKET_TYPE_GET_CROSS_SECTION {0x32, 0, 0}
 
 static_assert(sizeof(PacketID) == 1, "PacketType should be 1 byte");
 

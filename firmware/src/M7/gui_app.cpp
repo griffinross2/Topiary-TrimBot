@@ -7,7 +7,7 @@
 #include "profiler.h"
 #include "file_sender.h"
 #include "pi_control.h"
-#include "cross_section_receiver.h"
+#include "cross_section_manager.h"
 
 #include "images/splashscreen.h"
 #include "images/blank.h"
@@ -579,6 +579,7 @@ static Status update_insert_card_scene() {
 static struct {
     bool initialized = false;
     Scene scene;
+    uint8_t current_layer = CROSS_SECTION_NUM_SLICES / 2;
 } cross_section_scene_ctx;
 
 static Status load_cross_section_scene() {
@@ -590,14 +591,20 @@ static Status load_cross_section_scene() {
 
     Scene& scene = cross_section_scene_ctx.scene;
 
+    // Ask the Pi to generate the cross sections
+    cross_section_manager_create_cross_sections(CROSS_SECTION_NUM_SLICES);
+
+    // Ask for the first cross section
+    cross_section_manager_get_layer(CROSS_SECTION_NUM_SLICES / 2);
+
     // Add all of the line objects
-    size_t num_plant_lines = cross_section_receiver_get_num_plant_lines();
-    Line* plant_lines = cross_section_receiver_get_plant_lines();
+    size_t num_plant_lines = cross_section_manager_get_num_plant_lines();
+    Line* plant_lines = cross_section_manager_get_plant_lines();
     for (size_t i = 0; i < num_plant_lines; i++) {
         scene.add_object(&plant_lines[i]);
     }
-    size_t num_model_lines = cross_section_receiver_get_num_model_lines();
-    Line* model_lines = cross_section_receiver_get_model_lines();
+    size_t num_model_lines = cross_section_manager_get_num_model_lines();
+    Line* model_lines = cross_section_manager_get_model_lines();
     for (size_t i = 0; i < num_model_lines; i++) {
         scene.add_object(&model_lines[i]);
     }

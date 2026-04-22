@@ -357,17 +357,129 @@ void lcd_draw_graphics(const Graphics& graphics, unsigned start_x,
     }
 }
 
-void lcd_draw_line(unsigned int x0, unsigned int y0, unsigned int x1,
-                   unsigned int y1, Color color) {
-    // Bresenham's line algorithm
-    float slope = (float)(y1 - y0) / (float)(x1 - x0);
+static void line_low(int x0, int y0, int x1, int y1, Color color) {
+    // https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm#All_cases
+    /*
+    dx = x1 - x0
+    dy = y1 - y0
+    yi = 1
+    if dy < 0
+        yi = -1
+        dy = -dy
+    end if
+    D = (2 * dy) - dx
+    y = y0
 
-    for (unsigned int x = x0; x <= x1; x++) {
-        unsigned int y = y0 + (unsigned int)((float)(x - x0) * slope);
+    for x from x0 to x1
+        plot(x, y)
+        if D > 0
+            y = y + yi
+            D = D + (2 * (dy - dx))
+        else
+            D = D + 2*dy
+        end if
+    */
+    int dx = x1 - x0;
+    int dy = y1 - y0;
+    int yi = 1;
+    if (dy < 0) {
+        yi = -1;
+        dy = -dy;
+    }
+    int D = (2 * dy) - dx;
+    int y = y0;
 
-        if (x < LTDC_WINDOW_WIDTH && y < LTDC_WINDOW_HEIGHT) {
+    for (int x = x0; x <= x1; x++) {
+        if (y >= 0 && y < LTDC_WINDOW_HEIGHT && x >= 0 &&
+            x < LTDC_WINDOW_WIDTH) {
             BACKBUFFER[y * LTDC_WINDOW_WIDTH + (LTDC_WINDOW_WIDTH - x - 1)] =
                 color;
+        }
+        if (D > 0) {
+            y = y + yi;
+            D = D + (2 * (dy - dx));
+        } else {
+            D = D + 2 * dy;
+        }
+    }
+}
+
+static void line_high(int x0, int y0, int x1, int y1, Color color) {
+    // https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm#All_cases
+    /*
+    dx = x1 - x0
+    dy = y1 - y0
+    xi = 1
+    if dx < 0
+        xi = -1
+        dx = -dx
+    end if
+    D = (2 * dx) - dy
+    x = x0
+
+    for y from y0 to y1
+        plot(x, y)
+        if D > 0
+            x = x + xi
+            D = D + (2 * (dx - dy))
+        else
+            D = D + 2*dx
+        end if
+    */
+    int dx = x1 - x0;
+    int dy = y1 - y0;
+    int xi = 1;
+    if (dx < 0) {
+        xi = -1;
+        dx = -dx;
+    }
+    int D = (2 * dx) - dy;
+    int x = x0;
+
+    for (int y = y0; y <= y1; y++) {
+        if (y >= 0 && y < LTDC_WINDOW_HEIGHT && x >= 0 &&
+            x < LTDC_WINDOW_WIDTH) {
+            BACKBUFFER[y * LTDC_WINDOW_WIDTH + (LTDC_WINDOW_WIDTH - x - 1)] =
+                color;
+        }
+        if (D > 0) {
+            x = x + xi;
+            D = D + (2 * (dx - dy));
+        } else {
+            D = D + 2 * dx;
+        }
+    }
+}
+
+void lcd_draw_line(unsigned int x0, unsigned int y0, unsigned int x1,
+                   unsigned int y1, Color color) {
+    // https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm#All_cases
+    /*
+    if abs(y1 - y0) < abs(x1 - x0)
+        if x0 > x1
+            plotLineLow(x1, y1, x0, y0)
+        else
+            plotLineLow(x0, y0, x1, y1)
+        end if
+    else
+        if y0 > y1
+            plotLineHigh(x1, y1, x0, y0)
+        else
+            plotLineHigh(x0, y0, x1, y1)
+        end if
+    end if
+    */
+    if (std::abs((int)y1 - (int)y0) < std::abs((int)x1 - (int)x0)) {
+        if (x0 > x1) {
+            line_low(x1, y1, x0, y0, color);
+        } else {
+            line_low(x0, y0, x1, y1, color);
+        }
+    } else {
+        if (y0 > y1) {
+            line_high(x1, y1, x0, y0, color);
+        } else {
+            line_high(x0, y0, x1, y1, color);
         }
     }
 }

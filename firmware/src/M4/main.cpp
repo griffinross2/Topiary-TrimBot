@@ -27,6 +27,9 @@ int main(void) {
     // Marlin wrapper hosts the loop
     marlin_wrapper_set_idle_cb(main_loop);
 
+    // Delay before homing
+    HAL_Delay(500);
+
     gcode.home_all_axes();
 
     marlin_wrapper_loop();

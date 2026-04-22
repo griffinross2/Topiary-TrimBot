@@ -6,7 +6,7 @@
 #include "cobs.h"
 #include "file_sender.h"
 #include "gcode_receiver.h"
-#include "cross_section_receiver.h"
+#include "cross_section_manager.h"
 #include "pi_control.h"
 #include "profiler.h"
 
@@ -33,8 +33,8 @@ int handle_received_packet(uint8_t* buf, int len) {
 
     PacketHeader* header = (PacketHeader*)buf;
 
-    TRACE_PRINTF("Received valid packet type: %d, len: %d\n", header->id.type,
-                 header->length);
+    TRACE_PRINTF("Received valid packet type: 0x%02X, len: %d\n",
+                 header->id.type, header->length);
     TRACE_PRINTF("Packet data:");
     for (int i = 0; i < header->length; i++) {
         if (i % 16 == 0) {
@@ -67,7 +67,7 @@ int handle_received_packet(uint8_t* buf, int len) {
                                    header->length);
             break;
         case ((PacketID)PACKET_TYPE_CROSS_SECTION).type:
-            cross_section_receiver_give_packet(
+            cross_section_manager_give_packet(
                 header->id, buf + sizeof(PacketHeader), header->length);
             break;
 
