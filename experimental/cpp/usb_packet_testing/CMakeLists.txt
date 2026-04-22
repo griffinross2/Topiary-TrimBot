@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 3.22)
 
-set(VCPKG_TARGET_TRIPLET "x64-windows")
 project(USB_Packet_Testing)
 
 find_package(PkgConfig REQUIRED)

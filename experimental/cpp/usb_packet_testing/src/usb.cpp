@@ -4,6 +4,7 @@
 #include "fifo.h"
 
 #include <libusb.h>
+#include <algorithm>
 
 static libusb_context *s_ctx = nullptr;
 static libusb_device **s_devs = nullptr;
@@ -113,7 +114,9 @@ int usb_connect(int vendor_id, int product_id)
         return -1;
     }
 
-    // Claim the CDC interface (interface 0)
+    // Claim the CDC interface (interface 0, 1)
+    libusb_detach_kernel_driver(s_handle, 0);
+    libusb_detach_kernel_driver(s_handle, 1);
     res = libusb_claim_interface(s_handle, 0);
     res = libusb_claim_interface(s_handle, 1);
     if (res < 0)
@@ -201,7 +204,7 @@ int usb_receive(char *buf, int len)
     }
 
     // Receive at most len bytes
-    int to_receive = min(len, s_usb_rx_buf.num_items());
+    int to_receive = std::min(len, s_usb_rx_buf.num_items());
     if (to_receive > 0)
     {
         s_usb_rx_buf.pop(buf, to_receive);

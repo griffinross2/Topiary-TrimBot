@@ -29,6 +29,9 @@ int main(int argc, char** argv) {
     app.pushLayer<DebugLayer>();
 
     createBlock<IntInputBlock>();
+    createBlock<IntInputBlock>();
+
+    createBlock<CameraBlock>();
     createBlock<CameraBlock>();
 
     createBlock<DisplayBlock>();

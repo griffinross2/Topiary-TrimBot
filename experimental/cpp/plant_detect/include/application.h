@@ -16,6 +16,7 @@ public:
     int init();
     int run();
     void shutdown();
+    static Application* get();
 
     template <typename T>
         requires std::is_base_of_v<Layer, T>
