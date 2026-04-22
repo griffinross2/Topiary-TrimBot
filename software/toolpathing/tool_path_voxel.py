@@ -9,10 +9,6 @@ MODEL_EXTRA_SCALE = 1
 STARTING_ANGLE_STEP = 8
 ENDING_ANGLE_STEP = 18
 
-cloud = tm.points.PointCloud(pv.read("point_cloud.vtk").points)
-plant_mesh = cloud.convex_hull
-model_mesh = tm.load("cube-octahedron-compound.stl")
-# model_mesh = tm.load("cube.obj")
 
 def fit_mesh(mesh, surf):
     # center both meshes
@@ -25,8 +21,8 @@ def fit_mesh(mesh, surf):
     mesh.apply_scale(mesh_scale)
 
     # scales and rotations
-    scales = np.linspace(1,0.01,100)
-    rotations = np.linspace(0.0,360.0,100) # degrees
+    scales = np.logspace(0,-2,50)
+    rotations = np.linspace(0.0,360.0,50) # degrees
 
     # fitting operation
     for scale in scales:
@@ -62,9 +58,6 @@ def scale_mesh_to_m(current_units_per_m, mesh):
     scale_factor = 1 / current_units_per_m
     mesh.apply_scale(scale_factor * MODEL_EXTRA_SCALE)
     return mesh
-
-plant_mesh = scale_mesh_to_m(39.3701, plant_mesh) # Currently inches
-model_mesh = fit_mesh(model_mesh, plant_mesh)
 
 def get_voxel_difference(voxel1, voxel2):
     diff = np.logical_and(voxel1.matrix, np.logical_not(voxel2.matrix))
@@ -247,5 +240,10 @@ def get_toolpath(plant_mesh, model_mesh):
     # show_voxel(plant_voxel)
     return paths
 
-paths = get_toolpath(plant_mesh, model_mesh)
-print(len(paths))
+if __name__ == "__main__":
+    cloud = tm.points.PointCloud(pv.read("point_cloud.vtk").points)
+    plant_mesh = cloud.convex_hull
+    model_mesh = tm.load("cube-octahedron-compound.stl")
+
+    paths = get_toolpath(plant_mesh, model_mesh)
+    print(len(paths))

@@ -10,6 +10,7 @@ __attribute__((section(".pi_control_ctx"))) static struct {
 } s_pi_control_ctx;
 
 static uint32_t s_last_status_update_time = 0;
+static bool s_scanning = false;
 
 void pi_control_task() {
 #ifdef CORE_CM7
@@ -34,5 +35,22 @@ Status pi_control_start_scanning() {
         return STATUS_ERROR;
     }
 
+    s_scanning = true;
+
     return STATUS_OK;
+}
+
+void pi_control_give_packet(PacketID id, const uint8_t* data, int data_length) {
+    switch (id.type) {
+        case ((PacketID)PACKET_TYPE_DONE_SCANNING).type:
+            s_scanning = false;
+            break;
+
+        default:
+            break;
+    }
+}
+
+bool pi_control_is_scanning() {
+    return s_scanning;
 }

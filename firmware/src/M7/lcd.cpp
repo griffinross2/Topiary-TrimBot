@@ -356,3 +356,18 @@ void lcd_draw_graphics(const Graphics& graphics, unsigned start_x,
         }
     }
 }
+
+void lcd_draw_line(unsigned int x0, unsigned int y0, unsigned int x1,
+                   unsigned int y1, Color color) {
+    // Bresenham's line algorithm
+    float slope = (float)(y1 - y0) / (float)(x1 - x0);
+
+    for (unsigned int x = x0; x <= x1; x++) {
+        unsigned int y = y0 + (unsigned int)((float)(x - x0) * slope);
+
+        if (x < LTDC_WINDOW_WIDTH && y < LTDC_WINDOW_HEIGHT) {
+            BACKBUFFER[y * LTDC_WINDOW_WIDTH + (LTDC_WINDOW_WIDTH - x - 1)] =
+                color;
+        }
+    }
+}

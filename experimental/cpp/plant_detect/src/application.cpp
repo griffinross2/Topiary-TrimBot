@@ -9,6 +9,8 @@
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 
+static Application* s_app;
+
 static int imgui_init(GLFWwindow*& window) {
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -26,6 +28,8 @@ static int imgui_init(GLFWwindow*& window) {
 }
 
 int Application::init() {
+    s_app = this;
+
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
 
@@ -48,6 +52,7 @@ int Application::init() {
 
 #ifdef __linux__
     m_cm = std::make_shared<libcamera::CameraManager>();
+    m_cm->start();
 #endif
 
     return 0;
@@ -96,6 +101,10 @@ void Application::shutdown() {
     ImGui::DestroyContext();
     glfwDestroyWindow(m_window);
     glfwTerminate();
+}
+
+Application* Application::get() {
+    return s_app;
 }
 
 #ifdef __linux__

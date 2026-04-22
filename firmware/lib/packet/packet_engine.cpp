@@ -6,6 +6,8 @@
 #include "cobs.h"
 #include "file_sender.h"
 #include "gcode_receiver.h"
+#include "cross_section_receiver.h"
+#include "pi_control.h"
 #include "profiler.h"
 
 #include <string.h>
@@ -53,6 +55,20 @@ int handle_received_packet(uint8_t* buf, int len) {
         case ((PacketID)PACKET_TYPE_GCODE).type:
             gcode_receiver_give_packet(header->id, buf + sizeof(PacketHeader),
                                        header->length);
+            break;
+        case ((PacketID)PACKET_TYPE_STATUS).type:
+            // Should never receive this
+            break;
+        case ((PacketID)PACKET_TYPE_START_SCANNING).type:
+            // Should never receive this
+            break;
+        case ((PacketID)PACKET_TYPE_DONE_SCANNING).type:
+            pi_control_give_packet(header->id, buf + sizeof(PacketHeader),
+                                   header->length);
+            break;
+        case ((PacketID)PACKET_TYPE_CROSS_SECTION).type:
+            cross_section_receiver_give_packet(
+                header->id, buf + sizeof(PacketHeader), header->length);
             break;
 
         default:

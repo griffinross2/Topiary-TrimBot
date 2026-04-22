@@ -21,7 +21,18 @@ private:
 #ifndef __linux__
     std::unique_ptr<cv::VideoCapture> m_camera;
 #else
-    std::unique_ptr<libcamera::Camera> m_camera;
+    std::shared_ptr<libcamera::Camera> m_camera;
+    std::map<libcamera::FrameBuffer *, std::vector<libcamera::Span<uint8_t>>> mapped_buffers;
+    std::unique_ptr<libcamera::CameraConfiguration> m_config;
+    std::unique_ptr<libcamera::FrameBufferAllocator> m_fbAlloc;
+
+    std::vector<libcamera::Span<uint8_t>> Mmap(libcamera::FrameBuffer *buffer) const
+    {
+	auto item = mapped_buffers.find(buffer);
+	if (item == mapped_buffers.end())
+	    return {};
+	return item->second;
+    }
 #endif
     std::thread m_cameraThread;
     cv::Mat m_internalFrame;
