@@ -6,7 +6,8 @@ CUTTER_WIDTH = 0.1
 VOXEL_SIZE = CUTTER_WIDTH / 5
 VOXEL_VICTIM_RANGE = CUTTER_WIDTH / 3
 MODEL_EXTRA_SCALE = 1
-ANGLE_STEP = 5
+STARTING_ANGLE_STEP = 8
+ENDING_ANGLE_STEP = 18
 
 cloud = tm.points.PointCloud(pv.read("point_cloud.vtk").points)
 plant_mesh = cloud.convex_hull
@@ -64,13 +65,6 @@ def scale_mesh_to_m(current_units_per_m, mesh):
 
 plant_mesh = scale_mesh_to_m(39.3701, plant_mesh) # Currently inches
 model_mesh = fit_mesh(model_mesh, plant_mesh)
-
-bounds = plant_mesh.bounds
-
-plant_voxel = plant_mesh.voxelized(pitch=VOXEL_SIZE, method='binvox', bounds=bounds)
-model_voxel = model_mesh.voxelized(pitch=VOXEL_SIZE, method='binvox', bounds=bounds)
-plant_voxel.fill()
-model_voxel.fill()
 
 def get_voxel_difference(voxel1, voxel2):
     diff = np.logical_and(voxel1.matrix, np.logical_not(voxel2.matrix))
@@ -174,7 +168,7 @@ def kill_through_path(voxels, start, angle):
         while int(x) >= 0 and int(x) < voxels.matrix.shape[0] and int(y) >= 0 and int(y) < voxels.matrix.shape[1]:
             # print(f"killing: {int(x):d}, {int(y):d}, {int(start[2]):d}")
             voxels.matrix[int(x), int(y), int(start[2])] = False
-            plant_voxel.matrix[int(x), int(y), int(start[2])] = False
+            # plant_voxel.matrix[int(x), int(y), int(start[2])] = False
             x += x_inc
             y += np.tan(angle)*x_inc
     else:
@@ -184,7 +178,7 @@ def kill_through_path(voxels, start, angle):
         while int(x) >= 0 and int(x) < voxels.matrix.shape[0] and int(y) >= 0 and int(y) < voxels.matrix.shape[1]:
             # print(f"killing: {int(x):d}, {int(y):d}, {int(start[2]):d}")
             voxels.matrix[int(x), int(y), int(start[2])] = False
-            plant_voxel.matrix[int(x), int(y), int(start[2])] = False
+            # plant_voxel.matrix[int(x), int(y), int(start[2])] = False
             x += 1/(np.tan(angle))*y_inc
             y += y_inc
 
@@ -205,8 +199,11 @@ def kill_other_victims(voxels, angle, last_voxel):
         kill_through_path(voxels, new_start, angle)
         
 def get_cut_path(voxels, angle):
+    path = []
     for i in range(voxels.matrix.shape[2]):
         voxel_at_i = get_outmost_at_height(voxels, angle, i)
+        point = voxels.indices_to_points(np.array([voxel_at_i]))
+        path.append(point[0])
 
         # print(i, angle, voxel_at_i)
         # Remove them as we go
@@ -214,22 +211,38 @@ def get_cut_path(voxels, angle):
         # mat[np.array(voxel_at_i, dtype=int)] = False
         # voxels = tm.voxel.VoxelGrid(encoding=mat, transform=voxels.transform)
         voxels.matrix[int(voxel_at_i[0]), int(voxel_at_i[1]), int(voxel_at_i[2])] = False
-        plant_voxel.matrix[int(voxel_at_i[0]), int(voxel_at_i[1]), int(voxel_at_i[2])] = False
+        # plant_voxel.matrix[int(voxel_at_i[0]), int(voxel_at_i[1]), int(voxel_at_i[2])] = False
 
         # Remove other voxels that the cutting blade should be passing through/under
         # kill_other_victims(voxels, angle, voxel_at_i)
 
-    return voxels
+    return voxels, path
 
-
-diff_voxel = get_voxel_difference(plant_voxel, model_voxel)
-show_voxel(diff_voxel)
-print(diff_voxel.matrix.shape)
-# print(get_outmost_at_height(diff_voxel, 45, 15))
-
-for p in range(int(np.max(diff_voxel.matrix.shape)/2)):
-    for a in range(0, 360, ANGLE_STEP):
-        diff_voxel = get_cut_path(diff_voxel, a)
 
 # show_voxel(diff_voxel)
-show_voxel(plant_voxel)
+# print(diff_voxel.matrix.shape)
+
+def get_toolpath(plant_mesh, model_mesh):
+    bounds = plant_mesh.bounds
+
+    plant_voxel = plant_mesh.voxelized(pitch=VOXEL_SIZE, method='binvox', bounds=bounds)
+    model_voxel = model_mesh.voxelized(pitch=VOXEL_SIZE, method='binvox', bounds=bounds)
+    plant_voxel.fill()
+    model_voxel.fill()
+
+    diff_voxel = get_voxel_difference(plant_voxel, model_voxel)
+
+    paths = []
+    num_passes = int(np.max(diff_voxel.matrix.shape)/2)
+    for p in range(num_passes):
+        angle_lerp = int(((p/num_passes) * (ENDING_ANGLE_STEP-STARTING_ANGLE_STEP)) + STARTING_ANGLE_STEP)
+        for a in range(0, 360, angle_lerp):
+            diff_voxel, path = get_cut_path(diff_voxel, a)
+            paths.append(path)
+
+    # show_voxel(diff_voxel)
+    # show_voxel(plant_voxel)
+    return paths
+
+paths = get_toolpath(plant_mesh, model_mesh)
+print(len(paths))
