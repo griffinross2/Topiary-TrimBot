@@ -1,4 +1,5 @@
 from tool_path_voxel import *
+from gcode_generation import *
 import trimesh as tm
 import pyvista as pv
 import numpy as np
@@ -9,4 +10,7 @@ model_mesh = tm.load("cube-octahedron-compound.stl")
 
 paths = []
 paths = get_toolpath(plant_mesh, model_mesh)
-print(paths[0])
+
+
+pahts = transform_data(paths)
+generate_gcode(paths)
