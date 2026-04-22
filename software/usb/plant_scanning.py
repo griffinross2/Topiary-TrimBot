@@ -3,6 +3,7 @@ from enum import Enum
 from gcode_sender import gcode_sender_send_gcode
 from camera import save_image
 from pi_control import pi_control_is_moving
+from packet import packet_send, PACKET_TYPE_DONE_SCANNING
 
 WAIT_TIME_BEFORE_MOVE_CHECK = 2000
 SCAN_ANGLE_STEP = 30
@@ -29,7 +30,7 @@ def start_scan():
         scan_last_wait_time = time.time() * 1000
         scan_status = ScanStatus.PLANT_SCANNING_SCANNING
 
-def plant_scanning_task():
+def plant_scanning_task(usb_dev):
     global scan_status
     global scan_waiting_for_move
     global scan_last_wait_time
@@ -47,12 +48,19 @@ def plant_scanning_task():
             else:
                 save_image(scan_angle)
                 scan_angle += SCAN_ANGLE_STEP
+                
+                if scan_angle == 360:
+                    scan_angle = 0
+                    scan_status = ScanStatus.PLANT_SCANNING_IDLE
+
+                    # Tell the MCU that scanning is done
+                    id = PACKET_TYPE_DONE_SCANNING
+                    packet_send(usb_dev, bytes(), id)
+                    return
+
                 gcode_sender_send_gcode(f"G0 B{scan_angle:d}")
                 scan_last_wait_time = time.time() * 1000
                 scan_waiting_for_move = True
-                if scan_angle == 360:
-                    scan_angle = 0
-                    scan_status = ScanStatus.PLANT_SCANNING_IDLE    
 
         case ScanStatus.PLANT_SCANNING_ERROR:
             pass

@@ -2,7 +2,7 @@ from usb import USBDev
 import signal
 from packet_engine import packet_engine_task
 from file_receiver import file_receiver_task
-from gcode_sender import gcode_sender_task, gcode_sender_send_gcode
+from gcode_sender import gcode_sender_task
 from camera import init_cameras, deinit_cameras
 from plant_scanning import plant_scanning_task
 import packet
@@ -44,7 +44,7 @@ def main():
         packet_engine_task(usb_dev)
         file_receiver_task(usb_dev)
         gcode_sender_task(usb_dev)
-        plant_scanning_task()
+        plant_scanning_task(usb_dev)
 
         if (should_quit):
             quit_main()

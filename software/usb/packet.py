@@ -45,6 +45,7 @@ PACKET_TYPE_FILE_END = PacketID(0x03, 1, 0)
 PACKET_TYPE_GCODE = PacketID(0x10, 1, 0)
 PACKET_TYPE_STATUS = PacketID(0x20, 0, 0)
 PACKET_TYPE_START_SCANNING = PacketID(0x21, 0, 0)
+PACKET_TYPE_DONE_SCANNING = PacketID(0x22, 0, 0)
 
 def packet_fill(data: bytes, id: PacketID):
     header = PacketHeader(id, len(data))

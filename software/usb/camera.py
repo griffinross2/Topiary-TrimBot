@@ -81,8 +81,8 @@ def save_image(angle):
     left_ret, left_frame = left_cam.read()
     right_ret, right_frame = right_cam.read()
     if left_ret and right_ret:
-        cv2.imshow("left_frame", left_frame)
-        cv2.imshow("right_frame", right_frame)
+        # cv2.imshow("left_frame", left_frame)
+        # cv2.imshow("right_frame", right_frame)
         cv2.imwrite(f"images/left_{angle:d}.jpg", left_frame)
         cv2.imwrite(f"images/right_{angle:d}.jpg", right_frame)
 
