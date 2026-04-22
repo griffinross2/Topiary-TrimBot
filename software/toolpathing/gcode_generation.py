@@ -73,7 +73,7 @@ def generate_gcode(paths):
             
             cart_move(f, path[n])
 
-        cart_move () # back out and rotate
+        cart_move () # TODO: back out and rotate
 
 
 
