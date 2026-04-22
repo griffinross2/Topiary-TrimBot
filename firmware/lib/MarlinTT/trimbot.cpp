@@ -3,12 +3,16 @@
 #if ENABLED(TRIMBOT)
 
 #include "trimbot.h"
-#include "motion.h"
+#include "module/motion.h"
 
 // For homing:
-#include "planner.h"
-#include "endstops.h"
+#include "module/planner.h"
+#include "module/endstops.h"
 // #include "../lcd/marlinui.h"
+
+#include <stdio.h>
+
+float segments_per_second;
 
 // forward kinematic model
 void forward_kinematics(const float theta_c, const float y, const float z,
@@ -22,19 +26,29 @@ void forward_kinematics(const float theta_c, const float y, const float z,
                D;
     cartes.z = H - z + TY * sin(RADIANS(90 - theta_b)) +
                TZ * cos(RADIANS(90 - theta_b));
+
+    // printf(
+    //     "Forward kinematics: theta_c=%.2f, y=%.2f, z=%.2f, theta_b=%.2f -> "
+    //     "x=%.2f, y=%.2f, z=%.2f\n",
+    //     theta_c, y, z, theta_b, cartes.x, cartes.y, cartes.z);
 }
 
 // inverse kinematic model
 void inverse_kinematics(const xyz_pos_t& raw) {
-    const float theta_b = current_position[E_AXIS];  // MAPS E-AXIS TO THETA_B
-    const float y = SQRT(POW(raw.x, 2) + POW((raw.y - D), 2)) + D -
-                    TY * cos(RADIANS(90 - theta_b)) +
+    const float theta_b = raw.i;
+    const float y = D - SQRT(POW(raw.x, 2) + POW(raw.y, 2)) -
+                    TY * cos(RADIANS(90 - theta_b)) -
                     TZ * sin(RADIANS(90 - theta_b));
-    const float z = H - raw.z - TY * sin(RADIANS(90 - theta_b)) -
+    const float z = H - raw.z + TY * sin(RADIANS(90 - theta_b)) +
                     TZ * cos(RADIANS(90 - theta_b));
-    const float theta_c = ATAN2(raw.x, (raw.y - D));
+    const float theta_c = ATAN2(raw.x, -1 * raw.y);
 
-    delta.set(DEGREES(theta_c), y, z, DEGREES(theta_b));
+    delta.set(0, y, z, theta_b, DEGREES(theta_c));
+
+    // printf(
+    //     "Inverse kinematics: x=%.2f, y=%.2f, z=%.2f, cutter_angle=%.2f -> "
+    //     "turntable_angle=%.2f, cutter_angle=%.2f, y=%.2f, z=%.2f\n",
+    //     raw.x, raw.y, raw.z, raw.i, theta_c, theta_b, y, z);
 }
 
 // homing function

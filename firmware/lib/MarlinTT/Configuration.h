@@ -1132,9 +1132,10 @@
 // @section trimbot
 
 // Enable for TrimBot Kinematics
-// #define TRIMBOT
+#define TRIMBOT
+#define DEFAULT_SEGMENTS_PER_SECOND 200
 #define DIST_TT_BASE \
-    317.5  // (mm) Distance from center of turn table to gantry base
+    477.5  // (mm) Distance from center of turn table to gantry base
 #define DIST_REV_Y \
     152.4  // (mm) Horizontal Distance from center of A axis rotation to trimmer
            // tip
@@ -2218,7 +2219,7 @@
 #define Z_MIN_POS 0
 #define Z_MAX_POS 813
 #define I_MIN_POS 0
-#define I_MAX_POS 360
+#define I_MAX_POS 180
 #define J_MIN_POS 0
 #define J_MAX_POS 360
 // #define K_MIN_POS 0
@@ -2240,7 +2241,7 @@
  */
 
 // Min software endstops constrain movement within minimum coordinate bounds
-#define MIN_SOFTWARE_ENDSTOPS
+// #define MIN_SOFTWARE_ENDSTOPS
 #if ENABLED(MIN_SOFTWARE_ENDSTOPS)
 #define MIN_SOFTWARE_ENDSTOP_X
 #define MIN_SOFTWARE_ENDSTOP_Y
@@ -2254,7 +2255,7 @@
 #endif
 
 // Max software endstops constrain movement within maximum coordinate bounds
-#define MAX_SOFTWARE_ENDSTOPS
+// #define MAX_SOFTWARE_ENDSTOPS
 #if ENABLED(MAX_SOFTWARE_ENDSTOPS)
 #define MAX_SOFTWARE_ENDSTOP_X
 #define MAX_SOFTWARE_ENDSTOP_Y
@@ -2688,11 +2689,11 @@
 
 // Manually set the home position. Leave these undefined for automatic settings.
 // For DELTA this is the top-center of the Cartesian print volume.
-// #define MANUAL_X_HOME_POS 0
-// #define MANUAL_Y_HOME_POS 0
-// #define MANUAL_Z_HOME_POS 0
-// #define MANUAL_I_HOME_POS 0
-// #define MANUAL_J_HOME_POS 0
+#define MANUAL_X_HOME_POS (0)
+#define MANUAL_Y_HOME_POS (TZ - D)
+#define MANUAL_Z_HOME_POS (H + TY)
+#define MANUAL_I_HOME_POS (0)
+#define MANUAL_J_HOME_POS (0)
 // #define MANUAL_K_HOME_POS 0
 // #define MANUAL_U_HOME_POS 0
 // #define MANUAL_V_HOME_POS 0

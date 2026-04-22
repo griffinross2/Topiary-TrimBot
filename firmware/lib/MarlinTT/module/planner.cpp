@@ -111,6 +111,8 @@
 #include "../feature/spindle_laser.h"
 #endif
 
+#include "status.h"
+
 // Delay for delivery of first block to the stepper ISR, if the queue contains 2
 // or fewer movements. The delay is measured in milliseconds, and must be less
 // than 250ms
@@ -1810,8 +1812,11 @@ bool Planner::_buffer_steps(
                          fr_mm_s, extruder, hints, minimum_planner_speed_sqr)) {
         // Movement was not queued, probably because it was too short.
         //  Simply accept that as movement queued and done
+        // TRACE_PRINTF("populate_block() returned false\n");
         return true;
     }
+
+    // TRACE_PRINTF("populate_block() returned true\n");
 
     // If this is the first added movement, reload the delay, otherwise, cancel
     // it.
@@ -2184,8 +2189,9 @@ bool Planner::_populate_block(
     );
 
     // Bail if this is a zero-length block
-    if (block->step_event_count < MIN_STEPS_PER_SEGMENT)
+    if (block->step_event_count < MIN_STEPS_PER_SEGMENT) {
         return false;
+    }
 
     TERN_(MIXING_EXTRUDER, mixer.populate_block(block->b_color));
 
@@ -2433,9 +2439,10 @@ bool Planner::_populate_block(
                                  /* <-- add a slash to enable
                                  SERIAL_ECHOPGM("volumetric extruder limit enforced: ", (cs *
                                  CIRCLE_AREA(filament_size[extruder] * 0.5f)));                  SERIAL_ECHOPGM("
-                                 mm^3/s (", cs);                  SERIAL_ECHOPGM(" mm/s) limited to ", (max_vfr *
-                                 CIRCLE_AREA(filament_size[extruder] * 0.5f)));                  SERIAL_ECHOPGM("
-                                 mm^3/s (", max_vfr);                  SERIAL_ECHOLNPGM(" mm/s)");
+                                 mm^3/s (", cs);                  SERIAL_ECHOPGM(" mm/s) limited
+                                 to ", (max_vfr *                  CIRCLE_AREA(filament_size[extruder] * 0.5f)));
+                                 SERIAL_ECHOPGM("                  mm^3/s (", max_vfr);
+                                 SERIAL_ECHOLNPGM("                  mm/s)");
                                  //*/
             }
         }
@@ -3121,6 +3128,10 @@ bool Planner::buffer_segment(
         int32_t(LROUND(abce.v * settings.axis_steps_per_mm[V_AXIS])),
         int32_t(LROUND(abce.w * settings.axis_steps_per_mm[W_AXIS])))};
 
+    // printf("Target steps: A:%ld B:%ld C:%ld I:%ld J:%ld\n", target.a,
+    // target.b,
+    //    target.c, target.i, target.j);
+
 #if HAS_POSITION_FLOAT
     const xyze_pos_t target_float = abce;
 #endif
@@ -3188,10 +3199,13 @@ bool Planner::buffer_segment(
     // Queue the movement. Return 'false' if the move was not queued.
     if (!_buffer_steps(target OPTARG(HAS_POSITION_FLOAT, target_float)
                            OPTARG(HAS_DIST_MM_ARG, cart_dist_mm),
-                       fr_mm_s, extruder, hints))
+                       fr_mm_s, extruder, hints)) {
+        // TRACE_PRINTF("buffer_steps() returned false\n");
         return false;
+    }
 
     stepper.wake_up();
+    // TRACE_PRINTF("buffer_steps() returned true\n");
     return true;
 }  // buffer_segment()
 

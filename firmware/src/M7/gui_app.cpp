@@ -580,16 +580,51 @@ static struct {
     bool initialized = false;
     Scene scene;
     uint8_t current_layer = CROSS_SECTION_NUM_SLICES / 2;
-} cross_section_scene_ctx;
+    Button up_button;
+    Button down_button;
+    GraphicsObject up_arrow;
+    GraphicsObject down_arrow;
+} s_cross_section_scene_ctx;
 
 static Status load_cross_section_scene() {
-    if (cross_section_scene_ctx.initialized) {
+    if (s_cross_section_scene_ctx.initialized) {
         lcd_set_background(CROSS_SECTIONS);
-        gui_set_current_scene(&cross_section_scene_ctx.scene);
+        gui_set_current_scene(&s_cross_section_scene_ctx.scene);
         return STATUS_OK;
     }
 
-    Scene& scene = cross_section_scene_ctx.scene;
+    Scene& scene = s_cross_section_scene_ctx.scene;
+
+    // Up and down buttons to change layer
+    s_cross_section_scene_ctx.up_button = Button(&scene, 254, 226, 40, 40);
+    s_cross_section_scene_ctx.up_button.set_on_click([](int x, int y) {
+        if (s_cross_section_scene_ctx.current_layer <
+            CROSS_SECTION_NUM_SLICES - 1) {
+            s_cross_section_scene_ctx.current_layer++;
+            cross_section_manager_get_layer(
+                s_cross_section_scene_ctx.current_layer);
+        }
+    });
+
+    s_cross_section_scene_ctx.down_button = Button(&scene, 254, 162, 40, 40);
+    s_cross_section_scene_ctx.down_button.set_on_click([](int x, int y) {
+        if (s_cross_section_scene_ctx.current_layer > 0) {
+            s_cross_section_scene_ctx.current_layer--;
+            cross_section_manager_get_layer(
+                s_cross_section_scene_ctx.current_layer);
+        }
+    });
+
+    // Arrows for the buttons
+    s_cross_section_scene_ctx.up_arrow =
+        GraphicsObject(&scene, ARROW_UP, 254, 226);
+    s_cross_section_scene_ctx.down_arrow =
+        GraphicsObject(&scene, ARROW_DOWN, 254, 162);
+
+    scene.add_object(&s_cross_section_scene_ctx.up_button);
+    scene.add_object(&s_cross_section_scene_ctx.down_button);
+    scene.add_object(&s_cross_section_scene_ctx.up_arrow);
+    scene.add_object(&s_cross_section_scene_ctx.down_arrow);
 
     // Ask the Pi to generate the cross sections
     cross_section_manager_create_cross_sections(CROSS_SECTION_NUM_SLICES);
@@ -612,7 +647,7 @@ static Status load_cross_section_scene() {
     lcd_set_background(CROSS_SECTIONS);
     gui_set_current_scene(&scene);
 
-    cross_section_scene_ctx.initialized = true;
+    s_cross_section_scene_ctx.initialized = true;
 
     return STATUS_OK;
 }
@@ -765,7 +800,7 @@ void gui_app_task() {
     }
 
     // Cross section screen
-    if (gui_get_current_scene() == &cross_section_scene_ctx.scene) {
+    if (gui_get_current_scene() == &s_cross_section_scene_ctx.scene) {
         update_cross_section_scene();
     }
 

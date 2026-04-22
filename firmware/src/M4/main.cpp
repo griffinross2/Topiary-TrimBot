@@ -3,6 +3,7 @@
 #include "gpio/gpio.h"
 #include "board.h"
 #include "gcode/gcode.h"
+#include "gcode/queue.h"
 #include "terminal.h"
 #include "profiler.h"
 #include "gcode_receiver.h"
@@ -31,6 +32,7 @@ int main(void) {
     HAL_Delay(500);
 
     gcode.home_all_axes();
+    queue.enqueue_one("G1 Z800");  // Move Z down
 
     marlin_wrapper_loop();
 
