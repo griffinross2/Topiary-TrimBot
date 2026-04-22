@@ -6,7 +6,7 @@ def cart_move(file, coord, feed):
     file.write("G1 X"+str(x)+" Y"+str(y)+" Z"+str(z)+" F"+str(feed)+"\n")
 
 def wrist_move(file, angle, feed):
-    file.write("G1 B"+str(x)+" F"+str(feed)+"\n")
+    file.write("G1 B"+str(angle)+" F"+str(feed)+"\n")
 
 # inputs
 paths = []
