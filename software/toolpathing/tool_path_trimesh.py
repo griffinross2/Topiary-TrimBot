@@ -261,4 +261,4 @@ surfs[-1].visual.face_colors = [0, 255, 0, 150]
 scene = tm.Scene([surfs[-1]])
 axes = tm.creation.axis(axis_length=1.0)
 scene.add_geometry(axes)
-scene.show()
+scene.show()#
