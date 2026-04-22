@@ -26,10 +26,14 @@ def iterate_angles():
     for angle in range(0, 360, ANGLE_STEP):
         left_filename = path + f"left_{angle:d}.jpg"
         right_filename = path + f"right_{angle:d}.jpg"
-        img_left = Image.open(left_filename)
-        img_left = ImageOps.exif_transpose(img_left)
-        img_right = Image.open(right_filename)
-        img_right = ImageOps.exif_transpose(img_right)
+        try:
+            img_left = Image.open(left_filename)
+            img_left = ImageOps.exif_transpose(img_left)
+            img_right = Image.open(right_filename)
+            img_right = ImageOps.exif_transpose(img_right)
+        except Exception as e:
+            print("could not open images for plant scanning: " + e)
+            raise RuntimeError("scanning failure")
 
         pts = scan_plant(img_left, img_right, angle)
 

@@ -8,7 +8,12 @@ def undistort(img):
     cv_img = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
     #img.show()
 
-    file = cv2.FileStorage("parameters.yml", cv2.FileStorage_READ)
+    try:
+        file = cv2.FileStorage("parameters.yml", cv2.FileStorage_READ)
+    except Exception as e:
+        print("could not open calibration parameter files: " + e)
+        raise RuntimeError("calibration failure")
+    
     matrix = file.getNode("matrix").mat()
     distortion = file.getNode("distortion").mat()
     newcameramtx = file.getNode("newcameramtx").mat()
