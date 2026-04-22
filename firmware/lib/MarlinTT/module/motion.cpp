@@ -927,6 +927,11 @@ void get_cartesian_from_steppers() {
     forward_kinematics(planner.get_axis_position_mm(X_AXIS),
                        planner.get_axis_position_degrees(B_AXIS));
     cartes.z = planner.get_axis_position_mm(Z_AXIS);
+#elif ENABLED(TRIMBOT)
+    forward_kinematics(planner.get_axis_position_mm(B_AXIS),
+                       planner.get_axis_position_mm(Y_AXIS),
+                       planner.get_axis_position_mm(Z_AXIS),
+                       planner.get_axis_position_mm(A_AXIS));
 #else
     NUM_AXIS_CODE(cartes.x = planner.get_axis_position_mm(X_AXIS),
                   cartes.y = planner.get_axis_position_mm(Y_AXIS),

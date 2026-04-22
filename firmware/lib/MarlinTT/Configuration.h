@@ -1132,13 +1132,16 @@
 // @section trimbot
 
 // Enable for TrimBot Kinematics
-#define TRIMBOT
-#if ENABLED(TRIMBOT)
+// #define TRIMBOT
 #define DIST_TT_BASE \
-    304.8  // (mm) Distance from center of turn table to gantry base
-#define DIST_ROT_TRIM \
-    30  // (mm) Distance from center of B axis rotation to trimmer tip
-#endif
+    317.5  // (mm) Distance from center of turn table to gantry base
+#define DIST_REV_Y \
+    152.4  // (mm) Horizontal Distance from center of A axis rotation to trimmer
+           // tip
+#define DIST_REV_Z \
+    45  // (mm) Vertical Distance from center of A axis rotation to trimmer tip
+#define DIST_TT_GANTRY \
+    868  // (mm) Distance from turntable to top of gantry z = 0
 
 //
 // MarkForged Kinematics
@@ -1528,7 +1531,9 @@
 #define REVOLUTE_MICROSTEPPING 4
 #define TURNTABLE_MICROSTEPPING 4
 
-#define EXTRUDER_STEPS_PER_UNIT (EXTRUDER_MICROSTEPPING * 4.973357016f)
+// 1.8 degree stepper motor, 2mm pitch leadscrew (8mm travel per rotation)
+#define EXTRUDER_STEPS_PER_UNIT \
+    (EXTRUDER_MICROSTEPPING * (1.0f / 1.8f) * (360.0f / 8.0f))
 
 #define GANTRY_STEPS_PER_UNIT (GANTRY_MICROSTEPPING * 12.2509225f)
 
@@ -2209,7 +2214,7 @@
 #define X_MIN_POS 0
 #define X_MAX_POS 4000
 #define Y_MIN_POS 0
-#define Y_MAX_POS 280
+#define Y_MAX_POS 325
 #define Z_MIN_POS 0
 #define Z_MAX_POS 813
 #define I_MIN_POS 0
@@ -2710,7 +2715,7 @@
 #endif
 
 // Homing speeds (linear=mm/min, rotational=°/min)
-#define HOMING_FEEDRATE_MM_M {0, (10 * 60), (50 * 60), (15 * 60), (15 * 60)}
+#define HOMING_FEEDRATE_MM_M {0, (30 * 60), (50 * 60), (15 * 60), (15 * 60)}
 
 // Edit homing feedrates with M210 and MarlinUI menu items
 // #define EDITABLE_HOMING_FEEDRATE
