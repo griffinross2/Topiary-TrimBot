@@ -4,11 +4,11 @@ import numpy as np
 # parameters
 CART_OFFSET = 20 # mm out
 SCAN_SET_HEIGHT = 450 # mm down from home
-B_FEED = 1000 # wrist feed mm/min
+A_FEED = 1000 # wrist feed mm/min
 MOVE_FEED = 5000 # move instruction feed mm/min
 CUT_FEED = 2000 # cut instruction feed mm/min
 Z_MAX = 813 # mm
-decimal_places = 3
+DECS = 3
 
 # trimmer codes
 ENABLE_TRIMMER = "M00"
@@ -17,10 +17,14 @@ DISABLE_TRIMMER = "M01"
 # helper functions
 def cart_move(file, coord, feed):
     x,y,z = coord
+    x = round(x, DECS)
+    y = round(y, DECS)
+    z = round(z, DECS)
     file.write("G1 X"+str(x)+" Y"+str(y)+" Z"+str(z)+" F"+str(feed)+"\n")
 
-def wrist_move(file, angle, feed=B_FEED):
-    file.write("G1 B"+str(angle)+" F"+str(feed)+"\n")
+def wrist_move(file, angle, feed=A_FEED):
+    angle = round(angle, DECS)
+    file.write("G1 A"+str(angle)+" F"+str(feed)+"\n")
 
 def set_trimmer(file, is_en):
     if (is_en):
@@ -31,9 +35,9 @@ def set_trimmer(file, is_en):
 def transform_data(paths): # transform toolpath to trimbot coords
     for path in paths:
         for point in path:
-            point[0] = round(1000.0 * point[0], decimal_places)
-            point[1] = round(1000.0 * point[1], decimal_places)
-            point[2] = round(1000.0 * point[2] - SCAN_SET_HEIGHT, decimal_places)
+            point[0] = 1000.0 * point[0]
+            point[1] = 1000.0 * point[1]
+            point[2] = 1000.0 * point[2] - SCAN_SET_HEIGHT
     return paths
 
 def get_trimmer_angle(curr_coord, next_coord):
