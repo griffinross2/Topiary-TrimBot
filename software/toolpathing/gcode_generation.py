@@ -1,4 +1,5 @@
 # gcode_generation.py
+import numpy as np
 
 # helper functions
 def cart_move(file, coord, feed):
@@ -7,6 +8,14 @@ def cart_move(file, coord, feed):
 
 def wrist_move(file, angle, feed):
     file.write("G1 B"+str(angle)+" F"+str(feed)+"\n")
+
+def get_trimmer_angle(curr_coord, next_coord):
+    y_vec = [0, 1, 0]
+    point_vec = np.subtract(next_coord, curr_coord)
+    mag_point_vec = np.linalg.norm(point_vec)
+    ang = np.arccos(np.dot(y_vec, point_vec) / mag_point_vec) * (180.0 / np.pi)
+    return ang
+
 
 # inputs
 paths = []
@@ -26,17 +35,17 @@ f.write("G90 ; absolute positions\n")
 f.write("G21 ; mm system units\n")
 f.write("G28 ; home\n")
 
-for path in paths:
-    for point in points:
-        cart_offset = get_cart_offset()
-        cart_move(commands, cart_offset, MOVE_FEED) # move to point distance away
-        angle = # TODO: get angle for current point
-        wrist_move(commands, angle, MOVE_FEED) # angle wrist
-        # TODO: enable trimmer
-        cart_move(commands, point, CUT_FEED) # move to coord
-        # TODO: disable trimmer
-        cart_move(commands)  
-
+# for path in paths:
+#     for point in points:
+#         cart_offset = get_cart_offset()
+#         cart_move(commands, cart_offset, MOVE_FEED) # move to point distance away
+#         angle = # TODO: get angle for current point
+#         wrist_move(commands, angle, MOVE_FEED) # angle wrist
+#         # TODO: enable trimmer
+#         cart_move(commands, point, CUT_FEED) # move to coord
+#         # TODO: disable trimmer
+#         cart_move(commands)  
+#
 
 # footer
 # TODO: turn off trimmer
