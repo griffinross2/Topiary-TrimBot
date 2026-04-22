@@ -223,6 +223,9 @@ def get_cut_path(voxels, angle):
 # print(diff_voxel.matrix.shape)
 
 def get_toolpath(plant_mesh, model_mesh):
+    plant_mesh = scale_mesh_to_m(39.3701, plant_mesh) # Currently inches
+    model_mesh = fit_mesh(model_mesh, plant_mesh)
+
     bounds = plant_mesh.bounds
 
     plant_voxel = plant_mesh.voxelized(pitch=VOXEL_SIZE, method='binvox', bounds=bounds)
