@@ -4,7 +4,6 @@ import pymeshlab as pml
 import numpy as np
 import alphashape
 import matplotlib.pyplot as plt
-import open3d as o3d
 
 # import pynanoinstantmeshes as pynim
 

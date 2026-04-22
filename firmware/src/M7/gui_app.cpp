@@ -7,6 +7,7 @@
 #include "profiler.h"
 #include "file_sender.h"
 #include "pi_control.h"
+#include "cross_section_receiver.h"
 
 #include "images/splashscreen.h"
 #include "images/blank.h"
@@ -14,6 +15,7 @@
 #include "images/file_send_error.h"
 #include "images/begin_scanning.h"
 #include "images/insert_card.h"
+#include "images/cross_sections.h"
 #include "fonts/arial.h"
 #include "graphics/arrow_up.h"
 #include "graphics/arrow_down.h"
@@ -40,6 +42,10 @@ static Status load_error_sending_file_scene();
 static Status load_begin_scanning_scene();
 static Status load_insert_card_scene();
 static Status update_insert_card_scene();
+static Status load_cross_section_scene();
+static Status update_cross_section_scene();
+static Status load_scanning_scene();
+static Status update_scanning_scene();
 
 /************************/
 /* STARTUP SPLASHSCREEN */
@@ -522,7 +528,7 @@ static Status load_begin_scanning_scene() {
                BEGIN_SCANNING_BUTTON_HEIGHT);
     confirm_button.set_on_click([](int x, int y) {
         pi_control_start_scanning();
-        load_file_list_scene();
+        load_scanning_scene();
     });
 
     confirm_label =
@@ -561,6 +567,134 @@ static Status update_insert_card_scene() {
     // If the card is inserted, go to the file list scene
     if (filesystem_is_card_inserted() && filesystem_is_mounted()) {
         load_file_list_scene();
+    }
+
+    return STATUS_OK;
+}
+
+/*****************/
+/* SLICER SCREEN */
+/*****************/
+
+static struct {
+    bool initialized = false;
+    Scene scene;
+} cross_section_scene_ctx;
+
+static Status load_cross_section_scene() {
+    if (cross_section_scene_ctx.initialized) {
+        lcd_set_background(CROSS_SECTIONS);
+        gui_set_current_scene(&cross_section_scene_ctx.scene);
+        return STATUS_OK;
+    }
+
+    Scene& scene = cross_section_scene_ctx.scene;
+
+    // Add all of the line objects
+    size_t num_plant_lines = cross_section_receiver_get_num_plant_lines();
+    Line* plant_lines = cross_section_receiver_get_plant_lines();
+    for (size_t i = 0; i < num_plant_lines; i++) {
+        scene.add_object(&plant_lines[i]);
+    }
+    size_t num_model_lines = cross_section_receiver_get_num_model_lines();
+    Line* model_lines = cross_section_receiver_get_model_lines();
+    for (size_t i = 0; i < num_model_lines; i++) {
+        scene.add_object(&model_lines[i]);
+    }
+
+    lcd_set_background(CROSS_SECTIONS);
+    gui_set_current_scene(&scene);
+
+    cross_section_scene_ctx.initialized = true;
+
+    return STATUS_OK;
+}
+
+static Status update_cross_section_scene() {
+    return STATUS_OK;
+}
+
+/*******************/
+/* SCANNING SCREEN */
+/*******************/
+
+struct {
+    bool initialized = false;
+    Scene scene;
+    Label status_label;
+    GraphicsObject spinner;
+    size_t animation_idx = 0;
+    long long unsigned last_update_tick;
+} scanning_scene_ctx;
+
+static Status load_scanning_scene() {
+    if (scanning_scene_ctx.initialized) {
+        lcd_set_background(MAIN);
+        gui_set_current_scene(&scanning_scene_ctx.scene);
+        return STATUS_OK;
+    }
+
+    Scene& scene = scanning_scene_ctx.scene;
+    Label& status_label = scanning_scene_ctx.status_label;
+    GraphicsObject& spinner = scanning_scene_ctx.spinner;
+
+    status_label = Label(&scene, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2 + 20,
+                         "Scanning...", 32);
+    status_label.set_alignment(LABEL_ALIGN_CENTER);
+
+    spinner =
+        GraphicsObject(&scene, LOADING0, WINDOW_WIDTH / 2 - LOADING0.width / 2,
+                       WINDOW_HEIGHT / 2 - 20 - LOADING0.height);
+
+    scene.add_object(&spinner);
+    scene.add_object(&status_label);
+
+    lcd_set_background(MAIN);
+    gui_set_current_scene(&scene);
+
+    scanning_scene_ctx.initialized = true;
+
+    return STATUS_OK;
+}
+
+static Status update_scanning_scene() {
+    // If scanning is done, go to the cross section screen
+    if (!pi_control_is_scanning()) {
+        load_cross_section_scene();
+        return STATUS_OK;
+    }
+
+    // Looping 8-frame animation
+    scanning_scene_ctx.animation_idx =
+        (scanning_scene_ctx.animation_idx + 1) % 8;
+
+    switch (scanning_scene_ctx.animation_idx) {
+        case 0:
+            scanning_scene_ctx.spinner.set_graphics(LOADING0);
+            break;
+        case 1:
+            scanning_scene_ctx.spinner.set_graphics(LOADING1);
+            break;
+        case 2:
+            scanning_scene_ctx.spinner.set_graphics(LOADING2);
+            break;
+        case 3:
+            scanning_scene_ctx.spinner.set_graphics(LOADING3);
+            break;
+        case 4:
+            scanning_scene_ctx.spinner.set_graphics(LOADING4);
+            break;
+        case 5:
+            scanning_scene_ctx.spinner.set_graphics(LOADING5);
+            break;
+        case 6:
+            scanning_scene_ctx.spinner.set_graphics(LOADING6);
+            break;
+        case 7:
+            scanning_scene_ctx.spinner.set_graphics(LOADING7);
+            break;
+        default:
+            break;
     }
 
     return STATUS_OK;
@@ -621,6 +755,19 @@ void gui_app_task() {
     // Insert card screen
     if (gui_get_current_scene() == &s_insert_card_scene) {
         update_insert_card_scene();
+    }
+
+    // Cross section screen
+    if (gui_get_current_scene() == &cross_section_scene_ctx.scene) {
+        update_cross_section_scene();
+    }
+
+    // Scanning screen
+    if (gui_get_current_scene() == &scanning_scene_ctx.scene) {
+        if (get_tick_ms() - scanning_scene_ctx.last_update_tick >= 200) {
+            update_scanning_scene();
+            scanning_scene_ctx.last_update_tick = get_tick_ms();
+        }
     }
 
     // Global update

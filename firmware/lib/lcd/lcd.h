@@ -48,5 +48,7 @@ void lcd_draw_text(const Font* font, const char* str, unsigned start_x,
                    unsigned start_y, unsigned pt_size, Color color);
 void lcd_draw_graphics(const Graphics& graphics, unsigned start_x,
                        unsigned start_y);
+void lcd_draw_line(unsigned int x0, unsigned int y0, unsigned int x1,
+                   unsigned int y1, Color color);
 
 #endif  // LCD_H

@@ -205,6 +205,31 @@ void GraphicsObject::redraw() {
     }
 }
 
+Line::Line(Scene* parent, unsigned int x1, unsigned int y1, unsigned int x2,
+           unsigned int y2, Color color)
+    : SceneObject(parent), m_x1(x1), m_y1(y1), m_x2(x2), m_y2(y2),
+      m_color(color) {}
+
+void Line::set_start(unsigned int x, unsigned int y) {
+    m_x1 = x;
+    m_y1 = y;
+}
+
+void Line::set_end(unsigned int x, unsigned int y) {
+    m_x2 = x;
+    m_y2 = y;
+}
+
+void Line::set_color(Color color) {
+    m_color = color;
+}
+
+void Line::redraw() {
+    if (m_visible) {
+        lcd_draw_line(m_x1, m_y1, m_x2, m_y2, m_color);
+    }
+}
+
 void gui_touch_poll() {
     if (tsc2013_is_touched()) {
         uint16_t x, y, z;

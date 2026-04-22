@@ -151,6 +151,28 @@ private:
     const Graphics* m_graphics;
 };
 
+class Line : public SceneObject {
+public:
+    Line() = default;
+    Line(Scene* parent, unsigned int x1, unsigned int y1, unsigned int x2,
+         unsigned int y2, Color color);
+
+    void set_start(unsigned int x, unsigned int y);
+    void set_end(unsigned int x, unsigned int y);
+    void set_color(Color color);
+
+    void redraw() override;
+    void handle_press(int x, int y) override {}
+    void handle_release(int x, int y) override {}
+
+private:
+    unsigned int m_x1 = 0;
+    unsigned int m_y1 = 0;
+    unsigned int m_x2 = 0;
+    unsigned int m_y2 = 0;
+    Color m_color = 0xF1;
+};
+
 typedef struct {
     bool pressed;
     int x;
