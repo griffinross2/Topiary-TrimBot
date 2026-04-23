@@ -16,6 +16,7 @@
 #include "images/begin_scanning.h"
 #include "images/insert_card.h"
 #include "images/cross_sections.h"
+#include "images/begin_cutting.h"
 #include "fonts/arial.h"
 #include "graphics/arrow_up.h"
 #include "graphics/arrow_down.h"
@@ -659,7 +660,8 @@ static Status load_cross_section_scene() {
     s_cross_section_scene_ctx.confirm_button =
         Button(&scene, 117, 20, 175, 40);
     s_cross_section_scene_ctx.confirm_button.set_on_click([](int x, int y) {
-        // TODO: toolpathing loading screen
+        load_toolpathing_scene();
+        pi_control_start_toolpathing();
     });
 
     // Confirm label

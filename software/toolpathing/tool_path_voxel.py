@@ -62,6 +62,56 @@ def scale_mesh_to_m(current_units_per_m, mesh):
     mesh.apply_scale(scale_factor * MODEL_EXTRA_SCALE)
     return mesh
 
+def voxelize_meshes(plant_mesh, model_mesh, pitch=VOXEL_SIZE):
+    # 1. Compute combined bounding box
+    bounds = np.vstack((plant_mesh.bounds, model_mesh.bounds))
+    min_corner = bounds.min(axis=0)
+    max_corner = bounds.max(axis=0)
+
+    # 3. Compute grid dimensions
+    grid_size = np.ceil((max_corner - min_corner) / pitch).astype(int)
+    # print(grid_size)
+
+    # 4. Define transform (voxel -> world)
+    # This maps voxel indices to world coordinates
+    transform = np.eye(4)
+    transform[:3, :3] *= pitch
+    transform[:3, 3] = min_corner
+    # print(transform)
+
+    # 5. Create empty occupancy grids
+    vox_a = np.zeros(grid_size, dtype=bool)
+    vox_b = np.zeros(grid_size, dtype=bool)
+
+    # 6. Voxelize each mesh into the SAME grid
+    v_a = plant_mesh.voxelized(pitch)
+    v_b = model_mesh.voxelized(pitch)
+    v_b.as_boxes().show()
+
+    # 7. Convert voxel indices into global grid indices
+    def insert(vox, v):
+        # local voxel indices
+        pts = v.sparse_indices
+
+        # convert to world coords
+        world = tm.transform_points(pts, v.transform)
+
+        # convert to global grid indices
+        idx = np.floor((world - min_corner) / pitch).astype(int)
+
+        # clip just in case
+        idx = np.clip(idx, 0, np.array(vox.shape) - 1)
+
+        # print(idx[0,:], idx[1,:], idx[2,:])
+        vox[idx[:,0], idx[:,1], idx[:,2]] = True
+
+    insert(vox_a, v_a)
+    insert(vox_b, v_b)
+
+    vg_a = tm.voxel.VoxelGrid(vox_a, transform=transform)
+    vg_b = tm.voxel.VoxelGrid(vox_b, transform=transform)
+    return vg_a, vg_b
+
 def get_voxel_difference(voxel1, voxel2):
     diff = np.logical_and(voxel1.matrix, np.logical_not(voxel2.matrix))
     voxel_diff = tm.voxel.VoxelGrid(encoding=diff, transform=voxel1.transform)
@@ -194,7 +244,7 @@ def kill_other_victims(voxels, angle, last_voxel):
         # print(angle, start, new_start, i)
         kill_through_path(voxels, new_start, angle)
         
-def get_cut_path(voxels, angle):
+def get_cut_path(voxels, angle, plant_voxel):
     path = []
     for i in range(voxels.matrix.shape[2]):
         voxel_at_i = get_outmost_at_height(voxels, angle, i)
@@ -220,12 +270,12 @@ def get_cut_path(voxels, angle):
         # mat[np.array(voxel_at_i, dtype=int)] = False
         # voxels = tm.voxel.VoxelGrid(encoding=mat, transform=voxels.transform)
         voxels.matrix[int(voxel_at_i[0]), int(voxel_at_i[1]), int(voxel_at_i[2])] = False
-        # plant_voxel.matrix[int(voxel_at_i[0]), int(voxel_at_i[1]), int(voxel_at_i[2])] = False
+        plant_voxel.matrix[int(voxel_at_i[0]), int(voxel_at_i[1]), int(voxel_at_i[2])] = False
 
         # Remove other voxels that the cutting blade should be passing through/under
         # kill_other_victims(voxels, angle, voxel_at_i)
 
-    return voxels, path
+    return voxels, path, plant_voxel
 
 
 # show_voxel(diff_voxel)
@@ -267,8 +317,9 @@ def get_toolpath(plant_mesh, model_mesh, angle_start=0, angle_end=360, last_pass
 
     bounds = plant_mesh.bounds
 
-    plant_voxel = plant_mesh.voxelized(pitch=VOXEL_SIZE, method='binvox', bounds=bounds)
-    model_voxel = model_mesh.voxelized(pitch=VOXEL_SIZE, method='binvox', bounds=bounds)
+    # plant_voxel = plant_mesh.voxelized(pitch=VOXEL_SIZE, method='binvox', bounds=bounds)
+    # model_voxel = model_mesh.voxelized(pitch=VOXEL_SIZE, method='binvox', bounds=bounds)
+    plant_voxel, model_voxel = voxelize_meshes(plant_mesh, model_mesh)
     plant_voxel.fill()
     model_voxel.fill()
 
@@ -281,7 +332,7 @@ def get_toolpath(plant_mesh, model_mesh, angle_start=0, angle_end=360, last_pass
         pass_start_indices.append(len(paths))
         angle_lerp = int(((p/num_passes) * (ENDING_ANGLE_STEP-STARTING_ANGLE_STEP)) + STARTING_ANGLE_STEP)
         for a in range(angle_start, angle_end, angle_lerp):
-            diff_voxel, path = get_cut_path(diff_voxel, a)
+            diff_voxel, path, plant_voxel = get_cut_path(diff_voxel, a, plant_voxel)
             paths.append(path)
 
     # show_voxel(diff_voxel)
@@ -292,12 +343,14 @@ def get_toolpath(plant_mesh, model_mesh, angle_start=0, angle_end=360, last_pass
     paths = remove_points_in_keepout(plant_mesh, paths)
     paths = trim_dumb_paths(paths)
 
-    return paths
+    return paths, plant_voxel, model_voxel
 
 if __name__ == "__main__":
     cloud = tm.points.PointCloud(pv.read("point_cloud.vtk").points)
     plant_mesh = cloud.convex_hull
     model_mesh = tm.load("cube-octahedron-compound.stl")
 
-    paths = get_toolpath(plant_mesh, model_mesh)
+    paths, plant_voxel, model_voxel = get_toolpath(plant_mesh, model_mesh)
     print(len(paths))
+    plant_voxel.as_boxes().show()
+    # model_voxel.as_boxes().show()
