@@ -3,7 +3,7 @@ import numpy as np
 
 # parameters
 CART_OFFSET = 20 # mm out
-SCAN_SET_HEIGHT = 450 # mm down from home
+SCAN_SET_HEIGHT = 305 # mm down from home
 A_FEED = 1000 # wrist feed mm/min
 MOVE_FEED = 5000 # move instruction feed mm/min
 CUT_FEED = 2000 # cut instruction feed mm/min
