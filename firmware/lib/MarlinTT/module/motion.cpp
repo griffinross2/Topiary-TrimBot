@@ -838,22 +838,23 @@ bool position_is_reachable(const float rx, const float ry,
 }
 
 bool position_is_reachable(const float x, const float y, const float z,
-                           const float theta_cutter,
-                           const float theta_turntable) {
-    constexpr float MIN_Z = 0;    // mm
-    constexpr float MAX_Z = 600;  // mm
+                           const float theta_cutter) {
+    const float theta_cutter_rad = RADIANS(theta_cutter);
+    const float theta_turntable_rad = atan2f(x, -1 * y);
+    const float MIN_Z = std::max(DIST_TT_GANTRY_BOTTOM_TO_SHAFT + TZ, DIST_TT_GANTRY_BOTTOM_TO_SHAFT + TY * cosf(theta_cutter_rad) + TZ * sinf(theta_cutter_rad));    // mm
+    constexpr float MAX_Z = 800;  // mm
     const float MIN_R =
-        D - Y_MAX_POS - TY * sinf(theta_cutter) + TZ * cosf(theta_cutter);
-    const float MAX_R = D - TY * sinf(theta_cutter) - TZ * cosf(theta_cutter);
+        D - Y_MAX_POS - TY * sinf(theta_cutter_rad) + TZ * cosf(theta_cutter_rad);
+    const float MAX_R = D - TY * sinf(theta_cutter_rad) - TZ * cosf(theta_cutter_rad);
     float min_x = 0, max_x = 0;
     float min_y = 0, max_y = 0;
     float temp = 0;
 
     // Initial setting for minimums
-    max_y = -1 * MAX_R * cosf(theta_turntable);
-    max_x = MAX_R * sinf(theta_turntable);
-    min_y = -1 * MIN_R * cosf(theta_turntable);
-    min_x = MIN_R * sinf(theta_turntable);
+    max_y = -1 * MAX_R * cosf(theta_turntable_rad);
+    max_x = MAX_R * sinf(theta_turntable_rad);
+    min_y = -1 * MIN_R * cosf(theta_turntable_rad);
+    min_x = MIN_R * sinf(theta_turntable_rad);
 
     if (min_x > max_x) {
         temp = min_x;
@@ -868,12 +869,13 @@ bool position_is_reachable(const float x, const float y, const float z,
     }
 
     printf("x: %f, y: %f, z: %f, theta_cutter: %f, theta_turntable: %f\n", x, y,
-           z, theta_cutter, theta_turntable);
-    printf("min_x: %f, max_x: %f, min_y: %f, max_y: %f\n", min_x, max_x, min_y,
-           max_y);
+           z, theta_cutter, DEGREES(theta_turntable_rad));
+    printf("min_x: %f, max_x: %f, min_y: %f, max_y: %f, min_z: %f, max_z: %f\n",
+           min_x, max_x, min_y, max_y, MIN_Z, MAX_Z);
 
     if (x < min_x - fslop || x > max_x + fslop || y < min_y - fslop ||
         y > max_y + fslop || z < MIN_Z - fslop || z > MAX_Z + fslop) {
+        printf("Position is out of bounds.\n");
         return false;
     }
 
@@ -1125,7 +1127,7 @@ void do_blocking_move_to(NUM_AXIS_ARGS_(const float)
 #if IS_KINEMATIC && DISABLED(POLARGRAPH)
     // kinematic machines are expected to home to a point 1.5x their range?
     // never reachable.
-    if (!position_is_reachable(x, y, z, i, j))
+    if (!position_is_reachable(x, y, z, i))
         return;
     destination = current_position;  // sync destination at the start
 #endif
@@ -1865,8 +1867,6 @@ inline bool line_to_destination_kinematic() {
     // No E move either? Game over.
     if (UNEAR_ZERO(cartesian_mm))
         return true;
-
-    printf("cartesian_mm: %f\n", cartesian_mm);
 
     // Minimum number of seconds to move the given distance
     const float seconds =
