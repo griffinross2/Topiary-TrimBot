@@ -61,8 +61,10 @@ def radial_offset(f, coord):
 
 def parking_radius(file, curr_coord):
     theta = np.arctan2(curr_coord[0], curr_coord[1])
-    file.write("G1 X"+str(PARKING_R * np.sin(theta))+ \
-               " Y"+str(-PARKING_R * np.cos(theta))+ \
+    x = PARKING_R * np.sin(theta)
+    y = -PARKING_R * np.cos(theta)
+    file.write("G1 X"+str(round(x, DECS))+ \
+               " Y"+str(round(y, DECS))+ \
                " F"+str(MOVE_FEED)+"\n")
 
 def generate_gcode(paths, fname="out.gcode"):
@@ -80,7 +82,10 @@ def generate_gcode(paths, fname="out.gcode"):
     # go to initial parking radius
     parking_radius(f, paths[0][0])
 
-    for path in paths:
+    for i in range(len(paths)):
+        
+        # path definition
+        path = paths[i]
         
         # enable trimmer
         set_trimmer(f, True)
@@ -102,11 +107,17 @@ def generate_gcode(paths, fname="out.gcode"):
         parking_radius(f, path[n])
 
         # rotation move
-        if (path != paths[len(paths)-1]):
-            theta = np.arctan2(path[n+1][0], path[n+1][1])
-            f.write("G2 X"+str(PARKING_R * np.sin(theta))+ \
-                    " Y"+str(-PARKING_R * np.cos(theta))+ \
-                    " I"+str(-path[n][0])+" J"+str(-path[n][1])+ \
+        if (i < len(paths) - 1):
+            next_path = paths[i+1]
+            theta = np.arctan2(next_path[0][0], next_path[0][1])
+            X = PARKING_R * np.sin(theta)
+            Y = -PARKING_R * np.cos(theta)
+            I = -path[n][0]
+            J = -path[n][1]
+            f.write("G2 X"+str(round(X, DECS))+ \
+                    " Y"+str(round(Y, DECS))+ \
+                    " I"+str(round(I, DECS))+ \
+                    " J"+str(round(J, DECS))+ \
                     " F"+str(MOVE_FEED)+"\n")
 
     # footer
