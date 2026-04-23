@@ -8,6 +8,9 @@ VOXEL_VICTIM_RANGE = CUTTER_WIDTH / 3
 MODEL_EXTRA_SCALE = 1
 STARTING_ANGLE_STEP = 8
 ENDING_ANGLE_STEP = 18
+POT_HEIGHT = 0.254
+POT_DIAMETER = 0.28
+PLANT_KEEPOUT_FRACTION = (2/3)
 
 
 def fit_mesh(mesh, surf):
@@ -228,6 +231,23 @@ def get_cut_path(voxels, angle):
 # show_voxel(diff_voxel)
 # print(diff_voxel.matrix.shape)
 
+def remove_points_in_keepout(plant_mesh, paths):
+    keepout_radius = POT_DIAMETER / 2
+    plant_top = plant_mesh.bounds[1][2]
+    keepout_height = PLANT_KEEPOUT_FRACTION * plant_top
+
+    new_paths = []
+    for path in paths:
+        new_path = []
+        for point in path:
+            point_r = np.linalg.norm((point[0], point[1]))
+            point_z = point[2]
+            if point_r > keepout_radius or point_z > keepout_height:
+                new_path.append(point)
+        new_paths.append(new_path)
+
+    return new_paths
+
 def trim_dumb_paths(paths):
     new_paths = []
 
@@ -260,6 +280,7 @@ def get_toolpath(plant_mesh, model_mesh):
 
     # show_voxel(diff_voxel)
     # show_voxel(plant_voxel)
+    paths = remove_points_in_keepout(plant_mesh, paths)
     paths = trim_dumb_paths(paths)
     return paths
 

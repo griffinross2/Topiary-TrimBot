@@ -36,6 +36,9 @@ void door_stop_task() {
         // Kill Marlin
         marlin_wrapper_kill();
 
+        // Stop the stepper ISR
+        HAL_timer_disable_interrupt(STEP_TIMER);
+
         // Stop the cutter
         gpio_write(PIN_CUTTER, GPIO_LOW);
 

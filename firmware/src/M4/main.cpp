@@ -4,6 +4,7 @@
 #include "board.h"
 #include "gcode/gcode.h"
 #include "gcode/queue.h"
+#include "module/planner.h"
 #include "terminal.h"
 #include "profiler.h"
 #include "gcode_receiver.h"
@@ -45,6 +46,8 @@ int main(void) {
 static char s_terminal_buf[64];
 static uint32_t s_profiler_tick = 0;
 static uint32_t s_blinky_tick = 0;
+static uint32_t s_queue_check_tick = 0;
+static uint32_t s_gcode_receive_tick = 0;
 
 void main_loop() {
     // Blink blue LED for status
@@ -69,7 +72,10 @@ void main_loop() {
     }
 
     // Receive g-code from the Pi
-    gcode_receiver_task();
+    if (get_tick_ms() - s_gcode_receive_tick >= 100) {
+        gcode_receiver_task();
+        s_gcode_receive_tick = get_tick_ms();
+    }
 
     // Update the status for the Pi
     pi_control_task();
@@ -77,7 +83,13 @@ void main_loop() {
     // Check door status
     door_stop_task();
 
-    HAL_Delay(10);
+    if (get_tick_ms() - s_queue_check_tick >= 1000) {
+        printf("Queue length: %u\n", queue.ring_buffer.length);
+        printf("Currently executing? %s\n", planner.busy() ? "Yes" : "No");
+        s_queue_check_tick = get_tick_ms();
+    }
+
+    // HAL_Delay(20);
 }
 
 extern "C" {

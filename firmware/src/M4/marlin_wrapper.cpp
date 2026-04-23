@@ -65,24 +65,7 @@ void marlin_wrapper_loop() {
 
 void marlin_wrapper_idle() {
     endstops.poll();
-    queue.get_available_commands();
-    const millis_t ms = get_tick_ms();
-
-    if (gcode.stepper_max_timed_out(ms)) {
-        TRACE_PRINTF("Stepper timed out\n");
-        marlin_wrapper_kill();
-    }
-
-    const bool has_blocks = planner.has_blocks_queued();
-    if (has_blocks)
-        gcode.reset_stepper_timeout(ms);
-
-    // Limit check_axes_activity frequency to 10Hz
-    static millis_t next_check_axes_ms = 0;
-    if (ELAPSED(ms, next_check_axes_ms)) {
-        planner.check_axes_activity();
-        next_check_axes_ms = ms + 100UL;
-    }
+    // queue.get_available_commands();
 
     if (marlin_idle_cb) {
         marlin_idle_cb();
@@ -116,27 +99,6 @@ bool marlin_wrapper_is_alive() {
 uint32_t marlin_wrapper_step_timer_count() {
     return 0;
 }
-
-#if defined(STM32F0xx) || defined(STM32G0xx)
-#define MCU_STEP_TIMER 16
-#define MCU_TEMP_TIMER 17
-#elif defined(STM32F1xx)
-#define MCU_STEP_TIMER 4
-#define MCU_TEMP_TIMER 2
-#elif defined(STM32F401xC) || defined(STM32F401xE)
-#define MCU_STEP_TIMER 9  // STM32F401 has no TIM6, TIM7, or TIM8
-#define MCU_TEMP_TIMER 10
-#elif defined(STM32F4xx) || defined(STM32F7xx) || defined(STM32H7xx)
-#define MCU_STEP_TIMER 4
-#define MCU_TEMP_TIMER 6
-#endif
-
-#ifndef STEP_TIMER
-#define STEP_TIMER MCU_STEP_TIMER
-#endif
-#ifndef TEMP_TIMER
-#define TEMP_TIMER MCU_TEMP_TIMER
-#endif
 
 #define __TIMER_DEV(X) TIM##X
 #define _TIMER_DEV(X) __TIMER_DEV(X)

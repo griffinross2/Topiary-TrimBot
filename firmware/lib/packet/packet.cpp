@@ -56,8 +56,8 @@ int packet_check(const uint8_t* buf, int total_length) {
 }
 
 int packet_send(const uint8_t* data, int data_length, PacketID id) {
-    TRACE_PRINTF("Attempting to send packet type: 0x%02X, data length: %d\n",
-                 id.type, data_length);
+    // TRACE_PRINTF("Attempting to send packet type: 0x%02X, data length: %d\n",
+    //              id.type, data_length);
 
     if (data_length > MAX_PACKET_DATA_SIZE) {
         // Too much data

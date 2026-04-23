@@ -28,11 +28,11 @@ void cross_section_manager_give_packet(PacketID id, const uint8_t* data,
             // slices
             float slice_radius = *((float*)(data + 1));
 
-            printf(
-                "Received cross section packet for slice idx: %u, "
-                "is_model_segment: "
-                "%d, num_lines: %lu, slice_radius: %f\n",
-                slice_idx, is_model_segment, (uint32_t)num_lines, slice_radius);
+            // printf(
+            //     "Received cross section packet for slice idx: %u, "
+            //     "is_model_segment: "
+            //     "%d, num_lines: %lu, slice_radius: %f\n",
+            //     slice_idx, is_model_segment, (uint32_t)num_lines, slice_radius);
 
             // If this is a new slice reset the buffers
             if (slice_idx != s_current_slice_idx) {
@@ -62,8 +62,8 @@ void cross_section_manager_give_packet(PacketID id, const uint8_t* data,
                 float x2 = *((float*)(data + 5 + i * 16 + 8));
                 float y2 = *((float*)(data + 5 + i * 16 + 12));
 
-                printf("Received line segment: (%f, %f) to (%f, %f)\n", x1, y1,
-                       x2, y2);
+                // printf("Received line segment: (%f, %f) to (%f, %f)\n", x1, y1,
+                //        x2, y2);
 
                 // Now scale and translate the line segments to pixel coords
                 // The center of the window is at 560, 163
@@ -86,10 +86,10 @@ void cross_section_manager_give_packet(PacketID id, const uint8_t* data,
                 unsigned int y2_px =
                     SLICER_WINDOW_CENTER_Y + (int)(y2 * scale_y);
 
-                printf(
-                    "Scaled line segment to pixel coords: (%u, %u) to (%u, "
-                    "%u)\n",
-                    x1_px, y1_px, x2_px, y2_px);
+                // printf(
+                //     "Scaled line segment to pixel coords: (%u, %u) to (%u, "
+                //     "%u)\n",
+                //     x1_px, y1_px, x2_px, y2_px);
 
                 // Clamp to window bounds
                 if (x1_px > SLICER_WINDOW_CENTER_X + SLICER_WINDOW_WIDTH / 2) {
@@ -108,10 +108,10 @@ void cross_section_manager_give_packet(PacketID id, const uint8_t* data,
                     y1_px = SLICER_WINDOW_CENTER_Y - SLICER_WINDOW_HEIGHT / 2;
                 }
 
-                printf(
-                    "Clamped line segment to pixel coords: (%u, %u) to (%u, "
-                    "%u)\n",
-                    x1_px, y1_px, x2_px, y2_px);
+                // printf(
+                //     "Clamped line segment to pixel coords: (%u, %u) to (%u, "
+                //     "%u)\n",
+                //     x1_px, y1_px, x2_px, y2_px);
 
                 Line* line = &dest_arr[num_lines_in_dest];
 

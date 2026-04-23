@@ -16,10 +16,10 @@ static char s_rx_buf[PACKET_ENGINE_BUFFER_SIZE];
 static int s_rx_buf_len = 0;
 
 int handle_received_packet(uint8_t* buf, int len) {
-    for (int i = 0; i < len; i++) {
-        printf("%02X ", buf[i]);
-    }
-    printf("\n");
+    // for (int i = 0; i < len; i++) {
+    //     printf("%02X ", buf[i]);
+    // }
+    // printf("\n");
     // COBS decode
     cobs_decode_result res = cobs_decode(buf, len, buf, len);
     len = res.out_len;
@@ -35,14 +35,14 @@ int handle_received_packet(uint8_t* buf, int len) {
 
     TRACE_PRINTF("Received valid packet type: 0x%02X, len: %d\n",
                  header->id.type, header->length);
-    TRACE_PRINTF("Packet data:");
-    for (int i = 0; i < header->length; i++) {
-        if (i % 16 == 0) {
-            printf("\n  ");
-        }
-        printf("%c", buf[sizeof(PacketHeader) + i]);
-    }
-    printf("\n");
+    // TRACE_PRINTF("Packet data:");
+    // for (int i = 0; i < header->length; i++) {
+    //     if (i % 16 == 0) {
+    //         printf("\n  ");
+    //     }
+    //     printf("%c", buf[sizeof(PacketHeader) + i]);
+    // }
+    // printf("\n");
 
     // Send off the packet
     switch (header->id.type) {
@@ -52,6 +52,7 @@ int handle_received_packet(uint8_t* buf, int len) {
         case ((PacketID)PACKET_TYPE_FILE_END).type:
             file_sender_give_packet(header->id, buf + sizeof(PacketHeader),
                                     header->length);
+            break;
         case ((PacketID)PACKET_TYPE_GCODE).type:
             gcode_receiver_give_packet(header->id, buf + sizeof(PacketHeader),
                                        header->length);

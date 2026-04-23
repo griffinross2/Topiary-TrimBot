@@ -3,7 +3,7 @@ import numpy as np
 
 # parameters
 CART_OFFSET = 20 # mm out
-SCAN_SET_HEIGHT = 305 # mm down from home
+SCAN_SET_HEIGHT = 400 # mm up from turntable
 A_FEED = 1000 # wrist feed mm/min
 MOVE_FEED = 5000 # move instruction feed mm/min
 CUT_FEED = 2000 # cut instruction feed mm/min
@@ -37,9 +37,12 @@ def set_trimmer(file, is_en):
 def transform_data(paths): # transform toolpath to trimbot coords
     for path in paths:
         for point in path:
-            point[0] = 1000.0 * point[0]
-            point[1] = 1000.0 * point[1]
-            point[2] = 1000.0 * point[2] + SCAN_SET_HEIGHT
+            x = point[1] * 1000.0
+            y = -1 * point[0] * 1000.0
+            z = point[2] * 1000.0 + SCAN_SET_HEIGHT
+            point[0] = x
+            point[1] = y
+            point[2] = z
     return paths
 
 def get_trimmer_angle(curr_coord, next_coord):
@@ -81,7 +84,7 @@ def rotation_move(file, theta, current_point):
     Y = -r * np.cos(theta)
     I = -current_point[0]
     J = -current_point[1]
-    file.write("G2 X"+str(round(X, DECS))+ \
+    file.write("G3 X"+str(round(X, DECS))+ \
             " Y"+str(round(Y, DECS))+ \
             " I"+str(round(I, DECS))+ \
             " J"+str(round(J, DECS))+ \

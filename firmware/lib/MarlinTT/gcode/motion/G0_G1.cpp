@@ -23,6 +23,8 @@
 #include "../gcode.h"
 #include "../../module/motion.h"
 
+#include <stdio.h>
+
 #if ALL(FWRETRACT, FWRETRACT_AUTORETRACT)
   #include "../../feature/fwretract.h"
 #endif
@@ -45,7 +47,9 @@ extern xyze_pos_t destination;
  * G0, G1: Coordinated movement of X Y Z E axes
  */
 void GcodeSuite::G0_G1(TERN_(HAS_FAST_MOVES, const bool fast_move/*=false*/)) {
+  printf("G0_G1 called\n");
   if (!MOTION_CONDITIONS) return;
+  printf("G0_G1: MOTION_CONDITIONS met\n");
 
   TERN_(FULL_REPORT_TO_HOST_FEATURE, set_and_report_grblstate(M_RUNNING));
 

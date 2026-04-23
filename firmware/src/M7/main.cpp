@@ -16,6 +16,7 @@
 #include "profiler.h"
 #include "packet_engine.h"
 #include "pi_control.h"
+#include "gcode_receiver.h"
 
 #include <stdio.h>
 
@@ -54,7 +55,7 @@ int main(void) {
     gpio_write(PIN_GANTRY_DIR, GPIO_HIGH);
     gpio_write(PIN_EXTRUDER_DIR, GPIO_HIGH);
     gpio_write(PIN_REVOLUTE_DIR, GPIO_HIGH);
-    
+
     std::vector<FileInfo> file_list;
     filesystem_get_file_list(file_list);
     for (size_t i = 0; i < file_list.size(); i++) {
@@ -63,12 +64,13 @@ int main(void) {
     }
 
     uint32_t profiler_tick = HAL_GetTick();
+    uint32_t s_gcode_receive_tick = HAL_GetTick();
 
     // Main loop
     while (1) {
         // Print profiler summary every 10 seconds
         if (HAL_GetTick() - profiler_tick >= 10000) {
-            // profiler_print_summary();
+            profiler_print_summary();
             profiler_tick = HAL_GetTick();
         }
 
@@ -77,6 +79,11 @@ int main(void) {
         packet_engine_task();
         gui_app_task();
         pi_control_task();
+
+        if (HAL_GetTick() - s_gcode_receive_tick >= 100) {
+            gcode_receiver_task();
+            s_gcode_receive_tick = HAL_GetTick();
+        }
     }
 
     return 0;

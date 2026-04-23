@@ -3,6 +3,10 @@
 #include "timing.h"
 #include "status.h"
 
+extern "C" {
+#include "cmsis_gcc.h"
+}
+
 #include <unordered_map>
 #include <vector>
 
@@ -10,12 +14,15 @@ typedef struct ProfilerTreeNode {
     std::string func_name;
     long long unsigned call_time_ms;
     long long unsigned time_elapsed_ms;
+    uint32_t stack_size;
     ProfilerTreeNode* parent;
     std::vector<ProfilerTreeNode*> children;
 } ProfilerTreeNode;
 
-ProfilerTreeNode g_profiler_root = {"global", 0, 0, nullptr, {}};
+ProfilerTreeNode g_profiler_root = {"global", 0, 0, 0, nullptr, {}};
 ProfilerTreeNode* g_profiler_current_node = &g_profiler_root;
+
+extern uint32_t _estack;
 
 void profiler_init() {
     g_profiler_root.call_time_ms = get_tick_ms();
@@ -35,7 +42,7 @@ void profiler_enter_function(const char* func_name) {
 
     // If not, create a new child node
     ProfilerTreeNode* new_node = new ProfilerTreeNode{
-        func_name, get_tick_ms(), 0, g_profiler_current_node, {}};
+        func_name, get_tick_ms(), 0, 0, g_profiler_current_node, {}};
     g_profiler_current_node->children.push_back(new_node);
     g_profiler_current_node = new_node;
 }
@@ -54,6 +61,10 @@ void profiler_exit_function(const char* func_name) {
     g_profiler_current_node->time_elapsed_ms +=
         exit_time_ms - g_profiler_current_node->call_time_ms;
 
+    // Check stack size before exiting
+    uint32_t sp_val = __get_MSP();
+    g_profiler_current_node->stack_size = (uint32_t)(&_estack) - (uint32_t)sp_val;
+
     // Move back up to parent
     if (g_profiler_current_node->parent == nullptr) {
         TRACE_PRINTF(
@@ -71,11 +82,12 @@ void profiler_print_recursive(ProfilerTreeNode* node, int depth,
         printf("  ");
     }
     size_t string_width = (40 - depth * 2) > 0 ? (40 - depth * 2) : 20;
-    printf("%-*s: %9lu ms - %3u%%\n", string_width, node->func_name.c_str(),
+    printf("%-*s: %9lu ms - %3u%% - stack: %lu bytes\n", string_width, node->func_name.c_str(),
            (long unsigned)node->time_elapsed_ms,
            parent_time_ms > 0
                ? (unsigned)(node->time_elapsed_ms * 100ULL / parent_time_ms)
-               : 0);
+               : 0,
+           (long unsigned)node->stack_size);
     for (ProfilerTreeNode* child : node->children) {
         profiler_print_recursive(child, depth + 1, node->time_elapsed_ms);
     }

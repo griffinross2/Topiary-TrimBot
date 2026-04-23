@@ -362,7 +362,7 @@ static uint16_t epin_write_tx_fifo(uint8_t rhport, uint8_t epnum) {
     // Push packet to Tx-FIFO
     if (xfer->ff) {
       volatile uint32_t* tx_fifo = dwc2->fifo[epnum];
-      tu_fifo_read_n_const_addr_full_words(xfer->ff, (void*)(uintptr_t)tx_fifo, xact_bytes);
+      tu_fifo_read_n_access_mode(xfer->ff, (void *)(uintptr_t)tx_fifo, xact_bytes, TU_FIFO_FIXED_ADDR_RW32);
       total_bytes_written += xact_bytes;
     } else {
       dfifo_write_packet(dwc2, epnum, xfer->buffer, xact_bytes);
@@ -515,7 +515,7 @@ void dcd_set_address(uint8_t rhport, uint8_t dev_addr) {
   dwc2->dcfg = (dwc2->dcfg & ~DCFG_DAD_Msk) | (dev_addr << DCFG_DAD_Pos);
 
   // Response with status after changing device address
-  dcd_edpt_xfer(rhport, tu_edpt_addr(0, TUSB_DIR_IN), NULL, 0);
+  dcd_edpt_xfer(rhport, tu_edpt_addr(0, TUSB_DIR_IN), NULL, 0, false);
 }
 
 void dcd_remote_wakeup(uint8_t rhport) {
@@ -636,13 +636,14 @@ bool dcd_edpt_iso_activate(uint8_t rhport,  tusb_desc_endpoint_t const * p_endpo
   return true;
 }
 
-bool dcd_edpt_xfer(uint8_t rhport, uint8_t ep_addr, uint8_t* buffer, uint16_t total_bytes) {
+bool dcd_edpt_xfer(uint8_t rhport, uint8_t ep_addr, uint8_t* buffer, uint16_t total_bytes, bool is_isr) {
+  (void) is_isr;
   uint8_t const epnum = tu_edpt_number(ep_addr);
   uint8_t const dir = tu_edpt_dir(ep_addr);
   xfer_ctl_t* xfer = XFER_CTL_BASE(epnum, dir);
   bool ret;
 
-  usbd_spin_lock(false);
+  usbd_spin_lock(is_isr);
 
   if (xfer->max_size == 0) {
     ret = false;  // Endpoint is closed
@@ -662,7 +663,7 @@ bool dcd_edpt_xfer(uint8_t rhport, uint8_t ep_addr, uint8_t* buffer, uint16_t to
     ret = true;
   }
 
-  usbd_spin_unlock(false);
+  usbd_spin_unlock(is_isr);
 
   return ret;
 }
@@ -671,7 +672,8 @@ bool dcd_edpt_xfer(uint8_t rhport, uint8_t ep_addr, uint8_t* buffer, uint16_t to
 // bytes should be written and second to keep the return value free to give back a boolean
 // success message. If total_bytes is too big, the FIFO will copy only what is available
 // into the USB buffer!
-bool dcd_edpt_xfer_fifo(uint8_t rhport, uint8_t ep_addr, tu_fifo_t* ff, uint16_t total_bytes) {
+bool dcd_edpt_xfer_fifo(uint8_t rhport, uint8_t ep_addr, tu_fifo_t* ff, uint16_t total_bytes, bool is_isr) {
+  (void) is_isr;
   // USB buffers always work in bytes so to avoid unnecessary divisions we demand item_size = 1
   TU_ASSERT(ff->item_size == 1);
 
@@ -680,7 +682,7 @@ bool dcd_edpt_xfer_fifo(uint8_t rhport, uint8_t ep_addr, tu_fifo_t* ff, uint16_t
   xfer_ctl_t* xfer = XFER_CTL_BASE(epnum, dir);
   bool ret;
 
-  usbd_spin_lock(false);
+  usbd_spin_lock(is_isr);
 
   if (xfer->max_size == 0) {
     ret = false;  // Endpoint is closed
@@ -696,7 +698,7 @@ bool dcd_edpt_xfer_fifo(uint8_t rhport, uint8_t ep_addr, tu_fifo_t* ff, uint16_t
     ret = true;
   }
 
-  usbd_spin_unlock(false);
+  usbd_spin_unlock(is_isr);
 
   return ret;
 }
@@ -876,7 +878,7 @@ static void handle_rxflvl_irq(uint8_t rhport) {
       if (byte_count != 0) {
         // Read packet off RxFIFO
         if (xfer->ff != NULL) {
-          tu_fifo_write_n_const_addr_full_words(xfer->ff, (const void*) (uintptr_t) rx_fifo, byte_count);
+          tu_fifo_write_n_access_mode(xfer->ff, (const void *)(uintptr_t)rx_fifo, byte_count, TU_FIFO_FIXED_ADDR_RW32);
         } else {
           dfifo_read_packet(dwc2, xfer->buffer, byte_count);
           xfer->buffer += byte_count;

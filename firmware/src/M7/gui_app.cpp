@@ -29,6 +29,7 @@
 #include "graphics/loading7.h"
 
 #include <algorithm>
+#include <string>
 
 static int s_init_status = STATUS_ERROR;
 
@@ -584,6 +585,8 @@ static struct {
     Button down_button;
     GraphicsObject up_arrow;
     GraphicsObject down_arrow;
+    Label layer_label;
+    char layer_label_buf[4];
 } s_cross_section_scene_ctx;
 
 static Status load_cross_section_scene() {
@@ -603,6 +606,10 @@ static Status load_cross_section_scene() {
             s_cross_section_scene_ctx.current_layer++;
             cross_section_manager_get_layer(
                 s_cross_section_scene_ctx.current_layer);
+            snprintf(s_cross_section_scene_ctx.layer_label_buf,
+                     sizeof(s_cross_section_scene_ctx.layer_label_buf), "%d",
+                     s_cross_section_scene_ctx.current_layer);
+            s_cross_section_scene_ctx.layer_label.set_text(s_cross_section_scene_ctx.layer_label_buf);
         }
     });
 
@@ -612,6 +619,10 @@ static Status load_cross_section_scene() {
             s_cross_section_scene_ctx.current_layer--;
             cross_section_manager_get_layer(
                 s_cross_section_scene_ctx.current_layer);
+            snprintf(s_cross_section_scene_ctx.layer_label_buf,
+                     sizeof(s_cross_section_scene_ctx.layer_label_buf), "%d",
+                     s_cross_section_scene_ctx.current_layer);
+            s_cross_section_scene_ctx.layer_label.set_text(s_cross_section_scene_ctx.layer_label_buf);
         }
     });
 
@@ -625,6 +636,16 @@ static Status load_cross_section_scene() {
     scene.add_object(&s_cross_section_scene_ctx.down_button);
     scene.add_object(&s_cross_section_scene_ctx.up_arrow);
     scene.add_object(&s_cross_section_scene_ctx.down_arrow);
+
+    // Label to show the current layer
+    snprintf(s_cross_section_scene_ctx.layer_label_buf,
+             sizeof(s_cross_section_scene_ctx.layer_label_buf), "%d",
+             s_cross_section_scene_ctx.current_layer);
+    s_cross_section_scene_ctx.layer_label =
+        Label(&scene, 331, 289, s_cross_section_scene_ctx.layer_label_buf, 16);
+    s_cross_section_scene_ctx.layer_label.set_alignment(LABEL_ALIGN_RIGHT);
+
+    scene.add_object(&s_cross_section_scene_ctx.layer_label);
 
     // Ask the Pi to generate the cross sections
     cross_section_manager_create_cross_sections(CROSS_SECTION_NUM_SLICES);
