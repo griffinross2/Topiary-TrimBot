@@ -1133,16 +1133,18 @@
 
 // Enable for TrimBot Kinematics
 #define TRIMBOT
-#define DEFAULT_SEGMENTS_PER_SECOND 200
+#define DEFAULT_SEGMENTS_PER_SECOND 50
 #define DIST_TT_BASE \
     477.5  // (mm) Distance from center of turn table to gantry base
 #define DIST_REV_Y \
-    152.4  // (mm) Horizontal Distance from center of A axis rotation to trimmer
+    158  // (mm) Horizontal Distance from center of A axis rotation to trimmer
            // tip
 #define DIST_REV_Z \
-    45  // (mm) Vertical Distance from center of A axis rotation to trimmer tip
+    41.5  // (mm) Vertical Distance from center of A axis rotation to trimmer tip
 #define DIST_TT_GANTRY \
-    868  // (mm) Distance from turntable to top of gantry z = 0
+    825  // (mm) Distance from turntable to top of gantry z = 0
+#define DIST_TT_GANTRY_BOTTOM_TO_SHAFT \
+    12.7 // (mm) Distance from bottom of gantry to center of wrist shaft
 
 //
 // MarkForged Kinematics

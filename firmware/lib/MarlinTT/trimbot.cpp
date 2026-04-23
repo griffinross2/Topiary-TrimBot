@@ -41,14 +41,22 @@ void inverse_kinematics(const xyz_pos_t& raw) {
                     TZ * sin(RADIANS(90 - theta_b));
     const float z = H - raw.z + TY * sin(RADIANS(90 - theta_b)) +
                     TZ * cos(RADIANS(90 - theta_b));
-    const float theta_c = ATAN2(raw.x, -1 * raw.y);
+    float theta_c = DEGREES(ATAN2(raw.x, -1 * raw.y));
 
-    delta.set(0, y, z, theta_b, DEGREES(theta_c));
+    while (theta_c < 0) {
+        theta_c += 360;
+    }
+    while (theta_c > 360)
+    {
+        theta_c -= 360;
+    }
+    
+    delta.set(0, y, z, theta_b, theta_c);
 
-    // printf(
-    //     "Inverse kinematics: x=%.2f, y=%.2f, z=%.2f, cutter_angle=%.2f -> "
-    //     "turntable_angle=%.2f, cutter_angle=%.2f, y=%.2f, z=%.2f\n",
-    //     raw.x, raw.y, raw.z, raw.i, theta_c, theta_b, y, z);
+    printf(
+        "Inverse kinematics: x=%.2f, y=%.2f, z=%.2f, cutter_angle=%.2f -> "
+        "turntable_angle=%.2f, cutter_angle=%.2f, y=%.2f, z=%.2f\n",
+        raw.x, raw.y, raw.z, raw.i, theta_c, theta_b, y, z);
 }
 
 // homing function

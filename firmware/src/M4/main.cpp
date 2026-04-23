@@ -74,7 +74,7 @@ void main_loop() {
     // Check door status
     door_stop_task();
 
-    HAL_Delay(50);
+    HAL_Delay(10);
 }
 
 extern "C" {
