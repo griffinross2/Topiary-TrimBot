@@ -868,10 +868,10 @@ bool position_is_reachable(const float x, const float y, const float z,
         max_y = temp;
     }
 
-    printf("x: %f, y: %f, z: %f, theta_cutter: %f, theta_turntable: %f\n", x, y,
-           z, theta_cutter, DEGREES(theta_turntable_rad));
-    printf("min_x: %f, max_x: %f, min_y: %f, max_y: %f, min_z: %f, max_z: %f\n",
-           min_x, max_x, min_y, max_y, MIN_Z, MAX_Z);
+    // printf("x: %f, y: %f, z: %f, theta_cutter: %f, theta_turntable: %f\n", x, y,
+    //        z, theta_cutter, DEGREES(theta_turntable_rad));
+    // printf("min_x: %f, max_x: %f, min_y: %f, max_y: %f, min_z: %f, max_z: %f\n",
+    //        min_x, max_x, min_y, max_y, MIN_Z, MAX_Z);
 
     if (x < min_x - fslop || x > max_x + fslop || y < min_y - fslop ||
         y > max_y + fslop || z < MIN_Z - fslop || z > MAX_Z + fslop) {
@@ -1827,13 +1827,13 @@ inline bool line_to_destination_kinematic() {
 
     const xyze_float_t diff = destination - current_position;
 
-    printf("destination: %f, %f, %f, %f, %f\n", destination.x, destination.y,
-           destination.z, destination.i, destination.j);
-    printf("current_position: %f, %f, %f, %f, %f\n", current_position.x,
-           current_position.y, current_position.z, current_position.i,
-           current_position.j);
-    printf("diff: %f, %f, %f, %f, %f\n", diff.x, diff.y, diff.z, diff.i,
-           diff.j);
+    // printf("destination: %f, %f, %f, %f, %f\n", destination.x, destination.y,
+    //        destination.z, destination.i, destination.j);
+    // printf("current_position: %f, %f, %f, %f, %f\n", current_position.x,
+    //        current_position.y, current_position.z, current_position.i,
+    //        current_position.j);
+    // printf("diff: %f, %f, %f, %f, %f\n", diff.x, diff.y, diff.z, diff.i,
+    //        diff.j);
 
     // SERIAL_ECHOLNPGM("Destination: ", destination.x, " , ", destination.y, "
     // , ", destination.z, " , ", destination.e); SERIAL_ECHOLNPGM("Current pos:
@@ -1913,7 +1913,7 @@ inline bool line_to_destination_kinematic() {
 
     // Get the current position as starting point
     xyze_pos_t raw = current_position;
-    printf("raw: %f, %f, %f, %f, %f\n", raw.x, raw.y, raw.z, raw.i, raw.j);
+    // printf("raw: %f, %f, %f, %f, %f\n", raw.x, raw.y, raw.z, raw.i, raw.j);
 
     // Calculate and execute the segments
     millis_t next_idle_ms = get_tick_ms() + 200UL;
@@ -2213,11 +2213,11 @@ inline bool dual_x_carriage_unpark() {
  * Before exit, current_position is set to destination.
  */
 void prepare_line_to_destination() {
-    printf("dest before limits: %f, %f, %f, %f, %f\n", destination.x,
-           destination.y, destination.z, destination.i, destination.j);
+    // printf("dest before limits: %f, %f, %f, %f, %f\n", destination.x,
+    //        destination.y, destination.z, destination.i, destination.j);
     apply_motion_limits(destination);
-    printf("dest after limits: %f, %f, %f, %f, %f\n", destination.x,
-           destination.y, destination.z, destination.i, destination.j);
+    // printf("dest after limits: %f, %f, %f, %f, %f\n", destination.x,
+    //        destination.y, destination.z, destination.i, destination.j);
 
     // SERIAL_ECHOLNPGM(">TPARA Prepare line to destination: ", destination.x ,
     // " , ", destination.y,  " , ", destination.z, " , " , destination.e);

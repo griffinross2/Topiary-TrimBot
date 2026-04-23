@@ -2,6 +2,7 @@
 
 #include "status.h"
 #include "gcode/queue.h"
+#include "marlin_wrapper.h"
 #include "timing.h"
 #include "stm32h7xx_hal.h"
 
@@ -63,9 +64,14 @@ void gcode_receiver_task() {
             goto release;
         }
 
-        // Enqueue it
-        if (queue.enqueue_one(gcode_receiver_ctx.s_gcode_buf) != true) {
-            TRACE_PRINTF("Failed to enqueue G-code command: %s\n", gcode_receiver_ctx.s_gcode_buf);
+        // Enqueue it (discard if marlin is killed)
+        if (marlin_wrapper_is_alive) {
+            if (queue.enqueue_one(gcode_receiver_ctx.s_gcode_buf) != true) {
+                TRACE_PRINTF("Failed to enqueue G-code command: %s\n", gcode_receiver_ctx.s_gcode_buf);
+                goto release;
+            }
+        } else {
+            gcode_receiver_ctx.s_gcode_buf_in_waiting = false;
             goto release;
         }
 

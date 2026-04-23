@@ -8,9 +8,11 @@
  * M991: Enable cutter
  */
 void GcodeSuite::M991() { 
+    #ifdef TT_CUTTER_EN
     if (marlin_wrapper_is_alive()) {
         gpio_write(PIN_CUTTER, GPIO_HIGH);
     }
+    #endif
  }
 
 /**

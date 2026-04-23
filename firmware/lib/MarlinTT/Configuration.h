@@ -1133,7 +1133,8 @@
 
 // Enable for TrimBot Kinematics
 #define TRIMBOT
-#define DEFAULT_SEGMENTS_PER_SECOND 50
+// #define TT_CUTTER_EN
+#define DEFAULT_SEGMENTS_PER_SECOND 100
 #define DIST_TT_BASE \
     477.5  // (mm) Distance from center of turn table to gantry base
 #define DIST_REV_Y \

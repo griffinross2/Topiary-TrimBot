@@ -33,7 +33,6 @@ void GcodeSuite::G4() {
   
   if (parser.seenval('P')) dwell_ms = parser.value_millis(); // milliseconds to wait
   if (parser.seenval('S')) dwell_ms = parser.value_millis_from_seconds(); // seconds to wait
-  printf("G4 dwell: %lu ms\n", dwell_ms);
 
   planner.synchronize();
   #if ENABLED(NANODLP_Z_SYNC)

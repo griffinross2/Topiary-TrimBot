@@ -53,10 +53,10 @@ void inverse_kinematics(const xyz_pos_t& raw) {
     
     delta.set(0, y, z, theta_cutter, theta_turntable);
 
-    printf(
-        "Inverse kinematics: x=%.2f, y=%.2f, z=%.2f, cutter_angle=%.2f -> "
-        "turntable_angle=%.2f, cutter_angle=%.2f, y=%.2f, z=%.2f\n",
-        raw.x, raw.y, raw.z, raw.i, theta_turntable, theta_cutter, y, z);
+    // printf(
+    //     "Inverse kinematics: x=%.2f, y=%.2f, z=%.2f, cutter_angle=%.2f -> "
+    //     "turntable_angle=%.2f, cutter_angle=%.2f, y=%.2f, z=%.2f\n",
+    //     raw.x, raw.y, raw.z, raw.i, theta_turntable, theta_cutter, y, z);
 }
 
 // homing function

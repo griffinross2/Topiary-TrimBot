@@ -10,7 +10,7 @@ STARTING_ANGLE_STEP = 8
 ENDING_ANGLE_STEP = 18
 POT_HEIGHT = 0.254
 POT_DIAMETER = 0.28
-PLANT_KEEPOUT_FRACTION = (2/3)
+PLANT_KEEPOUT_FRACTION = (1/2)
 
 
 def fit_mesh(mesh, surf):
@@ -236,6 +236,8 @@ def remove_points_in_keepout(plant_mesh, paths):
     plant_top = plant_mesh.bounds[1][2]
     keepout_height = PLANT_KEEPOUT_FRACTION * plant_top
 
+    print(plant_top, keepout_height, keepout_radius)
+
     new_paths = []
     for path in paths:
         new_path = []
@@ -244,6 +246,8 @@ def remove_points_in_keepout(plant_mesh, paths):
             point_z = point[2]
             if point_r > keepout_radius or point_z > keepout_height:
                 new_path.append(point)
+            # else:
+            #     print(point)
         new_paths.append(new_path)
 
     return new_paths
@@ -257,7 +261,7 @@ def trim_dumb_paths(paths):
 
     return new_paths
 
-def get_toolpath(plant_mesh, model_mesh):
+def get_toolpath(plant_mesh, model_mesh, angle_start=0, angle_end=360, last_pass_only=False):
     plant_mesh = scale_mesh_to_m(39.3701, plant_mesh) # Currently inches
     model_mesh = fit_mesh(model_mesh, plant_mesh)
 
@@ -271,17 +275,23 @@ def get_toolpath(plant_mesh, model_mesh):
     diff_voxel = get_voxel_difference(plant_voxel, model_voxel)
 
     paths = []
+    pass_start_indices = []
     num_passes = int(np.max(diff_voxel.matrix.shape)/2)
     for p in range(num_passes):
+        pass_start_indices.append(len(paths))
         angle_lerp = int(((p/num_passes) * (ENDING_ANGLE_STEP-STARTING_ANGLE_STEP)) + STARTING_ANGLE_STEP)
-        for a in range(0, 360, angle_lerp):
+        for a in range(angle_start, angle_end, angle_lerp):
             diff_voxel, path = get_cut_path(diff_voxel, a)
             paths.append(path)
 
     # show_voxel(diff_voxel)
     # show_voxel(plant_voxel)
+    if last_pass_only:
+        paths = paths[pass_start_indices[-1]:]
+
     paths = remove_points_in_keepout(plant_mesh, paths)
     paths = trim_dumb_paths(paths)
+
     return paths
 
 if __name__ == "__main__":
