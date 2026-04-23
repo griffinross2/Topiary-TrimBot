@@ -11,6 +11,5 @@ model_mesh = tm.load("cube-octahedron-compound.stl")
 paths = []
 paths = get_toolpath(plant_mesh, model_mesh)
 
-
-pahts = transform_data(paths)
+transform_data(paths)
 generate_gcode(paths)

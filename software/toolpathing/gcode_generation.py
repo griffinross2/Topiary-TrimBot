@@ -11,8 +11,8 @@ Z_MAX = 813 # mm
 DECS = 3
 
 # trimmer codes
-ENABLE_TRIMMER = "M00"
-DISABLE_TRIMMER = "M01"
+ENABLE_TRIMMER = "M991"
+DISABLE_TRIMMER = "M992"
 
 # helper functions
 def cart_move(file, coord, feed):
@@ -92,7 +92,7 @@ def generate_gcode(paths, fname="out.gcode"):
         set_trimmer(f, False)
 
     # footer
-    f.write("G0 B0 X0 Y0 Z"+str(Z_MAX)+" ; rapid end state\n")
+    f.write("G0 A0 X0 Y0 Z"+str(Z_MAX)+" ; rapid end state\n")
     f.write("M84 ; disable steppers\n")
 
     # close file
