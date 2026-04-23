@@ -9,6 +9,7 @@ MOVE_FEED = 5000 # move instruction feed mm/min
 CUT_FEED = 2000 # cut instruction feed mm/min
 Z_MAX = 813 # mm
 DECS = 3
+PARKING_R = 300 # mm
 
 # trimmer codes
 ENABLE_TRIMMER = "M991"
@@ -58,6 +59,12 @@ def radial_offset(f, coord):
     offset_coord = [scale * x, scale * y, z]
     cart_move(f, offset_coord, MOVE_FEED)
 
+def parking_radius(file, curr_coord):
+    theta = np.arctan2(curr_coord[0], curr_coord[1])
+    file.write("G1 X"+str(PARKING_R * np.sin(theta))+ \
+               " Y"+str(-PARKING_R * np.cos(theta))+ \
+               " F"+str(MOVE_FEED)+"\n")
+
 def generate_gcode(paths, fname="out.gcode"):
     
     # open file
@@ -67,11 +74,14 @@ def generate_gcode(paths, fname="out.gcode"):
     f.write("G90 ; absolute positions\n")
     f.write("G21 ; mm system units\n")
 
+    # x: r sin theta
+    # y: -r cos theta
+
+    # go to initial parking radius
+    parking_radius(f, paths[0][0])
+
     for path in paths:
         
-        # move cutter to offset radially from first point
-        radial_offset(f, path[0])
-
         # enable trimmer
         set_trimmer(f, True)
 
@@ -85,11 +95,19 @@ def generate_gcode(paths, fname="out.gcode"):
             # move to next coord
             cart_move(f, path[n], CUT_FEED)
 
-        # move cutter out
-        radial_offset(f, path[n])
-
         # disable trimmer
         set_trimmer(f, False)
+
+        # go to parking position
+        parking_radius(f, path[n])
+
+        # rotation move
+        if (path != paths[len(paths)-1]):
+            theta = np.arctan2(path[n+1][0], path[n+1][1])
+            f.write("G2 X"+str(PARKING_R * np.sin(theta))+ \
+                    " Y"+str(-PARKING_R * np.cos(theta))+ \
+                    " I"+str(-path[n][0])+" J"+str(-path[n][1])+ \
+                    " F"+str(MOVE_FEED)+"\n")
 
     # footer
     f.write("G0 A0 X0 Y0 Z"+str(Z_MAX)+" ; rapid end state\n")
