@@ -4,8 +4,7 @@ import trimesh as tm
 import pyvista as pv
 import numpy as np
 
-cloud = tm.points.PointCloud(pv.read("point_cloud.vtk").points)
-plant_mesh = cloud.convex_hull
+plant_mesh = tm.load("plant.ply")
 model_mesh = tm.load("cube-octahedron-compound.stl")
 
 paths = []

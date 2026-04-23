@@ -30,7 +30,14 @@ Status door_stop_init() {
 
 void door_stop_task() {
     if (gpio_read(PIN_DOOR) == GPIO_HIGH) {
+        // Stop the steppers
         planner.quick_stop();
+
+        // Kill Marlin
+        marlin_wrapper_kill();
+
+        // Stop the cutter
+        gpio_write(PIN_CUTTER, GPIO_LOW);
 
         if (!was_opened_last) {
             // Door was just opened

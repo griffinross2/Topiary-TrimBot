@@ -35,28 +35,28 @@ void forward_kinematics(const float theta_c, const float y, const float z,
 
 // inverse kinematic model
 void inverse_kinematics(const xyz_pos_t& raw) {
-    const float theta_b = raw.i;
-    const float y = D - SQRT(POW(raw.x, 2) + POW(raw.y, 2)) -
-                    TY * cos(RADIANS(90 - theta_b)) -
-                    TZ * sin(RADIANS(90 - theta_b));
-    const float z = H - raw.z + TY * sin(RADIANS(90 - theta_b)) +
-                    TZ * cos(RADIANS(90 - theta_b));
-    float theta_c = DEGREES(ATAN2(raw.x, -1 * raw.y));
-
-    while (theta_c < 0) {
-        theta_c += 360;
-    }
-    while (theta_c > 360)
-    {
-        theta_c -= 360;
-    }
+    float theta_cutter = raw.i;
+    float y = D - SQRT(POW(raw.x, 2) + POW(raw.y, 2)) -
+                    TY * cos(RADIANS(90 - theta_cutter)) -
+                    TZ * sin(RADIANS(90 - theta_cutter));
+    float z = H - raw.z + TY * sin(RADIANS(90 - theta_cutter)) +
+                    TZ * cos(RADIANS(90 - theta_cutter));
+    float theta_turntable = DEGREES(ATAN2(raw.x, -1 * raw.y));
     
-    delta.set(0, y, z, theta_b, theta_c);
+    
+    y = std::min(y, (float)Y_MAX_POS);
+    y = std::max(y, (float)Y_MIN_POS+2);
+    z = std::min(z, (float)Z_MAX_POS);
+    z = std::max(z, (float)Z_MIN_POS);
+    theta_cutter = std::min(theta_cutter, (float)I_MAX_POS);
+    theta_cutter = std::max(theta_cutter, (float)I_MIN_POS);
+    
+    delta.set(0, y, z, theta_cutter, theta_turntable);
 
     printf(
         "Inverse kinematics: x=%.2f, y=%.2f, z=%.2f, cutter_angle=%.2f -> "
         "turntable_angle=%.2f, cutter_angle=%.2f, y=%.2f, z=%.2f\n",
-        raw.x, raw.y, raw.z, raw.i, theta_c, theta_b, y, z);
+        raw.x, raw.y, raw.z, raw.i, theta_turntable, theta_cutter, y, z);
 }
 
 // homing function

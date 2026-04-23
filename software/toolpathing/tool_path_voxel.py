@@ -195,8 +195,21 @@ def get_cut_path(voxels, angle):
     path = []
     for i in range(voxels.matrix.shape[2]):
         voxel_at_i = get_outmost_at_height(voxels, angle, i)
-        point = voxels.indices_to_points(np.array([voxel_at_i]))
-        path.append(point[0])
+        point = voxels.indices_to_points(np.array([voxel_at_i]))[0]
+        # Reject points that may have crossed to the other side
+        # of the plant
+        if angle >= 0 and angle < 90:
+            if point[0] > 0 and point[1] > 0:
+                path.append(point)
+        elif angle >= 90 and angle < 180:
+            if point[0] < 0 and point[1] > 0:
+                path.append(point)
+        elif angle >= 180 and angle < 270:
+            if point[0] < 0 and point[1] < 0:
+                path.append(point)
+        elif angle >= 270 and angle <= 360:
+            if point[0] > 0 and point[1] < 0:
+                path.append(point)
 
         # print(i, angle, voxel_at_i)
         # Remove them as we go
@@ -214,6 +227,15 @@ def get_cut_path(voxels, angle):
 
 # show_voxel(diff_voxel)
 # print(diff_voxel.matrix.shape)
+
+def trim_dumb_paths(paths):
+    new_paths = []
+
+    for path in paths:
+        if len(path) >= 2:
+            new_paths.append(path)
+
+    return new_paths
 
 def get_toolpath(plant_mesh, model_mesh):
     plant_mesh = scale_mesh_to_m(39.3701, plant_mesh) # Currently inches
@@ -238,6 +260,7 @@ def get_toolpath(plant_mesh, model_mesh):
 
     # show_voxel(diff_voxel)
     # show_voxel(plant_voxel)
+    paths = trim_dumb_paths(paths)
     return paths
 
 if __name__ == "__main__":

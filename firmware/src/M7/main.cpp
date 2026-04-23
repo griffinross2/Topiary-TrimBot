@@ -54,9 +54,7 @@ int main(void) {
     gpio_write(PIN_GANTRY_DIR, GPIO_HIGH);
     gpio_write(PIN_EXTRUDER_DIR, GPIO_HIGH);
     gpio_write(PIN_REVOLUTE_DIR, GPIO_HIGH);
-
-    gpio_write(PIN_CUTTER, GPIO_HIGH);
-
+    
     std::vector<FileInfo> file_list;
     filesystem_get_file_list(file_list);
     for (size_t i = 0; i < file_list.size(); i++) {

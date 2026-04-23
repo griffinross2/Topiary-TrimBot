@@ -17,6 +17,9 @@ void main_loop();
 int main(void) {
     HAL_Init();
 
+    // Disable cutter pin
+    gpio_write(PIN_CUTTER, GPIO_LOW);
+
     profiler_init();
 
     int init_stat = 0;

@@ -844,7 +844,7 @@ bool position_is_reachable(const float x, const float y, const float z,
     const float MIN_Z = std::max(DIST_TT_GANTRY_BOTTOM_TO_SHAFT + TZ, DIST_TT_GANTRY_BOTTOM_TO_SHAFT + TY * cosf(theta_cutter_rad) + TZ * sinf(theta_cutter_rad));    // mm
     constexpr float MAX_Z = 800;  // mm
     const float MIN_R =
-        D - Y_MAX_POS - TY * sinf(theta_cutter_rad) + TZ * cosf(theta_cutter_rad);
+        D - Y_MAX_POS - TY * sinf(theta_cutter_rad) - TZ * cosf(theta_cutter_rad);
     const float MAX_R = D - TY * sinf(theta_cutter_rad) - TZ * cosf(theta_cutter_rad);
     float min_x = 0, max_x = 0;
     float min_y = 0, max_y = 0;

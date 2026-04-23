@@ -109,6 +109,10 @@ bool marlin_wrapper_printer_busy() {
     return planner.has_blocks_queued();
 }
 
+bool marlin_wrapper_is_alive() {
+    return marlin_state != MF_KILLED;
+}
+
 uint32_t marlin_wrapper_step_timer_count() {
     return 0;
 }

@@ -1870,6 +1870,7 @@ bool Planner::_populate_block(
     feedRate_t fr_mm_s, const uint8_t extruder, const PlannerHints& hints,
     float& minimum_planner_speed_sqr) {
     xyze_long_t dist = target - position;
+    printf("dist in steps: %ld %ld %ld %ld %ld\n", dist.x, dist.y, dist.z, dist.i, dist.j);
 
     /* <-- add a slash to enable
       SERIAL_ECHOLNPGM(

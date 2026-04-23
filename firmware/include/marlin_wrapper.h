@@ -15,6 +15,7 @@ int marlin_wrapper_serial_read();
 void marlin_wrapper_kill();
 bool marlin_wrapper_is_running();
 bool marlin_wrapper_is_printer_busy();
+bool marlin_wrapper_is_alive();
 uint32_t marlin_wrapper_step_timer_count();
 
 enum MarlinState : uint8_t {
