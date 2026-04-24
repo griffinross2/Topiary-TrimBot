@@ -1,6 +1,6 @@
 #pragma once
 
-#define PROFILER_ENABLED 1
+#define PROFILER_ENABLED 0
 
 void profiler_init();
 
