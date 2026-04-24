@@ -942,6 +942,10 @@ static Status load_begin_cutting_scene() {
     return STATUS_OK;
 }
 
+static Status update_begin_cutting_scene() {
+    return STATUS_OK;
+}
+
 /******************/
 /* CUTTING SCREEN */
 /******************/
@@ -1095,6 +1099,27 @@ void gui_app_task() {
         if (get_tick_ms() - scanning_scene_ctx.last_update_tick >= 200) {
             update_scanning_scene();
             scanning_scene_ctx.last_update_tick = get_tick_ms();
+        }
+    }
+
+    // Toolpathing screen
+    if (gui_get_current_scene() == &toolpathing_scene_ctx.scene) {
+        if (get_tick_ms() - toolpathing_scene_ctx.last_update_tick >= 200) {
+            update_toolpathing_scene();
+            toolpathing_scene_ctx.last_update_tick = get_tick_ms();
+        }
+    }
+
+    // Begin cutting screen
+    if (gui_get_current_scene() == &begin_cutting_scene_ctx.scene) {
+        update_begin_cutting_scene();
+    }
+
+    // Cutting screen
+    if (gui_get_current_scene() == &cutting_scene_ctx.scene) {
+        if (get_tick_ms() - cutting_scene_ctx.last_update_tick >= 200) {
+            update_cutting_scene();
+            cutting_scene_ctx.last_update_tick = get_tick_ms();
         }
     }
 
