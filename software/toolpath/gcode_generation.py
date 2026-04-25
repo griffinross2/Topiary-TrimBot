@@ -11,6 +11,13 @@ Z_MAX = 813 # mm
 DECS = 3
 PARKING_R = 300 # mm
 START_POINT = (0, -390, 500, 0) # mm, mm, mm, deg
+MIN_R_SLOP = 5
+
+# trimbot dimension constants
+D = 477.5
+Y_MAX_POS = 325
+TY = 158
+TZ = 41
 
 # trimmer codes
 ENABLE_TRIMMER = "M991"
@@ -45,6 +52,10 @@ def transform_data(paths): # transform toolpath to trimbot coords
             point[2] = z
     return paths
 
+def magnitude(x, y):
+    dist_from_z = np.sqrt(x**2 + y**2)
+    return dist_from_z
+
 def get_trimmer_angle(curr_coord, next_coord):
     r_vec = np.array((curr_coord[0], curr_coord[1], 0))
     r_vec = r_vec / np.linalg.norm(r_vec)
@@ -52,11 +63,17 @@ def get_trimmer_angle(curr_coord, next_coord):
     mag_point_vec = np.linalg.norm(point_vec)
     ang = np.arccos(np.dot(r_vec, point_vec) / mag_point_vec) * (180.0 / np.pi) - 90
     ang = np.clip(ang, 0, 180)
-    return ang
 
-def magnitude(x, y):
-    dist_from_z = np.sqrt(x**2 + y**2)
-    return dist_from_z
+    # override the angle if the point is too close in to allow trimbot
+    # to reach the point. This is since the extruder can only reach points
+    # near the center if the cutter is flat.
+    # From trimbot:
+    # MIN_R = D - Y_MAX_POS - TY * np.sin(np.deg2rad(ang)) - TZ * np.cos(np.deg2rad(ang))
+    min_r = D - Y_MAX_POS - TY * np.sin(np.deg2rad(ang)) - TZ * np.cos(np.deg2rad(ang))
+    if magnitude(curr_coord[0], curr_coord[1]) <= min_r + MIN_R_SLOP:
+        ang = 90
+        
+    return ang
 
 def radial_offset(f, coord):
     x, y, z = coord

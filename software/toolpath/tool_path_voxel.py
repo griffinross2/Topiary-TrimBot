@@ -3,7 +3,7 @@ import pyvista as pv
 import numpy as np
 
 CUTTER_WIDTH = 0.1
-VOXEL_SIZE = CUTTER_WIDTH / 3
+VOXEL_SIZE = CUTTER_WIDTH / 5
 VOXEL_VICTIM_RANGE = CUTTER_WIDTH / 3
 MODEL_EXTRA_SCALE = 1
 STARTING_ANGLE_STEP = 8
@@ -323,7 +323,7 @@ def get_toolpath(plant_mesh, model_mesh, angle_start=0, angle_end=360, last_pass
 
     paths = []
     pass_start_indices = []
-    num_passes = int(np.max(diff_voxel.matrix.shape)/2)
+    num_passes = int(np.max(diff_voxel.matrix.shape[:2])/2)
     for p in range(num_passes):
         pass_start_indices.append(len(paths))
         angle_lerp = int(((p/num_passes) * (ENDING_ANGLE_STEP-STARTING_ANGLE_STEP)) + STARTING_ANGLE_STEP)
@@ -347,6 +347,6 @@ if __name__ == "__main__":
 
     paths, plant_voxel, model_voxel = get_toolpath(plant_mesh, model_mesh)
     plant_voxel_mesh = plant_voxel.as_boxes()
-    print(plant_voxel_mesh.bounds)
-    # plant_voxel_mesh.show()
+    # print(plant_voxel_mesh.bounds)
+    plant_voxel_mesh.show()
     # model_voxel.as_boxes().show()
