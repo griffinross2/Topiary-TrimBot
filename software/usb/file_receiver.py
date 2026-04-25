@@ -12,6 +12,7 @@ class FileReceiverStatus(Enum):
 
 file_receiver_status = FileReceiverStatus.FILE_RECEIVER_STATUS_IDLE
 file_receiver_out_file = None
+file_receiver_file_name = ""
 
 def file_receiver_task(dev: USBDev):
     global file_receiver_status
@@ -58,6 +59,7 @@ def file_receiver_task(dev: USBDev):
 def file_receiver_give_packet(id: PacketID, data: bytes):
     global file_receiver_status
     global file_receiver_out_file
+    global file_receiver_file_name
 
     match id.packet_type:
         case PACKET_TYPE_FILE_START.packet_type:
@@ -66,7 +68,8 @@ def file_receiver_give_packet(id: PacketID, data: bytes):
                 file_receiver_status = FileReceiverStatus.FILE_RECEIVER_STATUS_START
 
                 # Open output file
-                fname = data.decode('utf-8')
+                fname = "meshes/" + data.decode('utf-8')
+                file_receiver_file_name = fname
                 file_receiver_out_file = open(fname, 'wb')
                 if file_receiver_out_file is None:
                     print(f"Failed to open output file: {fname}")
@@ -100,3 +103,7 @@ def file_receiver_give_packet(id: PacketID, data: bytes):
 
         case _:
             pass
+
+def file_receiver_get_model_file_name():
+    global file_receiver_file_name
+    return file_receiver_file_name

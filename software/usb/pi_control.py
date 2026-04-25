@@ -5,6 +5,8 @@ currently_moving = False
 
 def pi_control_give_packet(id: PacketID, data: bytes):
     from plant_scanning import start_scan
+    from toolpathing import start_toolpathing
+    from cutter import start_cutting
     global currently_moving
     
     match id.packet_type:
@@ -14,6 +16,12 @@ def pi_control_give_packet(id: PacketID, data: bytes):
         
         case PACKET_TYPE_START_SCANNING.packet_type:
             start_scan()
+
+        case PACKET_TYPE_START_TOOLPATHING.packet_type:
+            start_toolpathing()
+
+        case PACKET_TYPE_START_CUTTING.packet_type:
+            start_cutting()
 
         case _:
             pass

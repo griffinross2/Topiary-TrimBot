@@ -45,3 +45,7 @@ class USBDev():
     def receive(self, count):
         if self.ser:
             return self.ser.read(count)
+        
+    def clear(self):
+        if self.ser:
+            self.ser.reset_input_buffer()

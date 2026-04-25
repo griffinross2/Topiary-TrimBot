@@ -13,7 +13,7 @@ gcode_sender_waiting_for_ack = False
 gcode_sender_gcode_buf = []
 gcode_sender_ack_timeout_tick_ms = 0
 
-GCODE_SENDER_ACK_TIMEOUT = 500
+GCODE_SENDER_ACK_TIMEOUT = 2 * 60 * 1000
 
 def gcode_sender_task(dev: USBDev):
     global gcode_sender_status
@@ -43,6 +43,7 @@ def gcode_sender_task(dev: USBDev):
             else:
                 if (int(time.time()*1000) - gcode_sender_ack_timeout_tick_ms) >= GCODE_SENDER_ACK_TIMEOUT:
                     # Timeout
+                    print("Gcode sender timed out")
                     gcode_sender_waiting_for_ack = False
                     gcode_sender_status = GCodeSenderStatus.GCODE_SENDER_STATUS_ERROR
 
@@ -73,7 +74,9 @@ def gcode_sender_give_packet(id: PacketID, data: bytes):
                 gcode_sender_waiting_for_ack = False
                 if len(gcode_sender_gcode_buf) > 1:
                     gcode_sender_gcode_buf = gcode_sender_gcode_buf[1:]
+                    gcode_sender_status = GCodeSenderStatus.GCODE_SENDER_STATUS_SENDING
                 else:
                     gcode_sender_gcode_buf = []
+                    gcode_sender_status = GCodeSenderStatus.GCODE_SENDER_STATUS_IDLE
             else:
                 gcode_sender_status = GCodeSenderStatus.GCODE_SENDER_STATUS_ERROR
