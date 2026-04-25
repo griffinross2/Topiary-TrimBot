@@ -147,7 +147,9 @@ tu_static CFG_TUD_MEM_SECTION struct {
 #endif// CFG_TUD_AUDIO_ENABLE_EP_OUT && !CFG_TUD_EDPT_DEDICATED_HWFIFO
 
 // Control buffer
-CFG_TUD_MEM_ALIGN uint8_t ctrl_buf[CFG_TUD_AUDIO_CTRL_BUF_SZ];
+#if CFG_TUD_AUDIO_CTRL_BUF_SZ > CFG_TUD_ENDPOINT0_BUFSIZE
+tu_static CFG_TUD_MEM_ALIGN uint8_t ctrl_buf[CFG_TUD_AUDIO_CTRL_BUF_SZ];
+#endif
 
 // Aligned buffer for feedback EP
 #if CFG_TUD_AUDIO_ENABLE_EP_OUT && CFG_TUD_AUDIO_ENABLE_FEEDBACK_EP
@@ -423,6 +425,15 @@ bool tud_audio_n_mounted(uint8_t func_id) {
   return audio->mounted;
 }
 
+static inline uint8_t* get_ctrl_buffer(void) {
+  // Use EP0 buffer if it is large enough, otherwise use dedicated buffer
+  #if CFG_TUD_AUDIO_CTRL_BUF_SZ > CFG_TUD_ENDPOINT0_BUFSIZE
+  return ctrl_buf;
+  #else
+  return usbd_get_ctrl_buf();
+  #endif
+}
+
 //--------------------------------------------------------------------+
 // READ API
 //--------------------------------------------------------------------+
@@ -441,7 +452,8 @@ uint16_t tud_audio_n_read(uint8_t func_id, void *buffer, uint16_t bufsize) {
 
 bool tud_audio_n_clear_ep_out_ff(uint8_t func_id) {
   TU_VERIFY(func_id < CFG_TUD_AUDIO && _audiod_fct[func_id].p_desc != NULL);
-  return tu_fifo_clear(&_audiod_fct[func_id].ep_out_ff);
+  tu_fifo_clear(&_audiod_fct[func_id].ep_out_ff);
+  return true;
 }
 
 tu_fifo_t *tud_audio_n_get_ep_out_ff(uint8_t func_id) {
@@ -492,7 +504,8 @@ uint16_t tud_audio_n_write(uint8_t func_id, const void *data, uint16_t len) {
 
 bool tud_audio_n_clear_ep_in_ff(uint8_t func_id) {
   TU_VERIFY(func_id < CFG_TUD_AUDIO && _audiod_fct[func_id].p_desc != NULL);
-  return tu_fifo_clear(&_audiod_fct[func_id].ep_in_ff);
+  tu_fifo_clear(&_audiod_fct[func_id].ep_in_ff);
+  return true;
 }
 
 tu_fifo_t *tud_audio_n_get_ep_in_ff(uint8_t func_id) {
@@ -672,17 +685,17 @@ void audiod_init(void) {
     switch (i) {
   #if CFG_TUD_AUDIO_FUNC_1_EP_IN_SW_BUF_SZ > 0
       case 0:
-        tu_fifo_config(&audio->ep_in_ff, ep_in_sw_buf.buf_1, CFG_TUD_AUDIO_FUNC_1_EP_IN_SW_BUF_SZ, 1, true);
+        tu_fifo_config(&audio->ep_in_ff, ep_in_sw_buf.buf_1, CFG_TUD_AUDIO_FUNC_1_EP_IN_SW_BUF_SZ, true);
         break;
   #endif
   #if CFG_TUD_AUDIO > 1 && CFG_TUD_AUDIO_FUNC_2_EP_IN_SW_BUF_SZ > 0
       case 1:
-        tu_fifo_config(&audio->ep_in_ff, ep_in_sw_buf.buf_2, CFG_TUD_AUDIO_FUNC_2_EP_IN_SW_BUF_SZ, 1, true);
+        tu_fifo_config(&audio->ep_in_ff, ep_in_sw_buf.buf_2, CFG_TUD_AUDIO_FUNC_2_EP_IN_SW_BUF_SZ, true);
         break;
   #endif
   #if CFG_TUD_AUDIO > 2 && CFG_TUD_AUDIO_FUNC_3_EP_IN_SW_BUF_SZ > 0
       case 2:
-        tu_fifo_config(&audio->ep_in_ff, ep_in_sw_buf.buf_3, CFG_TUD_AUDIO_FUNC_3_EP_IN_SW_BUF_SZ, 1, true);
+        tu_fifo_config(&audio->ep_in_ff, ep_in_sw_buf.buf_3, CFG_TUD_AUDIO_FUNC_3_EP_IN_SW_BUF_SZ, true);
         break;
   #endif
     }
@@ -714,17 +727,17 @@ void audiod_init(void) {
     switch (i) {
   #if CFG_TUD_AUDIO_FUNC_1_EP_OUT_SW_BUF_SZ > 0
       case 0:
-        tu_fifo_config(&audio->ep_out_ff, ep_out_sw_buf.buf_1, CFG_TUD_AUDIO_FUNC_1_EP_OUT_SW_BUF_SZ, 1, true);
+        tu_fifo_config(&audio->ep_out_ff, ep_out_sw_buf.buf_1, CFG_TUD_AUDIO_FUNC_1_EP_OUT_SW_BUF_SZ, true);
         break;
   #endif
   #if CFG_TUD_AUDIO > 1 && CFG_TUD_AUDIO_FUNC_2_EP_OUT_SW_BUF_SZ > 0
       case 1:
-        tu_fifo_config(&audio->ep_out_ff, ep_out_sw_buf.buf_2, CFG_TUD_AUDIO_FUNC_2_EP_OUT_SW_BUF_SZ, 1, true);
+        tu_fifo_config(&audio->ep_out_ff, ep_out_sw_buf.buf_2, CFG_TUD_AUDIO_FUNC_2_EP_OUT_SW_BUF_SZ, true);
         break;
   #endif
   #if CFG_TUD_AUDIO > 2 && CFG_TUD_AUDIO_FUNC_3_EP_OUT_SW_BUF_SZ > 0
       case 2:
-        tu_fifo_config(&audio->ep_out_ff, ep_out_sw_buf.buf_3, CFG_TUD_AUDIO_FUNC_3_EP_OUT_SW_BUF_SZ, 1, true);
+        tu_fifo_config(&audio->ep_out_ff, ep_out_sw_buf.buf_3, CFG_TUD_AUDIO_FUNC_3_EP_OUT_SW_BUF_SZ, true);
         break;
   #endif
     }
@@ -798,20 +811,44 @@ uint16_t audiod_open(uint8_t rhport, tusb_desc_interface_t const *itf_desc, uint
   (void) max_len;
 
   TU_VERIFY(TUSB_CLASS_AUDIO == itf_desc->bInterfaceClass &&
-            AUDIO_SUBCLASS_CONTROL == itf_desc->bInterfaceSubClass);
+            AUDIO_SUBCLASS_CONTROL == itf_desc->bInterfaceSubClass, 0);
 
   // Verify version is correct - this check can be omitted
   TU_VERIFY(itf_desc->bInterfaceProtocol == AUDIO_INT_PROTOCOL_CODE_V1 ||
-            itf_desc->bInterfaceProtocol == AUDIO_INT_PROTOCOL_CODE_V2);
+            itf_desc->bInterfaceProtocol == AUDIO_INT_PROTOCOL_CODE_V2, 0);
+
+  // Verify 2nd interface descriptor is Audio Streaming to avoid mess with MIDI class
+  // Audio Control interface is followed by Audio Streaming interface(s)
+  // MIDI class also starts with Audio Control but is followed by MIDI Streaming
+  {
+    uint8_t const *p_desc = (uint8_t const *) itf_desc;
+    uint8_t const *p_desc_end = p_desc + max_len;
+
+    // Advance to next interface descriptor
+    p_desc = tu_desc_next(p_desc);
+    while (tu_desc_in_bounds(p_desc, p_desc_end) && tu_desc_type(p_desc) != TUSB_DESC_INTERFACE) {
+      p_desc = tu_desc_next(p_desc);
+    }
+
+    // Verify next interface is Audio Streaming (subclass 2), not MIDI Streaming (subclass 3)
+    if (p_desc_end - p_desc >= (int)sizeof(tusb_desc_interface_t)) {
+      tusb_desc_interface_t const *next_itf = (tusb_desc_interface_t const *) p_desc;
+      TU_VERIFY(next_itf->bInterfaceClass == TUSB_CLASS_AUDIO &&
+                next_itf->bInterfaceSubClass == AUDIO_SUBCLASS_STREAMING, 0);
+    } else {
+      // No further interface found or not enough bytes for interface descriptor
+      return 0;
+    }
+  }
 
   // Verify interrupt control EP is enabled if demanded by descriptor
-  TU_ASSERT(itf_desc->bNumEndpoints <= 1);// 0 or 1 EPs are allowed
+  TU_ASSERT(itf_desc->bNumEndpoints <= 1, 0);// 0 or 1 EPs are allowed
   if (itf_desc->bNumEndpoints == 1) {
-    TU_ASSERT(CFG_TUD_AUDIO_ENABLE_INTERRUPT_EP);
+    TU_ASSERT(CFG_TUD_AUDIO_ENABLE_INTERRUPT_EP, 0);
   }
 
   // Alternate setting MUST be zero - this check can be omitted
-  TU_VERIFY(itf_desc->bAlternateSetting == 0);
+  TU_VERIFY(itf_desc->bAlternateSetting == 0, 0);
 
   // Find available audio driver interface
   uint8_t i;
@@ -1270,20 +1307,20 @@ static bool audiod_control_complete(uint8_t rhport, tusb_control_request_t const
           if (tud_audio_n_version(func_id) == 2) {
             uint8_t ctrlSel = TU_U16_HIGH(p_request->wValue);
             if (_audiod_fct[func_id].bclock_id_tx == entityID && ctrlSel == AUDIO20_CS_CTRL_SAM_FREQ && p_request->bRequest == AUDIO20_CS_REQ_CUR) {
-              _audiod_fct[func_id].sample_rate_tx = tu_unaligned_read32(ctrl_buf);
+              _audiod_fct[func_id].sample_rate_tx = tu_unaligned_read32(get_ctrl_buffer());
               audiod_calc_tx_packet_sz(&_audiod_fct[func_id]);
             }
           }
 #endif
 
           // Invoke callback
-          return tud_audio_set_req_entity_cb(rhport, p_request, ctrl_buf);
+          return tud_audio_set_req_entity_cb(rhport, p_request, get_ctrl_buffer());
         } else {
           // Find index of audio driver structure and verify interface really exists
           TU_VERIFY(audiod_verify_itf_exists(itf, &func_id));
 
           // Invoke callback
-          return tud_audio_set_req_itf_cb(rhport, p_request, ctrl_buf);
+          return tud_audio_set_req_itf_cb(rhport, p_request, get_ctrl_buffer());
         }
       } break;
 
@@ -1298,7 +1335,7 @@ static bool audiod_control_complete(uint8_t rhport, tusb_control_request_t const
             if (_audiod_fct[func_id].ep_in == ep) {
               uint8_t ctrlSel = TU_U16_HIGH(p_request->wValue);
               if (ctrlSel == AUDIO10_EP_CTRL_SAMPLING_FREQ && p_request->bRequest == AUDIO10_CS_REQ_SET_CUR) {
-                _audiod_fct[func_id].sample_rate_tx = tu_unaligned_read32(ctrl_buf) & 0x00FFFFFF;
+                _audiod_fct[func_id].sample_rate_tx = tu_unaligned_read32(get_ctrl_buffer()) & 0x00FFFFFF;
                 audiod_calc_tx_packet_sz(&_audiod_fct[func_id]);
               }
             }
@@ -1306,7 +1343,7 @@ static bool audiod_control_complete(uint8_t rhport, tusb_control_request_t const
 #endif
 
           // Invoke callback
-          bool ret = tud_audio_set_req_ep_cb(rhport, p_request, ctrl_buf);
+          bool ret = tud_audio_set_req_ep_cb(rhport, p_request, get_ctrl_buffer());
 
 #if CFG_TUD_AUDIO_ENABLE_EP_OUT && CFG_TUD_AUDIO_ENABLE_FEEDBACK_EP
           if (ret && tud_audio_n_version(func_id) == 1) {
@@ -1403,7 +1440,7 @@ static bool audiod_control_request(uint8_t rhport, tusb_control_request_t const 
     }
 
     // If we end here, the received request is a set request - we schedule a receive for the data stage and return true here. We handle the rest later in audiod_control_complete() once the data stage was finished
-    TU_VERIFY(tud_control_xfer(rhport, p_request, ctrl_buf, sizeof(ctrl_buf)));
+    TU_VERIFY(tud_control_xfer(rhport, p_request, get_ctrl_buffer(), CFG_TUD_AUDIO_CTRL_BUF_SZ));
     return true;
   }
 
@@ -1669,11 +1706,8 @@ bool tud_audio_buffer_and_schedule_control_xfer(uint8_t rhport, tusb_control_req
       return false;
   }
 
-  // Crop length
-  if (len > sizeof(ctrl_buf)) len = sizeof(ctrl_buf);
-
   // Copy into buffer
-  TU_VERIFY(0 == tu_memcpy_s(ctrl_buf, sizeof(ctrl_buf), data, (size_t) len));
+  TU_VERIFY(0 == tu_memcpy_s(get_ctrl_buffer(), CFG_TUD_AUDIO_CTRL_BUF_SZ, data, (size_t) len));
 
 #if CFG_TUD_AUDIO_ENABLE_EP_IN && CFG_TUD_AUDIO_EP_IN_FLOW_CONTROL
   if (tud_audio_n_version(func_id) == 2) {
@@ -1682,7 +1716,7 @@ bool tud_audio_buffer_and_schedule_control_xfer(uint8_t rhport, tusb_control_req
       uint8_t entityID = TU_U16_HIGH(p_request->wIndex);
       uint8_t ctrlSel = TU_U16_HIGH(p_request->wValue);
       if (_audiod_fct[func_id].bclock_id_tx == entityID && ctrlSel == AUDIO20_CS_CTRL_SAM_FREQ && p_request->bRequest == AUDIO20_CS_REQ_CUR) {
-        _audiod_fct[func_id].sample_rate_tx = tu_unaligned_read32(ctrl_buf);
+        _audiod_fct[func_id].sample_rate_tx = tu_unaligned_read32(get_ctrl_buffer());
         audiod_calc_tx_packet_sz(&_audiod_fct[func_id]);
       }
     }
@@ -1690,7 +1724,7 @@ bool tud_audio_buffer_and_schedule_control_xfer(uint8_t rhport, tusb_control_req
 #endif
 
   // Schedule transmit
-  return tud_control_xfer(rhport, p_request, ctrl_buf, len);
+  return tud_control_xfer(rhport, p_request, get_ctrl_buffer(), len);
 }
 
 // Verify an entity with the given ID exists and returns also the corresponding driver index

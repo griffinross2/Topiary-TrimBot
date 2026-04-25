@@ -147,7 +147,7 @@ typedef struct TU_ATTR_PACKED {
 
 TU_VERIFY_STATIC(sizeof(musb_ep_csr_t) == 16, "size is not correct");
 
-typedef struct TU_ATTR_PACKED {
+typedef struct {
   //------------- Common -------------//
   __IO uint8_t  faddr;             // 0x00: FADDR
   union {
@@ -300,7 +300,7 @@ TU_VERIFY_STATIC(sizeof(musb_regs_t) == 0x350, "size is not correct");
 // Helper
 //--------------------------------------------------------------------+
 TU_ATTR_ALWAYS_INLINE static inline musb_ep_csr_t* get_ep_csr(musb_regs_t* musb_regs, unsigned epnum) {
-  musb_regs->index = epnum;
+  musb_regs->index = (uint8_t)epnum;
   return &musb_regs->indexed_csr;
 }
 

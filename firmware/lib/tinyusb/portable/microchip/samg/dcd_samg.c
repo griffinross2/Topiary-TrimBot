@@ -352,8 +352,8 @@ void dcd_edpt_clear_stall (uint8_t rhport, uint8_t ep_addr)
   csr_clear(epnum, UDP_CSR_FORCESTALL_Msk);
 
   // must also reset EP to clear data toggle
-  UDP->UDP_RST_EP |= (1 << epnum);
-  UDP->UDP_RST_EP &= ~(1 << epnum);
+  UDP->UDP_RST_EP |= (1u << epnum);
+  UDP->UDP_RST_EP &= ~(1u << epnum);
 }
 
 //--------------------------------------------------------------------+
@@ -437,7 +437,7 @@ void dcd_int_handler(uint8_t rhport)
           // write to EP fifo
 #if 0 // TODO support dcd_edpt_xfer_fifo
           if (xfer->ff) {
-            tu_fifo_read_n_access_mode(xfer->ff, (void *) &UDP->UDP_FDR[epnum], xact_len, TU_FIFO_FIXED_ADDR_RW32);
+            tu_fifo_read_n_access_mode(xfer->ff, (void *) &UDP->UDP_FDR[epnum], xact_len, true);
           }
           else
 #endif
@@ -471,7 +471,7 @@ void dcd_int_handler(uint8_t rhport)
         // Read from EP fifo
 #if 0 // TODO support dcd_edpt_xfer_fifo API
         if (xfer->ff) {
-          tu_fifo_write_n_access_mode(xfer->ff, (const void *) &UDP->UDP_FDR[epnum], xact_len, TU_FIFO_FIXED_ADDR_RW32);
+          tu_fifo_write_n_access_mode(xfer->ff, (const void *) &UDP->UDP_FDR[epnum], xact_len, true);
         }
         else
 #endif
