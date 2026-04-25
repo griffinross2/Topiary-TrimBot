@@ -50,59 +50,55 @@ Status scheduler_add_task(const char* task_name,
 }
 
 void scheduler_run() {
-    while (1) {
-        uint32_t current_tick = get_tick_ms();
+    uint32_t current_tick = get_tick_ms();
 
-        // Run tasks:
-        // Higher priority (lower number) tasks will always run before those
-        // that are lower priority. This means that the lower priority tasks
-        // will run only if the higher priority ones are blocked.
-        // Tasks of equal priority will not run in round-robin, but
-        // will have priority in the order that they were added.
+    // Run tasks:
+    // Higher priority (lower number) tasks will always run before those
+    // that are lower priority. This means that the lower priority tasks
+    // will run only if the higher priority ones are blocked.
+    // Tasks of equal priority will not run in round-robin, but
+    // will have priority in the order that they were added.
 
-        SchedulerTask* next_task = nullptr;
+    SchedulerTask* next_task = nullptr;
 
-        // Find the next task to run
-        for (uint32_t i = 0; i < s_task_count; i++) {
-            uint32_t next_run_tick =
-                s_tasks[i].last_run_tick + s_tasks[i].interval_ticks;
-            bool blocked = next_run_tick > current_tick;
+    // Find the next task to run
+    for (uint32_t i = 0; i < s_task_count; i++) {
+        uint32_t next_run_tick =
+            s_tasks[i].last_run_tick + s_tasks[i].interval_ticks;
+        bool blocked = next_run_tick > current_tick;
 
-            if (!blocked &&
-                (!next_task || s_tasks[i].priority < next_task->priority)) {
-                // If the task is ready and has higher priority, select it
-                next_task = &s_tasks[i];
-            }
-        }
-
-        // If no task was run, return
-        if (!next_task) {
-            // Track idle ticks
-            s_idle_start_tick = get_tick_ms();
-            s_idle = true;
-            continue;
-        }
-
-        // No longer idle
-        if (s_idle) {
-            // Track idle ticks
-            s_idle = false;
-            s_idle_ticks += (get_tick_ms() - s_idle_start_tick);
-        }
-
-        // Run the selected task
-        uint32_t task_start_tick = get_tick_ms();
-        if (next_task && next_task->task_func) {
-            next_task->task_func();
-            next_task->last_run_tick = current_tick;
-        }
-        uint32_t task_end_tick = get_tick_ms();
-
-        // Update the total ticks spent in this task
-        if (next_task) {
-            next_task->ticks_in_task += task_end_tick - task_start_tick;
+        if (!blocked &&
+            (!next_task || s_tasks[i].priority < next_task->priority)) {
+            // If the task is ready and has higher priority, select it
+            next_task = &s_tasks[i];
         }
     }
+
+    // If no task was run, return
+    if (!next_task) {
+        // Track idle ticks
+        s_idle_start_tick = get_tick_ms();
+        s_idle = true;
+        return;
+    }
+
+    // No longer idle
+    if (s_idle) {
+        // Track idle ticks
+        s_idle = false;
+        s_idle_ticks += (get_tick_ms() - s_idle_start_tick);
+    }
+
+    // Run the selected task
+    uint32_t task_start_tick = get_tick_ms();
+    if (next_task->task_func) {
+        next_task->last_run_tick = current_tick;
+        next_task->task_func();
+    }
+    uint32_t task_end_tick = get_tick_ms();
+
+    // Update the total ticks spent in this task
+    next_task->ticks_in_task += task_end_tick - task_start_tick;
 }
 
 void scheduler_print_summary() {

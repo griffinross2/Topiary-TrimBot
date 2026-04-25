@@ -6,6 +6,7 @@
 #include "gpio/gpio.h"
 #include "board.h"
 #include "profiler.h"
+#include "diskio.h"
 
 #include "string.h"
 
@@ -17,8 +18,17 @@ static FIL s_open_file;
 Status filesystem_init() {
     gpio_mode(PIN_SD_CD, GPIO_INPUT_PULLUP);
 
+    s_inited = false;
+
+    // Success if no card is detected
+    if (gpio_read(PIN_SD_CD) == GPIO_HIGH) {
+        return STATUS_OK;
+    }
+
+    // Error if mount failed
     if (f_mount(&s_fs, "/", 1) != FR_OK) {
         TRACE_PRINTF("Failed to mount SD card.\n");
+        return STATUS_ERROR;
     } else {
         TRACE_PRINTF("SD card mounted successfully.\n");
     }
@@ -119,23 +129,26 @@ void filesystem_task() {
     PROFILER_ENTER();
 
     GpioValue card_detect = gpio_read(PIN_SD_CD);
-    if (s_inited && card_detect == GPIO_HIGH) {
-        TRACE_PRINTF("SD card disconnected.\n");
-        f_unmount("/");
-        memset(&s_fs, 0, sizeof(s_fs));
+    if (card_detect == GPIO_HIGH) {
+        if (s_inited) {
+            TRACE_PRINTF("SD card disconnected.\n");
+            f_unmount("/");
+        }
         s_inited = false;
     } else if (!s_inited && card_detect == GPIO_LOW &&
                get_tick_ms() - s_last_init_try_tick > 500) {
-        if (sdmmc_init_card() != STATUS_OK) {
-            TRACE_PRINTF("Failed to reinitialize SD card.\n");
-            s_last_init_try_tick = get_tick_ms();
+        disk_deinitialize(0);
+        memset(&s_fs, 0, sizeof(s_fs));
 
-            PROFILER_EXIT();
-            return;
+        if (disk_initialize(0) == STA_NOINIT) {
+            TRACE_PRINTF("Failed to initialize SD card on reconnect.\n");
         }
+
         if (f_mount(&s_fs, "/", 1) == FR_OK) {
             TRACE_PRINTF("SD card reconnected.\n");
             s_inited = true;
+        } else {
+            TRACE_PRINTF("Failed to mount SD card on reconnect.\n");
         }
         s_last_init_try_tick = get_tick_ms();
     }
