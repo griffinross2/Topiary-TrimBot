@@ -42,6 +42,8 @@
 #ifdef __GNUC__
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wredundant-decls"
+#pragma GCC diagnostic ignored "-Wconversion"
+#pragma GCC diagnostic ignored "-Wsign-conversion"
 #endif
 
 #include "NUC505Series.h"
@@ -194,7 +196,7 @@ static void dcd_userEP_in_xfer(struct xfer_ctl_t *xfer, USBD_EP_T *ep)
   /* provided buffers are thankfully 32-bit aligned, allowing most data to be transferred as 32-bit */
 #if 0 // TODO support dcd_edpt_xfer_fifo API
   if (xfer->ff) {
-    tu_fifo_read_n_access_mode(xfer->ff, (void *) (&ep->EPDAT_BYTE), bytes_now, TU_FIFO_FIXED_ADDR_RW32);
+    tu_fifo_read_n_access_mode(xfer->ff, (void *) (&ep->EPDAT_BYTE), bytes_now, true);
   }
   else
 #endif
@@ -338,13 +340,13 @@ bool dcd_edpt_open(uint8_t rhport, tusb_desc_endpoint_t const * p_endpoint_desc)
 
   /* mine the data for the information we need */
   int const dir = tu_edpt_dir(p_endpoint_desc->bEndpointAddress);
-  int const size = tu_edpt_packet_size(p_endpoint_desc);
+  uint16_t const size = tu_edpt_packet_size(p_endpoint_desc);
   tusb_xfer_type_t const type = p_endpoint_desc->bmAttributes.xfer;
   struct xfer_ctl_t *xfer = &xfer_table[ep - USBD->EP];
 
   /* allocate buffer from USB RAM */
   ep->EPBUFSTART = bufseg_addr;
-  bufseg_addr += size;
+  bufseg_addr += (uint32_t)size;
   ep->EPBUFEND = bufseg_addr - 1;
   TU_ASSERT(bufseg_addr <= USBD_BUF_SIZE);
 
@@ -696,7 +698,7 @@ void dcd_int_handler(uint8_t rhport)
           /* copy the data from the PC to the previously provided buffer */
 #if 0 // TODO support dcd_edpt_xfer_fifo API
           if (xfer->ff) {
-            tu_fifo_write_n_access_mode(xfer->ff, (const void *) &ep->EPDAT_BYTE, tu_min16(available_bytes, xfer->total_bytes - xfer->out_bytes_so_far), TU_FIFO_FIXED_ADDR_RW32);
+            tu_fifo_write_n_access_mode(xfer->ff, (const void *) &ep->EPDAT_BYTE, tu_min16(available_bytes, xfer->total_bytes - xfer->out_bytes_so_far), true);
           }
           else
 #endif

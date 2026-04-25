@@ -32,12 +32,6 @@
 #define MUSB_DEBUG 2
 #define MUSB_REGS(rhport)   ((musb_regs_t*) MUSB_BASES[rhport])
 
-#if __GNUC__ > 8 && defined(__ARM_FEATURE_UNALIGNED)
-/* GCC warns that an address may be unaligned, even though
- * the target CPU has the capability for unaligned memory access. */
-_Pragma("GCC diagnostic ignored \"-Waddress-of-packed-member\"");
-#endif
-
 #include "musb_type.h"
 #include "device/dcd.h"
 
@@ -73,7 +67,10 @@ typedef struct TU_ATTR_PACKED
 
 typedef struct
 {
-  tusb_control_request_t setup_packet;
+  union {
+    tusb_control_request_t setup_packet;
+    uint32_t setup_buffer[2];
+  };
   uint16_t     remaining_ctrl; /* The number of bytes remaining in data stage of control transfer. */
   int8_t       status_out;
   pipe_state_t pipe0;
@@ -114,8 +111,8 @@ TU_ATTR_ALWAYS_INLINE static inline void hwfifo_reset(musb_regs_t* musb, unsigne
 TU_ATTR_ALWAYS_INLINE static inline bool hwfifo_config(musb_regs_t* musb, unsigned epnum, unsigned is_rx, unsigned mps,
                                                        bool double_packet) {
   (void) epnum;
-  uint8_t ffsize = hwfifo_byte2size(mps);
-  mps = 8 << ffsize; // round up to the next power of 2
+  uint8_t ffsize = hwfifo_byte2size((uint16_t)mps);
+  mps = 8u << ffsize; // round up to the next power of 2
 
   if (double_packet) {
     ffsize |= MUSB_FIFOSZ_DOUBLE_PACKET;
@@ -123,7 +120,7 @@ TU_ATTR_ALWAYS_INLINE static inline bool hwfifo_config(musb_regs_t* musb, unsign
   }
 
   TU_ASSERT(alloced_fifo_bytes + mps <= MUSB_CFG_DYNAMIC_FIFO_SIZE);
-  musb->fifo_addr[is_rx] = alloced_fifo_bytes / 8;
+  musb->fifo_addr[is_rx] = (uint16_t)(alloced_fifo_bytes / 8);
   musb->fifo_size[is_rx] = ffsize;
 
   alloced_fifo_bytes += mps;
@@ -160,86 +157,22 @@ TU_ATTR_ALWAYS_INLINE static inline bool hwfifo_config(musb_regs_t* musb, unsign
 // Flush FIFO and clear data toggle
 TU_ATTR_ALWAYS_INLINE static inline void hwfifo_flush(musb_regs_t* musb, unsigned epnum, unsigned is_rx, bool clear_dtog) {
   (void) epnum;
-  const uint8_t csrl_dtog = clear_dtog ? MUSB_CSRL_CLEAR_DATA_TOGGLE(is_rx) : 0;
+  const uint8_t csrl_dtog = clear_dtog ? (uint8_t)MUSB_CSRL_CLEAR_DATA_TOGGLE(is_rx) : 0;
   musb_ep_maxp_csr_t* maxp_csr = &musb->indexed_csr.maxp_csr[is_rx];
   // may need to flush twice for double packet
   for (unsigned i=0; i<2; i++) {
     if (maxp_csr->csrl & MUSB_CSRL_PACKET_READY(is_rx)) {
-      maxp_csr->csrl = MUSB_CSRL_FLUSH_FIFO(is_rx) | csrl_dtog;
+      maxp_csr->csrl = (uint8_t)(MUSB_CSRL_FLUSH_FIFO(is_rx) | csrl_dtog);
     }
   }
-}
-
-static void pipe_write_packet(void *buf, volatile void *fifo, unsigned len)
-{
-  volatile hw_fifo_t *reg = (volatile hw_fifo_t*)fifo;
-  uintptr_t addr = (uintptr_t)buf;
-  while (len >= 4) {
-    reg->u32 = *(uint32_t const *)addr;
-    addr += 4;
-    len  -= 4;
-  }
-  if (len >= 2) {
-    reg->u16 = *(uint16_t const *)addr;
-    addr += 2;
-    len  -= 2;
-  }
-  if (len) {
-    reg->u8 = *(uint8_t const *)addr;
-  }
-}
-
-static void pipe_read_packet(void *buf, volatile void *fifo, unsigned len)
-{
-  volatile hw_fifo_t *reg = (volatile hw_fifo_t*)fifo;
-  uintptr_t addr = (uintptr_t)buf;
-  while (len >= 4) {
-    *(uint32_t *)addr = reg->u32;
-    addr += 4;
-    len  -= 4;
-  }
-  if (len >= 2) {
-    *(uint16_t *)addr = reg->u16;
-    addr += 2;
-    len  -= 2;
-  }
-  if (len) {
-    *(uint8_t *)addr = reg->u8;
-  }
-}
-
-static void pipe_read_write_packet_ff(tu_fifo_t *f, volatile void *fifo, unsigned len, unsigned dir)
-{
-  static const struct {
-    void (*tu_fifo_get_info)(tu_fifo_t *f, tu_fifo_buffer_info_t *info);
-    void (*tu_fifo_advance)(tu_fifo_t *f, uint16_t n);
-    void (*pipe_read_write)(void *buf, volatile void *fifo, unsigned len);
-  } ops[] = {
-    /* OUT */ {tu_fifo_get_write_info,tu_fifo_advance_write_pointer,pipe_read_packet},
-    /* IN  */ {tu_fifo_get_read_info, tu_fifo_advance_read_pointer, pipe_write_packet},
-  };
-  tu_fifo_buffer_info_t info;
-  ops[dir].tu_fifo_get_info(f, &info);
-  unsigned total_len = len;
-  len = TU_MIN(total_len, info.linear.len);
-  ops[dir].pipe_read_write(info.linear.ptr, fifo, len);
-  unsigned rem = total_len - len;
-  if (rem) {
-    len = TU_MIN(rem, info.wrapped.len);
-    ops[dir].pipe_read_write(info.wrapped.ptr, fifo, len);
-    rem -= len;
-  }
-  ops[dir].tu_fifo_advance(f, total_len - rem);
 }
 
 static void process_setup_packet(uint8_t rhport) {
   musb_regs_t* musb_regs = MUSB_REGS(rhport);
 
   // Read setup packet
-  uint32_t *p = (void*)&_dcd.setup_packet;
-  volatile uint32_t *fifo_ptr = &musb_regs->fifo[0];
-  p[0] = *fifo_ptr;
-  p[1] = *fifo_ptr;
+  _dcd.setup_buffer[0] = musb_regs->fifo[0];
+  _dcd.setup_buffer[1] = musb_regs->fifo[0];
 
   _dcd.pipe0.buf       = NULL;
   _dcd.pipe0.length    = 0;
@@ -247,7 +180,7 @@ static void process_setup_packet(uint8_t rhport) {
   dcd_event_setup_received(rhport, (const uint8_t*)(uintptr_t)&_dcd.setup_packet, true);
 
   const unsigned len    = _dcd.setup_packet.wLength;
-  _dcd.remaining_ctrl   = len;
+  _dcd.remaining_ctrl   = (uint16_t)len;
   const unsigned dir_in = tu_edpt_dir(_dcd.setup_packet.bmRequestType);
   /* Clear RX FIFO and reverse the transaction direction */
   if (len && dir_in) {
@@ -256,14 +189,13 @@ static void process_setup_packet(uint8_t rhport) {
   }
 }
 
-static bool handle_xfer_in(uint8_t rhport, uint_fast8_t ep_addr)
-{
+static bool handle_xfer_in(uint8_t rhport, uint_fast8_t ep_addr) {
   unsigned epnum = tu_edpt_number(ep_addr);
   unsigned epnum_minus1 = epnum - 1;
   pipe_state_t  *pipe = &_dcd.pipe[tu_edpt_dir(ep_addr)][epnum_minus1];
   const unsigned rem  = pipe->remaining;
 
-  if (!rem) {
+  if (rem == 0 && pipe->length > 0) {
     pipe->buf = NULL;
     return true;
   }
@@ -277,10 +209,10 @@ static bool handle_xfer_in(uint8_t rhport, uint_fast8_t ep_addr)
   // TU_LOG1("   %p mps %d len %d rem %d\r\n", buf, mps, len, rem);
   if (len) {
     if (_dcd.pipe_buf_is_fifo[TUSB_DIR_IN] & TU_BIT(epnum_minus1)) {
-      pipe_read_write_packet_ff(buf, fifo_ptr, len, TUSB_DIR_IN);
+      tu_hwfifo_write_from_fifo(fifo_ptr, (tu_fifo_t *)buf, len, NULL);
     } else {
-      pipe_write_packet(buf, fifo_ptr, len);
-      pipe->buf       = buf + len;
+      tu_hwfifo_write(fifo_ptr, buf, len, NULL);
+      pipe->buf       = (uint8_t*)buf + len;
     }
     pipe->remaining = rem - len;
   }
@@ -298,28 +230,35 @@ static bool handle_xfer_out(uint8_t rhport, uint_fast8_t ep_addr)
   musb_ep_csr_t* ep_csr = get_ep_csr(musb_regs, epnum);
   // TU_LOG1(" RXCSRL%d = %x\r\n", epnum_minus1 + 1, ep_csr->rx_csrl);
 
-  TU_ASSERT(ep_csr->rx_csrl & MUSB_RXCSRL1_RXRDY);
+  //Fail gracefully. Spurious interrupt.
+  if (!(ep_csr->rx_csrl & MUSB_RXCSRL1_RXRDY)) return false;
+
+  void *buf = pipe->buf;
+  if (buf == NULL) {
+    ep_csr->rx_csrl = MUSB_RXCSRL1_FLUSH;
+    return false;
+  }
 
   const unsigned mps = ep_csr->rx_maxp;
   const unsigned rem = pipe->remaining;
   const unsigned vld = ep_csr->rx_count;
   const unsigned len = TU_MIN(TU_MIN(rem, mps), vld);
-  void          *buf = pipe->buf;
   volatile void *fifo_ptr = &musb_regs->fifo[epnum];
   if (len) {
     if (_dcd.pipe_buf_is_fifo[TUSB_DIR_OUT] & TU_BIT(epnum_minus1)) {
-      pipe_read_write_packet_ff(buf, fifo_ptr, len, TUSB_DIR_OUT);
+      tu_hwfifo_read_to_fifo(fifo_ptr, (tu_fifo_t *)buf, len, NULL);
     } else {
-      pipe_read_packet(buf, fifo_ptr, len);
-      pipe->buf       = buf + len;
+      tu_hwfifo_read(fifo_ptr, buf, len, NULL);
+      pipe->buf       = (uint8_t*)buf + len;
     }
     pipe->remaining = rem - len;
   }
+
+  ep_csr->rx_csrl = 0; /* Always Clear RXRDY bit */
   if ((len < mps) || (rem == len)) {
     pipe->buf = NULL;
     return NULL != buf;
   }
-  ep_csr->rx_csrl = 0; /* Clear RXRDY bit */
   return false;
 }
 
@@ -378,7 +317,7 @@ static bool edpt0_xfer(uint8_t rhport, uint8_t ep_addr, uint8_t *buffer, uint16_
     const unsigned len = TU_MIN(TU_MIN(rem, 64), total_bytes);
     volatile void *fifo_ptr = &musb_regs->fifo[0];
     if (dir_in) {
-      pipe_write_packet(buffer, fifo_ptr, len);
+      tu_hwfifo_write(fifo_ptr, buffer, len, NULL);
 
       _dcd.pipe0.buf       = buffer + len;
       _dcd.pipe0.length    = len;
@@ -458,7 +397,7 @@ static void process_ep0(uint8_t rhport)
       const unsigned rem = _dcd.pipe0.remaining;
       const unsigned len = TU_MIN(TU_MIN(rem, 64), vld);
       volatile void *fifo_ptr = &musb_regs->fifo[0];
-      pipe_read_packet(_dcd.pipe0.buf, fifo_ptr, len);
+      tu_hwfifo_read(fifo_ptr, _dcd.pipe0.buf, len, NULL);
 
       _dcd.pipe0.remaining = rem - len;
       _dcd.remaining_ctrl -= len;
@@ -509,14 +448,14 @@ static void process_edpt_n(uint8_t rhport, uint_fast8_t ep_addr)
   if (dir_in) {
     // TU_LOG1(" TX CSRL%d = %x\r\n", epn, ep_csr->tx_csrl);
     if (ep_csr->tx_csrl & MUSB_TXCSRL1_STALLED) {
-      ep_csr->tx_csrl &= ~(MUSB_TXCSRL1_STALLED | MUSB_TXCSRL1_UNDRN);
+      ep_csr->tx_csrl = (uint8_t)(ep_csr->tx_csrl & ~(MUSB_TXCSRL1_STALLED | MUSB_TXCSRL1_UNDRN));
       return;
     }
     completed = handle_xfer_in(rhport, ep_addr);
   } else {
     // TU_LOG1(" RX CSRL%d = %x\r\n", epn, ep_csr->rx_csrl);
     if (ep_csr->rx_csrl & MUSB_RXCSRL1_STALLED) {
-      ep_csr->rx_csrl &= ~(MUSB_RXCSRL1_STALLED | MUSB_RXCSRL1_OVER);
+      ep_csr->rx_csrl = (uint8_t)(ep_csr->rx_csrl & ~(MUSB_RXCSRL1_STALLED | MUSB_RXCSRL1_OVER));
       return;
     }
     completed = handle_xfer_out(rhport, ep_addr);
@@ -562,7 +501,7 @@ static void process_bus_reset(uint8_t rhport) {
  *------------------------------------------------------------------*/
 
 #if CFG_TUSB_DEBUG >= MUSB_DEBUG
-void print_musb_info(musb_regs_t* musb_regs) {
+static void print_musb_info(musb_regs_t* musb_regs) {
   // print version, epinfo, raminfo, config_data0, fifo_size
   TU_LOG1("musb version = %u.%u\r\n", musb_regs->hwvers_bit.major, musb_regs->hwvers_bit.minor);
   TU_LOG1("Number of endpoints: %u TX, %u RX\r\n", musb_regs->epinfo_bit.tx_ep_num, musb_regs->epinfo_bit.rx_ep_num);
@@ -846,7 +785,7 @@ void dcd_edpt_clear_stall(uint8_t rhport, uint8_t ep_addr)
   musb_ep_csr_t* ep_csr = get_ep_csr(musb_regs, epn);
   const uint8_t is_rx = 1 - tu_edpt_dir(ep_addr);
 
-  ep_csr->maxp_csr[is_rx].csrl = MUSB_CSRL_CLEAR_DATA_TOGGLE(is_rx);
+  ep_csr->maxp_csr[is_rx].csrl = (uint8_t)MUSB_CSRL_CLEAR_DATA_TOGGLE(is_rx);
 
   if (ie) musb_dcd_int_enable(rhport);
 }
@@ -862,8 +801,8 @@ void dcd_int_handler(uint8_t rhport) {
   musb_dcd_int_handler_enter(rhport);
 
   uint_fast8_t intr_usb = musb_regs->intr_usb; // a read will clear this interrupt status
-  uint_fast8_t intr_tx = musb_regs->intr_tx; // a read will clear this interrupt status
-  uint_fast8_t intr_rx = musb_regs->intr_rx; // a read will clear this interrupt status
+  uint_fast16_t intr_tx = musb_regs->intr_tx; // a read will clear this interrupt status
+  uint_fast16_t intr_rx = musb_regs->intr_rx; // a read will clear this interrupt status
   // TU_LOG1("D%2x T%2x R%2x\r\n", is, txis, rxis);
 
   intr_usb &= musb_regs->intr_usben; /* Clear disabled interrupts */
