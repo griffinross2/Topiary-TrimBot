@@ -43,7 +43,8 @@ int main(void) {
     return 0;
 }
 
-static char s_terminal_buf[64];
+static char s_manual_gcode_buf[64];
+static size_t s_manual_gcode_buf_len = 0;
 static uint32_t s_profiler_tick = 0;
 static uint32_t s_blinky_tick = 0;
 static uint32_t s_queue_check_tick = 0;
@@ -64,11 +65,17 @@ void main_loop() {
 
     // Process manual g-code input
     int bytes_read =
-        terminal_read((uint8_t*)s_terminal_buf, sizeof(s_terminal_buf) - 1);
+        terminal_read((uint8_t*)(s_manual_gcode_buf + s_manual_gcode_buf_len),
+                      sizeof(s_manual_gcode_buf) - 1 - s_manual_gcode_buf_len);
     if (bytes_read > 0) {
-        s_terminal_buf[bytes_read] = '\0';
-        printf("%s", s_terminal_buf);
-        gcode.process_subcommands_now(s_terminal_buf);
+        if (s_manual_gcode_buf[s_manual_gcode_buf_len + bytes_read - 1] ==
+            '\n') {
+            s_manual_gcode_buf[s_manual_gcode_buf_len + bytes_read] = '\0';
+            queue.enqueue_one(s_manual_gcode_buf);
+            s_manual_gcode_buf_len = 0;
+        } else {
+            s_manual_gcode_buf_len += bytes_read;
+        }
     }
 
     // Receive g-code from the Pi

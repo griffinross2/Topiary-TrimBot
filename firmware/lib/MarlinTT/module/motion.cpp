@@ -841,11 +841,15 @@ bool position_is_reachable(const float x, const float y, const float z,
                            const float theta_cutter) {
     const float theta_cutter_rad = RADIANS(theta_cutter);
     const float theta_turntable_rad = atan2f(x, -1 * y);
-    const float MIN_Z = std::max(DIST_TT_GANTRY_BOTTOM_TO_SHAFT + TZ, DIST_TT_GANTRY_BOTTOM_TO_SHAFT + TY * cosf(theta_cutter_rad) + TZ * sinf(theta_cutter_rad));    // mm
-    constexpr float MAX_Z = 800;  // mm
-    const float MIN_R =
-        D - Y_MAX_POS - TY * sinf(theta_cutter_rad) - TZ * cosf(theta_cutter_rad);
-    const float MAX_R = D - TY * sinf(theta_cutter_rad) - TZ * cosf(theta_cutter_rad);
+    const float MIN_Z =
+        std::max(DIST_TT_GANTRY_BOTTOM_TO_SHAFT + TZ,
+                 DIST_TT_GANTRY_BOTTOM_TO_SHAFT + TY * cosf(theta_cutter_rad) -
+                     TZ * sinf(theta_cutter_rad));  // mm
+    constexpr float MAX_Z = 800;                    // mm
+    const float MIN_R = D - Y_MAX_POS - TY * sinf(theta_cutter_rad) -
+                        TZ * cosf(theta_cutter_rad);
+    const float MAX_R =
+        D - TY * sinf(theta_cutter_rad) - TZ * cosf(theta_cutter_rad);
     float min_x = 0, max_x = 0;
     float min_y = 0, max_y = 0;
     float temp = 0;
@@ -868,9 +872,11 @@ bool position_is_reachable(const float x, const float y, const float z,
         max_y = temp;
     }
 
-    // printf("x: %f, y: %f, z: %f, theta_cutter: %f, theta_turntable: %f\n", x, y,
+    // printf("x: %f, y: %f, z: %f, theta_cutter: %f, theta_turntable: %f\n", x,
+    // y,
     //        z, theta_cutter, DEGREES(theta_turntable_rad));
-    // printf("min_x: %f, max_x: %f, min_y: %f, max_y: %f, min_z: %f, max_z: %f\n",
+    // printf("min_x: %f, max_x: %f, min_y: %f, max_y: %f, min_z: %f, max_z:
+    // %f\n",
     //        min_x, max_x, min_y, max_y, MIN_Z, MAX_Z);
 
     if (x < min_x - fslop || x > max_x + fslop || y < min_y - fslop ||

@@ -1139,13 +1139,15 @@
     477.5  // (mm) Distance from center of turn table to gantry base
 #define DIST_REV_Y \
     158  // (mm) Horizontal Distance from center of A axis rotation to trimmer
-           // tip
+         // tip
 #define DIST_REV_Z \
-    41.5  // (mm) Vertical Distance from center of A axis rotation to trimmer tip
+    41  // (mm) Vertical Distance from center of A axis rotation to trimmer
+        // tip
 #define DIST_TT_GANTRY \
-    825  // (mm) Distance from turntable to top of gantry z = 0
+    854  // (mm) Vertical Distance from turntable to center of wrist shaft
+         // at homing pos
 #define DIST_TT_GANTRY_BOTTOM_TO_SHAFT \
-    12.7 // (mm) Distance from bottom of gantry to center of wrist shaft
+    12.7  // (mm) Distance from bottom of gantry to center of wrist shaft
 
 //
 // MarkForged Kinematics
