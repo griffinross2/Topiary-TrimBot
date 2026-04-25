@@ -1,4 +1,4 @@
-from toolpath.test_gcode_quarter import do_toolpath
+from toolpath.gcode import do_toolpath
 from file_receiver import file_receiver_get_model_file_name
 from packet import *
 from usb import USBDev

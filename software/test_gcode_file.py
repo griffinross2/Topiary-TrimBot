@@ -39,9 +39,8 @@ def main():
 
     print("Init Complete")
 
-    gcode_file = open("out.gcode")
+    gcode_file = open("gcode/out.gcode")
     reading = True
-    line_count = 0
 
     while(True):
         packet_engine_task(usb_dev)
@@ -50,9 +49,6 @@ def main():
 
         if reading:
             line = gcode_file.readline()
-            line_count += 1
-            if (line_count % 10) == 0:
-                print(f"On line {line_count}")
             if line != "":
                 gcode_sender_send_gcode(line)
             else:
