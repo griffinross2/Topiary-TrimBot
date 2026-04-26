@@ -72,7 +72,7 @@ def init_cameras():
         left_cam.read()
         right_cam.read()
 
-def save_image(angle):
+def save_image(angle, fname_left=None, fname_right=None):
     global left_cam
     global right_cam
 
@@ -85,8 +85,12 @@ def save_image(angle):
         # cv2.imshow("right_frame", right_frame)
         left_frame = cv2.rotate(left_frame, cv2.ROTATE_180)
         right_frame = cv2.rotate(right_frame, cv2.ROTATE_180)
-        cv2.imwrite(f"images/left_{angle:d}.jpg", left_frame)
-        cv2.imwrite(f"images/right_{angle:d}.jpg", right_frame)
+        if fname_left and fname_right:
+            cv2.imwrite(fname_left, left_frame)
+            cv2.imwrite(fname_right, right_frame)
+        else:
+            cv2.imwrite(f"images/left_{angle:d}.jpg", left_frame)
+            cv2.imwrite(f"images/right_{angle:d}.jpg", right_frame)
 
 def deinit_cameras():
     global left_cam

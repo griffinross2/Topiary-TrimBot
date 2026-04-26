@@ -10,10 +10,13 @@
 #include "gcode_receiver.h"
 #include "door_stop.h"
 #include "pi_control.h"
+#include "scheduler.h"
 
 #include <stdio.h>
 
-void main_loop();
+static void main_loop();
+static void process_manual_gcode();
+static void led_blink();
 
 int main(void) {
     HAL_Init();
@@ -38,30 +41,26 @@ int main(void) {
     gcode.home_all_axes();
     queue.enqueue_one("G1 Z800");  // Move Z down
 
+    // Setup the tasks
+    scheduler_init();
+
+    scheduler_add_task("door_stop", door_stop_task, 10, 0);
+    scheduler_add_task("gcode_receiver", gcode_receiver_task, 100, 1);
+    scheduler_add_task("pi_control", pi_control_task, 50, 2);
+    scheduler_add_task("led_blink", led_blink, 1000, 3);
+
     marlin_wrapper_loop();
 
     return 0;
 }
 
-static char s_manual_gcode_buf[64];
-static size_t s_manual_gcode_buf_len = 0;
-static uint32_t s_profiler_tick = 0;
-static uint32_t s_blinky_tick = 0;
-static uint32_t s_queue_check_tick = 0;
-static uint32_t s_gcode_receive_tick = 0;
+static void main_loop() {
+    scheduler_run();
+}
 
-void main_loop() {
-    // Blink blue LED for status
-    if (get_tick_ms() - s_blinky_tick >= 1000) {
-        gpio_toggle(PIN_BLU);
-        s_blinky_tick = get_tick_ms();
-    }
-
-    // Print profiler summary every 10 seconds
-    if (get_tick_ms() - s_profiler_tick >= 10000) {
-        // profiler_print_summary();
-        s_profiler_tick = get_tick_ms();
-    }
+static void process_manual_gcode() {
+    static char s_manual_gcode_buf[64];
+    static size_t s_manual_gcode_buf_len = 0;
 
     // Process manual g-code input
     int bytes_read =
@@ -77,26 +76,10 @@ void main_loop() {
             s_manual_gcode_buf_len += bytes_read;
         }
     }
+}
 
-    // Receive g-code from the Pi
-    if (get_tick_ms() - s_gcode_receive_tick >= 100) {
-        gcode_receiver_task();
-        s_gcode_receive_tick = get_tick_ms();
-    }
-
-    // Update the status for the Pi
-    pi_control_task();
-
-    // Check door status
-    door_stop_task();
-
-    if (get_tick_ms() - s_queue_check_tick >= 1000) {
-        printf("Queue length: %u\n", queue.ring_buffer.length);
-        printf("Currently executing? %s\n", planner.busy() ? "Yes" : "No");
-        s_queue_check_tick = get_tick_ms();
-    }
-
-    // HAL_Delay(20);
+static void led_blink() {
+    gpio_toggle(PIN_BLU);
 }
 
 extern "C" {
