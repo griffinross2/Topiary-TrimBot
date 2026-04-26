@@ -35,11 +35,13 @@ def main():
         print(f"Failed to connect: {e}")
         raise e
     
+    camera.init_cameras()
+
     print("Init Complete")
 
     time.sleep(1*60)
     id = packet.PACKET_TYPE_GCODE
-    packet.packet_send(usb_dev, id, "G1 Y-220 Z500 A135")
+    packet.packet_send(usb_dev, bytes("G1 Y-220 Z500 A135", 'utf-8'), id)
     time.sleep(5)
 
     i = 0
