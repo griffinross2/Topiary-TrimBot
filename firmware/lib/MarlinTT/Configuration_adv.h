@@ -1047,7 +1047,7 @@
 // #define SENSORLESS_BACKOFF_MM  { 2, 2, 0 }  // (linear=mm, rotational=°)
 // Backoff from endstops before sensorless homing
 
-#define HOMING_BUMP_MM {0, 25, 10, 10, 10}
+#define HOMING_BUMP_MM {0, 20, 10, 10, 10}
 // (linear=mm, rotational=°) Backoff from endstops after first bump
 #define HOMING_BUMP_DIVISOR \
     {5, 2, 5, 2, 5}  // Re-Bump Speed Divisor (Divides the Homing Feedrate)

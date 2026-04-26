@@ -31,6 +31,7 @@
 #include "../gcode/gcode.h"
 #include "../MarlinConfig.h"
 #include "status.h"
+#include "timing.h"
 
 #if IS_SCARA
 #include "../libs/buzzer.h"
@@ -177,7 +178,7 @@ constexpr float delta_max_radius = PRINTABLE_RADIUS,
 #elif ENABLED(POLAR)
 constexpr float delta_max_radius = PRINTABLE_RADIUS,
                 delta_max_radius_2 = sq(float(PRINTABLE_RADIUS));
-#else  // DELTA
+#elif ENABLED(DELTA)
 constexpr float delta_max_radius = PRINTABLE_RADIUS,
                 delta_max_radius_2 = sq(float(PRINTABLE_RADIUS));
 #endif
@@ -196,7 +197,7 @@ xyz_pos_t home_offset{0};
 
 #if HAS_WORKSPACE_OFFSET
 // The above two are combined to save on computes
-xyz_pos_t workspace_offset{0};
+xyz_pos_t workspace_offset{0, 0, 0, 0, 0};
 #endif
 
 #if ABL_USES_GRID
@@ -832,7 +833,59 @@ bool position_is_reachable(const float rx, const float ry,
     can_reach = HYPOT(rx, ry) <= PRINTABLE_RADIUS;
 #endif
 
+    can_reach = true;
     return can_reach;
+}
+
+bool position_is_reachable(const float x, const float y, const float z,
+                           const float theta_cutter) {
+    const float theta_cutter_rad = RADIANS(theta_cutter);
+    const float theta_turntable_rad = atan2f(x, -1 * y);
+    const float MIN_Z =
+        std::max(DIST_TT_GANTRY_BOTTOM_TO_SHAFT + TZ,
+                 DIST_TT_GANTRY_BOTTOM_TO_SHAFT + TY * cosf(theta_cutter_rad) -
+                     TZ * sinf(theta_cutter_rad));  // mm
+    constexpr float MAX_Z = 800;                    // mm
+    const float MIN_R = D - Y_MAX_POS - TY * sinf(theta_cutter_rad) -
+                        TZ * cosf(theta_cutter_rad);
+    const float MAX_R =
+        D - TY * sinf(theta_cutter_rad) - TZ * cosf(theta_cutter_rad);
+    float min_x = 0, max_x = 0;
+    float min_y = 0, max_y = 0;
+    float temp = 0;
+
+    // Initial setting for minimums
+    max_y = -1 * MAX_R * cosf(theta_turntable_rad);
+    max_x = MAX_R * sinf(theta_turntable_rad);
+    min_y = -1 * MIN_R * cosf(theta_turntable_rad);
+    min_x = MIN_R * sinf(theta_turntable_rad);
+
+    if (min_x > max_x) {
+        temp = min_x;
+        min_x = max_x;
+        max_x = temp;
+    }
+
+    if (min_y > max_y) {
+        temp = min_y;
+        min_y = max_y;
+        max_y = temp;
+    }
+
+    // printf("x: %f, y: %f, z: %f, theta_cutter: %f, theta_turntable: %f\n", x,
+    // y,
+    //        z, theta_cutter, DEGREES(theta_turntable_rad));
+    // printf("min_x: %f, max_x: %f, min_y: %f, max_y: %f, min_z: %f, max_z:
+    // %f\n",
+    //        min_x, max_x, min_y, max_y, MIN_Z, MAX_Z);
+
+    if (x < min_x - fslop || x > max_x + fslop || y < min_y - fslop ||
+        y > max_y + fslop || z < MIN_Z - fslop || z > MAX_Z + fslop) {
+        printf("Position is out of bounds.\n");
+        return false;
+    }
+
+    return true;
 }
 
 #else  // CARTESIAN
@@ -927,6 +980,11 @@ void get_cartesian_from_steppers() {
     forward_kinematics(planner.get_axis_position_mm(X_AXIS),
                        planner.get_axis_position_degrees(B_AXIS));
     cartes.z = planner.get_axis_position_mm(Z_AXIS);
+#elif ENABLED(TRIMBOT)
+    forward_kinematics(planner.get_axis_position_mm(B_AXIS),
+                       planner.get_axis_position_mm(Y_AXIS),
+                       planner.get_axis_position_mm(Z_AXIS),
+                       planner.get_axis_position_mm(A_AXIS));
 #else
     NUM_AXIS_CODE(cartes.x = planner.get_axis_position_mm(X_AXIS),
                   cartes.y = planner.get_axis_position_mm(Y_AXIS),
@@ -989,8 +1047,8 @@ void unscaled_e_move(const float length, const feedRate_t fr_mm_s) {
  */
 void prepare_fast_move_to_destination(
     const feedRate_t scaled_fr_mm_s /*=MMS_SCALED(feedrate_mm_s)*/) {
-    if (DEBUGGING(LEVELING))
-        DEBUG_POS("prepare_fast_move_to_destination", destination);
+    // if (DEBUGGING(LEVELING))
+    //     DEBUG_POS("prepare_fast_move_to_destination", destination);
 
     // SERIAL_ECHOLNPGM("Prepare fast move to destination: ", destination.x ,
     // ",", destination.y,  ",", destination.z, "," , destination.e);
@@ -1075,7 +1133,7 @@ void do_blocking_move_to(NUM_AXIS_ARGS_(const float)
 #if IS_KINEMATIC && DISABLED(POLARGRAPH)
     // kinematic machines are expected to home to a point 1.5x their range?
     // never reachable.
-    if (!position_is_reachable(x, y))
+    if (!position_is_reachable(x, y, z, i))
         return;
     destination = current_position;  // sync destination at the start
 #endif
@@ -1775,6 +1833,14 @@ inline bool line_to_destination_kinematic() {
 
     const xyze_float_t diff = destination - current_position;
 
+    // printf("destination: %f, %f, %f, %f, %f\n", destination.x, destination.y,
+    //        destination.z, destination.i, destination.j);
+    // printf("current_position: %f, %f, %f, %f, %f\n", current_position.x,
+    //        current_position.y, current_position.z, current_position.i,
+    //        current_position.j);
+    // printf("diff: %f, %f, %f, %f, %f\n", diff.x, diff.y, diff.z, diff.i,
+    //        diff.j);
+
     // SERIAL_ECHOLNPGM("Destination: ", destination.x, " , ", destination.y, "
     // , ", destination.z, " , ", destination.e); SERIAL_ECHOLNPGM("Current pos:
     // ", current_position.x, " , ", current_position.y, " , ",
@@ -1853,9 +1919,10 @@ inline bool line_to_destination_kinematic() {
 
     // Get the current position as starting point
     xyze_pos_t raw = current_position;
+    // printf("raw: %f, %f, %f, %f, %f\n", raw.x, raw.y, raw.z, raw.i, raw.j);
 
     // Calculate and execute the segments
-    millis_t next_idle_ms = millis() + 200UL;
+    millis_t next_idle_ms = get_tick_ms() + 200UL;
     while (--segments) {
         segment_idle(next_idle_ms);
         raw += segment_distance;
@@ -2152,7 +2219,11 @@ inline bool dual_x_carriage_unpark() {
  * Before exit, current_position is set to destination.
  */
 void prepare_line_to_destination() {
+    // printf("dest before limits: %f, %f, %f, %f, %f\n", destination.x,
+    //        destination.y, destination.z, destination.i, destination.j);
     apply_motion_limits(destination);
+    // printf("dest after limits: %f, %f, %f, %f, %f\n", destination.x,
+    //        destination.y, destination.z, destination.i, destination.j);
 
     // SERIAL_ECHOLNPGM(">TPARA Prepare line to destination: ", destination.x ,
     // " , ", destination.y,  " , ", destination.z, " , " , destination.e);
@@ -2246,6 +2317,7 @@ bool homing_needed_error(main_axes_bits_t axis_bits /*=main_axes_mask*/) {
     uint8_t n = 0;
     LOOP_NUM_AXES(i) if (TEST(axis_bits, i)) need[n++] = all_axes[i];
     need[n] = '\0';
+    TRACE_PRINTF("Home %s first\n", need);
 
     // SString<30> msg;
     // msg.setf(GET_EN_TEXT_F(MSG_HOME_FIRST), need);

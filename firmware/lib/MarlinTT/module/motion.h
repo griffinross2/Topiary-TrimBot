@@ -40,6 +40,8 @@
 #include "scara.h"
 #elif ENABLED(POLAR)
 #include "polar.h"
+#elif ENABLED(TRIMBOT)
+#include "trimbot.h"
 #endif
 
 // Error margin to work around float imprecision
@@ -657,9 +659,17 @@ extern abc_pos_t scara_home_offset;  // A and B angular offsets, Z mm offset
 bool position_is_reachable(const float rx, const float ry,
                            const float inset = 0.0f);
 
+bool position_is_reachable(const float x, const float y, const float z,
+                           const float theta_cutter);
+
 inline bool position_is_reachable(const xy_pos_t& pos,
                                   const float inset = 0.0f) {
     return position_is_reachable(pos.x, pos.y, inset);
+}
+
+inline bool position_is_reachable(const xyze_pos_t& pos,
+                                  const float inset = 0.0f) {
+    return position_is_reachable(pos.x, pos.y, pos.z, pos.i);
 }
 
 #else

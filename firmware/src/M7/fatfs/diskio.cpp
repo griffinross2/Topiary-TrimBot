@@ -127,7 +127,17 @@ DSTATUS disk_status(BYTE drv /* Physical drive number (0) */
 }
 
 /*-----------------------------------------------------------------------*/
-/* Inidialize a Drive                                                    */
+/* Deinitialize a Drive                                                  */
+/*-----------------------------------------------------------------------*/
+
+void disk_deinitialize(BYTE drv) {
+    if (drv == 0) {
+        Stat[drv] = STA_NOINIT;
+    }
+}
+
+/*-----------------------------------------------------------------------*/
+/* Initialize a Drive                                                    */
 /*-----------------------------------------------------------------------*/
 
 DSTATUS disk_initialize(BYTE drv /* Physical drive number (0) */
@@ -138,7 +148,8 @@ DSTATUS disk_initialize(BYTE drv /* Physical drive number (0) */
             if (Stat[0] & STA_NODISK)
                 return Stat[0]; /* Is card existing in the soket? */
 
-            if (sdmmc_init(s_sd_clk) != STATUS_OK) {
+            Status ret = sdmmc_init(s_sd_clk);
+            if (ret != STATUS_OK) {
                 TRACE_PRINTF("Failed to initialize SDMMC hardware\n");
                 Stat[0] = STA_NOINIT;
                 return Stat[0];

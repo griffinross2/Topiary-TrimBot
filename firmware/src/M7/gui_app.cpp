@@ -16,6 +16,7 @@
 #include "images/begin_scanning.h"
 #include "images/insert_card.h"
 #include "images/cross_sections.h"
+#include "images/begin_cutting.h"
 #include "fonts/arial.h"
 #include "graphics/arrow_up.h"
 #include "graphics/arrow_down.h"
@@ -29,6 +30,7 @@
 #include "graphics/loading7.h"
 
 #include <algorithm>
+#include <string>
 
 static int s_init_status = STATUS_ERROR;
 
@@ -46,6 +48,12 @@ static Status load_cross_section_scene();
 static Status update_cross_section_scene();
 static Status load_scanning_scene();
 static Status update_scanning_scene();
+static Status load_toolpathing_scene();
+static Status update_toolpathing_scene();
+static Status load_begin_cutting_scene();
+static Status update_begin_cutting_scene();
+static Status load_cutting_scene();
+static Status update_cutting_scene();
 
 /************************/
 /* STARTUP SPLASHSCREEN */
@@ -580,16 +588,89 @@ static struct {
     bool initialized = false;
     Scene scene;
     uint8_t current_layer = CROSS_SECTION_NUM_SLICES / 2;
-} cross_section_scene_ctx;
+    Button up_button;
+    Button down_button;
+    GraphicsObject up_arrow;
+    GraphicsObject down_arrow;
+    Label layer_label;
+    char layer_label_buf[4];
+    Button confirm_button;
+    Label confirm_label;
+} s_cross_section_scene_ctx;
 
 static Status load_cross_section_scene() {
-    if (cross_section_scene_ctx.initialized) {
+    if (s_cross_section_scene_ctx.initialized) {
         lcd_set_background(CROSS_SECTIONS);
-        gui_set_current_scene(&cross_section_scene_ctx.scene);
+        gui_set_current_scene(&s_cross_section_scene_ctx.scene);
         return STATUS_OK;
     }
 
-    Scene& scene = cross_section_scene_ctx.scene;
+    Scene& scene = s_cross_section_scene_ctx.scene;
+
+    // Up and down buttons to change layer
+    s_cross_section_scene_ctx.up_button = Button(&scene, 254, 226, 40, 40);
+    s_cross_section_scene_ctx.up_button.set_on_click([](int x, int y) {
+        if (s_cross_section_scene_ctx.current_layer <
+            CROSS_SECTION_NUM_SLICES - 1) {
+            s_cross_section_scene_ctx.current_layer++;
+            cross_section_manager_get_layer(
+                s_cross_section_scene_ctx.current_layer);
+            snprintf(s_cross_section_scene_ctx.layer_label_buf,
+                     sizeof(s_cross_section_scene_ctx.layer_label_buf), "%d",
+                     s_cross_section_scene_ctx.current_layer);
+            s_cross_section_scene_ctx.layer_label.set_text(s_cross_section_scene_ctx.layer_label_buf);
+        }
+    });
+
+    s_cross_section_scene_ctx.down_button = Button(&scene, 254, 162, 40, 40);
+    s_cross_section_scene_ctx.down_button.set_on_click([](int x, int y) {
+        if (s_cross_section_scene_ctx.current_layer > 0) {
+            s_cross_section_scene_ctx.current_layer--;
+            cross_section_manager_get_layer(
+                s_cross_section_scene_ctx.current_layer);
+            snprintf(s_cross_section_scene_ctx.layer_label_buf,
+                     sizeof(s_cross_section_scene_ctx.layer_label_buf), "%d",
+                     s_cross_section_scene_ctx.current_layer);
+            s_cross_section_scene_ctx.layer_label.set_text(s_cross_section_scene_ctx.layer_label_buf);
+        }
+    });
+
+    // Arrows for the buttons
+    s_cross_section_scene_ctx.up_arrow =
+        GraphicsObject(&scene, ARROW_UP, 254, 226);
+    s_cross_section_scene_ctx.down_arrow =
+        GraphicsObject(&scene, ARROW_DOWN, 254, 162);
+
+    scene.add_object(&s_cross_section_scene_ctx.up_button);
+    scene.add_object(&s_cross_section_scene_ctx.down_button);
+    scene.add_object(&s_cross_section_scene_ctx.up_arrow);
+    scene.add_object(&s_cross_section_scene_ctx.down_arrow);
+
+    // Label to show the current layer
+    snprintf(s_cross_section_scene_ctx.layer_label_buf,
+             sizeof(s_cross_section_scene_ctx.layer_label_buf), "%d",
+             s_cross_section_scene_ctx.current_layer);
+    s_cross_section_scene_ctx.layer_label =
+        Label(&scene, 331, 289, s_cross_section_scene_ctx.layer_label_buf, 16);
+    s_cross_section_scene_ctx.layer_label.set_alignment(LABEL_ALIGN_RIGHT);
+
+    scene.add_object(&s_cross_section_scene_ctx.layer_label);
+
+    // Confirm button to start scanning
+    s_cross_section_scene_ctx.confirm_button =
+        Button(&scene, 117, 20, 175, 40);
+    s_cross_section_scene_ctx.confirm_button.set_on_click([](int x, int y) {
+        load_toolpathing_scene();
+        pi_control_start_toolpathing();
+    });
+
+    // Confirm label
+    s_cross_section_scene_ctx.confirm_label =
+        Label(&scene, 117 + 175 / 2, 20 + 40 / 2 - 16, "Confirm", 32);
+    s_cross_section_scene_ctx.confirm_label.set_alignment(LABEL_ALIGN_CENTER);
+
+    scene.add_object(&s_cross_section_scene_ctx.confirm_button);
+    scene.add_object(&s_cross_section_scene_ctx.confirm_label);
 
     // Ask the Pi to generate the cross sections
     cross_section_manager_create_cross_sections(CROSS_SECTION_NUM_SLICES);
@@ -612,7 +693,7 @@ static Status load_cross_section_scene() {
     lcd_set_background(CROSS_SECTIONS);
     gui_set_current_scene(&scene);
 
-    cross_section_scene_ctx.initialized = true;
+    s_cross_section_scene_ctx.initialized = true;
 
     return STATUS_OK;
 }
@@ -707,6 +788,250 @@ static Status update_scanning_scene() {
     return STATUS_OK;
 }
 
+/**********************/
+/* TOOLPATHING SCREEN */
+/**********************/
+
+struct {
+    bool initialized = false;
+    Scene scene;
+    Label status_label;
+    GraphicsObject spinner;
+    size_t animation_idx = 0;
+    long long unsigned last_update_tick;
+} toolpathing_scene_ctx;
+
+static Status load_toolpathing_scene() {
+    if (toolpathing_scene_ctx.initialized) {
+        lcd_set_background(MAIN);
+        gui_set_current_scene(&toolpathing_scene_ctx.scene);
+        return STATUS_OK;
+    }
+
+    Scene& scene = toolpathing_scene_ctx.scene;
+    Label& status_label = toolpathing_scene_ctx.status_label;
+    GraphicsObject& spinner = toolpathing_scene_ctx.spinner;
+
+    status_label = Label(&scene, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2 + 20,
+                         "Toolpathing...", 32);
+    status_label.set_alignment(LABEL_ALIGN_CENTER);
+
+    spinner =
+        GraphicsObject(&scene, LOADING0, WINDOW_WIDTH / 2 - LOADING0.width / 2,
+                       WINDOW_HEIGHT / 2 - 20 - LOADING0.height);
+
+    scene.add_object(&spinner);
+    scene.add_object(&status_label);
+
+    lcd_set_background(MAIN);
+    gui_set_current_scene(&scene);
+
+    toolpathing_scene_ctx.initialized = true;
+
+    return STATUS_OK;
+}
+
+static Status update_toolpathing_scene() {
+    // If toolpathing is done, go to the cross section screen
+    if (!pi_control_is_toolpathing()) {
+        load_begin_cutting_scene();
+        return STATUS_OK;
+    }
+
+    // Looping 8-frame animation
+    toolpathing_scene_ctx.animation_idx =
+        (toolpathing_scene_ctx.animation_idx + 1) % 8;
+
+    switch (toolpathing_scene_ctx.animation_idx) {
+        case 0:
+            toolpathing_scene_ctx.spinner.set_graphics(LOADING0);
+            break;
+        case 1:
+            toolpathing_scene_ctx.spinner.set_graphics(LOADING1);
+            break;
+        case 2:
+            toolpathing_scene_ctx.spinner.set_graphics(LOADING2);
+            break;
+        case 3:
+            toolpathing_scene_ctx.spinner.set_graphics(LOADING3);
+            break;
+        case 4:
+            toolpathing_scene_ctx.spinner.set_graphics(LOADING4);
+            break;
+        case 5:
+            toolpathing_scene_ctx.spinner.set_graphics(LOADING5);
+            break;
+        case 6:
+            toolpathing_scene_ctx.spinner.set_graphics(LOADING6);
+            break;
+        case 7:
+            toolpathing_scene_ctx.spinner.set_graphics(LOADING7);
+            break;
+        default:
+            break;
+    }
+
+    return STATUS_OK;
+}
+
+/************************/
+/* BEGIN CUTTING SCREEN */
+/************************/
+
+struct {
+    bool initialized = false;
+    Scene scene;
+    Button cancel_button;
+    Label cancel_label;
+    Button confirm_button;
+    Label confirm_label;
+} begin_cutting_scene_ctx;
+
+constexpr unsigned int BEGIN_CUTTING_BUTTON_WIDTH = 150;
+constexpr unsigned int BEGIN_CUTTING_BUTTON_HEIGHT = 60;
+constexpr unsigned int BEGIN_CUTTING_TEXT_SIZE = 32;
+
+static Status load_begin_cutting_scene() {
+    if (begin_cutting_scene_ctx.initialized) {
+        lcd_set_background(BEGIN_CUTTING);
+        gui_set_current_scene(&begin_cutting_scene_ctx.scene);
+        return STATUS_OK;
+    }
+
+    Scene& scene = begin_cutting_scene_ctx.scene;
+    Button& cancel_button = begin_cutting_scene_ctx.cancel_button;
+    Label& cancel_label = begin_cutting_scene_ctx.cancel_label;
+    Button& confirm_button = begin_cutting_scene_ctx.confirm_button;
+    Label& confirm_label = begin_cutting_scene_ctx.confirm_label;
+
+    cancel_button =
+        Button(&scene, WINDOW_WIDTH / 2 - BEGIN_CUTTING_BUTTON_WIDTH - 10, 0,
+               BEGIN_CUTTING_BUTTON_WIDTH, BEGIN_CUTTING_BUTTON_HEIGHT);
+    cancel_button.set_on_click([](int x, int y) { load_file_list_scene(); });
+
+    cancel_label =
+        Label(&scene, WINDOW_WIDTH / 2 - BEGIN_CUTTING_BUTTON_WIDTH / 2 - 10,
+              BEGIN_CUTTING_BUTTON_HEIGHT / 2 - BEGIN_CUTTING_TEXT_SIZE / 2,
+              "Cancel", BEGIN_CUTTING_TEXT_SIZE);
+    cancel_label.set_alignment(LABEL_ALIGN_CENTER);
+
+    confirm_button =
+        Button(&scene, WINDOW_WIDTH / 2 + 10, 0, BEGIN_CUTTING_BUTTON_WIDTH,
+               BEGIN_CUTTING_BUTTON_HEIGHT);
+    confirm_button.set_on_click([](int x, int y) {
+        pi_control_start_cutting();
+        load_cutting_scene();
+    });
+
+    confirm_label =
+        Label(&scene, WINDOW_WIDTH / 2 + BEGIN_CUTTING_BUTTON_WIDTH / 2 + 10,
+              BEGIN_CUTTING_BUTTON_HEIGHT / 2 - BEGIN_CUTTING_TEXT_SIZE / 2,
+              "Confirm", BEGIN_CUTTING_TEXT_SIZE);
+    confirm_label.set_alignment(LABEL_ALIGN_CENTER);
+
+    scene.add_object(&cancel_button);
+    scene.add_object(&cancel_label);
+    scene.add_object(&confirm_button);
+    scene.add_object(&confirm_label);
+
+    lcd_set_background(BEGIN_CUTTING);
+    gui_set_current_scene(&scene);
+
+    begin_cutting_scene_ctx.initialized = true;
+
+    return STATUS_OK;
+}
+
+static Status update_begin_cutting_scene() {
+    return STATUS_OK;
+}
+
+/******************/
+/* CUTTING SCREEN */
+/******************/
+
+struct {
+    bool initialized = false;
+    Scene scene;
+    Label status_label;
+    GraphicsObject spinner;
+    size_t animation_idx = 0;
+    long long unsigned last_update_tick;
+} cutting_scene_ctx;
+
+static Status load_cutting_scene() {
+    if (cutting_scene_ctx.initialized) {
+        lcd_set_background(MAIN);
+        gui_set_current_scene(&cutting_scene_ctx.scene);
+        return STATUS_OK;
+    }
+
+    Scene& scene = cutting_scene_ctx.scene;
+    Label& status_label = cutting_scene_ctx.status_label;
+    GraphicsObject& spinner = cutting_scene_ctx.spinner;
+
+    status_label = Label(&scene, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2 + 20,
+                         "Cutting...", 32);
+    status_label.set_alignment(LABEL_ALIGN_CENTER);
+
+    spinner =
+        GraphicsObject(&scene, LOADING0, WINDOW_WIDTH / 2 - LOADING0.width / 2,
+                       WINDOW_HEIGHT / 2 - 20 - LOADING0.height);
+
+    scene.add_object(&spinner);
+    scene.add_object(&status_label);
+
+    lcd_set_background(MAIN);
+    gui_set_current_scene(&scene);
+
+    cutting_scene_ctx.initialized = true;
+
+    return STATUS_OK;
+}
+
+static Status update_cutting_scene() {
+    // If cutting is done, go back to the file screen
+    if (!pi_control_is_cutting()) {
+        load_file_list_scene();
+        return STATUS_OK;
+    }
+
+    // Looping 8-frame animation
+    cutting_scene_ctx.animation_idx =
+        (cutting_scene_ctx.animation_idx + 1) % 8;
+
+    switch (cutting_scene_ctx.animation_idx) {
+        case 0:
+            cutting_scene_ctx.spinner.set_graphics(LOADING0);
+            break;
+        case 1:
+            cutting_scene_ctx.spinner.set_graphics(LOADING1);
+            break;
+        case 2:
+            cutting_scene_ctx.spinner.set_graphics(LOADING2);
+            break;
+        case 3:
+            cutting_scene_ctx.spinner.set_graphics(LOADING3);
+            break;
+        case 4:
+            cutting_scene_ctx.spinner.set_graphics(LOADING4);
+            break;
+        case 5:
+            cutting_scene_ctx.spinner.set_graphics(LOADING5);
+            break;
+        case 6:
+            cutting_scene_ctx.spinner.set_graphics(LOADING6);
+            break;
+        case 7:
+            cutting_scene_ctx.spinner.set_graphics(LOADING7);
+            break;
+        default:
+            break;
+    }
+
+    return STATUS_OK;
+}
+
 Status gui_app_init() {
     lcd_set_background(BLANK);
     lcd_clear_foreground();
@@ -765,7 +1090,7 @@ void gui_app_task() {
     }
 
     // Cross section screen
-    if (gui_get_current_scene() == &cross_section_scene_ctx.scene) {
+    if (gui_get_current_scene() == &s_cross_section_scene_ctx.scene) {
         update_cross_section_scene();
     }
 
@@ -774,6 +1099,27 @@ void gui_app_task() {
         if (get_tick_ms() - scanning_scene_ctx.last_update_tick >= 200) {
             update_scanning_scene();
             scanning_scene_ctx.last_update_tick = get_tick_ms();
+        }
+    }
+
+    // Toolpathing screen
+    if (gui_get_current_scene() == &toolpathing_scene_ctx.scene) {
+        if (get_tick_ms() - toolpathing_scene_ctx.last_update_tick >= 200) {
+            update_toolpathing_scene();
+            toolpathing_scene_ctx.last_update_tick = get_tick_ms();
+        }
+    }
+
+    // Begin cutting screen
+    if (gui_get_current_scene() == &begin_cutting_scene_ctx.scene) {
+        update_begin_cutting_scene();
+    }
+
+    // Cutting screen
+    if (gui_get_current_scene() == &cutting_scene_ctx.scene) {
+        if (get_tick_ms() - cutting_scene_ctx.last_update_tick >= 200) {
+            update_cutting_scene();
+            cutting_scene_ctx.last_update_tick = get_tick_ms();
         }
     }
 

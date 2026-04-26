@@ -23,12 +23,14 @@
 #include "../gcode.h"
 #include "../../module/planner.h"
 
+#include <stdio.h>
+
 /**
  * G4: Dwell S<seconds> or P<milliseconds>
  */
 void GcodeSuite::G4() {
   millis_t dwell_ms = 0;
-
+  
   if (parser.seenval('P')) dwell_ms = parser.value_millis(); // milliseconds to wait
   if (parser.seenval('S')) dwell_ms = parser.value_millis_from_seconds(); // seconds to wait
 

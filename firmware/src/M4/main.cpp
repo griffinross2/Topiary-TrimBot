@@ -3,6 +3,8 @@
 #include "gpio/gpio.h"
 #include "board.h"
 #include "gcode/gcode.h"
+#include "gcode/queue.h"
+#include "module/planner.h"
 #include "terminal.h"
 #include "profiler.h"
 #include "gcode_receiver.h"
@@ -15,6 +17,9 @@ void main_loop();
 
 int main(void) {
     HAL_Init();
+
+    // Disable cutter pin
+    gpio_write(PIN_CUTTER, GPIO_LOW);
 
     profiler_init();
 
@@ -31,15 +36,19 @@ int main(void) {
     HAL_Delay(500);
 
     gcode.home_all_axes();
+    queue.enqueue_one("G1 Z800");  // Move Z down
 
     marlin_wrapper_loop();
 
     return 0;
 }
 
-static char s_terminal_buf[64];
+static char s_manual_gcode_buf[64];
+static size_t s_manual_gcode_buf_len = 0;
 static uint32_t s_profiler_tick = 0;
 static uint32_t s_blinky_tick = 0;
+static uint32_t s_queue_check_tick = 0;
+static uint32_t s_gcode_receive_tick = 0;
 
 void main_loop() {
     // Blink blue LED for status
@@ -56,15 +65,24 @@ void main_loop() {
 
     // Process manual g-code input
     int bytes_read =
-        terminal_read((uint8_t*)s_terminal_buf, sizeof(s_terminal_buf) - 1);
+        terminal_read((uint8_t*)(s_manual_gcode_buf + s_manual_gcode_buf_len),
+                      sizeof(s_manual_gcode_buf) - 1 - s_manual_gcode_buf_len);
     if (bytes_read > 0) {
-        s_terminal_buf[bytes_read] = '\0';
-        printf("%s", s_terminal_buf);
-        gcode.process_subcommands_now(s_terminal_buf);
+        if (s_manual_gcode_buf[s_manual_gcode_buf_len + bytes_read - 1] ==
+            '\n') {
+            s_manual_gcode_buf[s_manual_gcode_buf_len + bytes_read] = '\0';
+            queue.enqueue_one(s_manual_gcode_buf);
+            s_manual_gcode_buf_len = 0;
+        } else {
+            s_manual_gcode_buf_len += bytes_read;
+        }
     }
 
     // Receive g-code from the Pi
-    gcode_receiver_task();
+    if (get_tick_ms() - s_gcode_receive_tick >= 100) {
+        gcode_receiver_task();
+        s_gcode_receive_tick = get_tick_ms();
+    }
 
     // Update the status for the Pi
     pi_control_task();
@@ -72,7 +90,13 @@ void main_loop() {
     // Check door status
     door_stop_task();
 
-    HAL_Delay(50);
+    if (get_tick_ms() - s_queue_check_tick >= 1000) {
+        printf("Queue length: %u\n", queue.ring_buffer.length);
+        printf("Currently executing? %s\n", planner.busy() ? "Yes" : "No");
+        s_queue_check_tick = get_tick_ms();
+    }
+
+    // HAL_Delay(20);
 }
 
 extern "C" {

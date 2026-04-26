@@ -11,6 +11,8 @@ __attribute__((section(".pi_control_ctx"))) static struct {
 
 static uint32_t s_last_status_update_time = 0;
 static bool s_scanning = false;
+static bool s_toolpathing = false;
+static bool s_cutting = false;
 
 void pi_control_task() {
 #ifdef CORE_CM7
@@ -40,12 +42,44 @@ Status pi_control_start_scanning() {
     return STATUS_OK;
 }
 
+Status pi_control_start_toolpathing() {
+    PacketID id = PACKET_TYPE_START_TOOLPATHING;
+    int res = packet_send(nullptr, 0, id);
+
+    if (res < 0) {
+        return STATUS_ERROR;
+    }
+
+    s_toolpathing = true;
+
+    return STATUS_OK;
+}
+
+Status pi_control_start_cutting() {
+    PacketID id = PACKET_TYPE_START_CUTTING;
+    int res = packet_send(nullptr, 0, id);
+
+    if (res < 0) {
+        return STATUS_ERROR;
+    }
+
+    s_cutting = true;
+
+    return STATUS_OK;
+}
+
 void pi_control_give_packet(PacketID id, const uint8_t* data, int data_length) {
     switch (id.type) {
         case ((PacketID)PACKET_TYPE_DONE_SCANNING).type:
             s_scanning = false;
             break;
-
+        case ((PacketID)PACKET_TYPE_DONE_TOOLPATHING).type:
+            s_toolpathing = false;
+            break;
+        case ((PacketID)PACKET_TYPE_DONE_CUTTING).type:
+            s_cutting = false;
+            break;
+        
         default:
             break;
     }
@@ -53,4 +87,12 @@ void pi_control_give_packet(PacketID id, const uint8_t* data, int data_length) {
 
 bool pi_control_is_scanning() {
     return s_scanning;
+}
+
+bool pi_control_is_toolpathing() {
+    return s_toolpathing;
+}
+
+bool pi_control_is_cutting() {
+    return s_cutting;
 }
