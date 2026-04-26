@@ -7,21 +7,42 @@ import serial
 import time
 from packet_engine import packet_engine_task
 from pi_control import pi_control_is_moving
+from gcode_sender import gcode_sender_task, gcode_sender_send_gcode
 
 should_quit = False
 usb_dev = USBDev()
+photos_index = 0
+status = 0
 
 def sigint_handler(signum, frame):
-    global should_quit
-    should_quit = True
-
-def quit_main():
-    global usb_dev
-    
     print("SIGINT received, exiting...")
     usb_dev.disconnect()
     camera.deinit_cameras()
     quit(0)
+
+def take_photos_task():
+    global photos_index
+    global status
+
+    if status == 0:
+        gcode_sender_send_gcode("G0 Z500 Y-250 A135")
+        time.sleep(2)
+        status = 1
+
+    if status == 1 and not pi_control_is_moving():
+        status = 2
+
+    if status == 2:
+        camera.save_image(0, f"calibration_images/left/{photos_index}.jpg", f"calibration_images/right/{photos_index}.jpg")
+        gcode_sender_send_gcode("G0 A90")
+        gcode_sender_send_gcode("G0 A135")
+        time.sleep(2)
+        status = 3
+
+    if status == 3 and not pi_control_is_moving():
+        photos_index += 1
+        status = 2
+
 
 def main():
     global usb_dev
@@ -39,27 +60,10 @@ def main():
 
     print("Init Complete")
 
-    time.sleep(1*60)
-    id = packet.PACKET_TYPE_GCODE
-    packet.packet_send(usb_dev, bytes("G1 Y-220 Z500 A135", 'utf-8'), id)
-    time.sleep(5)
-
-    i = 0
-    while(True):
-        time.sleep(1)
-        camera.save_image(0, f"calibration_images/left/{i}.jpg", f"calibration_images/right/{i}.jpg")
-        packet.packet_send(usb_dev, id, "A90")
-        packet.packet_send(usb_dev, id, "A135")
-        time.sleep(1)
+    while True:
         packet_engine_task(usb_dev)
-        while pi_control_is_moving():
-            time.sleep(0.1)
-            packet_engine_task(usb_dev)
-            
-        i += 1
-
-        if (should_quit or i >= 20):
-            quit_main()
+        gcode_sender_task(usb_dev)
+        take_photos_task()
 
 if __name__ == "__main__":
     while True:
