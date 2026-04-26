@@ -5,7 +5,7 @@ from matplotlib.widgets import Slider
 # -----------------------------
 # Initial values
 # -----------------------------
-d = 500
+d = -446
 ty = 100
 tz = -45
 theta_b0 = 0
@@ -18,8 +18,8 @@ yt0 = 0
 # -----------------------------
 def compute_xyz(d, ty, tz, theta_b, theta_c, zt, yt):
 
-    x = d*np.sin(theta_c) - np.sin(theta_c)*(ty*np.cos(theta_b) - tz*np.sin(theta_b) + yt)
-    y = -d*np.cos(theta_c) + np.cos(theta_c)*(ty*np.cos(theta_b) - tz*np.sin(theta_b) + yt) + d
+    x = -np.sin(theta_c)*(ty*np.cos(theta_b) - tz*np.sin(theta_b) + yt)
+    y = np.cos(theta_c)*(ty*np.cos(theta_b) - tz*np.sin(theta_b) + yt) + d
     z = zt + tz*np.cos(theta_b) + ty*np.sin(theta_b)
 
     return x, y, z
@@ -96,7 +96,7 @@ ax_yt      = plt.axes([0.15, 0.11, 0.7, 0.03])
 s_theta_b = Slider(ax_theta_b, 'Revolute', -np.pi/2, np.pi/2, valinit=theta_b0)
 s_theta_c = Slider(ax_theta_c, 'Turntable', 0, 2*np.pi, valinit=theta_c0)  # avoid tan blowing up near pi/2
 s_zt = Slider(ax_zt, 'Gantry', 0, 813, valinit=zt0)
-s_yt = Slider(ax_yt, 'Extruder', 0, 295, valinit=yt0)
+s_yt = Slider(ax_yt, 'Extruder', 0, 680, valinit=yt0)
 
 # -----------------------------
 # Update function
@@ -131,7 +131,7 @@ s_yt.on_changed(update)
 
 # Disc parameters
 xc = 0
-yc = 500
+yc = d
 zc = 0
 R = 150
 
