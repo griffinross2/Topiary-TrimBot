@@ -41,6 +41,10 @@ def take_photos_task():
 
     if status == 3 and not pi_control_is_moving():
         photos_index += 1
+        if photos_index >= 20:
+            usb_dev.disconnect()
+            camera.deinit_cameras()
+            quit(0)
         status = 2
 
 
