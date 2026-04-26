@@ -13,6 +13,7 @@ should_quit = False
 usb_dev = USBDev()
 photos_index = 0
 status = 0
+photos_last_time = 0
 
 def sigint_handler(signum, frame):
     print("SIGINT received, exiting...")
@@ -23,23 +24,24 @@ def sigint_handler(signum, frame):
 def take_photos_task():
     global photos_index
     global status
+    global photos_last_time
 
     if status == 0:
         gcode_sender_send_gcode("G0 Z500 Y-250 A135")
-        time.sleep(2)
+        photos_last_time = time.time()
         status = 1
 
-    if status == 1 and not pi_control_is_moving():
+    if status == 1 and (time.time() - photos_last_time > 2) and not pi_control_is_moving():
         status = 2
 
     if status == 2:
         camera.save_image(0, f"calibration_images/left/{photos_index}.jpg", f"calibration_images/right/{photos_index}.jpg")
         gcode_sender_send_gcode("G0 A90")
         gcode_sender_send_gcode("G0 A135")
-        time.sleep(2)
+        photos_last_time = time.time()
         status = 3
 
-    if status == 3 and not pi_control_is_moving():
+    if status == 3 and (time.time() - photos_last_time > 2) and not pi_control_is_moving():
         photos_index += 1
         if photos_index >= 20:
             usb_dev.disconnect()
