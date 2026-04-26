@@ -3,12 +3,17 @@ from PIL import Image,ImageFilter
 import cv2
 import glob
 
-def undistort(img):
+def undistort(img, pos):
     # undistort
     cv_img = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
     #img.show()
 
-    file = cv2.FileStorage("vision/parameters.yml", cv2.FileStorage_READ)
+    try:
+        file = cv2.FileStorage("vision/parameters_"+pos+".yml", cv2.FileStorage_READ)
+    except Exception as e:
+        print("could not open calibration parameter files: " + e)
+        raise RuntimeError("calibration failure")
+    
     matrix = file.getNode("matrix").mat()
     distortion = file.getNode("distortion").mat()
     newcameramtx = file.getNode("newcameramtx").mat()

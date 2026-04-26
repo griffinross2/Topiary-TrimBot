@@ -45,8 +45,8 @@ def iterate_angles(angle_step):
     mesh.export("plant.ply")
     recon = pv.read("plant.ply")
 
-    # print("Plant bounds: ", recon.bounds)
-    # print("Plant length, width, height: ", recon.extents)
+    print("Plant bounds: ", recon.bounds)
+    print("Plant length, width, height: ", cloud.extents)
 
     pt_cloud = pv.PolyData(pt_cloud)
 

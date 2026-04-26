@@ -1,10 +1,9 @@
 from PIL import Image,ImageFilter
 from vision.undistort import *
 
-def picture_prep(img):
+def picture_prep(img,pos):
     #img = img.resize([1920,1080])
-    # img = img.rotate(180)
-    img = undistort(img) # uses OpenCV and calibration file to correct lens distortion
+    img = undistort(img,pos) # uses OpenCV and calibration file to correct lens distortion
 
     w,h = img.size
     

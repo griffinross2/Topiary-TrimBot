@@ -18,12 +18,12 @@ DEFAULT_DEPTH = 10
 
 def scan_plant(img_left, img_right, angle):
 
-    img_left, w_left, h_left = picture_prep(img_left)
+    img_left, w_left, h_left = picture_prep(img_left, "left")
     print("left, ",angle)
     silhouette_left, outline_left = create_outline(img_left)
     outline_left = np.array(outline_left)
     
-    img_right, w_right, h_right = picture_prep(img_right)
+    img_right, w_right, h_right = picture_prep(img_right, "right")
     print("right, ",angle)
     silhouette_right, outline_right = create_outline(img_right)
 

@@ -3,7 +3,7 @@ from PIL import Image,ImageFilter
 import cv2
 import glob
 
-def correction():
+def correction(pos):
     #THIS FUNCTION IS CALLED ONCE, WRITES PARAMETERS TO FILE
 
     # Define the dimensions of checkerboard
@@ -32,7 +32,7 @@ def correction():
     # Extracting path of individual image stored
     # in a given directory. CHANGE WHEN IMPLEMENTED ON PI
     # jpg files alone
-    images = glob.glob('/Users/duke1/OneDrive/Documents/GitHub/Topiary-TrimBot/software/computer vision/checkerboards/*.jpg')
+    images = glob.glob('/Users/duke1/OneDrive/Documents/GitHub/Topiary-TrimBot/software/computer vision/checkerboards/'+pos+'/*.jpg')
     for filename in images:
         #print("searching: ", filename)
         image = cv2.imread(filename)
@@ -82,7 +82,7 @@ def correction():
 
     newcameramtx, roi = cv2.getOptimalNewCameraMatrix(matrix, distortion, (w,h), 1, (w,h))
 
-    file = cv2.FileStorage("parameters.yml", cv2.FileStorage_WRITE)
+    file = cv2.FileStorage("parameters_"+pos+".yml", cv2.FileStorage_WRITE)
     file.write("matrix",matrix)
     file.write("distortion",distortion)
     file.write("newcameramtx",newcameramtx)
