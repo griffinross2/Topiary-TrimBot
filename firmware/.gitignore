@@ -7,3 +7,5 @@
 include/fonts
 include/images
 include/graphics
+
+*.bat
