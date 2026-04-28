@@ -5,7 +5,7 @@ from matplotlib.widgets import Slider
 # -----------------------------
 # Initial values
 # -----------------------------
-d = -446
+d = 500
 ty = 100
 tz = -45
 theta_b0 = 0
@@ -18,8 +18,8 @@ yt0 = 0
 # -----------------------------
 def compute_xyz(d, ty, tz, theta_b, theta_c, zt, yt):
 
-    x = -np.sin(theta_c)*(ty*np.cos(theta_b) - tz*np.sin(theta_b) + yt)
-    y = np.cos(theta_c)*(ty*np.cos(theta_b) - tz*np.sin(theta_b) + yt) + d
+    x = d*np.sin(theta_c) - np.sin(theta_c)*(ty*np.cos(theta_b) - tz*np.sin(theta_b) + yt)
+    y = -d*np.cos(theta_c) + np.cos(theta_c)*(ty*np.cos(theta_b) - tz*np.sin(theta_b) + yt) + d
     z = zt + tz*np.cos(theta_b) + ty*np.sin(theta_b)
 
     return x, y, z
