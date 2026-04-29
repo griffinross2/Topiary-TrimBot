@@ -32,7 +32,7 @@ def correction(pos):
     # Extracting path of individual image stored
     # in a given directory. CHANGE WHEN IMPLEMENTED ON PI
     # jpg files alone
-    images = glob.glob('/Users/duke1/OneDrive/Documents/GitHub/Topiary-TrimBot/software/computer vision/checkerboards/'+pos+'/*.jpg')
+    images = glob.glob('../calibration_images/'+pos+'/*.jpg')
     for filename in images:
         #print("searching: ", filename)
         image = cv2.imread(filename)
@@ -96,4 +96,5 @@ def correction(pos):
     return()
 
 if __name__ == "__main__":
-    correction()
+    correction('left')
+    correction('right')
