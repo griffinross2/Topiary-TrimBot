@@ -108,5 +108,5 @@ def plant_scanning_task(usb_dev):
                 scan_last_wait_time = time.time() * 1000
                 scan_waiting_for_move = True
 
-case ScanStatus.PLANT_SCANNING_ERROR:
+        case ScanStatus.PLANT_SCANNING_ERROR:
             pass
