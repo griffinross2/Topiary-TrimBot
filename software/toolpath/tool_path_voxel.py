@@ -63,6 +63,8 @@ def scale_mesh_to_m(current_units_per_m, mesh):
     return mesh
 
 def voxelize_meshes(plant_mesh, model_mesh, pitch=VOXEL_SIZE):
+    # This function implemented by ChatGPT
+
     # 1. Compute combined bounding box
     bounds = np.vstack((plant_mesh.bounds, model_mesh.bounds))
     min_corner = bounds.min(axis=0)
@@ -347,6 +349,7 @@ if __name__ == "__main__":
 
     paths, plant_voxel, model_voxel = get_toolpath(plant_mesh, model_mesh)
     plant_voxel_mesh = plant_voxel.as_boxes()
+    plant_voxel_mesh.visual.face_colors = [50, 200, 50, 255]
     # print(plant_voxel_mesh.bounds)
     plant_voxel_mesh.show()
     # model_voxel.as_boxes().show()
