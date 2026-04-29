@@ -6,7 +6,7 @@ import packet
 import serial
 import time
 from packet_engine import packet_engine_task
-from pi_control import pi_control_is_moving
+from pi_control import pi_control_is_moving, pi_control_send_booted
 from gcode_sender import gcode_sender_task, gcode_sender_send_gcode
 
 should_quit = False
@@ -65,6 +65,8 @@ def main():
     camera.init_cameras()
 
     print("Init Complete")
+
+    pi_control_send_booted(usb_dev)
 
     while True:
         packet_engine_task(usb_dev)

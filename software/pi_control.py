@@ -30,3 +30,7 @@ def pi_control_is_moving():
     global currently_moving
 
     return currently_moving
+
+def pi_control_send_booted(dev: USBDev):
+    id = PACKET_TYPE_PI_BOOTED
+    packet_send(dev, bytes(), id)

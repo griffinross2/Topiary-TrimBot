@@ -3,6 +3,7 @@ import signal
 from packet_engine import packet_engine_task
 from file_receiver import file_receiver_task
 from gcode_sender import gcode_sender_task, gcode_sender_send_gcode
+from pi_control import pi_control_send_booted
 import packet
 import serial
 import time
@@ -38,6 +39,8 @@ def main():
         quit(0)
 
     print("Init Complete")
+
+    pi_control_send_booted(usb_dev)
 
     gcode_file = open("gcode/out.gcode")
     reading = True

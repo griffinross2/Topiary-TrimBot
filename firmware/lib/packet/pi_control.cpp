@@ -13,6 +13,7 @@ static uint32_t s_last_status_update_time = 0;
 static bool s_scanning = false;
 static bool s_toolpathing = false;
 static bool s_cutting = false;
+static bool s_booted = false;
 
 void pi_control_task() {
 #ifdef CORE_CM7
@@ -70,6 +71,9 @@ Status pi_control_start_cutting() {
 
 void pi_control_give_packet(PacketID id, const uint8_t* data, int data_length) {
     switch (id.type) {
+        case ((PacketID)PACKET_TYPE_PI_BOOTED).type:
+            s_booted = true;
+            break;
         case ((PacketID)PACKET_TYPE_DONE_SCANNING).type:
             s_scanning = false;
             break;
@@ -79,7 +83,7 @@ void pi_control_give_packet(PacketID id, const uint8_t* data, int data_length) {
         case ((PacketID)PACKET_TYPE_DONE_CUTTING).type:
             s_cutting = false;
             break;
-        
+
         default:
             break;
     }
@@ -95,4 +99,8 @@ bool pi_control_is_toolpathing() {
 
 bool pi_control_is_cutting() {
     return s_cutting;
+}
+
+bool pi_control_is_booted() {
+    return s_booted;
 }

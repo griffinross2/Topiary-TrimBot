@@ -7,6 +7,7 @@ from camera import init_cameras, deinit_cameras
 from plant_scanning import plant_scanning_task, plant_scanning_init
 from slicer_view import slicer_view_task, slicer_view_init
 from toolpathing import toolpathing_task, toolpathing_init
+from pi_control import pi_control_send_booted
 import packet
 import serial
 import time
@@ -47,6 +48,8 @@ def main():
     file_receiver_init()
 
     print("Init Complete")
+
+    pi_control_send_booted(usb_dev)
 
     while(True):
         packet_engine_task(usb_dev)

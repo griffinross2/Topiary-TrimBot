@@ -36,6 +36,7 @@ static int s_init_status = STATUS_ERROR;
 
 // Declare scene helpers
 static Status load_splash_screen_scene();
+static Status update_splash_screen_scene();
 static Status load_file_list_scene();
 static Status update_file_list(bool force_update = false);
 static Status load_sending_file_scene();
@@ -59,12 +60,39 @@ static Status update_cutting_scene();
 /* STARTUP SPLASHSCREEN */
 /************************/
 
-static Scene s_splash_screen_scene;
+constexpr uint32_t splash_screen_scene_timeout = (2 * 60 * 1000);
+
+static struct {
+    Scene scene;
+    uint32_t start_tick;
+} s_splash_screen_scene_ctx;
 
 static Status load_splash_screen_scene() {
     lcd_set_background(SPLASHSCREEN);
 
-    gui_set_current_scene(&s_splash_screen_scene);
+    gui_set_current_scene(&s_splash_screen_scene_ctx.scene);
+
+    s_splash_screen_scene_ctx.start_tick = get_tick_ms();
+
+    return STATUS_OK;
+}
+
+static Status update_splash_screen_scene() {
+    if (pi_control_is_booted()) {
+        if (s_init_status != STATUS_OK) {
+            // If initialization failed, just show a blank screen
+            lcd_set_background(BLANK);
+            return STATUS_OK;
+        } else {
+            // Load the file list scene after the splash screen
+            load_file_list_scene();
+        }
+    } else if (get_tick_ms() >= s_splash_screen_scene_ctx.start_tick +
+                                    splash_screen_scene_timeout) {
+        // If initialization failed, just show a blank screen
+        lcd_set_background(BLANK);
+        return STATUS_OK;
+    }
 
     return STATUS_OK;
 }
@@ -75,7 +103,7 @@ static Status load_splash_screen_scene() {
 
 #define MAX_FILES_DISPLAYED 6
 
-struct {
+static struct {
     bool initialized = false;
     Scene scene;
     std::vector<FileInfo> file_list;
@@ -98,7 +126,7 @@ struct {
     Label dialog_confirm_label;
     Button dialog_cancel_button;
     Label dialog_cancel_label;
-} file_list_scene_ctx;
+} s_file_list_scene_ctx;
 
 static Status update_file_list(bool force_update) {
     PROFILER_ENTER();
@@ -106,7 +134,7 @@ static Status update_file_list(bool force_update) {
     // If the SD card was removed close the dialog and switch to the insert card
     // scene
     if (!filesystem_is_card_inserted()) {
-        file_list_scene_ctx.scene.set_dialog_active(false);
+        s_file_list_scene_ctx.scene.set_dialog_active(false);
         load_insert_card_scene();
         PROFILER_EXIT();
         return STATUS_OK;
@@ -116,20 +144,20 @@ static Status update_file_list(bool force_update) {
     // then update the text and or number of files displayed
     // Force update is true when the scroll button causes an update
 
-    std::vector<FileInfo>& file_list = file_list_scene_ctx.file_list;
+    std::vector<FileInfo>& file_list = s_file_list_scene_ctx.file_list;
 
     std::vector<FileInfo> new_file_list;
     Status status = filesystem_get_file_list(new_file_list);
 
     // If the size changed, reset the scroll
-    if (new_file_list.size() != file_list_scene_ctx.file_list_last_size) {
-        file_list_scene_ctx.file_list_last_size = new_file_list.size();
-        file_list_scene_ctx.file_list_start_index = 0;
+    if (new_file_list.size() != s_file_list_scene_ctx.file_list_last_size) {
+        s_file_list_scene_ctx.file_list_last_size = new_file_list.size();
+        s_file_list_scene_ctx.file_list_start_index = 0;
     }
 
     // If the file list has become empty, close the dialog
     if (new_file_list.empty()) {
-        file_list_scene_ctx.scene.set_dialog_active(false);
+        s_file_list_scene_ctx.scene.set_dialog_active(false);
     }
 
     if (!force_update &&
@@ -150,18 +178,18 @@ static Status update_file_list(bool force_update) {
     for (size_t i = 0; i < MAX_FILES_DISPLAYED; ++i) {
         // Check if this line should display a file or if we are out
         bool line_visible =
-            i < file_list.size() - file_list_scene_ctx.file_list_start_index;
+            i < file_list.size() - s_file_list_scene_ctx.file_list_start_index;
 
         if (!line_visible) {
-            file_list_scene_ctx.file_button[i].set_visible(false);
-            file_list_scene_ctx.file_label[i].set_visible(false);
-            file_list_scene_ctx.file_size_label[i].set_visible(false);
-            file_list_scene_ctx.file_divider[i].set_visible(false);
+            s_file_list_scene_ctx.file_button[i].set_visible(false);
+            s_file_list_scene_ctx.file_label[i].set_visible(false);
+            s_file_list_scene_ctx.file_size_label[i].set_visible(false);
+            s_file_list_scene_ctx.file_divider[i].set_visible(false);
             continue;
         }
 
-        size_t file_idx = file_list_scene_ctx.file_list_start_index + i;
-        file_list_scene_ctx.file_label[i].set_text(file_list[file_idx].name);
+        size_t file_idx = s_file_list_scene_ctx.file_list_start_index + i;
+        s_file_list_scene_ctx.file_label[i].set_text(file_list[file_idx].name);
 
         unsigned long long file_size = file_list[file_idx].size;
         char size_str[32];
@@ -175,12 +203,12 @@ static Status update_file_list(bool force_update) {
                      (unsigned long)file_size);
         }
 
-        file_list_scene_ctx.file_size_label[i].set_text(size_str);
+        s_file_list_scene_ctx.file_size_label[i].set_text(size_str);
 
-        file_list_scene_ctx.file_button[i].set_visible(true);
-        file_list_scene_ctx.file_label[i].set_visible(true);
-        file_list_scene_ctx.file_size_label[i].set_visible(true);
-        file_list_scene_ctx.file_divider[i].set_visible(true);
+        s_file_list_scene_ctx.file_button[i].set_visible(true);
+        s_file_list_scene_ctx.file_label[i].set_visible(true);
+        s_file_list_scene_ctx.file_size_label[i].set_visible(true);
+        s_file_list_scene_ctx.file_divider[i].set_visible(true);
     }
 
     PROFILER_EXIT();
@@ -188,22 +216,23 @@ static Status update_file_list(bool force_update) {
 };
 
 static Status load_file_list_scene() {
-    if (file_list_scene_ctx.initialized) {
+    if (s_file_list_scene_ctx.initialized) {
         lcd_set_background(MAIN);
-        gui_set_current_scene(&file_list_scene_ctx.scene);
+        gui_set_current_scene(&s_file_list_scene_ctx.scene);
         update_file_list(true);
         return STATUS_OK;
     }
 
     // Dialog box for confirming a file
-    Scene& scene = file_list_scene_ctx.scene;
-    Rectangle* dialog_border = &file_list_scene_ctx.dialog_border;
-    Rectangle* dialog_bg = &file_list_scene_ctx.dialog_bg;
-    Label* dialog_label = &file_list_scene_ctx.dialog_label;
-    Button* dialog_confirm_button = &file_list_scene_ctx.dialog_confirm_button;
-    Label* dialog_confirm_label = &file_list_scene_ctx.dialog_confirm_label;
-    Button* dialog_cancel_button = &file_list_scene_ctx.dialog_cancel_button;
-    Label* dialog_cancel_label = &file_list_scene_ctx.dialog_cancel_label;
+    Scene& scene = s_file_list_scene_ctx.scene;
+    Rectangle* dialog_border = &s_file_list_scene_ctx.dialog_border;
+    Rectangle* dialog_bg = &s_file_list_scene_ctx.dialog_bg;
+    Label* dialog_label = &s_file_list_scene_ctx.dialog_label;
+    Button* dialog_confirm_button =
+        &s_file_list_scene_ctx.dialog_confirm_button;
+    Label* dialog_confirm_label = &s_file_list_scene_ctx.dialog_confirm_label;
+    Button* dialog_cancel_button = &s_file_list_scene_ctx.dialog_cancel_button;
+    Label* dialog_cancel_label = &s_file_list_scene_ctx.dialog_cancel_label;
     constexpr int dialog_width = 400;
     constexpr int dialog_height = 120;
     constexpr int dialog_border_thickness = 2;
@@ -232,11 +261,11 @@ static Status load_file_list_scene() {
 
     dialog_confirm_button->set_on_click([](int x, int y) {
         // Send file if the index is still valid (card wasn't removed)
-        if (file_list_scene_ctx.selected_file_index <
-            file_list_scene_ctx.file_list.size()) {
+        if (s_file_list_scene_ctx.selected_file_index <
+            s_file_list_scene_ctx.file_list.size()) {
             const FileInfo& selected_file =
-                file_list_scene_ctx
-                    .file_list[file_list_scene_ctx.selected_file_index];
+                s_file_list_scene_ctx
+                    .file_list[s_file_list_scene_ctx.selected_file_index];
             file_sender_send_file(selected_file.name.c_str());
             TRACE_PRINTF("Sending file: %s\n", selected_file.name.c_str());
 
@@ -244,7 +273,7 @@ static Status load_file_list_scene() {
             load_sending_file_scene();
         }
 
-        file_list_scene_ctx.scene.set_dialog_active(false);
+        s_file_list_scene_ctx.scene.set_dialog_active(false);
     });
 
     *dialog_cancel_button =
@@ -258,7 +287,7 @@ static Status load_file_list_scene() {
     dialog_cancel_label->set_alignment(LABEL_ALIGN_CENTER);
 
     dialog_cancel_button->set_on_click([](int x, int y) {
-        file_list_scene_ctx.scene.set_dialog_active(false);
+        s_file_list_scene_ctx.scene.set_dialog_active(false);
     });
 
     scene.add_dialog_object(dialog_border);
@@ -270,73 +299,75 @@ static Status load_file_list_scene() {
     scene.add_dialog_object(dialog_cancel_label);
 
     // Static file list components
-    file_list_scene_ctx.file_scroll_up_button =
+    s_file_list_scene_ctx.file_scroll_up_button =
         Button(&scene, WINDOW_WIDTH - 80, WINDOW_HEIGHT - 40 - 10, 40, 40);
-    file_list_scene_ctx.file_scroll_up_button.set_on_click([](int x, int y) {
-        if (file_list_scene_ctx.file_list_start_index > 0) {
-            file_list_scene_ctx.file_list_start_index--;
+    s_file_list_scene_ctx.file_scroll_up_button.set_on_click([](int x, int y) {
+        if (s_file_list_scene_ctx.file_list_start_index > 0) {
+            s_file_list_scene_ctx.file_list_start_index--;
             update_file_list(true);
         }
     });
-    file_list_scene_ctx.file_scroll_up_button.bg_off();
+    s_file_list_scene_ctx.file_scroll_up_button.bg_off();
 
-    file_list_scene_ctx.file_scroll_down_button =
+    s_file_list_scene_ctx.file_scroll_down_button =
         Button(&scene, WINDOW_WIDTH - 80, 10, 40, 40);
-    file_list_scene_ctx.file_scroll_down_button.set_on_click([](int x, int y) {
-        if (file_list_scene_ctx.file_list_start_index + MAX_FILES_DISPLAYED <
-            file_list_scene_ctx.file_list.size()) {
-            file_list_scene_ctx.file_list_start_index++;
+    s_file_list_scene_ctx.file_scroll_down_button.set_on_click([](int x,
+                                                                  int y) {
+        if (s_file_list_scene_ctx.file_list_start_index + MAX_FILES_DISPLAYED <
+            s_file_list_scene_ctx.file_list.size()) {
+            s_file_list_scene_ctx.file_list_start_index++;
             update_file_list(true);
         }
     });
-    file_list_scene_ctx.file_scroll_down_button.bg_off();
+    s_file_list_scene_ctx.file_scroll_down_button.bg_off();
 
-    file_list_scene_ctx.file_scroll_up_graphic = GraphicsObject(
+    s_file_list_scene_ctx.file_scroll_up_graphic = GraphicsObject(
         &scene, ARROW_UP, WINDOW_WIDTH - 80, WINDOW_HEIGHT - 40 - 10);
 
-    file_list_scene_ctx.file_scroll_down_graphic =
+    s_file_list_scene_ctx.file_scroll_down_graphic =
         GraphicsObject(&scene, ARROW_DOWN, WINDOW_WIDTH - 80, 10);
 
-    scene.add_object(&file_list_scene_ctx.file_scroll_up_button);
-    scene.add_object(&file_list_scene_ctx.file_scroll_down_button);
-    scene.add_object(&file_list_scene_ctx.file_scroll_up_graphic);
-    scene.add_object(&file_list_scene_ctx.file_scroll_down_graphic);
+    scene.add_object(&s_file_list_scene_ctx.file_scroll_up_button);
+    scene.add_object(&s_file_list_scene_ctx.file_scroll_down_button);
+    scene.add_object(&s_file_list_scene_ctx.file_scroll_up_graphic);
+    scene.add_object(&s_file_list_scene_ctx.file_scroll_down_graphic);
 
     // Add in the file list
     for (size_t i = 0; i < MAX_FILES_DISPLAYED; ++i) {
-        file_list_scene_ctx.file_button[i] = Button(
+        s_file_list_scene_ctx.file_button[i] = Button(
             &scene, 40, WINDOW_HEIGHT - 48 - i * 48, WINDOW_WIDTH - 130, 48);
-        file_list_scene_ctx.file_button[i].bg_off();
-        file_list_scene_ctx.file_button[i].set_on_click([scene, i](int x,
-                                                                   int y) {
-            size_t file_idx = file_list_scene_ctx.file_list_start_index + i;
-            file_list_scene_ctx.selected_file_index = file_idx;
-            file_list_scene_ctx.dialog_label.set_text(
-                "Send " + file_list_scene_ctx.file_list[file_idx].name + "?");
-            file_list_scene_ctx.scene.set_dialog_active(true);
+        s_file_list_scene_ctx.file_button[i].bg_off();
+        s_file_list_scene_ctx.file_button[i].set_on_click([scene, i](int x,
+                                                                     int y) {
+            size_t file_idx = s_file_list_scene_ctx.file_list_start_index + i;
+            s_file_list_scene_ctx.selected_file_index = file_idx;
+            s_file_list_scene_ctx.dialog_label.set_text(
+                "Send " + s_file_list_scene_ctx.file_list[file_idx].name + "?");
+            s_file_list_scene_ctx.scene.set_dialog_active(true);
         });
 
-        file_list_scene_ctx.file_label[i] =
+        s_file_list_scene_ctx.file_label[i] =
             Label(&scene, 50, WINDOW_HEIGHT - 48 - i * 48, "", 32);
 
-        file_list_scene_ctx.file_divider[i] =
+        s_file_list_scene_ctx.file_divider[i] =
             Rectangle(&scene, 50, WINDOW_HEIGHT - 48 - i * 48 - 4,
                       WINDOW_WIDTH - 150, 2, 0xFA);
 
-        file_list_scene_ctx.file_size_label[i] = Label(
+        s_file_list_scene_ctx.file_size_label[i] = Label(
             &scene, WINDOW_WIDTH - 105, WINDOW_HEIGHT - 48 - i * 48, "", 32);
-        file_list_scene_ctx.file_size_label[i].set_alignment(LABEL_ALIGN_RIGHT);
+        s_file_list_scene_ctx.file_size_label[i].set_alignment(
+            LABEL_ALIGN_RIGHT);
 
         // Invisible by default
-        file_list_scene_ctx.file_button[i].set_visible(false);
-        file_list_scene_ctx.file_label[i].set_visible(false);
-        file_list_scene_ctx.file_divider[i].set_visible(false);
-        file_list_scene_ctx.file_size_label[i].set_visible(false);
+        s_file_list_scene_ctx.file_button[i].set_visible(false);
+        s_file_list_scene_ctx.file_label[i].set_visible(false);
+        s_file_list_scene_ctx.file_divider[i].set_visible(false);
+        s_file_list_scene_ctx.file_size_label[i].set_visible(false);
 
-        scene.add_object(&file_list_scene_ctx.file_button[i]);
-        scene.add_object(&file_list_scene_ctx.file_label[i]);
-        scene.add_object(&file_list_scene_ctx.file_divider[i]);
-        scene.add_object(&file_list_scene_ctx.file_size_label[i]);
+        scene.add_object(&s_file_list_scene_ctx.file_button[i]);
+        scene.add_object(&s_file_list_scene_ctx.file_label[i]);
+        scene.add_object(&s_file_list_scene_ctx.file_divider[i]);
+        scene.add_object(&s_file_list_scene_ctx.file_size_label[i]);
     }
 
     // Update the list objects
@@ -345,7 +376,7 @@ static Status load_file_list_scene() {
     lcd_set_background(MAIN);
     gui_set_current_scene(&scene);
 
-    file_list_scene_ctx.initialized = true;
+    s_file_list_scene_ctx.initialized = true;
 
     return STATUS_OK;
 }
@@ -354,25 +385,25 @@ static Status load_file_list_scene() {
 /* SENDING FILE SCREEN */
 /***********************/
 
-struct {
+static struct {
     bool initialized = false;
     Scene scene;
     Label status_label;
     GraphicsObject spinner;
     size_t animation_idx = 0;
     long long unsigned last_update_tick;
-} sending_file_scene_ctx;
+} s_sending_file_scene_ctx;
 
 static Status load_sending_file_scene() {
-    if (sending_file_scene_ctx.initialized) {
+    if (s_sending_file_scene_ctx.initialized) {
         lcd_set_background(MAIN);
-        gui_set_current_scene(&sending_file_scene_ctx.scene);
+        gui_set_current_scene(&s_sending_file_scene_ctx.scene);
         return STATUS_OK;
     }
 
-    Scene& scene = sending_file_scene_ctx.scene;
-    Label& status_label = sending_file_scene_ctx.status_label;
-    GraphicsObject& spinner = sending_file_scene_ctx.spinner;
+    Scene& scene = s_sending_file_scene_ctx.scene;
+    Label& status_label = s_sending_file_scene_ctx.status_label;
+    GraphicsObject& spinner = s_sending_file_scene_ctx.spinner;
 
     status_label = Label(&scene, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2 + 20,
                          "Sending file...", 32);
@@ -388,7 +419,7 @@ static Status load_sending_file_scene() {
     lcd_set_background(MAIN);
     gui_set_current_scene(&scene);
 
-    sending_file_scene_ctx.initialized = true;
+    s_sending_file_scene_ctx.initialized = true;
 
     return STATUS_OK;
 }
@@ -409,33 +440,33 @@ static Status update_sending_file_scene() {
     }
 
     // Looping 8-frame animation
-    sending_file_scene_ctx.animation_idx =
-        (sending_file_scene_ctx.animation_idx + 1) % 8;
+    s_sending_file_scene_ctx.animation_idx =
+        (s_sending_file_scene_ctx.animation_idx + 1) % 8;
 
-    switch (sending_file_scene_ctx.animation_idx) {
+    switch (s_sending_file_scene_ctx.animation_idx) {
         case 0:
-            sending_file_scene_ctx.spinner.set_graphics(LOADING0);
+            s_sending_file_scene_ctx.spinner.set_graphics(LOADING0);
             break;
         case 1:
-            sending_file_scene_ctx.spinner.set_graphics(LOADING1);
+            s_sending_file_scene_ctx.spinner.set_graphics(LOADING1);
             break;
         case 2:
-            sending_file_scene_ctx.spinner.set_graphics(LOADING2);
+            s_sending_file_scene_ctx.spinner.set_graphics(LOADING2);
             break;
         case 3:
-            sending_file_scene_ctx.spinner.set_graphics(LOADING3);
+            s_sending_file_scene_ctx.spinner.set_graphics(LOADING3);
             break;
         case 4:
-            sending_file_scene_ctx.spinner.set_graphics(LOADING4);
+            s_sending_file_scene_ctx.spinner.set_graphics(LOADING4);
             break;
         case 5:
-            sending_file_scene_ctx.spinner.set_graphics(LOADING5);
+            s_sending_file_scene_ctx.spinner.set_graphics(LOADING5);
             break;
         case 6:
-            sending_file_scene_ctx.spinner.set_graphics(LOADING6);
+            s_sending_file_scene_ctx.spinner.set_graphics(LOADING6);
             break;
         case 7:
-            sending_file_scene_ctx.spinner.set_graphics(LOADING7);
+            s_sending_file_scene_ctx.spinner.set_graphics(LOADING7);
             break;
         default:
             break;
@@ -448,27 +479,27 @@ static Status update_sending_file_scene() {
 /* ERROR SENDING FILE SCREEN */
 /*****************************/
 
-struct {
+static struct {
     bool initialized = false;
     Scene scene;
     Button back_button;
     Label back_label;
-} error_sending_file_scene_ctx;
+} s_error_sending_file_scene_ctx;
 
 constexpr unsigned int BACK_BUTTON_WIDTH = 150;
 constexpr unsigned int BACK_BUTTON_HEIGHT = 60;
 constexpr unsigned int BACK_TEXT_SIZE = 32;
 
 static Status load_error_sending_file_scene() {
-    if (error_sending_file_scene_ctx.initialized) {
+    if (s_error_sending_file_scene_ctx.initialized) {
         lcd_set_background(FILE_SEND_ERROR);
-        gui_set_current_scene(&error_sending_file_scene_ctx.scene);
+        gui_set_current_scene(&s_error_sending_file_scene_ctx.scene);
         return STATUS_OK;
     }
 
-    Scene& scene = error_sending_file_scene_ctx.scene;
-    Button& back_button = error_sending_file_scene_ctx.back_button;
-    Label& back_label = error_sending_file_scene_ctx.back_label;
+    Scene& scene = s_error_sending_file_scene_ctx.scene;
+    Button& back_button = s_error_sending_file_scene_ctx.back_button;
+    Label& back_label = s_error_sending_file_scene_ctx.back_label;
 
     back_button = Button(&scene, WINDOW_WIDTH / 2 - BACK_BUTTON_WIDTH / 2, 0,
                          BACK_BUTTON_WIDTH, BACK_BUTTON_HEIGHT);
@@ -485,7 +516,7 @@ static Status load_error_sending_file_scene() {
     lcd_set_background(FILE_SEND_ERROR);
     gui_set_current_scene(&scene);
 
-    error_sending_file_scene_ctx.initialized = true;
+    s_error_sending_file_scene_ctx.initialized = true;
 
     return STATUS_OK;
 }
@@ -494,31 +525,31 @@ static Status load_error_sending_file_scene() {
 /* BEGIN SCANNING SCREEN */
 /*************************/
 
-struct {
+static struct {
     bool initialized = false;
     Scene scene;
     Button cancel_button;
     Label cancel_label;
     Button confirm_button;
     Label confirm_label;
-} begin_scanning_scene_ctx;
+} s_begin_scanning_scene_ctx;
 
 constexpr unsigned int BEGIN_SCANNING_BUTTON_WIDTH = 150;
 constexpr unsigned int BEGIN_SCANNING_BUTTON_HEIGHT = 60;
 constexpr unsigned int BEGIN_SCANNING_TEXT_SIZE = 32;
 
 static Status load_begin_scanning_scene() {
-    if (begin_scanning_scene_ctx.initialized) {
+    if (s_begin_scanning_scene_ctx.initialized) {
         lcd_set_background(BEGIN_SCANNING);
-        gui_set_current_scene(&begin_scanning_scene_ctx.scene);
+        gui_set_current_scene(&s_begin_scanning_scene_ctx.scene);
         return STATUS_OK;
     }
 
-    Scene& scene = begin_scanning_scene_ctx.scene;
-    Button& cancel_button = begin_scanning_scene_ctx.cancel_button;
-    Label& cancel_label = begin_scanning_scene_ctx.cancel_label;
-    Button& confirm_button = begin_scanning_scene_ctx.confirm_button;
-    Label& confirm_label = begin_scanning_scene_ctx.confirm_label;
+    Scene& scene = s_begin_scanning_scene_ctx.scene;
+    Button& cancel_button = s_begin_scanning_scene_ctx.cancel_button;
+    Label& cancel_label = s_begin_scanning_scene_ctx.cancel_label;
+    Button& confirm_button = s_begin_scanning_scene_ctx.confirm_button;
+    Label& confirm_label = s_begin_scanning_scene_ctx.confirm_label;
 
     cancel_button =
         Button(&scene, WINDOW_WIDTH / 2 - BEGIN_SCANNING_BUTTON_WIDTH - 10, 0,
@@ -553,7 +584,7 @@ static Status load_begin_scanning_scene() {
     lcd_set_background(BEGIN_SCANNING);
     gui_set_current_scene(&scene);
 
-    begin_scanning_scene_ctx.initialized = true;
+    s_begin_scanning_scene_ctx.initialized = true;
 
     return STATUS_OK;
 }
@@ -562,11 +593,13 @@ static Status load_begin_scanning_scene() {
 /* INSERT CARD SCREEN */
 /**********************/
 
-static Scene s_insert_card_scene;
+static struct {
+    Scene scene;
+} s_insert_card_scene_ctx;
 
 static Status load_insert_card_scene() {
     lcd_set_background(INSERT_CARD);
-    gui_set_current_scene(&s_insert_card_scene);
+    gui_set_current_scene(&s_insert_card_scene_ctx.scene);
 
     return STATUS_OK;
 }
@@ -618,7 +651,8 @@ static Status load_cross_section_scene() {
             snprintf(s_cross_section_scene_ctx.layer_label_buf,
                      sizeof(s_cross_section_scene_ctx.layer_label_buf), "%d",
                      s_cross_section_scene_ctx.current_layer);
-            s_cross_section_scene_ctx.layer_label.set_text(s_cross_section_scene_ctx.layer_label_buf);
+            s_cross_section_scene_ctx.layer_label.set_text(
+                s_cross_section_scene_ctx.layer_label_buf);
         }
     });
 
@@ -631,7 +665,8 @@ static Status load_cross_section_scene() {
             snprintf(s_cross_section_scene_ctx.layer_label_buf,
                      sizeof(s_cross_section_scene_ctx.layer_label_buf), "%d",
                      s_cross_section_scene_ctx.current_layer);
-            s_cross_section_scene_ctx.layer_label.set_text(s_cross_section_scene_ctx.layer_label_buf);
+            s_cross_section_scene_ctx.layer_label.set_text(
+                s_cross_section_scene_ctx.layer_label_buf);
         }
     });
 
@@ -657,8 +692,7 @@ static Status load_cross_section_scene() {
     scene.add_object(&s_cross_section_scene_ctx.layer_label);
 
     // Confirm button to start scanning
-    s_cross_section_scene_ctx.confirm_button =
-        Button(&scene, 117, 20, 175, 40);
+    s_cross_section_scene_ctx.confirm_button = Button(&scene, 117, 20, 175, 40);
     s_cross_section_scene_ctx.confirm_button.set_on_click([](int x, int y) {
         load_toolpathing_scene();
         pi_control_start_toolpathing();
@@ -706,25 +740,25 @@ static Status update_cross_section_scene() {
 /* SCANNING SCREEN */
 /*******************/
 
-struct {
+static struct {
     bool initialized = false;
     Scene scene;
     Label status_label;
     GraphicsObject spinner;
     size_t animation_idx = 0;
     long long unsigned last_update_tick;
-} scanning_scene_ctx;
+} s_scanning_scene_ctx;
 
 static Status load_scanning_scene() {
-    if (scanning_scene_ctx.initialized) {
+    if (s_scanning_scene_ctx.initialized) {
         lcd_set_background(MAIN);
-        gui_set_current_scene(&scanning_scene_ctx.scene);
+        gui_set_current_scene(&s_scanning_scene_ctx.scene);
         return STATUS_OK;
     }
 
-    Scene& scene = scanning_scene_ctx.scene;
-    Label& status_label = scanning_scene_ctx.status_label;
-    GraphicsObject& spinner = scanning_scene_ctx.spinner;
+    Scene& scene = s_scanning_scene_ctx.scene;
+    Label& status_label = s_scanning_scene_ctx.status_label;
+    GraphicsObject& spinner = s_scanning_scene_ctx.spinner;
 
     status_label = Label(&scene, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2 + 20,
                          "Scanning...", 32);
@@ -740,7 +774,7 @@ static Status load_scanning_scene() {
     lcd_set_background(MAIN);
     gui_set_current_scene(&scene);
 
-    scanning_scene_ctx.initialized = true;
+    s_scanning_scene_ctx.initialized = true;
 
     return STATUS_OK;
 }
@@ -753,33 +787,33 @@ static Status update_scanning_scene() {
     }
 
     // Looping 8-frame animation
-    scanning_scene_ctx.animation_idx =
-        (scanning_scene_ctx.animation_idx + 1) % 8;
+    s_scanning_scene_ctx.animation_idx =
+        (s_scanning_scene_ctx.animation_idx + 1) % 8;
 
-    switch (scanning_scene_ctx.animation_idx) {
+    switch (s_scanning_scene_ctx.animation_idx) {
         case 0:
-            scanning_scene_ctx.spinner.set_graphics(LOADING0);
+            s_scanning_scene_ctx.spinner.set_graphics(LOADING0);
             break;
         case 1:
-            scanning_scene_ctx.spinner.set_graphics(LOADING1);
+            s_scanning_scene_ctx.spinner.set_graphics(LOADING1);
             break;
         case 2:
-            scanning_scene_ctx.spinner.set_graphics(LOADING2);
+            s_scanning_scene_ctx.spinner.set_graphics(LOADING2);
             break;
         case 3:
-            scanning_scene_ctx.spinner.set_graphics(LOADING3);
+            s_scanning_scene_ctx.spinner.set_graphics(LOADING3);
             break;
         case 4:
-            scanning_scene_ctx.spinner.set_graphics(LOADING4);
+            s_scanning_scene_ctx.spinner.set_graphics(LOADING4);
             break;
         case 5:
-            scanning_scene_ctx.spinner.set_graphics(LOADING5);
+            s_scanning_scene_ctx.spinner.set_graphics(LOADING5);
             break;
         case 6:
-            scanning_scene_ctx.spinner.set_graphics(LOADING6);
+            s_scanning_scene_ctx.spinner.set_graphics(LOADING6);
             break;
         case 7:
-            scanning_scene_ctx.spinner.set_graphics(LOADING7);
+            s_scanning_scene_ctx.spinner.set_graphics(LOADING7);
             break;
         default:
             break;
@@ -792,25 +826,25 @@ static Status update_scanning_scene() {
 /* TOOLPATHING SCREEN */
 /**********************/
 
-struct {
+static struct {
     bool initialized = false;
     Scene scene;
     Label status_label;
     GraphicsObject spinner;
     size_t animation_idx = 0;
     long long unsigned last_update_tick;
-} toolpathing_scene_ctx;
+} s_toolpathing_scene_ctx;
 
 static Status load_toolpathing_scene() {
-    if (toolpathing_scene_ctx.initialized) {
+    if (s_toolpathing_scene_ctx.initialized) {
         lcd_set_background(MAIN);
-        gui_set_current_scene(&toolpathing_scene_ctx.scene);
+        gui_set_current_scene(&s_toolpathing_scene_ctx.scene);
         return STATUS_OK;
     }
 
-    Scene& scene = toolpathing_scene_ctx.scene;
-    Label& status_label = toolpathing_scene_ctx.status_label;
-    GraphicsObject& spinner = toolpathing_scene_ctx.spinner;
+    Scene& scene = s_toolpathing_scene_ctx.scene;
+    Label& status_label = s_toolpathing_scene_ctx.status_label;
+    GraphicsObject& spinner = s_toolpathing_scene_ctx.spinner;
 
     status_label = Label(&scene, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2 + 20,
                          "Toolpathing...", 32);
@@ -826,7 +860,7 @@ static Status load_toolpathing_scene() {
     lcd_set_background(MAIN);
     gui_set_current_scene(&scene);
 
-    toolpathing_scene_ctx.initialized = true;
+    s_toolpathing_scene_ctx.initialized = true;
 
     return STATUS_OK;
 }
@@ -839,33 +873,33 @@ static Status update_toolpathing_scene() {
     }
 
     // Looping 8-frame animation
-    toolpathing_scene_ctx.animation_idx =
-        (toolpathing_scene_ctx.animation_idx + 1) % 8;
+    s_toolpathing_scene_ctx.animation_idx =
+        (s_toolpathing_scene_ctx.animation_idx + 1) % 8;
 
-    switch (toolpathing_scene_ctx.animation_idx) {
+    switch (s_toolpathing_scene_ctx.animation_idx) {
         case 0:
-            toolpathing_scene_ctx.spinner.set_graphics(LOADING0);
+            s_toolpathing_scene_ctx.spinner.set_graphics(LOADING0);
             break;
         case 1:
-            toolpathing_scene_ctx.spinner.set_graphics(LOADING1);
+            s_toolpathing_scene_ctx.spinner.set_graphics(LOADING1);
             break;
         case 2:
-            toolpathing_scene_ctx.spinner.set_graphics(LOADING2);
+            s_toolpathing_scene_ctx.spinner.set_graphics(LOADING2);
             break;
         case 3:
-            toolpathing_scene_ctx.spinner.set_graphics(LOADING3);
+            s_toolpathing_scene_ctx.spinner.set_graphics(LOADING3);
             break;
         case 4:
-            toolpathing_scene_ctx.spinner.set_graphics(LOADING4);
+            s_toolpathing_scene_ctx.spinner.set_graphics(LOADING4);
             break;
         case 5:
-            toolpathing_scene_ctx.spinner.set_graphics(LOADING5);
+            s_toolpathing_scene_ctx.spinner.set_graphics(LOADING5);
             break;
         case 6:
-            toolpathing_scene_ctx.spinner.set_graphics(LOADING6);
+            s_toolpathing_scene_ctx.spinner.set_graphics(LOADING6);
             break;
         case 7:
-            toolpathing_scene_ctx.spinner.set_graphics(LOADING7);
+            s_toolpathing_scene_ctx.spinner.set_graphics(LOADING7);
             break;
         default:
             break;
@@ -878,31 +912,31 @@ static Status update_toolpathing_scene() {
 /* BEGIN CUTTING SCREEN */
 /************************/
 
-struct {
+static struct {
     bool initialized = false;
     Scene scene;
     Button cancel_button;
     Label cancel_label;
     Button confirm_button;
     Label confirm_label;
-} begin_cutting_scene_ctx;
+} s_begin_cutting_scene_ctx;
 
 constexpr unsigned int BEGIN_CUTTING_BUTTON_WIDTH = 150;
 constexpr unsigned int BEGIN_CUTTING_BUTTON_HEIGHT = 60;
 constexpr unsigned int BEGIN_CUTTING_TEXT_SIZE = 32;
 
 static Status load_begin_cutting_scene() {
-    if (begin_cutting_scene_ctx.initialized) {
+    if (s_begin_cutting_scene_ctx.initialized) {
         lcd_set_background(BEGIN_CUTTING);
-        gui_set_current_scene(&begin_cutting_scene_ctx.scene);
+        gui_set_current_scene(&s_begin_cutting_scene_ctx.scene);
         return STATUS_OK;
     }
 
-    Scene& scene = begin_cutting_scene_ctx.scene;
-    Button& cancel_button = begin_cutting_scene_ctx.cancel_button;
-    Label& cancel_label = begin_cutting_scene_ctx.cancel_label;
-    Button& confirm_button = begin_cutting_scene_ctx.confirm_button;
-    Label& confirm_label = begin_cutting_scene_ctx.confirm_label;
+    Scene& scene = s_begin_cutting_scene_ctx.scene;
+    Button& cancel_button = s_begin_cutting_scene_ctx.cancel_button;
+    Label& cancel_label = s_begin_cutting_scene_ctx.cancel_label;
+    Button& confirm_button = s_begin_cutting_scene_ctx.confirm_button;
+    Label& confirm_label = s_begin_cutting_scene_ctx.confirm_label;
 
     cancel_button =
         Button(&scene, WINDOW_WIDTH / 2 - BEGIN_CUTTING_BUTTON_WIDTH - 10, 0,
@@ -937,7 +971,7 @@ static Status load_begin_cutting_scene() {
     lcd_set_background(BEGIN_CUTTING);
     gui_set_current_scene(&scene);
 
-    begin_cutting_scene_ctx.initialized = true;
+    s_begin_cutting_scene_ctx.initialized = true;
 
     return STATUS_OK;
 }
@@ -950,25 +984,25 @@ static Status update_begin_cutting_scene() {
 /* CUTTING SCREEN */
 /******************/
 
-struct {
+static struct {
     bool initialized = false;
     Scene scene;
     Label status_label;
     GraphicsObject spinner;
     size_t animation_idx = 0;
     long long unsigned last_update_tick;
-} cutting_scene_ctx;
+} s_cutting_scene_ctx;
 
 static Status load_cutting_scene() {
-    if (cutting_scene_ctx.initialized) {
+    if (s_cutting_scene_ctx.initialized) {
         lcd_set_background(MAIN);
-        gui_set_current_scene(&cutting_scene_ctx.scene);
+        gui_set_current_scene(&s_cutting_scene_ctx.scene);
         return STATUS_OK;
     }
 
-    Scene& scene = cutting_scene_ctx.scene;
-    Label& status_label = cutting_scene_ctx.status_label;
-    GraphicsObject& spinner = cutting_scene_ctx.spinner;
+    Scene& scene = s_cutting_scene_ctx.scene;
+    Label& status_label = s_cutting_scene_ctx.status_label;
+    GraphicsObject& spinner = s_cutting_scene_ctx.spinner;
 
     status_label = Label(&scene, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2 + 20,
                          "Cutting...", 32);
@@ -984,7 +1018,7 @@ static Status load_cutting_scene() {
     lcd_set_background(MAIN);
     gui_set_current_scene(&scene);
 
-    cutting_scene_ctx.initialized = true;
+    s_cutting_scene_ctx.initialized = true;
 
     return STATUS_OK;
 }
@@ -997,33 +1031,33 @@ static Status update_cutting_scene() {
     }
 
     // Looping 8-frame animation
-    cutting_scene_ctx.animation_idx =
-        (cutting_scene_ctx.animation_idx + 1) % 8;
+    s_cutting_scene_ctx.animation_idx =
+        (s_cutting_scene_ctx.animation_idx + 1) % 8;
 
-    switch (cutting_scene_ctx.animation_idx) {
+    switch (s_cutting_scene_ctx.animation_idx) {
         case 0:
-            cutting_scene_ctx.spinner.set_graphics(LOADING0);
+            s_cutting_scene_ctx.spinner.set_graphics(LOADING0);
             break;
         case 1:
-            cutting_scene_ctx.spinner.set_graphics(LOADING1);
+            s_cutting_scene_ctx.spinner.set_graphics(LOADING1);
             break;
         case 2:
-            cutting_scene_ctx.spinner.set_graphics(LOADING2);
+            s_cutting_scene_ctx.spinner.set_graphics(LOADING2);
             break;
         case 3:
-            cutting_scene_ctx.spinner.set_graphics(LOADING3);
+            s_cutting_scene_ctx.spinner.set_graphics(LOADING3);
             break;
         case 4:
-            cutting_scene_ctx.spinner.set_graphics(LOADING4);
+            s_cutting_scene_ctx.spinner.set_graphics(LOADING4);
             break;
         case 5:
-            cutting_scene_ctx.spinner.set_graphics(LOADING5);
+            s_cutting_scene_ctx.spinner.set_graphics(LOADING5);
             break;
         case 6:
-            cutting_scene_ctx.spinner.set_graphics(LOADING6);
+            s_cutting_scene_ctx.spinner.set_graphics(LOADING6);
             break;
         case 7:
-            cutting_scene_ctx.spinner.set_graphics(LOADING7);
+            s_cutting_scene_ctx.spinner.set_graphics(LOADING7);
             break;
         default:
             break;
@@ -1055,37 +1089,28 @@ void gui_app_task() {
     // Scene specific updates
 
     // Splash screen
-    if (gui_get_current_scene() == &s_splash_screen_scene) {
-        if (get_tick_ms() >= 3000) {
-            if (s_init_status != STATUS_OK) {
-                // If initialization failed, just show a blank screen
-                lcd_set_background(BLANK);
-                return;
-            } else {
-                // Load the file list scene after the splash screen
-                load_file_list_scene();
-            }
-        }
+    if (gui_get_current_scene() == &s_splash_screen_scene_ctx.scene) {
+        update_splash_screen_scene();
     }
 
     // File list
-    if (gui_get_current_scene() == &file_list_scene_ctx.scene) {
-        if (get_tick_ms() - file_list_scene_ctx.last_update_tick >= 1000) {
+    if (gui_get_current_scene() == &s_file_list_scene_ctx.scene) {
+        if (get_tick_ms() - s_file_list_scene_ctx.last_update_tick >= 1000) {
             update_file_list();
-            file_list_scene_ctx.last_update_tick = get_tick_ms();
+            s_file_list_scene_ctx.last_update_tick = get_tick_ms();
         }
     }
 
     // Sending file screen
-    if (gui_get_current_scene() == &sending_file_scene_ctx.scene) {
-        if (get_tick_ms() - sending_file_scene_ctx.last_update_tick >= 200) {
+    if (gui_get_current_scene() == &s_sending_file_scene_ctx.scene) {
+        if (get_tick_ms() - s_sending_file_scene_ctx.last_update_tick >= 200) {
             update_sending_file_scene();
-            sending_file_scene_ctx.last_update_tick = get_tick_ms();
+            s_sending_file_scene_ctx.last_update_tick = get_tick_ms();
         }
     }
 
     // Insert card screen
-    if (gui_get_current_scene() == &s_insert_card_scene) {
+    if (gui_get_current_scene() == &s_insert_card_scene_ctx.scene) {
         update_insert_card_scene();
     }
 
@@ -1095,31 +1120,31 @@ void gui_app_task() {
     }
 
     // Scanning screen
-    if (gui_get_current_scene() == &scanning_scene_ctx.scene) {
-        if (get_tick_ms() - scanning_scene_ctx.last_update_tick >= 200) {
+    if (gui_get_current_scene() == &s_scanning_scene_ctx.scene) {
+        if (get_tick_ms() - s_scanning_scene_ctx.last_update_tick >= 200) {
             update_scanning_scene();
-            scanning_scene_ctx.last_update_tick = get_tick_ms();
+            s_scanning_scene_ctx.last_update_tick = get_tick_ms();
         }
     }
 
     // Toolpathing screen
-    if (gui_get_current_scene() == &toolpathing_scene_ctx.scene) {
-        if (get_tick_ms() - toolpathing_scene_ctx.last_update_tick >= 200) {
+    if (gui_get_current_scene() == &s_toolpathing_scene_ctx.scene) {
+        if (get_tick_ms() - s_toolpathing_scene_ctx.last_update_tick >= 200) {
             update_toolpathing_scene();
-            toolpathing_scene_ctx.last_update_tick = get_tick_ms();
+            s_toolpathing_scene_ctx.last_update_tick = get_tick_ms();
         }
     }
 
     // Begin cutting screen
-    if (gui_get_current_scene() == &begin_cutting_scene_ctx.scene) {
+    if (gui_get_current_scene() == &s_begin_cutting_scene_ctx.scene) {
         update_begin_cutting_scene();
     }
 
     // Cutting screen
-    if (gui_get_current_scene() == &cutting_scene_ctx.scene) {
-        if (get_tick_ms() - cutting_scene_ctx.last_update_tick >= 200) {
+    if (gui_get_current_scene() == &s_cutting_scene_ctx.scene) {
+        if (get_tick_ms() - s_cutting_scene_ctx.last_update_tick >= 200) {
             update_cutting_scene();
-            cutting_scene_ctx.last_update_tick = get_tick_ms();
+            s_cutting_scene_ctx.last_update_tick = get_tick_ms();
         }
     }
 

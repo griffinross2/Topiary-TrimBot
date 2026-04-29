@@ -55,7 +55,6 @@ def handle_received_packet(packet_enc):
             slicer_view_give_packet(header.id, packet[packet_data_start:packet_data_end])
         case PACKET_TYPE_GET_CROSS_SECTION.packet_type:
             slicer_view_give_packet(header.id, packet[packet_data_start:packet_data_end])
-            
 
         case _:
             pass
