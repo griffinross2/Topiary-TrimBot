@@ -14,6 +14,15 @@ file_receiver_status = FileReceiverStatus.FILE_RECEIVER_STATUS_IDLE
 file_receiver_out_file = None
 file_receiver_file_name = ""
 
+def file_receiver_init():
+    global file_receiver_status
+    global file_receiver_out_file
+    global file_receiver_file_name
+
+    file_receiver_status = FileReceiverStatus.FILE_RECEIVER_STATUS_IDLE
+    file_receiver_out_file = None
+    file_receiver_file_name = ""
+
 def file_receiver_task(dev: USBDev):
     global file_receiver_status
     global file_receiver_out_file

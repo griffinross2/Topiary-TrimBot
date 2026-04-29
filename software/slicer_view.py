@@ -19,6 +19,29 @@ model_slice = None
 slice_idx = 0
 on_model = False
 
+def slicer_view_init():
+    global plant_mesh
+    global model_mesh
+    global slicer_bound
+    global waiting_ack
+    global segment_i
+    global slicer_status
+    global plant_slice
+    global model_slice
+    global slice_idx
+    global on_model
+
+    plant_mesh = None
+    model_mesh = None
+    slicer_bound = 0
+    waiting_ack = False
+    segment_i = 0
+    slicer_status = SlicerStatus.SLICER_STATUS_IDLE
+    plant_slice = None
+    model_slice = None
+    slice_idx = 0
+    on_model = False
+
 def slicer_view_task(usb_dev: USBDev):
     global slicer_status
     global waiting_ack

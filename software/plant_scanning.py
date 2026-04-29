@@ -38,6 +38,17 @@ def start_scan(height=400):
         scan_last_wait_time = time.time() * 1000
         scan_status = ScanStatus.PLANT_SCANNING_SCANNING
 
+def plant_scanning_init():
+    global scan_status
+    global scan_waiting_for_move
+    global scan_last_wait_time
+    global scan_angle
+
+    scan_status = ScanStatus.PLANT_SCANNING_IDLE
+    scan_waiting_for_move = True
+    scan_last_wait_time = time.time() * 1000
+    scan_angle = 0
+
 def plant_scanning_task(usb_dev):
     global scan_status
     global scan_waiting_for_move
@@ -86,6 +97,7 @@ def plant_scanning_task(usb_dev):
                     usb_dev.clear()
 
                     scan_waiting_for_move = True
+                    scan_last_wait_time = time.time()
 
                     return
 
@@ -107,6 +119,9 @@ def plant_scanning_task(usb_dev):
                 # Tell the MCU that scanning is done
                 id = PACKET_TYPE_DONE_SCANNING
                 packet_send(usb_dev, bytes(), id)
+
+                scan_waiting_for_move = True
+                scan_status = ScanStatus.PLANT_SCANNING_IDLE
 
         case ScanStatus.PLANT_SCANNING_ERROR:
             pass

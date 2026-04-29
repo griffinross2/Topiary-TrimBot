@@ -15,6 +15,17 @@ gcode_sender_ack_timeout_tick_ms = 0
 
 GCODE_SENDER_ACK_TIMEOUT = 2 * 60 * 1000
 
+def gcode_sender_init():
+    global gcode_sender_status
+    global gcode_sender_waiting_for_ack
+    global gcode_sender_gcode_buf
+    global gcode_sender_ack_timeout_tick_ms
+
+    gcode_sender_status = GCodeSenderStatus.GCODE_SENDER_STATUS_IDLE
+    gcode_sender_waiting_for_ack = False
+    gcode_sender_gcode_buf = []
+    gcode_sender_ack_timeout_tick_ms = 0
+
 def gcode_sender_task(dev: USBDev):
     global gcode_sender_status
     global gcode_sender_waiting_for_ack

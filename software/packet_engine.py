@@ -62,6 +62,10 @@ def handle_received_packet(packet_enc):
 
     return 0
 
+def packet_engine_init():
+    global rx_buf
+    rx_buf = bytes()
+
 def packet_engine_task(dev: USBDev):
     global rx_buf
     rx_buf_len = len(rx_buf)

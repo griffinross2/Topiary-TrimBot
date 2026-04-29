@@ -5,6 +5,10 @@ from usb import USBDev
 
 done_toolpathing = False
 
+def toolpathing_init():
+    global done_toolpathing
+    done_toolpathing = False
+
 def toolpathing_task(usb_dev: USBDev):
     global done_toolpathing
     if done_toolpathing:

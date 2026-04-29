@@ -42,6 +42,8 @@ def get_slicer_bound(plant_mesh):
 def get_slices(plant_mesh, model_mesh, num_slices):
     global plant_slices
     global model_slices
+    plant_slices = []
+    model_slices = []
     plant_mesh_pv = pv.from_trimesh(plant_mesh)
     model_mesh_pv = pv.from_trimesh(model_mesh)
     for z in np.linspace(plant_mesh_pv.bounds.z_min, plant_mesh_pv.bounds.z_max, num_slices):

@@ -1,12 +1,12 @@
 from usb import USBDev
 import signal
-from packet_engine import packet_engine_task
-from file_receiver import file_receiver_task
-from gcode_sender import gcode_sender_task
+from packet_engine import packet_engine_task, packet_engine_init
+from file_receiver import file_receiver_task, file_receiver_init
+from gcode_sender import gcode_sender_task, gcode_sender_init
 from camera import init_cameras, deinit_cameras
-from plant_scanning import plant_scanning_task
-from slicer_view import slicer_view_task
-from toolpathing import toolpathing_task
+from plant_scanning import plant_scanning_task, plant_scanning_init
+from slicer_view import slicer_view_task, slicer_view_init
+from toolpathing import toolpathing_task, toolpathing_init
 import packet
 import serial
 import time
@@ -39,7 +39,13 @@ def main():
         raise e
 
     init_cameras()
-    
+    toolpathing_init()
+    slicer_view_init()
+    plant_scanning_init()
+    packet_engine_init()
+    gcode_sender_init()
+    file_receiver_init()
+
     print("Init Complete")
 
     while(True):
