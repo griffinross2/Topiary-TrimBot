@@ -20,6 +20,6 @@ def toolpathing_task(usb_dev: USBDev):
 def start_toolpathing():
     global done_toolpathing
 
-    do_toolpath(file_receiver_get_model_file_name())
+    do_toolpath()
 
     done_toolpathing = True
