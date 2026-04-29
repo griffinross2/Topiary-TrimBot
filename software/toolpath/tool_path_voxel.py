@@ -1,66 +1,22 @@
 import trimesh as tm
 import pyvista as pv
 import numpy as np
+from fitting import scale_mesh_to_m, fit_mesh
 
 CUTTER_WIDTH = 0.1
-VOXEL_SIZE = CUTTER_WIDTH / 5
+VOXEL_SIZE = CUTTER_WIDTH / 8
 VOXEL_VICTIM_RANGE = CUTTER_WIDTH / 3
 MODEL_EXTRA_SCALE = 1
 STARTING_ANGLE_STEP = 8
-ENDING_ANGLE_STEP = 18
+ENDING_ANGLE_STEP = 14
+SCAN_SET_HEIGHT = (400 / 1000)
+# STARTING_ANGLE_STEP = 1
+# ENDING_ANGLE_STEP = 1
 POT_HEIGHT = 0.254
 POT_DIAMETER = 0.28
 PLANT_KEEPOUT_FRACTION = (1/2)
-
-
-def fit_mesh(mesh, surf):
-    # center both meshes
-    mesh.apply_translation(-mesh.centroid)
-    surf.apply_translation(-surf.centroid)
-    # TODO: center mesh to surf centroid
-
-    # scale mesh larger than surface
-    mesh_scale = (surf.extents / mesh.extents).min()
-    mesh.apply_scale(mesh_scale)
-
-    # scales and rotations
-    scales = np.logspace(0,-2,50)
-    rotations = np.linspace(0.0,360.0,50) # degrees
-
-    # fitting operation
-    for scale in scales:
-        # scale
-        s = np.diag([scale, scale, scale, 1])
-
-        for rotation in rotations:
-            # copy mesh
-            mesh_test = mesh.copy()
-        
-            # rotation
-            ang = np.radians(rotation)
-            r_z = tm.transformations.rotation_matrix(ang, [0,0,1])
-        
-            # apply translation
-            trans = r_z @ s
-            mesh_test.apply_transform(trans)
-
-            # simple check if all vertices of the mesh are inside the plant surface
-            points_inside = surf.contains(mesh_test.vertices)
-            is_inside = np.all(points_inside)
-
-        if (is_inside):
-            break
-    
-    if (not is_inside):
-        raise RuntimeError("No fits")
-    else:
-        print(f"Found fit with scale {scale} and rotation {rotation}")
-        return mesh_test
-    
-def scale_mesh_to_m(current_units_per_m, mesh):
-    scale_factor = 1 / current_units_per_m
-    mesh.apply_scale(scale_factor * MODEL_EXTRA_SCALE)
-    return mesh
+PLANT_KEEPOUT_DIAMETER = POT_DIAMETER * 0.75
+R_SLOP = 0.001
 
 def voxelize_meshes(plant_mesh, model_mesh, pitch=VOXEL_SIZE):
     # This function implemented by ChatGPT
@@ -132,8 +88,8 @@ def show_voxel(voxel):
 def get_center_voxel(voxels):
     return np.floor((-voxels.translation)/VOXEL_SIZE)
 
-def get_outmost_at_height(voxels, angle, height_index):
-    start = get_center_voxel(voxels)
+def get_outmost_at_height(diff_voxels, model_voxels, angle, height_index):
+    start = get_center_voxel(diff_voxels)
     start[2] = height_index
     angle = np.deg2rad(angle)
     last_voxel = start
@@ -149,9 +105,12 @@ def get_outmost_at_height(voxels, angle, height_index):
         x_inc = 1 if (angle < np.pi/2) or (angle > 3*np.pi/2) else -1
         x = start[0]
         y = start[1]
-        while int(x) >= 0 and int(x) < voxels.matrix.shape[0] and int(y) >= 0 and int(y) < voxels.matrix.shape[1]:
-            if voxels.matrix[int(x), int(y), height_index]:
+        while int(x) >= 0 and int(x) < diff_voxels.matrix.shape[0] and int(y) >= 0 and int(y) < diff_voxels.matrix.shape[1]:
+            if diff_voxels.matrix[int(x), int(y), height_index]:
                 last_voxel = (int(x), int(y), height_index)
+            if model_voxels.matrix[int(x), int(y), height_index]:
+                last_voxel = (int(x), int(y), height_index)
+
 
             x += x_inc
             y += np.tan(angle)*x_inc
@@ -159,8 +118,10 @@ def get_outmost_at_height(voxels, angle, height_index):
         y_inc = 1 if (angle < np.pi) else -1
         x = start[0]
         y = start[1]
-        while int(x) >= 0 and int(x) < voxels.matrix.shape[0] and int(y) >= 0 and int(y) < voxels.matrix.shape[1]:
-            if voxels.matrix[int(x), int(y), height_index]:
+        while int(x) >= 0 and int(x) < diff_voxels.matrix.shape[0] and int(y) >= 0 and int(y) < diff_voxels.matrix.shape[1]:
+            if diff_voxels.matrix[int(x), int(y), height_index]:
+                last_voxel = (int(x), int(y), height_index)
+            if model_voxels.matrix[int(x), int(y), height_index]:
                 last_voxel = (int(x), int(y), height_index)
 
             x += 1/(np.tan(angle))*y_inc
@@ -246,24 +207,32 @@ def kill_other_victims(voxels, angle, last_voxel):
         # print(angle, start, new_start, i)
         kill_through_path(voxels, new_start, angle)
         
-def get_cut_path(voxels, angle, plant_voxel):
+def get_cut_path(voxels, angle, plant_voxel, model_voxel):
     path = []
     for i in range(voxels.matrix.shape[2]):
-        voxel_at_i = get_outmost_at_height(voxels, angle, i)
+        voxel_at_i = get_outmost_at_height(voxels, model_voxel, angle, i)
         point = voxels.indices_to_points(np.array([voxel_at_i]))[0]
-        # Reject points that may have crossed to the other side
+        # Clip points that may have crossed to the other side
         # of the plant
-        if angle >= 0 and angle < 90:
-            if point[0] > 0 and point[1] > 0:
+        if angle >= 0 and angle < 45 or angle >= 315 and angle <= 360:
+            if point[0] < 0:
+                path.append([R_SLOP*np.cos(np.deg2rad(angle)), R_SLOP*np.sin(np.deg2rad(angle)), point[2]])
+            else:
                 path.append(point)
-        elif angle >= 90 and angle < 180:
-            if point[0] < 0 and point[1] > 0:
+        elif angle >= 45 and angle < 135:
+            if point[1] < 0:
+                path.append([R_SLOP*np.cos(np.deg2rad(angle)), R_SLOP*np.sin(np.deg2rad(angle)), point[2]])
+            else:
                 path.append(point)
-        elif angle >= 180 and angle < 270:
-            if point[0] < 0 and point[1] < 0:
+        elif angle >= 135 and angle < 225:
+            if point[0] > 0:
+                path.append([R_SLOP*np.cos(np.deg2rad(angle)), R_SLOP*np.sin(np.deg2rad(angle)), point[2]])
+            else:
                 path.append(point)
-        elif angle >= 270 and angle <= 360:
-            if point[0] > 0 and point[1] < 0:
+        elif angle >= 225 and angle < 315:
+            if point[1] > 0:
+                path.append([R_SLOP*np.cos(np.deg2rad(angle)), R_SLOP*np.sin(np.deg2rad(angle)), point[2]])
+            else:
                 path.append(point)
 
         # print(i, angle, voxel_at_i)
@@ -284,18 +253,17 @@ def get_cut_path(voxels, angle, plant_voxel):
 # print(diff_voxel.matrix.shape)
 
 def remove_points_in_keepout(plant_mesh, paths):
-    keepout_radius = POT_DIAMETER / 2
-    plant_top = plant_mesh.bounds[1][2]
-    keepout_height = PLANT_KEEPOUT_FRACTION * plant_top
-
-    print(f"plant_top: {plant_top}, keepout_height: {keepout_height}, keepout_radius: {keepout_radius}")
-
     new_paths = []
     for path in paths:
         new_path = []
         for point in path:
             point_r = np.linalg.norm((point[0], point[1]))
             point_z = point[2]
+
+            keepout_radius = POT_DIAMETER / 2 if (point_z + SCAN_SET_HEIGHT < POT_HEIGHT) else PLANT_KEEPOUT_DIAMETER / 2
+            plant_top = plant_mesh.bounds[1][2]
+            keepout_height = PLANT_KEEPOUT_FRACTION * plant_top
+
             if point_r > keepout_radius or point_z > keepout_height:
                 new_path.append(point)
             # else:
@@ -304,14 +272,14 @@ def remove_points_in_keepout(plant_mesh, paths):
 
     return new_paths
 
-def trim_dumb_paths(paths):
-    new_paths = []
-
-    for path in paths:
-        if len(path) >= 2:
-            new_paths.append(path)
-
-    return new_paths
+def kill_voxels_outside_radius(voxels, radius):
+    # Get rid of voxels that should have been trimmed
+    for i in range(voxels.matrix.shape[0]):
+        for j in range(voxels.matrix.shape[1]):
+            center = voxels.indices_to_points(np.array([[i,j,0]]))[0]
+            r = np.linalg.norm((center[0], center[1]))
+            if r > radius:
+                voxels.matrix[i, j, :] = False
 
 def get_toolpath(plant_mesh, model_mesh, angle_start=0, angle_end=360, last_pass_only=False):
     plant_voxel, model_voxel = voxelize_meshes(plant_mesh, model_mesh)
@@ -322,13 +290,20 @@ def get_toolpath(plant_mesh, model_mesh, angle_start=0, angle_end=360, last_pass
 
     paths = []
     pass_start_indices = []
-    num_passes = int(np.max(diff_voxel.matrix.shape[:2])/2)
+    max_radius = np.max([np.linalg.norm(plant_mesh.bounds[0][:2]), np.linalg.norm(plant_mesh.bounds[1][:2])])
+    max_radius_voxels = max_radius / VOXEL_SIZE
+    num_passes = int(max_radius_voxels)
     for p in range(num_passes):
+        pass_start_len = len(paths)
         pass_start_indices.append(len(paths))
         angle_lerp = int(((p/num_passes) * (ENDING_ANGLE_STEP-STARTING_ANGLE_STEP)) + STARTING_ANGLE_STEP)
         for a in range(angle_start, angle_end, angle_lerp):
-            diff_voxel, path, plant_voxel = get_cut_path(diff_voxel, a, plant_voxel)
-            paths.append(path)
+            diff_voxel, path, plant_voxel = get_cut_path(diff_voxel, a, plant_voxel, model_voxel)
+            if len(path) >= 2:
+                paths.append(path)
+        if len(paths) <= pass_start_len:
+            break
+        kill_voxels_outside_radius(diff_voxel, max_radius - (p+1)*VOXEL_SIZE)
 
     # show_voxel(diff_voxel)
     # show_voxel(plant_voxel)
@@ -336,7 +311,6 @@ def get_toolpath(plant_mesh, model_mesh, angle_start=0, angle_end=360, last_pass
         paths = paths[pass_start_indices[-1]:]
 
     paths = remove_points_in_keepout(plant_mesh, paths)
-    paths = trim_dumb_paths(paths)
 
     return paths, plant_voxel, model_voxel
 
@@ -349,7 +323,7 @@ if __name__ == "__main__":
 
     paths, plant_voxel, model_voxel = get_toolpath(plant_mesh, model_mesh)
     plant_voxel_mesh = plant_voxel.as_boxes()
-    plant_voxel_mesh.visual.face_colors = [50, 200, 50, 255]
+    # plant_voxel_mesh.visual.face_colors = [50, 200, 50, 255]
     # print(plant_voxel_mesh.bounds)
     plant_voxel_mesh.show()
     # model_voxel.as_boxes().show()

@@ -12,10 +12,14 @@ DECS = 3
 PARKING_R = 300 # mm
 START_POINT = (0, -390, 500, 0) # mm, mm, mm, deg
 MIN_R_SLOP = 5
+POT_HEIGHT = 0.254
+POT_DIAMETER = 0.28
+PLANT_KEEPOUT_DIAMETER = POT_DIAMETER * 0.75
+TOOLHEAD_LEN = 180
 
 # trimbot dimension constants
 D = 477.5
-Y_MAX_POS = 325
+Y_MAX_POS = 330
 TY = 158
 TZ = 41
 
@@ -72,6 +76,11 @@ def get_trimmer_angle(curr_coord, next_coord):
     min_r = D - Y_MAX_POS - TY * np.sin(np.deg2rad(ang)) - TZ * np.cos(np.deg2rad(ang))
     if magnitude(curr_coord[0], curr_coord[1]) <= min_r + MIN_R_SLOP:
         ang = 90
+
+    # Finally, we also need to change the cutter angle to be shallower if
+    # we are near the pot and the bottom surface of the toolhead assembly will hit the plant.
+    if curr_coord[2] < POT_HEIGHT + (TOOLHEAD_LEN*np.cos(np.deg2rad(ang))):
+        ang = max(ang, np.rad2deg(np.arccos((curr_coord[2] - POT_HEIGHT) / TOOLHEAD_LEN)))
         
     return ang
 
@@ -150,11 +159,11 @@ def generate_gcode(paths, fname="out.gcode"):
                 angle = get_trimmer_angle(path[n], path[n+1])
                 wrist_move(f, angle)
 
-        # disable trimmer
-        set_trimmer(f, False)
-
         # go to parking position
         x, y = parking_radius(f, path[n])
+
+        # disable trimmer
+        set_trimmer(f, False)
 
         # rotation move
         if (i < len(paths) - 1):
