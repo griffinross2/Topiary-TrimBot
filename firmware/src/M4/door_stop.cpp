@@ -8,9 +8,12 @@
 
 static EXTI_HandleTypeDef hexti;
 static bool was_opened_last = false;
+static bool inited = false;
 
 Status door_stop_init() {
     gpio_mode(PIN_DOOR, GPIO_INPUT_PULLUP);
+    HAL_Delay(100);  // Settle
+    inited = true;
 
     EXTI_ConfigTypeDef exti_config = {};
     exti_config.Line = EXTI_LINE_3;
@@ -29,6 +32,10 @@ Status door_stop_init() {
 }
 
 void door_stop_task() {
+    if (!inited) {
+        return;
+    }
+
     if (gpio_read(PIN_DOOR) == GPIO_HIGH) {
         // Stop the steppers
         planner.quick_stop();

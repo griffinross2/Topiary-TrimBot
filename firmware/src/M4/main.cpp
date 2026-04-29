@@ -29,25 +29,33 @@ int main(void) {
     int init_stat = 0;
     init_stat |= terminal_rx_start();
     init_stat |= door_stop_init();
+    init_stat |= scheduler_init();
+
+    scheduler_add_task("gcode_receiver", gcode_receiver_task, 100, 0);
+    scheduler_add_task("pi_control", pi_control_task, 50, 1);
+    scheduler_add_task("led_blink", led_blink, 1000, 2);
+    scheduler_add_task("manual_gcode", process_manual_gcode, 100, 3);
+    scheduler_add_task("scheduler_summary", scheduler_print_summary, 10000,
+                       100);
 
     marlin_wrapper_init();
 
     // Marlin wrapper hosts the loop
     marlin_wrapper_set_idle_cb(main_loop);
 
+    door_stop_task();
+
     // Delay before homing
     HAL_Delay(500);
 
-    gcode.home_all_axes();
+    if (marlin_wrapper_is_alive()) {
+        gcode.home_all_axes();
+    } else {
+        while (true) {
+        }
+    }
+
     queue.enqueue_one("G1 Z800");  // Move Z down
-
-    // Setup the tasks
-    scheduler_init();
-
-    scheduler_add_task("door_stop", door_stop_task, 10, 0);
-    scheduler_add_task("gcode_receiver", gcode_receiver_task, 100, 1);
-    scheduler_add_task("pi_control", pi_control_task, 50, 2);
-    scheduler_add_task("led_blink", led_blink, 1000, 3);
 
     marlin_wrapper_loop();
 
@@ -55,6 +63,7 @@ int main(void) {
 }
 
 static void main_loop() {
+    door_stop_task();
     scheduler_run();
 }
 

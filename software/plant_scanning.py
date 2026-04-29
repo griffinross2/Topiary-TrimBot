@@ -19,7 +19,8 @@ FINAL_POS_RADIUS = 390
 class ScanStatus(Enum):
     PLANT_SCANNING_IDLE = 0
     PLANT_SCANNING_SCANNING = 1
-    PLANT_SCANNING_ERROR = 2
+    PLANT_SCANNING_DONE = 2
+    PLANT_SCANNING_ERROR = 3
 
 scan_status = ScanStatus.PLANT_SCANNING_IDLE
 scan_waiting_for_move = True
@@ -61,7 +62,7 @@ def plant_scanning_task(usb_dev):
                 
                 if scan_angle == 360:
                     scan_angle = 0
-                    scan_status = ScanStatus.PLANT_SCANNING_IDLE
+                    scan_status = ScanStatus.PLANT_SCANNING_DONE
                     # Make sure to go to the idle position
                     post_move_x = SCANNING_RADIUS * np.sin(np.deg2rad(scan_angle))
                     post_move_y = -SCANNING_RADIUS * np.cos(np.deg2rad(scan_angle))
@@ -84,9 +85,7 @@ def plant_scanning_task(usb_dev):
                     # Clear shit that piled up
                     usb_dev.clear()
 
-                    # Tell the MCU that scanning is done
-                    id = PACKET_TYPE_DONE_SCANNING
-                    packet_send(usb_dev, bytes(), id)
+                    scan_waiting_for_move = True
 
                     return
 
@@ -95,6 +94,19 @@ def plant_scanning_task(usb_dev):
                 gcode_sender_send_gcode(f"G3 X{post_move_x:.2f} Y{post_move_y:.2f} I{-pre_move_x:.2f} J{-pre_move_y:.2f}")
                 scan_last_wait_time = time.time() * 1000
                 scan_waiting_for_move = True
+
+        case ScanStatus.PLANT_SCANNING_DONE:
+            # Ensure the plant has finished moving to the
+            # rest position
+            if scan_waiting_for_move:
+                if (time.time() * 1000) - scan_last_wait_time >= WAIT_TIME_BEFORE_MOVE_CHECK:
+                    if not pi_control_is_moving():
+                        scan_waiting_for_move = False
+            
+            else:
+                # Tell the MCU that scanning is done
+                id = PACKET_TYPE_DONE_SCANNING
+                packet_send(usb_dev, bytes(), id)
 
         case ScanStatus.PLANT_SCANNING_ERROR:
             pass

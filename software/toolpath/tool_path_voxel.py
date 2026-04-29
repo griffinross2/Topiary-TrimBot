@@ -314,9 +314,6 @@ def trim_dumb_paths(paths):
     return new_paths
 
 def get_toolpath(plant_mesh, model_mesh, angle_start=0, angle_end=360, last_pass_only=False):
-    plant_mesh = scale_mesh_to_m(39.3701, plant_mesh) # Currently inches
-    model_mesh = fit_mesh(model_mesh, plant_mesh)
-
     plant_voxel, model_voxel = voxelize_meshes(plant_mesh, model_mesh)
     plant_voxel.fill()
     model_voxel.fill()
@@ -346,6 +343,9 @@ def get_toolpath(plant_mesh, model_mesh, angle_start=0, angle_end=360, last_pass
 if __name__ == "__main__":
     plant_mesh = tm.load("meshes/plant.ply")
     model_mesh = tm.load("meshes/cube.obj")
+    
+    plant_mesh = scale_mesh_to_m(39.3701, plant_mesh) # Currently inches
+    model_mesh = fit_mesh(model_mesh, plant_mesh)
 
     paths, plant_voxel, model_voxel = get_toolpath(plant_mesh, model_mesh)
     plant_voxel_mesh = plant_voxel.as_boxes()
