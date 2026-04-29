@@ -1138,8 +1138,9 @@
 #define DIST_TT_BASE \
     477.5  // (mm) Distance from center of turn table to gantry base
 #define DIST_REV_Y \
-    158  // (mm) Horizontal Distance from center of A axis rotation to trimmer
-         // tip
+    (158 - 10)  // (mm) Horizontal Distance from center of A axis rotation to
+                // trimmer
+                // tip
 #define DIST_REV_Z \
     41  // (mm) Vertical Distance from center of A axis rotation to trimmer
         // tip
