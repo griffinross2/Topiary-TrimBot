@@ -5,7 +5,7 @@ import numpy as np
 CART_OFFSET = 20 # mm out
 SCAN_SET_HEIGHT = 400 # mm up from turntable
 A_FEED = 1000 # wrist feed mm/min
-MOVE_FEED = 5000 # move instruction feed mm/min
+MOVE_FEED = 8000 # move instruction feed mm/min
 CUT_FEED = 1500 # cut instruction feed mm/min
 Z_MAX = 813 # mm
 DECS = 3

@@ -16,12 +16,12 @@ def do_toolpath():
     paths = []
     paths, _, _ = get_toolpath(plant_mesh, model_mesh, 0, 360, True)
 
-    fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
-    for path in paths:
-        ax.plot([point[0] for point in path], [point[1] for point in path], [point[2] for point in path])
+    # fig = plt.figure()
+    # ax = fig.add_subplot(111, projection='3d')
+    # for path in paths:
+    #     ax.plot([point[0] for point in path], [point[1] for point in path], [point[2] for point in path])
     
-    plt.show()
+    # plt.show()
 
     transform_data(paths)
     generate_gcode(paths, "gcode/out.gcode")
