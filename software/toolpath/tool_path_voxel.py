@@ -1,7 +1,6 @@
 import trimesh as tm
 import pyvista as pv
 import numpy as np
-from fitting import scale_mesh_to_m, fit_mesh
 
 CUTTER_WIDTH = 0.1
 VOXEL_SIZE = CUTTER_WIDTH / 8
@@ -315,6 +314,8 @@ def get_toolpath(plant_mesh, model_mesh, angle_start=0, angle_end=360, last_pass
     return paths, plant_voxel, model_voxel
 
 if __name__ == "__main__":
+    from fitting import scale_mesh_to_m, fit_mesh
+
     plant_mesh = tm.load("meshes/plant.ply")
     model_mesh = tm.load("meshes/cube.obj")
     

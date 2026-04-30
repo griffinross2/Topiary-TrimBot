@@ -1,6 +1,6 @@
 from toolpath.tool_path_voxel import *
 from toolpath.gcode_generation import *
-from fitting import scale_mesh_to_m, fit_mesh
+from toolpath.fitting import scale_mesh_to_m, fit_mesh
 import trimesh as tm
 import pyvista as pv
 import numpy as np
