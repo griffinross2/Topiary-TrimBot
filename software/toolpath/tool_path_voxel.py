@@ -238,7 +238,8 @@ def get_cut_path(voxels, angle, plant_voxel, model_voxel):
         point_angle = np.arctan2(point[1], point[0])
         if point_angle < 0:
             point_angle += np.pi*2
-        if point_r < R_SLOP or abs(point_angle - np.deg2rad(angle)) > np.deg2rad(45):
+        diff = (point_angle - np.deg2rad(angle) + np.pi) % (2 * np.pi) - np.pi
+        if point_r < R_SLOP or abs(diff) > np.deg2rad(45):
             # print(f"Clipping point {point} at angle {angle} and point angle {point_angle}")
             path.append([R_SLOP*np.cos(np.deg2rad(angle)), R_SLOP*np.sin(np.deg2rad(angle)), point[2]])
         else:
