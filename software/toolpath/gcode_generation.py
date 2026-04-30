@@ -6,7 +6,7 @@ CART_OFFSET = 20 # mm out
 SCAN_SET_HEIGHT = 400 # mm up from turntable
 A_FEED = 1000 # wrist feed mm/min
 MOVE_FEED = 8000 # move instruction feed mm/min
-CUT_FEED = 1500 # cut instruction feed mm/min
+CUT_FEED = 1000 # cut instruction feed mm/min
 Z_MAX = 813 # mm
 DECS = 3
 PARKING_R = 300 # mm
@@ -15,7 +15,7 @@ MIN_R_SLOP = 5
 POT_HEIGHT = 0.254
 POT_DIAMETER = 0.28
 PLANT_KEEPOUT_DIAMETER = POT_DIAMETER * 0.75
-TOOLHEAD_LEN = 180
+TOOLHEAD_LEN = (180/1000)
 
 # trimbot dimension constants
 D = 477.5

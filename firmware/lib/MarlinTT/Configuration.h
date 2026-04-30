@@ -1568,7 +1568,7 @@
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[,
  * E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE {1, 25, 25, 100, 30}
+#define DEFAULT_MAX_FEEDRATE {1, 100, 75, 30, 30}
 
 // #define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to
 // DEFAULT_MAX_FEEDRATE * 2
@@ -1582,7 +1582,7 @@
  * rotational=°/(s^2)) (Maximum start speed for accelerated moves) Override with
  * M201 X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_ACCELERATION {1, 1000, 2000, 100, 30}
+#define DEFAULT_MAX_ACCELERATION {1, 350, 350, 100, 30}
 
 // #define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to
 // DEFAULT_MAX_ACCELERATION * 2
