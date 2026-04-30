@@ -16,10 +16,10 @@ def do_toolpath(plant_mesh=None, model_mesh=None):
     # height = 0
     # fig = plt.figure()
     # ax = fig.add_subplot(111, projection='3d')
-    # for path in paths[2*(len(paths)-1)//3:]:
+    # for path in paths:
     #     path = np.array(path)
-    #     # points = path[np.abs(path[:, 2] - height) < 0.01]
-    #     points = path
+    #     points = path[np.abs(path[:, 2] - height) < 0.025]
+    #     # points = path
     #     ax.plot(points[:, 0], points[:, 1], points[:, 2])
     
     # plt.show()

@@ -1133,7 +1133,7 @@
 
 // Enable for TrimBot Kinematics
 #define TRIMBOT
-// #define TT_CUTTER_EN
+#define TT_CUTTER_EN
 #define DEFAULT_SEGMENTS_PER_SECOND 100
 #define DIST_TT_BASE \
     477.5  // (mm) Distance from center of turn table to gantry base
@@ -1582,7 +1582,7 @@
  * rotational=°/(s^2)) (Maximum start speed for accelerated moves) Override with
  * M201 X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_ACCELERATION {1, 350, 350, 100, 30}
+#define DEFAULT_MAX_ACCELERATION {1, 250, 250, 100, 30}
 
 // #define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to
 // DEFAULT_MAX_ACCELERATION * 2
