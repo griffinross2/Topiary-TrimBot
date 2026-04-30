@@ -5,7 +5,6 @@ import numpy as np
 CUTTER_WIDTH = 0.1
 VOXEL_SIZE = CUTTER_WIDTH / 4
 VOXEL_VICTIM_RANGE = CUTTER_WIDTH / 3
-MODEL_EXTRA_SCALE = 1
 STARTING_ANGLE_STEP = 9
 ENDING_ANGLE_STEP = 16
 SCAN_SET_HEIGHT = (400 / 1000)
@@ -15,7 +14,7 @@ POT_HEIGHT = 0.254
 POT_DIAMETER = 0.28
 PLANT_KEEPOUT_FRACTION = (1/2)
 PLANT_KEEPOUT_DIAMETER = POT_DIAMETER * 0.75
-R_SLOP = 0.001
+R_SLOP = 0.003
 
 def voxelize_meshes(plant_mesh, model_mesh, pitch=VOXEL_SIZE):
     # This function implemented by ChatGPT
@@ -213,26 +212,37 @@ def get_cut_path(voxels, angle, plant_voxel, model_voxel):
         point = voxels.indices_to_points(np.array([voxel_at_i]))[0]
         # Clip points that may have crossed to the other side
         # of the plant
-        if angle >= 0 and angle < 45 or angle >= 315 and angle <= 360:
-            if point[0] < 0:
-                path.append([R_SLOP*np.cos(np.deg2rad(angle)), R_SLOP*np.sin(np.deg2rad(angle)), point[2]])
-            else:
-                path.append(point)
-        elif angle >= 45 and angle < 135:
-            if point[1] < 0:
-                path.append([R_SLOP*np.cos(np.deg2rad(angle)), R_SLOP*np.sin(np.deg2rad(angle)), point[2]])
-            else:
-                path.append(point)
-        elif angle >= 135 and angle < 225:
-            if point[0] > 0:
-                path.append([R_SLOP*np.cos(np.deg2rad(angle)), R_SLOP*np.sin(np.deg2rad(angle)), point[2]])
-            else:
-                path.append(point)
-        elif angle >= 225 and angle < 315:
-            if point[1] > 0:
-                path.append([R_SLOP*np.cos(np.deg2rad(angle)), R_SLOP*np.sin(np.deg2rad(angle)), point[2]])
-            else:
-                path.append(point)
+        # if angle >= 0 and angle < 45 or angle >= 315 and angle <= 360:
+        #     if point[0] < 0:
+        #         path.append([R_SLOP*np.cos(np.deg2rad(angle)), R_SLOP*np.sin(np.deg2rad(angle)), point[2]])
+        #     else:
+        #         path.append(point)
+        # elif angle >= 45 and angle < 135:
+        #     if point[1] < 0:
+        #         path.append([R_SLOP*np.cos(np.deg2rad(angle)), R_SLOP*np.sin(np.deg2rad(angle)), point[2]])
+        #     else:
+        #         path.append(point)
+        # elif angle >= 135 and angle < 225:
+        #     if point[0] > 0:
+        #         path.append([R_SLOP*np.cos(np.deg2rad(angle)), R_SLOP*np.sin(np.deg2rad(angle)), point[2]])
+        #     else:
+        #         path.append(point)
+        # elif angle >= 225 and angle < 315:
+        #     if point[1] > 0:
+        #         path.append([R_SLOP*np.cos(np.deg2rad(angle)), R_SLOP*np.sin(np.deg2rad(angle)), point[2]])
+        #     else:
+        #         path.append(point)
+
+        # Check if point is near zero or angle is more than 45 degrees away
+        point_r = np.linalg.norm((point[0], point[1]))
+        point_angle = np.arctan2(point[1], point[0])
+        if point_angle < 0:
+            point_angle += np.pi*2
+        if point_r < R_SLOP or abs(point_angle - np.deg2rad(angle)) > np.deg2rad(45):
+            # print(f"Clipping point {point} at angle {angle} and point angle {point_angle}")
+            path.append([R_SLOP*np.cos(np.deg2rad(angle)), R_SLOP*np.sin(np.deg2rad(angle)), point[2]])
+        else:
+            path.append(point)
 
         # print(i, angle, voxel_at_i)
         # Remove them as we go

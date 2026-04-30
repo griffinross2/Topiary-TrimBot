@@ -18,6 +18,8 @@ static void main_loop();
 static void process_manual_gcode();
 static void led_blink();
 
+static uint32_t s_buffer_tick = 0;
+
 int main(void) {
     HAL_Init();
 
@@ -65,6 +67,11 @@ int main(void) {
 static void main_loop() {
     door_stop_task();
     scheduler_run();
+
+    if (get_tick_ms() - s_buffer_tick >= 200) {
+        s_buffer_tick = get_tick_ms();
+        printf("Buffer size: %d\n", queue.ring_buffer.length);
+    }
 }
 
 static void process_manual_gcode() {
