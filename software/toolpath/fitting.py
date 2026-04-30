@@ -1,7 +1,7 @@
 import numpy as np
 import trimesh as tm
 
-MODEL_EXTRA_SCALE = 1.3
+MODEL_EXTRA_SCALE = 1
 
 def fit_mesh(mesh, surf):
       # center both meshes
