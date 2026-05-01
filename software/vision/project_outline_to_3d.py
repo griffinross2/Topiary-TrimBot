@@ -10,12 +10,11 @@ def project_outline_to_3d(outline_points, camera_orig_dist, disp, depth, angle, 
     x_scale = X_SCALE * 2 * depth * np.tan(np.radians(hor_fov / 2)) / org_width
     y_scale = Y_SCALE * 2 * depth * np.tan(np.radians(vert_fov / 2)) / org_height
     r = camera_orig_dist - depth
+    theta = np.deg2rad(angle)
 
-    # pick basis vectors
-    n = np.array([-1 * np.cos(np.radians(angle)),-1 * np.sin(np.radians(angle)), 0])
-    u1 = (0, 0, 1)
-    u2 = np.cross(n, u1)
-    R = np.array([u2, u1, n]).T
+    p0 = np.array([r*np.cos(theta), r*np.sin(theta), 0.0])
+    x_axis = np.array([-np.sin(theta), np.cos(theta), 0.0])
+    y_axis = np.array([0.0, 0.0, 1.0])
 
     pts_3d = []
 
@@ -30,7 +29,7 @@ def project_outline_to_3d(outline_points, camera_orig_dist, disp, depth, angle, 
         y_inch = y_offset * y_scale
 
         # Transform this cross section by placing it on its plane in 3D
-        pt = np.matmul(R, np.array([x_inch, y_inch, 0])) + (r * n)
+        pt = p0 + x_inch*x_axis + y_inch*y_axis
         
         ## CONDITION TO DECREASE POINT SAMPLING:
         # if(i % 10 == 0): 

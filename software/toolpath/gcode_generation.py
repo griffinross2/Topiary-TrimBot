@@ -12,11 +12,12 @@ DECS = 3
 PARKING_R = 300 # mm
 START_POINT = (0, -390, 500, 0) # mm, mm, mm, deg
 MIN_R_SLOP = 5
-POT_HEIGHT = 254
-POT_DIAMETER = 280
+POT_HEIGHT = 260
+POT_DIAMETER = 300
 PLANT_KEEPOUT_DIAMETER = POT_DIAMETER * 0.75
 TOOLHEAD_LEN = 180
 MIN_ANGLE_CHANGE = 8 # degrees - if the angle change is less than this, don't bother changing the angle
+MIN_ANGLE = 15 # degrees - minimum angle of cutter
 
 # trimbot dimension constants
 D = 477.5
@@ -67,7 +68,7 @@ def get_trimmer_angle(curr_coord, next_coord):
     point_vec = np.subtract(next_coord, curr_coord)
     mag_point_vec = np.linalg.norm(point_vec)
     ang = np.arccos(np.dot(r_vec, point_vec) / mag_point_vec) * (180.0 / np.pi) - 90
-    ang = np.clip(ang, 0, 180)
+    ang = np.clip(ang, MIN_ANGLE, 180)
 
     # override the angle if the point is too close in to allow trimbot
     # to reach the point. This is since the extruder can only reach points

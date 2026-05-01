@@ -24,7 +24,7 @@ def do_toolpath(plant_mesh=None, model_mesh=None):
     
     # plt.show()
 
-    transform_data(paths)
+    paths = transform_data(paths)
     generate_gcode(paths, "gcode/out.gcode")
 
 
