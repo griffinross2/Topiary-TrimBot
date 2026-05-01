@@ -30,7 +30,7 @@ def do_toolpath(plant_mesh=None, model_mesh=None):
 
 if __name__ == "__main__":
     plant_mesh = tm.load("meshes/plant.ply")
-    model_mesh = tm.load("meshes/pyramid.stl")
+    model_mesh = tm.load("meshes/cube.obj")
 
     plant_mesh = scale_mesh_to_m(39.3701, plant_mesh)
     model_mesh = fit_mesh(model_mesh, plant_mesh)
