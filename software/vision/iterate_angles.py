@@ -17,6 +17,9 @@ def iterate_angles(angle_step):
     angle = 0
     path = 'images/'
 
+    global points_2d # stores 2D points separated by image angle
+    points_2d = []
+
     # Scan each pair of images
     for angle in range(0, 360, angle_step):
         left_filename = path + f"left_{angle:d}.jpg"
@@ -29,12 +32,13 @@ def iterate_angles(angle_step):
         pts = scan_plant(img_left, img_right, angle)
 
         pt_cloud.extend(pts)
+        points_2d.append(pts)
 
     cloud = tm.PointCloud(pt_cloud)
     mesh = cloud.convex_hull
     mesh.export("meshes/plant.ply")
     
-    return
+    # return
 
     #---- PREPARE PLOT DATA ----#
     #< plotting functionality only below this line >#
@@ -80,7 +84,7 @@ def iterate_angles(angle_step):
     plotter.add_mesh(pt_cloud, opacity = .1)
     plotter.add_mesh(table,color='brown')
     plotter.add_mesh(pot,color='gray',opacity=.5)
-    plotter.add_slider_widget(show_2D, [0, 360 / ANGLE_STEP - 1], title='angle', interaction_event='always', value=6)
+    plotter.add_slider_widget(show_2D, [0, 360 / angle_step - 1], title='angle', interaction_event='always', value=6)
     plotter.add_mesh(pv.Sphere(radius=.5, center=[6,0,-16]))
 
     # Plot Trimesh reconstruction
@@ -110,3 +114,10 @@ def iterate_angles(angle_step):
     plotter.show()
 
     return
+
+def show_2D(value): # change 2D point angle widget
+    plotter.subplot(0,0)
+    i = int(value)
+    face = points_2d[i]
+    face = pv.PolyData(face)
+    plotter.add_mesh(face, name='face', color='black')

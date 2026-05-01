@@ -7,7 +7,7 @@ def correction(pos):
     #THIS FUNCTION IS CALLED ONCE, WRITES PARAMETERS TO FILE
 
     # Define the dimensions of checkerboard
-    CHECKERBOARD = (6, 9)
+    CHECKERBOARD = (9, 6)
 
     # stop the iteration when specified
     # accuracy, epsilon, is reached or
@@ -32,7 +32,7 @@ def correction(pos):
     # Extracting path of individual image stored
     # in a given directory. CHANGE WHEN IMPLEMENTED ON PI
     # jpg files alone
-    images = glob.glob('../calibration_images/'+pos+'/*.jpg')
+    images = glob.glob('vision/checkerboards/*.jpg')
     for filename in images:
         #print("searching: ", filename)
         image = cv2.imread(filename)
@@ -82,7 +82,7 @@ def correction(pos):
 
     newcameramtx, roi = cv2.getOptimalNewCameraMatrix(matrix, distortion, (w,h), 1, (w,h))
 
-    file = cv2.FileStorage("parameters_"+pos+".yml", cv2.FileStorage_WRITE)
+    file = cv2.FileStorage("vision/parameters.yml", cv2.FileStorage_WRITE)
     file.write("matrix",matrix)
     file.write("distortion",distortion)
     file.write("newcameramtx",newcameramtx)
@@ -93,8 +93,27 @@ def correction(pos):
 
     file.release()
 
+    # Check the error
+    mean_error = 0
+    for i in range(len(threedpoints)):
+        imgpoints2, _ = cv2.projectPoints(threedpoints[i], r_vecs[i], t_vecs[i], matrix, distortion)
+        error = cv2.norm(twodpoints[i], imgpoints2, cv2.NORM_L2SQR) / len(imgpoints2)
+        mean_error += error
+
+    print( "total error: {}".format(np.sqrt(mean_error/len(threedpoints))) )
+
+    # Look back at the corrected checkerboard images
+    # for filename in images:
+    #     image = cv2.imread(filename)
+    #     undst = cv2.undistort(image, matrix, distortion, None, newcameramtx)
+    #     undst = undst[roi[1]:roi[1]+roi[3], roi[0]:roi[0]+roi[2]]
+
+    #     # cv2.imshow('original', image)
+    #     cv2.imshow('undistorted', undst)
+    #     cv2.waitKey(0)
+
     return()
 
 if __name__ == "__main__":
     correction('left')
-    correction('right')
+    # correction('right')

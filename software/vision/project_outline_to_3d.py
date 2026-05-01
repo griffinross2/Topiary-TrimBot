@@ -1,7 +1,9 @@
 import numpy as np
 
-X_SCALE = (21/22)
-Y_SCALE = (2/3)
+# X_SCALE = (21/22)
+# Y_SCALE = (2/3)
+X_SCALE = 1
+Y_SCALE = 1
 
 def project_outline_to_3d(outline_points, camera_orig_dist, disp, depth, angle, width, height, vert_fov=85, hor_fov=128):
     
