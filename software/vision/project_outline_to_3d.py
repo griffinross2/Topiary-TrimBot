@@ -5,10 +5,10 @@ import numpy as np
 X_SCALE = 1
 Y_SCALE = 1
 
-def project_outline_to_3d(outline_points, camera_orig_dist, disp, depth, angle, width, height, vert_fov=85, hor_fov=128):
+def project_outline_to_3d(outline_points, camera_orig_dist, disp, depth, angle, org_width, org_height, width, height, vert_fov=85, hor_fov=128):
     
-    x_scale = X_SCALE * 2 * depth * np.tan(np.radians(hor_fov / 2)) / width
-    y_scale = Y_SCALE * 2 * depth * np.tan(np.radians(vert_fov / 2)) / height
+    x_scale = X_SCALE * 2 * depth * np.tan(np.radians(hor_fov / 2)) / org_width
+    y_scale = Y_SCALE * 2 * depth * np.tan(np.radians(vert_fov / 2)) / org_height
     r = camera_orig_dist - depth
 
     # pick basis vectors

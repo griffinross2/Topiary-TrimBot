@@ -11,40 +11,39 @@ from vision.disp_to_depth import *
 from vision.get_point_on_outline import *
 from vision.project_outline_to_3d import *
 
-MIN_DEPTH = 8
+MIN_DEPTH = 5
 MAX_DEPTH = 16
 # DEFAULT_DISP = 20
 # DEFAULT_DEPTH = 10
 
 def scan_plant(img_left, img_right, angle):
 
-    img_left, w_left, h_left, fov_h_left, fov_v_left = picture_prep(img_left, "left")
+    img_left, w_left, h_left, org_w_left, org_h_left, fov_h_left, fov_v_left = picture_prep(img_left, "left")
     print("left, ",angle)
     silhouette_left, outline_left = create_outline(img_left)
     outline_left = np.array(outline_left)
     
-    img_right, w_right, h_right, fov_h_right, fov_v_right = picture_prep(img_right, "right")
+    img_right, w_right, h_right, org_w_right, org_h_right, fov_h_right, fov_v_right = picture_prep(img_right, "right")
     print("right, ",angle)
     silhouette_right, outline_right = create_outline(img_right)
 
     disparity = get_disparity_level(silhouette_right, silhouette_left)
-    print(w_left, fov_h_left)
-    depth = disp_to_depth(disparity, w_left, hfov=fov_h_left)
+    depth = disp_to_depth(disparity, org_w_left, hfov=fov_h_left)
 
     print("disp: ", disparity)
     print("depth: ", depth)
 
     # Prevent false disparity from ruining model
     if(depth < MIN_DEPTH):
-        disparity = depth_to_disp(MIN_DEPTH, w_left, hfov=fov_h_left)
+        disparity = depth_to_disp(MIN_DEPTH, org_w_left, hfov=fov_h_left)
         depth = MIN_DEPTH
         print("BAD DEPTH")
     elif(depth > MAX_DEPTH):
-        disparity = depth_to_disp(MAX_DEPTH, w_left, hfov=fov_h_left)
+        disparity = depth_to_disp(MAX_DEPTH, org_w_left, hfov=fov_h_left)
         depth = MAX_DEPTH
         print("BAD DEPTH")
 
-    pts = project_outline_to_3d(outline_left, 14.4, disparity, depth, angle, w_left, h_left, fov_v_left, fov_h_left)
+    pts = project_outline_to_3d(outline_left, 14.4, disparity, depth, angle, org_w_left, org_h_left, w_left, h_left, fov_v_left, fov_h_left)
     pts = np.array(pts)
 
     return(pts)

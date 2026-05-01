@@ -53,7 +53,8 @@ def undistort(img, pos):
     undst = cv2.undistort(cv_img, camera_matrix, dist_coeffs, None, new_camera_matrix)
 
     # cv2.imshow('original', cv_img)
-    # cv2.imshow('undistorted', undst)
+    # new_img = cv2.resize(undst, (1280, 720))
+    # cv2.imshow('undistorted', new_img)
     # cv2.waitKey(0)
 
     # print(cv_img.shape)
@@ -70,7 +71,7 @@ def undistort(img, pos):
     return pil_img, fov_h, fov_v
 
 if __name__ == "__main__":
-    img = Image.open("images/right_0.jpg")
+    img = Image.open("images/right_30.jpg")
     undst, fov_h, fov_v = undistort(img, "left")
     print(f"Field of View (cropped): {fov_h:.2f}° (horizontal), {fov_v:.2f}° (vertical)")
     print(f"Image size after cropping: {undst.size}")
