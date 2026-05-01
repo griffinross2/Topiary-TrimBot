@@ -38,7 +38,7 @@ def iterate_angles(angle_step):
     mesh = cloud.convex_hull
     mesh.export("meshes/plant.ply")
     
-    # return
+    return
 
     #---- PREPARE PLOT DATA ----#
     #< plotting functionality only below this line >#
@@ -115,9 +115,9 @@ def iterate_angles(angle_step):
 
     return
 
-def show_2D(value): # change 2D point angle widget
-    plotter.subplot(0,0)
-    i = int(value)
-    face = points_2d[i]
-    face = pv.PolyData(face)
-    plotter.add_mesh(face, name='face', color='black')
+# def show_2D(value): # change 2D point angle widget
+#     plotter.subplot(0,0)
+#     i = int(value)
+#     face = points_2d[i]
+#     face = pv.PolyData(face)
+#     plotter.add_mesh(face, name='face', color='black')
