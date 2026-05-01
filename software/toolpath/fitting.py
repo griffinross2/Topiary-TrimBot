@@ -62,9 +62,10 @@ def fit_mesh(mesh, surf):
         raise RuntimeError("No fits")
     else:
         print(f"Found fit with scale {scale}, rotation {rotation} and translation {translation}")
+        mesh_test.apply_scale(MODEL_EXTRA_SCALE)
         return mesh_test
     
 def scale_mesh_to_m(current_units_per_m, mesh):
     scale_factor = 1 / current_units_per_m
-    mesh.apply_scale(scale_factor * MODEL_EXTRA_SCALE)
+    mesh.apply_scale(scale_factor)
     return mesh
