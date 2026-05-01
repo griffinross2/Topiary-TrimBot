@@ -4,49 +4,64 @@ import trimesh as tm
 MODEL_EXTRA_SCALE = 1
 
 def fit_mesh(mesh, surf):
-      # center both meshes
+    # center both meshes
     translation = -surf.centroid
-    translation[2] = 0
+    translation[0] = 0
+    translation[1] = 0
     surf.apply_translation(translation)
     mesh.apply_translation(-mesh.centroid)
-    mesh.apply_translation((0, 0, surf.centroid[2]))
+    # surf.show(flags={'axis': True, 'wireframe': True})
+    # mesh.show(flags={'axis': True, 'wireframe': True})
+    
 
     # scale mesh larger than surface
     mesh_scale = (surf.extents / mesh.extents).min()
     mesh.apply_scale(mesh_scale)
 
     # scales and rotations
-    scales = np.logspace(0,-2,50)
-    rotations = np.linspace(0.0,360.0,50) # degrees
+    scales = np.linspace(2,0.01,30)
+    # rotations = np.linspace(0.0,360.0,20) # degrees
+    rotations = [0]
+    # x_bound = surf.bounds[:,0]
+    # y_bound = surf.bounds[:,1]
+    z_bound = surf.bounds[:,2]
+    translations = [[0, 0, z] for z in np.linspace(z_bound[0], z_bound[1], 10)]
 
     # fitting operation
     for scale in scales:
         # scale
         s = np.diag([scale, scale, scale, 1])
+        for translation in translations:
+            for rotation in rotations:
+                # copy mesh
+                mesh_test = mesh.copy()
+            
+                # rotation
+                ang = np.radians(rotation)
+                r_z = tm.transformations.rotation_matrix(ang, [0,0,1], translation)
+            
+                # apply translation
+                trans = r_z @ s
+                mesh_test.apply_translation(translation)
+                mesh_test.apply_transform(trans)
 
-        for rotation in rotations:
-            # copy mesh
-            mesh_test = mesh.copy()
-        
-            # rotation
-            ang = np.radians(rotation)
-            r_z = tm.transformations.rotation_matrix(ang, [0,0,1])
-        
-            # apply translation
-            trans = r_z @ s
-            mesh_test.apply_transform(trans)
+                # simple check if all vertices of the mesh are inside the plant surface
+                points_inside = surf.contains(mesh_test.vertices)
+                is_inside = np.all(points_inside)
+                
+                if is_inside:
+                    break
 
-            # simple check if all vertices of the mesh are inside the plant surface
-            points_inside = surf.contains(mesh_test.vertices)
-            is_inside = np.all(points_inside)
+            if is_inside:
+                break
 
-        if (is_inside):
+        if is_inside:
             break
     
-    if (not is_inside):
+    if not is_inside:
         raise RuntimeError("No fits")
     else:
-        print(f"Found fit with scale {scale} and rotation {rotation}")
+        print(f"Found fit with scale {scale}, rotation {rotation} and translation {translation}")
         return mesh_test
     
 def scale_mesh_to_m(current_units_per_m, mesh):

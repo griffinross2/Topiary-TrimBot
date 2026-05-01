@@ -13,12 +13,12 @@ def do_toolpath(plant_mesh=None, model_mesh=None):
     paths = []
     paths, _, _ = get_toolpath(plant_mesh, model_mesh, 0, 360, False)
     
-    # height = 0
+    # height = -0.05
     # fig = plt.figure()
     # ax = fig.add_subplot(111, projection='3d')
     # for path in paths:
     #     path = np.array(path)
-    #     points = path[np.abs(path[:, 2] - height) < 0.025]
+    #     points = path[np.abs(path[:, 2] - height) < 0.05]
     #     # points = path
     #     ax.plot(points[:, 0], points[:, 1], points[:, 2])
     
@@ -30,7 +30,7 @@ def do_toolpath(plant_mesh=None, model_mesh=None):
 
 if __name__ == "__main__":
     plant_mesh = tm.load("meshes/plant.ply")
-    model_mesh = tm.load("meshes/cube.obj")
+    model_mesh = tm.load("meshes/pyramid.stl")
 
     plant_mesh = scale_mesh_to_m(39.3701, plant_mesh)
     model_mesh = fit_mesh(model_mesh, plant_mesh)

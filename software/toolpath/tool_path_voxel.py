@@ -3,17 +3,19 @@ import pyvista as pv
 import numpy as np
 
 CUTTER_WIDTH = 0.1
-VOXEL_SIZE = CUTTER_WIDTH / 4
+VOXEL_SIZE = CUTTER_WIDTH / 8
 VOXEL_VICTIM_RANGE = CUTTER_WIDTH / 3
+MAX_VOXEL_CUTS = 6
+FINE_VOXEL_DEPTH = 2
 STARTING_ANGLE_STEP = 9
 ENDING_ANGLE_STEP = 16
 SCAN_SET_HEIGHT = (400 / 1000)
 # STARTING_ANGLE_STEP = 1
 # ENDING_ANGLE_STEP = 1
-POT_HEIGHT = 0.254
-POT_DIAMETER = 0.28
+POT_HEIGHT = 0.25
+POT_DIAMETER = 0.30
 PLANT_KEEPOUT_FRACTION = (1/2)
-PLANT_KEEPOUT_DIAMETER = POT_DIAMETER * 0.75
+PLANT_KEEPOUT_DIAMETER = POT_DIAMETER * 0.5
 R_SLOP = 0.003
 
 def voxelize_meshes(plant_mesh, model_mesh, pitch=VOXEL_SIZE):
@@ -90,7 +92,7 @@ def get_outmost_at_height(diff_voxels, model_voxels, angle, height_index):
     start = get_center_voxel(diff_voxels)
     start[2] = height_index
     angle = np.deg2rad(angle)
-    last_voxel = start
+    last_voxels_buf = []
 
     # We will now propagate a ray outward by picking points corresponding
     # to the closest voxel along the line.
@@ -106,8 +108,14 @@ def get_outmost_at_height(diff_voxels, model_voxels, angle, height_index):
         while int(x) >= 0 and int(x) < diff_voxels.matrix.shape[0] and int(y) >= 0 and int(y) < diff_voxels.matrix.shape[1]:
             if diff_voxels.matrix[int(x), int(y), height_index]:
                 last_voxel = (int(x), int(y), height_index)
-            if model_voxels.matrix[int(x), int(y), height_index]:
-                last_voxel = (int(x), int(y), height_index)
+                last_voxels_buf.append(last_voxel)
+                if len(last_voxels_buf) > MAX_VOXEL_CUTS + FINE_VOXEL_DEPTH:
+                    last_voxels_buf.pop(0)
+            # if model_voxels.matrix[int(x), int(y), height_index]:
+            #     last_voxel = (int(x), int(y), height_index)
+            #     last_voxels_buf.append(last_voxel)
+            #     if len(last_voxels_buf) > MAX_VOXEL_CUTS + FINE_VOXEL_DEPTH:
+            #         last_voxels_buf.pop(0)
 
 
             x += x_inc
@@ -119,13 +127,32 @@ def get_outmost_at_height(diff_voxels, model_voxels, angle, height_index):
         while int(x) >= 0 and int(x) < diff_voxels.matrix.shape[0] and int(y) >= 0 and int(y) < diff_voxels.matrix.shape[1]:
             if diff_voxels.matrix[int(x), int(y), height_index]:
                 last_voxel = (int(x), int(y), height_index)
-            if model_voxels.matrix[int(x), int(y), height_index]:
-                last_voxel = (int(x), int(y), height_index)
+                last_voxels_buf.append(last_voxel)
+                if len(last_voxels_buf) > MAX_VOXEL_CUTS + FINE_VOXEL_DEPTH:
+                    last_voxels_buf.pop(0)
+            # if model_voxels.matrix[int(x), int(y), height_index]:
+            #     last_voxel = (int(x), int(y), height_index)
+            #     last_voxels_buf.append(last_voxel)
+            #     if len(last_voxels_buf) > MAX_VOXEL_CUTS + FINE_VOXEL_DEPTH:
+            #         last_voxels_buf.pop(0)
 
             x += 1/(np.tan(angle))*y_inc
             y += y_inc
 
-    return last_voxel
+    if len(last_voxels_buf) >= FINE_VOXEL_DEPTH + MAX_VOXEL_CUTS:
+        # print()
+        # print(start)
+        # print(last_voxels_buf)
+        last_voxels_buf = last_voxels_buf[(-MAX_VOXEL_CUTS):]
+        # print(last_voxels_buf)
+    elif len(last_voxels_buf) > FINE_VOXEL_DEPTH:
+        last_voxels_buf = last_voxels_buf[FINE_VOXEL_DEPTH:]
+    elif len(last_voxels_buf) > 0:
+        last_voxels_buf = [last_voxels_buf[-1]]
+    else:
+        last_voxels_buf = []
+
+    return last_voxels_buf
     
 def move_dist_at_angle(voxels, start, dist, angle):
     # We will now propagate a ray outward by picking points corresponding
@@ -208,8 +235,10 @@ def kill_other_victims(voxels, angle, last_voxel):
 def get_cut_path(voxels, angle, plant_voxel, model_voxel):
     path = []
     for i in range(voxels.matrix.shape[2]):
-        voxel_at_i = get_outmost_at_height(voxels, model_voxel, angle, i)
-        point = voxels.indices_to_points(np.array([voxel_at_i]))[0]
+        voxels_at_i = get_outmost_at_height(voxels, model_voxel, angle, i)
+        if len(voxels_at_i) == 0:
+            continue
+        point = voxels.indices_to_points(np.array([voxels_at_i[0]]))[0]
         # Clip points that may have crossed to the other side
         # of the plant
         # if angle >= 0 and angle < 45 or angle >= 315 and angle <= 360:
@@ -242,6 +271,7 @@ def get_cut_path(voxels, angle, plant_voxel, model_voxel):
         if point_r < R_SLOP or abs(diff) > np.deg2rad(45):
             # print(f"Clipping point {point} at angle {angle} and point angle {point_angle}")
             path.append([R_SLOP*np.cos(np.deg2rad(angle)), R_SLOP*np.sin(np.deg2rad(angle)), point[2]])
+            # pass
         else:
             path.append(point)
 
@@ -250,8 +280,11 @@ def get_cut_path(voxels, angle, plant_voxel, model_voxel):
         # mat = voxels.matrix
         # mat[np.array(voxel_at_i, dtype=int)] = False
         # voxels = tm.voxel.VoxelGrid(encoding=mat, transform=voxels.transform)
-        voxels.matrix[int(voxel_at_i[0]), int(voxel_at_i[1]), int(voxel_at_i[2])] = False
-        plant_voxel.matrix[int(voxel_at_i[0]), int(voxel_at_i[1]), int(voxel_at_i[2])] = False
+        for voxel_at_i in voxels_at_i:
+             # plant_voxel.matrix[int(voxel_at_i[0]), int(voxel_at_i[1]), int(voxel_at_i[2])] = False
+             # model_voxel.matrix[int(voxel_at_i[0]), int(voxel_at_i[1]), int(voxel_at_i[2])] = False
+            voxels.matrix[int(voxel_at_i[0]), int(voxel_at_i[1]), int(voxel_at_i[2])] = False
+            plant_voxel.matrix[int(voxel_at_i[0]), int(voxel_at_i[1]), int(voxel_at_i[2])] = False
 
         # Remove other voxels that the cutting blade should be passing through/under
         # kill_other_victims(voxels, angle, voxel_at_i)
@@ -276,9 +309,12 @@ def remove_points_in_keepout(plant_mesh, paths):
 
             if point_r > keepout_radius or point_z > keepout_height:
                 new_path.append(point)
-            # else:
-            #     print(point)
-        new_paths.append(new_path)
+            else:
+                if len(new_path) > 0:
+                    new_paths.append(new_path)
+                new_path = []
+        if len(new_path) > 0:
+            new_paths.append(new_path)
 
     return new_paths
 
@@ -297,6 +333,7 @@ def get_toolpath(plant_mesh, model_mesh, angle_start=0, angle_end=360, last_pass
     model_voxel.fill()
 
     diff_voxel = get_voxel_difference(plant_voxel, model_voxel)
+    # show_voxel(diff_voxel)
 
     paths = []
     pass_start_indices = []
@@ -315,7 +352,6 @@ def get_toolpath(plant_mesh, model_mesh, angle_start=0, angle_end=360, last_pass
             break
         kill_voxels_outside_radius(diff_voxel, max_radius - (p+1)*VOXEL_SIZE)
 
-    # show_voxel(diff_voxel)
     # show_voxel(plant_voxel)
     if last_pass_only:
         paths = paths[pass_start_indices[-1]:]
@@ -328,7 +364,7 @@ if __name__ == "__main__":
     from fitting import scale_mesh_to_m, fit_mesh
 
     plant_mesh = tm.load("meshes/plant.ply")
-    model_mesh = tm.load("meshes/cube.obj")
+    model_mesh = tm.load("meshes/pyramid.stl")
     
     plant_mesh = scale_mesh_to_m(39.3701, plant_mesh) # Currently inches
     model_mesh = fit_mesh(model_mesh, plant_mesh)

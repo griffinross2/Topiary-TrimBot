@@ -16,6 +16,7 @@ POT_HEIGHT = 254
 POT_DIAMETER = 280
 PLANT_KEEPOUT_DIAMETER = POT_DIAMETER * 0.75
 TOOLHEAD_LEN = 180
+MIN_ANGLE_CHANGE = 8 # degrees - if the angle change is less than this, don't bother changing the angle
 
 # trimbot dimension constants
 D = 477.5
@@ -156,8 +157,10 @@ def generate_gcode(paths, fname="out.gcode"):
 
             # if not last point, use next point to adjust cutter angle
             if(n < len(path) - 1):
-                angle = get_trimmer_angle(path[n], path[n+1])
-                wrist_move(f, angle)
+                new_angle = get_trimmer_angle(path[n], path[n+1])
+                if abs(new_angle - angle) >= MIN_ANGLE_CHANGE:
+                    angle = new_angle
+                    wrist_move(f, angle)
 
         # go to parking position
         x, y = parking_radius(f, path[n])
